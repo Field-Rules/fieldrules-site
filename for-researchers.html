@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Researchers | FieldRules</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --font-sans:'DM Sans',sans-serif;
+  --font-serif:'Fraunces',serif;
+  --font-mono:'DM Mono',monospace;
+  --indigo-300:#A5AEFF;
+  --indigo-400:#818CF8;
+  --indigo-500:#4752F5;
+  --indigo-600:#3B45D6;
+  --indigo-700:#2D35A8;
+  --teal-300:#5ED5BE;
+  --teal-400:#3DC4AB;
+  --teal-500:#2AA896;
+  --teal-600:#1E8A7B;
+  --rose-500:#F43F5E;
+  --amber-400:#FBBF24;
+  --amber-500:#F59E0B;
+  --green-500:#22C55E;
+  --slate-300:#CBD5E1;
+  --slate-400:#A8B8CC;
+  --slate-500:#7B8CA0;
+  --slate-600:#5C6B7F;
+}
+html{scroll-behavior:smooth}
+section{scroll-margin-top:56px}
+body {
+  font-family:var(--font-sans);
+  background:#070714;
+  color:#EDF0F7;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+[data-reveal].visible{opacity:1;transform:translateY(0)}
+
+/* ── Nav ── */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;
+  padding:0 32px;height:56px;
+  background:rgba(7,7,20,.85);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-logo {
+  font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;
+  color:#fff;letter-spacing:-.02em;text-decoration:none;
+}
+.nav-links {
+  display:flex;align-items:center;gap:4px;
+  margin-left:40px;list-style:none;
+}
+.nav-links a {
+  font-size:13px;font-weight:500;color:var(--slate-400);
+  text-decoration:none;padding:5px 12px;border-radius:6px;
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-links a.active{color:var(--teal-300);background:rgba(94,213,190,.08)}
+.nav-cta {
+  margin-left:auto;font-size:13px;font-weight:600;
+  padding:8px 18px;background:var(--indigo-500);color:#fff;
+  border:none;border-radius:6px;cursor:pointer;
+  transition:background .2s,transform .15s;text-decoration:none;
+}
+.nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
+.hamburger {
+  display:none;flex-direction:column;gap:4px;cursor:pointer;
+  background:none;border:none;padding:0;margin-left:auto;
+}
+.hamburger span{width:24px;height:2px;background:var(--indigo-300);transition:all .3s}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(7,7,20,.95);padding:1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-links.active{display:flex}
+  .nav-links li{padding:.75rem 0}
+  .nav-cta{display:none}
+}
+
+/* ── Shared ── */
+section{padding:96px 24px}
+.inner{max-width:1120px;margin:0 auto}
+.section-eyebrow {
+  font-family:var(--font-mono);font-size:10px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--indigo-400);margin-bottom:16px;
+}
+.section-h2 {
+  font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);
+  font-weight:300;line-height:1.1;letter-spacing:-.03em;
+  color:#fff;margin-bottom:20px;
+}
+.section-h2 em{font-style:italic;color:var(--teal-300)}
+.section-lede {
+  font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px;
+}
+
+/* ── Hero ── */
+.hero {
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:120px 24px 80px;position:relative;overflow:hidden;
+}
+.hero-bg {
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%,rgba(71,82,245,.18) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 80%,rgba(14,165,141,.1) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 100%,rgba(71,82,245,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-grid {
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);
+  pointer-events:none;
+}
+.hero-eyebrow {
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);
+  background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);
+  border-radius:100px;padding:6px 16px;margin-bottom:32px;
+  position:relative;z-index:1;
+}
+.hero-eyebrow::before {
+  content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-300);
+  animation:pulse 2s ease infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1 {
+  font-family:var(--font-serif);font-size:clamp(42px,6.5vw,76px);
+  font-weight:300;line-height:1.05;letter-spacing:-.03em;color:#fff;
+  margin-bottom:24px;position:relative;z-index:1;max-width:900px;
+}
+.hero h1 em {
+  font-style:italic;
+  background:linear-gradient(135deg,var(--indigo-300),var(--teal-300));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;color:transparent;
+}
+.hero-sub {
+  font-size:18px;font-weight:400;line-height:1.6;color:var(--slate-400);
+  max-width:620px;margin:0 auto 48px;position:relative;z-index:1;
+}
+.hero-actions {
+  display:flex;align-items:center;gap:16px;position:relative;z-index:1;
+  flex-wrap:wrap;justify-content:center;
+}
+.btn-primary {
+  font-size:15px;font-weight:600;padding:14px 28px;
+  background:var(--indigo-500);color:#fff;border:none;border-radius:8px;
+  cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;
+  text-decoration:none;
+}
+.btn-primary:hover{background:var(--indigo-400);transform:translateY(-2px);box-shadow:0 8px 24px rgba(71,82,245,.3)}
+.btn-ghost {
+  font-size:15px;font-weight:500;padding:14px 28px;
+  background:rgba(255,255,255,.06);color:#EDF0F7;
+  border:1px solid rgba(255,255,255,.12);border-radius:8px;
+  cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* ── Score cards ── */
+.score-cards {
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;margin-top:48px;
+}
+.score-card {
+  padding:28px 24px;background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);border-radius:14px;
+  position:relative;overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.score-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.score-card::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.score-card--teal::before{background:linear-gradient(90deg,var(--teal-300),var(--teal-500))}
+.score-card--indigo::before{background:linear-gradient(90deg,var(--indigo-400),var(--indigo-600))}
+.score-card--amber::before{background:linear-gradient(90deg,var(--amber-400),var(--amber-500))}
+.score-card--green::before{background:linear-gradient(90deg,var(--green-500),var(--teal-500))}
+.sc-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--slate-500);
+  margin-bottom:10px;
+}
+.sc-value {
+  font-family:var(--font-serif);font-size:42px;font-weight:300;
+  line-height:1;margin-bottom:8px;letter-spacing:-.02em;
+}
+.sc-value--teal{color:var(--teal-300)}
+.sc-value--indigo{color:var(--indigo-300)}
+.sc-value--amber{color:var(--amber-400)}
+.sc-value--green{color:var(--green-500)}
+.sc-detail{font-size:13px;color:var(--slate-400);line-height:1.5}
+
+/* ── Comparison grid ── */
+.comparison-table {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;margin-top:56px;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+}
+@media(max-width:640px){.comparison-table{grid-template-columns:1fr}}
+.ct-header{padding:20px 28px;display:flex;align-items:center;gap:10px}
+.ct-header-them{background:#111122}
+.ct-header-us{background:rgba(71,82,245,.12)}
+.ct-header-label {
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-500);
+}
+.ct-header-title {
+  font-family:var(--font-serif);font-size:22px;font-weight:300;
+  letter-spacing:-.02em;color:#fff;margin-top:4px;
+}
+.ct-header-them .ct-header-title{color:var(--slate-500)}
+.ct-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.05)}
+@media(max-width:640px){.ct-row{grid-template-columns:1fr}}
+.ct-cell{padding:20px 28px;font-size:13px;line-height:1.6}
+.ct-cell-them{background:#0E0E1F;color:var(--slate-500)}
+.ct-cell-us{background:rgba(71,82,245,.06);color:#D4D8F0;border-left:1px solid rgba(71,82,245,.15)}
+.ct-cell strong{display:block;margin-bottom:4px}
+.ct-cell-them strong{color:var(--slate-400)}
+.ct-cell-us strong{color:var(--teal-300)}
+
+/* ── Step cards ── */
+.steps {
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:32px;margin-top:64px;position:relative;
+}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
+.step-card {
+  padding:32px 28px;background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);border-radius:14px;
+  position:relative;transition:border-color .2s,box-shadow .2s;
+}
+.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.step-n {
+  font-family:var(--font-mono);font-size:11px;font-weight:600;
+  letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px;
+}
+.step-title {
+  font-family:var(--font-serif);font-size:20px;font-weight:300;
+  color:#fff;letter-spacing:-.01em;margin-bottom:12px;
+}
+.step-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+
+/* ── Research cards ── */
+.research-grid {
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px;
+}
+@media(max-width:768px){.research-grid{grid-template-columns:1fr}}
+.research-card {
+  padding:28px 28px 24px;background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);border-radius:14px;
+  position:relative;transition:border-color .2s;
+}
+.research-card:hover{border-color:rgba(71,82,245,.25)}
+.rc-eyebrow {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;
+}
+.rc-eyebrow--teal{color:var(--teal-300)}
+.rc-eyebrow--indigo{color:var(--indigo-400)}
+.rc-eyebrow--amber{color:var(--amber-400)}
+.rc-eyebrow--rose{color:var(--rose-500)}
+.rc-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:10px;line-height:1.3}
+.rc-body{font-size:13px;line-height:1.7;color:var(--slate-400);margin-bottom:12px}
+.rc-cite{font-size:11px;color:var(--slate-500);font-family:var(--font-mono)}
+.rc-stat {
+  display:inline-block;font-family:var(--font-serif);
+  font-size:28px;font-weight:300;margin-bottom:8px;
+}
+.rc-stat--teal{color:var(--teal-300)}
+.rc-stat--indigo{color:var(--indigo-300)}
+.rc-stat--amber{color:var(--amber-400)}
+
+/* ── Eval dashboard ── */
+.eval-dashboard {
+  margin-top:48px;padding:32px;background:#0A0A1A;
+  border:1px solid rgba(255,255,255,.07);border-radius:16px;
+}
+.eval-row {
+  display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:24px;
+}
+@media(max-width:768px){.eval-row{grid-template-columns:repeat(2,1fr)}}
+.eval-cell {
+  padding:20px 16px;background:#0D0D20;
+  border:1px solid rgba(255,255,255,.06);border-radius:10px;text-align:center;
+}
+.eval-cell-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);
+  margin-bottom:8px;
+}
+.eval-cell-value {
+  font-family:var(--font-serif);font-size:32px;font-weight:300;
+  color:var(--teal-300);line-height:1;
+}
+.eval-cell-detail{font-size:11px;color:var(--slate-500);margin-top:6px}
+
+/* ── Bar chart ── */
+.bar-chart{margin-top:32px}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.bar-label{width:110px;font-size:12px;color:var(--slate-400);text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:28px;background:#0D0D20;border-radius:6px;overflow:hidden;position:relative}
+.bar-fill {
+  height:100%;border-radius:6px;display:flex;align-items:center;
+  padding-left:10px;font-size:11px;font-weight:600;color:#fff;
+  transition:width .8s ease;
+}
+.bar-fill--a{background:linear-gradient(90deg,#1a4d3a,var(--teal-300))}
+.bar-fill--b{background:linear-gradient(90deg,#3d2d0a,var(--amber-400))}
+.bar-fill--c{background:linear-gradient(90deg,#4d1a1a,var(--rose-500))}
+.bar-fill--d{background:linear-gradient(90deg,#1a2d4d,var(--indigo-300))}
+
+/* ── Vertical table ── */
+.v-table{margin-top:32px;width:100%;border-collapse:collapse;font-size:13px}
+.v-table th {
+  background:#0D0D20;color:var(--indigo-300);padding:12px 16px;
+  text-align:left;font-weight:600;border-bottom:2px solid rgba(255,255,255,.06);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+}
+.v-table td{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--slate-400)}
+.v-table tr:hover{background:rgba(255,255,255,.02)}
+.v-table .score-a{color:var(--teal-300);font-weight:600}
+.v-table .positive{color:var(--green-500);font-weight:600}
+
+/* ── Training vs test time ── */
+.tt-grid {
+  display:grid;grid-template-columns:1fr 60px 1fr;gap:0;
+  margin-top:56px;align-items:stretch;
+}
+@media(max-width:768px){.tt-grid{grid-template-columns:1fr;gap:16px}}
+.tt-side {
+  padding:32px;border-radius:14px;position:relative;
+}
+.tt-training{background:#111122;border:1px solid rgba(255,255,255,.07)}
+.tt-test{background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.2)}
+.tt-vs {
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:11px;font-weight:600;
+  color:var(--slate-600);letter-spacing:.1em;
+}
+@media(max-width:768px){.tt-vs{padding:8px 0}}
+.tt-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;
+}
+.tt-training .tt-label{color:var(--slate-500)}
+.tt-test .tt-label{color:var(--teal-300)}
+.tt-title {
+  font-family:var(--font-serif);font-size:22px;font-weight:300;
+  color:#fff;margin-bottom:16px;letter-spacing:-.02em;line-height:1.2;
+}
+.tt-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.tt-list{list-style:none;margin-top:16px}
+.tt-list li {
+  font-size:13px;color:var(--slate-400);line-height:1.6;
+  padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:flex-start;gap:8px;
+}
+.tt-list li:last-child{border-bottom:none}
+.tt-icon{color:var(--teal-300);flex-shrink:0;margin-top:2px;font-size:12px}
+.tt-icon--dim{color:var(--slate-600);flex-shrink:0;margin-top:2px;font-size:12px}
+
+/* ── Metrics dashboard ── */
+.metrics-grid {
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;
+}
+@media(max-width:768px){.metrics-grid{grid-template-columns:1fr}}
+.metric-card {
+  padding:24px;background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);border-radius:12px;
+}
+.mc-eyebrow {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--slate-600);
+  margin-bottom:10px;
+}
+.mc-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:8px}
+.mc-body{font-size:13px;line-height:1.6;color:var(--slate-400)}
+.mc-value {
+  font-family:var(--font-serif);font-size:28px;font-weight:300;
+  color:var(--teal-300);margin-top:12px;
+}
+
+/* ── Collaboration cards ── */
+.collab-grid {
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:56px;
+}
+@media(max-width:768px){.collab-grid{grid-template-columns:1fr}}
+.collab-card {
+  padding:36px;border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;background:#111126;position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.collab-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.collab-card-accent{position:absolute;top:0;left:0;right:0;height:3px}
+.accent-eval{background:linear-gradient(90deg,var(--teal-300),var(--indigo-400))}
+.accent-method{background:linear-gradient(90deg,var(--indigo-400),var(--teal-300))}
+.accent-loop{background:linear-gradient(90deg,var(--amber-400),var(--rose-500))}
+.accent-publish{background:linear-gradient(90deg,var(--green-500),var(--teal-400))}
+.cc-icon {
+  width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:20px;
+}
+.cc-icon--teal{background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2)}
+.cc-icon--indigo{background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.2)}
+.cc-icon--amber{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)}
+.cc-icon--green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
+.cc-title {
+  font-family:var(--font-serif);font-size:20px;font-weight:300;
+  color:#fff;letter-spacing:-.01em;margin-bottom:12px;
+}
+.cc-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+
+/* ── CTA form ── */
+.cta-section{background:#0D0D22;padding:120px 24px}
+.form-container{max-width:560px;margin:48px auto 0}
+.form-group{margin-bottom:20px}
+.form-group label {
+  display:block;margin-bottom:6px;font-size:13px;font-weight:500;color:var(--slate-400);
+}
+.form-group input,.form-group textarea,.form-group select {
+  width:100%;padding:12px 16px;background:#0A0A1A;
+  border:1px solid rgba(255,255,255,.1);border-radius:8px;
+  font-family:var(--font-sans);font-size:14px;color:#fff;
+  outline:none;transition:border-color .2s;
+}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus {
+  border-color:rgba(71,82,245,.5);
+}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237B8CA0' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.form-submit {
+  width:100%;padding:14px 28px;font-size:15px;font-weight:600;
+  background:var(--indigo-500);color:#fff;border:none;border-radius:8px;
+  cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;
+}
+.form-submit:hover{background:var(--indigo-400);transform:translateY(-2px);box-shadow:0 8px 24px rgba(71,82,245,.3)}
+
+/* ── Footer ── */
+footer {
+  padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-logo{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff}
+.footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
+
+/* ── Callout ── */
+.callout-box {
+  margin-top:48px;padding:32px;
+  background:linear-gradient(135deg,rgba(71,82,245,.08),rgba(94,213,190,.06));
+  border:1px solid rgba(71,82,245,.15);border-radius:14px;
+  position:relative;
+}
+.callout-box::before {
+  content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--indigo-400),var(--teal-300));
+  border-radius:3px 0 0 3px;
+}
+.cb-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-400);
+  margin-bottom:10px;
+}
+.cb-title {
+  font-family:var(--font-serif);font-size:22px;font-weight:300;
+  color:#fff;margin-bottom:12px;letter-spacing:-.02em;line-height:1.2;
+}
+.cb-body{font-size:14px;line-height:1.7;color:var(--slate-400)}
+
+/* ── Animated counter ── */
+@keyframes countIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+.count-in{animation:countIn .6s ease forwards}
+
+/* ── Alternating backgrounds ── */
+.bg-dark{background:#070714}
+.bg-darker{background:#060612}
+.bg-card{background:#0D0D22}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo" style="font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.25rem;color:#fff;text-decoration:none;letter-spacing:-.02em;">FieldRules.</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="for-engineers.html">For Engineers</a></li>
+    <li><a href="for-domain-experts.html">For Experts</a></li>
+    <li><a href="for-researchers.html" style="color:var(--teal-300);">For Researchers</a></li>
+    <li><a href="for-investors.html">For Investors</a></li>
+    <li><a href="for-pms.html">For PMs</a></li>
+    <li><a href="pilot.html">Pilot</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" type="button" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  <a href="pilot.html" class="nav-cta">Request access</a>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow">Measurable Reasoning Quality Improvement</div>
+  <h1>The gap between AI capability and <em>AI reliability</em></h1>
+  <p class="hero-sub">AI systems are powerful enough to handle complex business logic. They aren't reliable enough to get it right. Structured human reasoning — captured at the point of action, not reconstructed after the fact — closes the gap. FieldRules makes that measurable.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Collaborate with us</a>
+    <a href="#eval" class="btn-ghost">See the eval data</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONFABULATION PROBLEM ═══════════════════ -->
+<section class="bg-card" data-reveal>
+  <div class="inner">
+    <div class="section-eyebrow">The Structural Problem</div>
+    <div class="section-h2">AI systems <em>confabulate</em> business logic</div>
+    <p class="section-lede">When LLMs encounter domain-specific decisions, they fill gaps with training-data defaults — the industry average, not your operational reality. Current approaches don't solve the structural problem: the reasoning was never captured.</p>
+
+    <div class="comparison-table">
+      <div class="ct-header ct-header-them">
+        <div>
+          <div class="ct-header-label">Current Approaches</div>
+          <div class="ct-header-title">Surface-level fixes</div>
+        </div>
+      </div>
+      <div class="ct-header ct-header-us">
+        <div>
+          <div class="ct-header-label">FieldRules Approach</div>
+          <div class="ct-header-title">Reasoning substrate</div>
+        </div>
+      </div>
+
+      <div class="ct-row">
+        <div class="ct-cell ct-cell-them">
+          <strong>RAG over documentation</strong>
+          Retrieves what's in the index. If the index contains standard process docs, the AI gets standard process. The conditional edge-case logic — the things nobody wrote down — isn't there.
+        </div>
+        <div class="ct-cell ct-cell-us">
+          <strong>Structured IF/THEN/BECAUSE rules</strong>
+          Captures operational logic at the point of action — not from docs, but from the expert resolving the actual case. The BECAUSE field carries the reasoning no model can generate.
+        </div>
+      </div>
+
+      <div class="ct-row">
+        <div class="ct-cell ct-cell-them">
+          <strong>Fine-tuning on domain data</strong>
+          Bakes knowledge into weights. Opaque, expensive to update, impossible to audit. When practice changes, you retrain — or accept drift.
+        </div>
+        <div class="ct-cell ct-cell-us">
+          <strong>Test-time structured context</strong>
+          Rules are injected at inference time. Auditable, versionable, attributable. When practice changes, a practitioner updates the rule. Zero retraining.
+        </div>
+      </div>
+
+      <div class="ct-row">
+        <div class="ct-cell ct-cell-them">
+          <strong>Prompt engineering</strong>
+          Manually crafted instructions that don't scale. No systematic capture, no attribution, no measurement of whether the model actually followed the constraint.
+        </div>
+        <div class="ct-cell ct-cell-us">
+          <strong>Governed reasoning library</strong>
+          Systematically captured, expert-attributed, measurably effective. Every rule traces to a human author. Every application is auditable.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FIELDRULES APPROACH ═══════════════════ -->
+<section class="bg-darker" data-reveal>
+  <div class="inner">
+    <div class="section-eyebrow">The Approach</div>
+    <div class="section-h2">Human reasoning as a <em>structured data type</em></div>
+    <p class="section-lede">FieldRules captures domain expert judgment as structured IF/THEN/BECAUSE rules — a reasoning substrate that sits between your product and the AI model. The BECAUSE field is the critical innovation: it carries the human rationale that no model can generate from training data alone.</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-n">01 · INTERCEPT</div>
+        <div class="step-title">Capture at the point of action</div>
+        <p class="step-body">When a domain expert resolves an edge case, FieldRules intercepts the conditional logic before it gets lost. A 45-second Slack card surfaces the decision in context — not a documentation sprint weeks later, when the expert confabulates a post-hoc rationalization instead of reporting the actual reasoning.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">02 · STRUCTURE</div>
+        <div class="step-title">IF/THEN/BECAUSE format</div>
+        <p class="step-body">The rule captures three things: the condition (IF), the action (THEN), and — critically — the reasoning (BECAUSE). The BECAUSE field is what transforms a checklist into transferable judgment. It's what enables the AI to handle novel situations correctly, not just template cases. Nisbett &amp; Wilson (1977) showed verbal reports on mental processes are often inaccurate. Contrastive prompting — "why A over B?" — reveals actual decision factors.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">03 · DEPLOY</div>
+        <div class="step-title">Test-time enrichment</div>
+        <p class="step-body">Rules enter the product as structured context at inference time. Not fine-tuning. Not prompt engineering. A governed reasoning library that the model operates within — auditable, attributable, versionable. Ovadia et al. (2024) showed retrieval-based methods outperform fine-tuning for domain-specific knowledge when reasoning transparency is required.</p>
+      </div>
+    </div>
+
+    <div class="callout-box">
+      <div class="cb-label">Key Insight</div>
+      <div class="cb-title">The BECAUSE field is the entropy source</div>
+      <p class="cb-body">AI-generated rules look plausible individually, but the distribution collapses — the same generic reasoning, the same safe defaults. Andrej Karpathy calls this "silent entropy collapse." The human-authored BECAUSE field is what keeps the library from collapsing into the industry average. It carries the proprietary operational logic that makes a company's AI behave like that company, not the generic case.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ REASONING ADVANTAGE EVAL ═══════════════════ -->
+<section class="bg-dark" id="eval" data-reveal>
+  <div class="inner">
+    <div class="section-eyebrow">Evaluation Framework</div>
+    <div class="section-h2">Reasoning Advantage <em>Eval</em></div>
+    <p class="section-lede">A controlled, multi-condition evaluation that measures whether FieldRules-governed AI responses outperform unstructured ones. 4-condition design, blind scoring, run daily across verticals. 8 runs completed to date.</p>
+
+    <!-- Top-line scores -->
+    <div class="score-cards">
+      <div class="score-card score-card--teal">
+        <div class="sc-label">Condition A: Rule + BECAUSE</div>
+        <div class="sc-value sc-value--teal">0.826–0.882</div>
+        <p class="sc-detail">Composite score range across 8 runs. Condition A wins every scenario in every run.</p>
+      </div>
+      <div class="score-card score-card--green">
+        <div class="sc-label">Win Rate</div>
+        <div class="sc-value sc-value--green">100%</div>
+        <p class="sc-detail">Rule + BECAUSE beats all other conditions across all verticals, all domains, all scenarios tested.</p>
+      </div>
+      <div class="score-card score-card--indigo">
+        <div class="sc-label">Scenarios Evaluated</div>
+        <div class="sc-value sc-value--indigo">144</div>
+        <p class="sc-detail">Per run: 10 domains × 3 base scenarios + 6 harder transfer scenarios × 4 conditions.</p>
+      </div>
+      <div class="score-card score-card--amber">
+        <div class="sc-label">BECAUSE Advantage</div>
+        <div class="sc-value sc-value--amber">+0.146</div>
+        <p class="sc-detail">Average composite margin of Rule+BECAUSE over the next-best condition.</p>
+      </div>
+    </div>
+
+    <!-- Dimension breakdown -->
+    <div class="eval-dashboard">
+      <div class="cb-label">Dimension Breakdown — Latest Run (April 7, 2026 · Carbon/ESG)</div>
+      <div class="eval-row">
+        <div class="eval-cell">
+          <div class="eval-cell-label">Correctness</div>
+          <div class="eval-cell-value">0.840</div>
+          <div class="eval-cell-detail">vs 0.756 Rule Only</div>
+        </div>
+        <div class="eval-cell">
+          <div class="eval-cell-label">Novel Twist</div>
+          <div class="eval-cell-value">0.809</div>
+          <div class="eval-cell-detail">vs 0.649 Transcript</div>
+        </div>
+        <div class="eval-cell">
+          <div class="eval-cell-label">Reasoning Depth</div>
+          <div class="eval-cell-value">0.853</div>
+          <div class="eval-cell-detail">vs 0.667 Transcript</div>
+        </div>
+        <div class="eval-cell">
+          <div class="eval-cell-label">Specificity</div>
+          <div class="eval-cell-value">0.821</div>
+          <div class="eval-cell-detail">vs 0.724 Rule Only</div>
+        </div>
+        <div class="eval-cell">
+          <div class="eval-cell-label">Confidence Cal.</div>
+          <div class="eval-cell-value">0.807</div>
+          <div class="eval-cell-detail">vs 0.704 Rule Only</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Condition comparison bars -->
+    <div class="eval-dashboard" style="margin-top:24px">
+      <div class="cb-label">4-Condition Comparison</div>
+      <p style="font-size:13px;color:var(--slate-400);margin-bottom:20px;line-height:1.6">Each scenario is evaluated under four conditions. The model, prompt structure, and scenario are identical — only the context content changes. This isolates the reasoning advantage.</p>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">A: Rule+BECAUSE</div>
+          <div class="bar-track"><div class="bar-fill bar-fill--a" style="width:82.6%">0.826</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">B: Rule Only</div>
+          <div class="bar-track"><div class="bar-fill bar-fill--b" style="width:68.0%">0.680</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">D: Transcript</div>
+          <div class="bar-track"><div class="bar-fill bar-fill--d" style="width:66.4%">0.664</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">C: Playbook</div>
+          <div class="bar-track"><div class="bar-fill bar-fill--c" style="width:61.1%">0.611</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Run history -->
+    <div class="eval-dashboard" style="margin-top:24px">
+      <div class="cb-label">Cumulative Run History</div>
+      <table class="v-table">
+        <thead>
+          <tr><th>Run</th><th>Vertical</th><th>A: Rule+BECAUSE</th><th>B: Rule Only</th><th>C: Playbook</th><th>D: Transcript</th><th>Pattern</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>v1 (baseline)</td><td>Healthtech</td><td class="score-a">0.882</td><td>0.669</td><td>0.550</td><td>0.722</td><td>A wins clearly</td></tr>
+          <tr><td>Apr 1</td><td>Healthtech</td><td class="score-a">0.856</td><td>0.674</td><td>0.632</td><td>0.700</td><td>A wins clearly</td></tr>
+          <tr><td>Apr 2</td><td>Healthtech</td><td class="score-a">0.837</td><td>0.682</td><td>0.639</td><td>0.694</td><td>A wins clearly</td></tr>
+          <tr><td>Apr 3</td><td>Healthtech</td><td class="score-a">0.845</td><td>0.688</td><td>0.645</td><td>0.701</td><td>A wins clearly</td></tr>
+          <tr><td>Apr 4</td><td>Carbon/ESG</td><td class="score-a">0.841</td><td>0.690</td><td>0.638</td><td>0.697</td><td>A wins clearly</td></tr>
+          <tr><td>Apr 5</td><td>Healthtech</td><td class="score-a">0.848</td><td>0.679</td><td>0.641</td><td>0.698</td><td>A wins clearly</td></tr>
+          <tr><td>Apr 6</td><td>Healthtech</td><td class="score-a">0.839</td><td>0.685</td><td>0.636</td><td>0.693</td><td>A wins clearly</td></tr>
+          <tr style="background:rgba(94,213,190,.06)"><td><strong>Apr 7</strong></td><td>Carbon/ESG</td><td class="score-a"><strong>0.826</strong></td><td>0.680</td><td>0.611</td><td>0.664</td><td><strong>A wins clearly</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Methodology callout -->
+    <div class="callout-box">
+      <div class="cb-label">Methodology</div>
+      <div class="cb-title">Controlled 4-condition design with blind scoring</div>
+      <p class="cb-body">Each domain generates 3 base scenarios plus harder transfer scenarios (ambiguity + domain transfer). Every scenario is run under 4 conditions: (A) Rule + BECAUSE, (B) Rule only, (C) Playbook/documentation, (D) Transcript/raw context. The model, prompt structure, and scenario text are identical across conditions — only the context content varies. Scoring is blind: the evaluator sees conditions labeled A/B/C/D with no description of what each contains. Five dimensions are scored: correctness, novel twist handling, reasoning depth, specificity, and confidence calibration. Cost: ~$3–8 per full run.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ RESEARCH FOUNDATIONS ═══════════════════ -->
+<section class="bg-card" data-reveal>
+  <div class="inner">
+    <div class="section-eyebrow">Research Foundations</div>
+    <div class="section-h2">Standing on <em>evidence</em></div>
+    <p class="section-lede">FieldRules architecture is grounded in peer-reviewed research across behavioral science, cognitive psychology, and language model performance.</p>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="rc-eyebrow rc-eyebrow--teal">Engagement Psychology</div>
+        <div class="rc-stat rc-stat--teal">171%</div>
+        <div class="rc-title">Beneficiary-contact effect drives expert contribution</div>
+        <p class="rc-body">Grant et al. demonstrated that knowledge workers who see direct impact of their expertise invest 142% more persistence and 171% higher performance. FieldRules shows experts exactly where their reasoning appears in the product — turning contribution from obligation into visible impact.</p>
+        <div class="rc-cite">Grant et al., 2007 — Significance, Beneficiary Contact, and Prosocial Behavior</div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-eyebrow rc-eyebrow--indigo">AI Reasoning</div>
+        <div class="rc-stat rc-stat--indigo">Inner thought</div>
+        <div class="rc-title">Karpathy's "inner thought monologue" thesis</div>
+        <p class="rc-body">Andrej Karpathy argues that the bottleneck for AI performance isn't model capability — it's the quality of the structured reasoning the model can access. The "inner thought monologue" is the structured context that guides model behavior. FieldRules' BECAUSE field is exactly this: the inner thought monologue your AI can't generate on its own.</p>
+        <div class="rc-cite">Karpathy, No Priors Podcast — March 2026</div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-eyebrow rc-eyebrow--rose">Cognitive Bias</div>
+        <div class="rc-stat rc-stat--amber">Confabulation</div>
+        <div class="rc-title">Verbal reports on mental processes are unreliable</div>
+        <p class="rc-body">Nisbett &amp; Wilson's foundational work shows people confabulate reasoning post-hoc — inventing plausible narratives rather than reporting actual decision processes. FieldRules uses contrastive prompting ("why A over B?") to surface actual decision factors at the moment of the decision, not in a documentation sprint afterwards.</p>
+        <div class="rc-cite">Nisbett &amp; Wilson, 1977 — Telling More Than We Can Know</div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-eyebrow rc-eyebrow--teal">Knowledge Representation</div>
+        <div class="rc-stat rc-stat--teal">Retrieval &gt; Tuning</div>
+        <div class="rc-title">Retrieval outperforms fine-tuning for domain knowledge</div>
+        <p class="rc-body">Retrieval-based methods outperform fine-tuning for domain-specific knowledge, particularly when reasoning transparency is required. This validates the FieldRules architecture: test-time structured context over training-time weight modification.</p>
+        <div class="rc-cite">Ovadia et al., 2024 — Fine-Tuning or Retrieval?</div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-eyebrow rc-eyebrow--indigo">Reasoning Quality</div>
+        <div class="rc-stat rc-stat--indigo">Process &gt; Outcome</div>
+        <div class="rc-title">Process supervision produces more reliable outputs</div>
+        <p class="rc-body">Evaluating and rewarding intermediate reasoning steps — not just final answers — produces more reliable model outputs. The BECAUSE field is a form of process supervision: it provides the intermediate reasoning step that the model must follow, not just the conclusion.</p>
+        <div class="rc-cite">Lightman et al., 2023 — Let's Verify Step by Step</div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-eyebrow rc-eyebrow--amber">Deskilling Prevention</div>
+        <div class="rc-stat rc-stat--amber">Bounded complementarity</div>
+        <div class="rc-title">Human-AI symbiosis requires active engagement gates</div>
+        <p class="rc-body">Bounded agent complementarity research shows that chronically offloading core reasoning steps to automation causes deskilling — erosion of task-relevant human skills. The BECAUSE field is a deliberate "active engagement gate" that prevents cognitive offloading of the reasoning step, preserving expert judgment over time.</p>
+        <div class="rc-cite">Springer AI Review, January 2026 — Cognitive Load Framework for Human-AI Symbiosis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TRAINING TIME vs TEST TIME ═══════════════════ -->
+<section class="bg-darker" data-reveal>
+  <div class="inner">
+    <div class="section-eyebrow">Architecture</div>
+    <div class="section-h2">Training-time investment, <em>test-time</em> returns</div>
+    <p class="section-lede">The structural argument for why test-time structured context beats training-time fine-tuning for domain-specific reasoning — and why the economics favor FieldRules' approach.</p>
+
+    <div class="tt-grid">
+      <div class="tt-side tt-training">
+        <div class="tt-label">Training-Time Fine-Tuning</div>
+        <div class="tt-title">Bake knowledge into weights</div>
+        <p class="tt-body">Knowledge becomes opaque once embedded. Can't audit which rule was applied. Can't update without retraining. Can't attribute decisions to human experts.</p>
+        <ul class="tt-list">
+          <li><span class="tt-icon--dim">✕</span> Opaque — can't trace decisions to sources</li>
+          <li><span class="tt-icon--dim">✕</span> Expensive to update — full retraining cycle</li>
+          <li><span class="tt-icon--dim">✕</span> No attribution — expertise disappears into weights</li>
+          <li><span class="tt-icon--dim">✕</span> Drift-prone — model behavior changes with each retrain</li>
+          <li><span class="tt-icon--dim">✕</span> Domain leakage — training data from one client can bleed</li>
+        </ul>
+      </div>
+
+      <div class="tt-vs">VS</div>
+
+      <div class="tt-side tt-test">
+        <div class="tt-label">Test-Time Structured Context</div>
+        <div class="tt-title">Inject reasoning at inference</div>
+        <p class="tt-body">Rules are structured context the model operates within at query time. Auditable, versionable, attributable. The model improves — the library becomes more valuable, not obsolete.</p>
+        <ul class="tt-list">
+          <li><span class="tt-icon">✓</span> Auditable — every decision traces to a specific rule and author</li>
+          <li><span class="tt-icon">✓</span> Instant updates — practitioner changes a rule, it's live</li>
+          <li><span class="tt-icon">✓</span> Attributed — every rule carries the expert's name</li>
+          <li><span class="tt-icon">✓</span> Model-agnostic — switch providers, keep your library</li>
+          <li><span class="tt-icon">✓</span> Compounds — better models extract more value from same rules</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout-box">
+      <div class="cb-label">The Tesla Analogy</div>
+      <div class="cb-title">Training-time sensors, test-time deployment</div>
+      <p class="cb-body">Tesla's self-driving uses expensive lidar sensors at training time but deploys vision-only cameras at test time — an arbitrage on sensor cost. FieldRules works the same way: the expensive resource is your domain expert's judgment at authoring time — 45 seconds confirming a BECAUSE field. At query time, that judgment serves every AI decision, every new hire, every edge case — without the expert in the loop. The human investment happens once per rule. The AI return happens at every query, forever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ MEASUREMENT FRAMEWORK ═══════════════════ -->
+<section class="bg-dark" data-reveal>
+  <div class="inner">
+    <div class="section-eyebrow">Measurement</div>
+    <div class="section-h2">What FieldRules <em>measures</em></div>
+    <p class="section-lede">A comprehensive measurement framework tracks reasoning quality across capture, consumption, and impact. These aren't vanity metrics — they're health signals for the reasoning system.</p>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="mc-eyebrow">Quality Composite</div>
+        <div class="mc-title">Reasoning Health Score</div>
+        <p class="mc-body">A composite quality metric that measures whether captured rules contain actual reasoning or form-filling. Tracks reasoning depth, specificity, and domain alignment over time. Upward trend = healthy system. Flat or declining = intervention needed.</p>
+        <div class="mc-value">Composite</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-eyebrow">Capture Quality</div>
+        <div class="mc-title">BECAUSE Completion Rate</div>
+        <p class="mc-body">Percentage of rules where the expert provides the BECAUSE reasoning, not just the IF/THEN action. Target: 95%+. High completion with low quality triggers a different intervention than low completion.</p>
+        <div class="mc-value">95%+</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-eyebrow">System Health</div>
+        <div class="mc-title">Dismiss Rate</div>
+        <p class="mc-body">The primary health signal. When practitioners dismiss rule suggestions at high rates, the baseline isn't resonating with the team — the library needs recalibration, not more volume.</p>
+        <div class="mc-value">Primary</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-eyebrow">Coverage</div>
+        <div class="mc-title">Boilerplate Rate</div>
+        <p class="mc-body">Rules that should have been in the library already — standard process, not edge cases. High boilerplate rate early in a pilot is healthy (baseline capture). High boilerplate rate late means the system isn't surfacing novel logic.</p>
+        <div class="mc-value">Trending ↓</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-eyebrow">Differentiation</div>
+        <div class="mc-title">Divergence Count</div>
+        <p class="mc-body">Rules that differ from industry-standard baseline. This is where the proprietary value lives. A high divergence count means the company's operational logic is genuinely different from generic practice — the AI needs this library to behave correctly.</p>
+        <div class="mc-value">Higher = moat</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-eyebrow">Velocity</div>
+        <div class="mc-title">Time-to-Confirmation</div>
+        <p class="mc-body">Time from ticket open to rule confirmed. Should trend below 24 hours. Longer times indicate friction in the capture flow or practitioner disengagement — both addressable with different interventions.</p>
+        <div class="mc-value">&lt;24h</div>
+      </div>
+    </div>
+
+    <!-- Pilot protocol -->
+    <div class="eval-dashboard" style="margin-top:48px">
+      <div class="cb-label">Pilot Evaluation Protocol</div>
+      <p style="font-size:14px;color:var(--slate-400);line-height:1.7;margin-bottom:20px">FieldRules pilots use a Multiple Baseline Design across practitioners — a rigorous evaluation protocol spanning 8 weeks with 10 testable hypotheses. The eval starts before the pilot: a pre-pilot Reasoning Advantage Eval validates the foundational assumption with real prospect data.</p>
+      <div class="score-cards" style="margin-top:16px">
+        <div class="score-card score-card--teal">
+          <div class="sc-label">Week 0</div>
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">Pre-Pilot Eval</div>
+          <p class="sc-detail">Reasoning Advantage Eval with prospect's actual domain rules. Validates the thesis before any human investment.</p>
+        </div>
+        <div class="score-card score-card--indigo">
+          <div class="sc-label">Weeks 1–2</div>
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">Baseline Diary</div>
+          <p class="sc-detail">Practitioners log current decision processes. Establishes the control condition for comparison.</p>
+        </div>
+        <div class="score-card score-card--amber">
+          <div class="sc-label">Weeks 3–5</div>
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">Staggered Intervention</div>
+          <p class="sc-detail">Multiple Baseline Design: practitioners onboard at different times to isolate the FieldRules effect from time effects.</p>
+        </div>
+        <div class="score-card score-card--green">
+          <div class="sc-label">Weeks 6–8</div>
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">Alternating + Synthesis</div>
+          <p class="sc-detail">Alternating treatments phase followed by synthesis. 10 hypotheses evaluated against observed data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COLLABORATION ═══════════════════ -->
+<section class="bg-card" data-reveal>
+  <div class="inner">
+    <div class="section-eyebrow">Collaboration</div>
+    <div class="section-h2">Research <em>opportunities</em></div>
+    <p class="section-lede">FieldRules is built on research. We're looking for researchers who want to study, extend, and challenge the system — not just validate it.</p>
+
+    <div class="collab-grid">
+      <div class="collab-card">
+        <div class="collab-card-accent accent-eval"></div>
+        <div class="cc-icon cc-icon--teal">📊</div>
+        <div class="cc-title">Evaluate the reasoning advantage</div>
+        <p class="cc-body">Run the Reasoning Advantage Eval on your own domain. We provide the framework, the 4-condition design, and the scoring rubric. You bring the domain rules. The eval costs $3–8 per run and produces publishable results on whether structured human reasoning measurably improves AI decision quality in your vertical.</p>
+      </div>
+
+      <div class="collab-card">
+        <div class="collab-card-accent accent-method"></div>
+        <div class="cc-icon cc-icon--indigo">🔬</div>
+        <div class="cc-title">Contribute to methodology</div>
+        <p class="cc-body">The BECAUSE field elicitation process — contrastive prompting at the point of action — is a live research instrument. How does prompt framing affect the quality of captured reasoning? How does contrastive vs. direct questioning change the depth of expert articulation? These are open questions with structured data to study them.</p>
+      </div>
+
+      <div class="collab-card">
+        <div class="collab-card-accent accent-loop"></div>
+        <div class="cc-icon cc-icon--amber">🔄</div>
+        <div class="cc-title">Study the two-way loop</div>
+        <p class="cc-body">FieldRules creates a feedback loop: expert contribution drives AI quality, and AI consumption triggers expert contribution. This is a live instance of bounded agent complementarity — how do humans and AI systems dynamically balance cognitive load? How does visible impact attribution affect long-term expert engagement? These dynamics are observable in production.</p>
+      </div>
+
+      <div class="collab-card">
+        <div class="collab-card-accent accent-publish"></div>
+        <div class="cc-icon cc-icon--green">📝</div>
+        <div class="cc-title">Publish findings</div>
+        <p class="cc-body">We have structured data on reasoning quality, expert engagement, deskilling signals, and AI decision accuracy across multiple verticals (healthtech, carbon/ESG, legaltech, compliance, event tech). Researchers get access to anonymized datasets and the evaluation framework. We want this studied, not just marketed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA FORM ═══════════════════ -->
+<section class="cta-section" id="contact" data-reveal>
+  <div class="inner" style="text-align:center">
+    <div class="section-eyebrow">Get Involved</div>
+    <div class="section-h2">Let's study this <em>together</em></div>
+    <p class="section-lede" style="margin:0 auto 0">Whether you want to run the eval on your domain, study the two-way loop dynamics, or challenge our methodology — we want to hear from you.</p>
+
+    <form class="form-container" action="https://formsubmit.co/melanie.gower@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="FieldRules Research Collaboration Interest">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required placeholder="Dr. Jane Smith">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="jane@university.edu">
+      </div>
+
+      <div class="form-group">
+        <label for="affiliation">Institution / Organization</label>
+        <input type="text" id="affiliation" name="affiliation" placeholder="University of...">
+      </div>
+
+      <div class="form-group">
+        <label for="interest">Research Interest</label>
+        <select id="interest" name="interest">
+          <option value="">Select your primary interest...</option>
+          <option value="eval">Run the Reasoning Advantage Eval on my domain</option>
+          <option value="methodology">Contribute to elicitation methodology</option>
+          <option value="two-way-loop">Study the two-way feedback loop</option>
+          <option value="deskilling">Deskilling prevention / human-AI complementarity</option>
+          <option value="data-access">Access anonymized research datasets</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Tell us about your research</label>
+        <textarea id="message" name="message" placeholder="What are you studying? How does FieldRules connect to your work?"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Send Research Inquiry</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <span class="footer-logo">FieldRules.</span>
+  <span class="footer-mono">fieldrules-for-researchers-v2 · For Researchers · April 2026</span>
+</footer>
+
+<!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+<script>
+// Reveal on scroll
+const revealEls = document.querySelectorAll('[data-reveal]');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }});
+}, { threshold: 0.08 });
+revealEls.forEach(el => io.observe(el));
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+if (hamburger) {
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+}
+
+// Close mobile menu on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('active'));
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>

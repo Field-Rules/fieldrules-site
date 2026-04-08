@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="FieldRules Pilot — 30-day structured program to make AI decisions auditable with domain-expert reasoning rules.">
+<title>FieldRules | Pilot Program — fieldrules-pilot-v2.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --font-sans:'DM Sans',sans-serif;
+  --font-serif:'Fraunces',serif;
+  --font-mono:'DM Mono',monospace;
+  --indigo-300:#A5AEFF;
+  --indigo-400:#818CF8;
+  --indigo-500:#4752F5;
+  --indigo-600:#3B45D6;
+  --indigo-700:#2D35A8;
+  --teal-300:#5ED5BE;
+  --teal-400:#3DC4AB;
+  --teal-500:#2AA896;
+  --teal-600:#1E8A7B;
+  --rose-500:#F43F5E;
+  --amber-400:#FBBF24;
+  --amber-500:#F59E0B;
+  --green-500:#22C55E;
+  --slate-300:#CBD5E1;
+  --slate-400:#A8B8CC;
+  --slate-500:#7B8CA0;
+  --slate-600:#5C6B7F;
+}
+html { scroll-behavior:smooth;overflow-x:hidden; }
+section { scroll-margin-top:56px; }
+body {
+  font-family:var(--font-sans);
+  background:#070714;
+  color:#EDF0F7;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+[data-reveal] {
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .55s ease, transform .55s ease;
+}
+[data-reveal].visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ── Nav ── */
+nav {
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  display:flex;align-items:center;
+  padding:0 32px;height:56px;
+  background:rgba(7,7,20,.85);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-logo {
+  font-family:var(--font-serif);
+  font-size:20px;font-weight:300;font-style:italic;
+  color:#fff;letter-spacing:-.02em;
+  text-decoration:none;
+}
+.nav-links {
+  display:flex;align-items:center;gap:4px;
+  margin-left:40px;list-style:none;
+}
+.nav-links a {
+  font-size:13px;font-weight:500;
+  color:var(--slate-400);
+  text-decoration:none;
+  padding:5px 12px;border-radius:6px;
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
+.nav-cta {
+  margin-left:auto;
+  font-size:13px;font-weight:600;
+  padding:8px 18px;
+  background:var(--indigo-500);color:#fff;
+  border:none;border-radius:6px;cursor:pointer;
+  transition:background .2s,transform .15s;
+  text-decoration:none;
+}
+.nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
+.hamburger {
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  margin-left:auto;background:none;border:none;padding:4px;
+}
+.hamburger span {
+  width:20px;height:2px;background:#EDF0F7;border-radius:1px;
+  transition:all .3s;display:block;
+}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+@media(max-width:768px){
+  .nav-links{
+    position:fixed;top:56px;left:0;right:0;
+    background:rgba(7,7,20,.97);
+    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+    flex-direction:column;padding:24px;gap:8px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    display:none;margin-left:0;
+  }
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .nav-cta.desktop-cta{display:none}
+  .nav-links .mobile-cta{
+    display:block;margin-top:8px;
+    text-align:center;padding:12px 18px;
+    background:var(--indigo-500);color:#fff;
+    border-radius:6px;font-size:14px;font-weight:600;
+    text-decoration:none;
+  }
+  nav{padding:0 16px}
+}
+
+/* ── Common ── */
+section { padding:96px 24px; }
+.inner { max-width:1120px;margin:0 auto; }
+.section-eyebrow {
+  font-family:var(--font-mono);font-size:10px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--indigo-400);margin-bottom:16px;
+}
+.section-h2 {
+  font-family:var(--font-serif);
+  font-size:clamp(36px,5vw,56px);
+  font-weight:300;line-height:1.1;letter-spacing:-.03em;
+  color:#fff;margin-bottom:20px;
+}
+.section-h2 em { font-style:italic;color:var(--teal-300); }
+.section-lede {
+  font-size:17px;line-height:1.7;color:var(--slate-400);
+  max-width:640px;
+}
+
+/* ── Hero ── */
+.hero {
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  position:relative;overflow:hidden;
+}
+.hero-bg {
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(71,82,245,.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(94,213,190,.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(71,82,245,.06) 0%, transparent 60%);
+  pointer-events:none;
+}
+.hero-grid {
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+  pointer-events:none;
+}
+.hero-eyebrow {
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--indigo-400);
+  background:rgba(71,82,245,.08);
+  border:1px solid rgba(71,82,245,.2);
+  border-radius:100px;padding:6px 16px;
+  margin-bottom:32px;
+  position:relative;z-index:1;
+}
+.hero-eyebrow::before {
+  content:'';
+  width:6px;height:6px;border-radius:50%;
+  background:var(--indigo-400);
+  animation:pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(.8)}
+}
+.hero h1 {
+  font-family:var(--font-serif);
+  font-size:clamp(44px,6.5vw,78px);
+  font-weight:300;line-height:1.05;
+  letter-spacing:-.03em;color:#fff;
+  margin-bottom:24px;
+  position:relative;z-index:1;
+  max-width:900px;
+}
+.hero h1 em {
+  font-style:italic;
+  background:linear-gradient(135deg, var(--indigo-400), var(--teal-300));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;color:transparent;
+}
+.hero-sub {
+  font-size:18px;font-weight:400;line-height:1.6;
+  color:var(--slate-400);
+  max-width:600px;margin:0 auto 48px;
+  position:relative;z-index:1;
+}
+.hero-actions {
+  display:flex;align-items:center;gap:16px;
+  position:relative;z-index:1;
+  flex-wrap:wrap;justify-content:center;
+}
+.btn-primary {
+  font-size:15px;font-weight:600;
+  padding:14px 28px;
+  background:var(--indigo-500);color:#fff;
+  border:none;border-radius:8px;cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  text-decoration:none;display:inline-block;
+}
+.btn-primary:hover{
+  background:var(--indigo-400);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(71,82,245,.3);
+}
+.btn-ghost {
+  font-size:15px;font-weight:500;
+  padding:14px 28px;
+  background:rgba(255,255,255,.06);color:#EDF0F7;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;cursor:pointer;
+  transition:background .2s,transform .15s;
+  text-decoration:none;display:inline-block;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* ── Cards (generic) ── */
+.card-grid {
+  display:grid;gap:20px;margin-top:56px;
+}
+.card-grid-2 { grid-template-columns:repeat(2,1fr); }
+.card-grid-3 { grid-template-columns:repeat(3,1fr); }
+@media(max-width:768px){.card-grid-2,.card-grid-3{grid-template-columns:1fr}}
+.card {
+  padding:28px 24px;
+  background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;
+  transition:border-color .2s,transform .2s;
+}
+.card:hover { border-color:rgba(71,82,245,.25);transform:translateY(-3px); }
+.card-title {
+  font-family:var(--font-serif);font-size:18px;font-weight:300;
+  color:#fff;margin-bottom:12px;letter-spacing:-.01em;
+}
+.card-text {
+  font-size:14px;line-height:1.7;color:var(--slate-400);
+}
+
+/* ── Product mockup: Rule card ── */
+.preview-section { background:#060612; }
+.preview-grid {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:32px;margin-top:56px;align-items:start;
+}
+@media(max-width:768px){.preview-grid{grid-template-columns:1fr}}
+
+.rule-card {
+  background:#0D0D20;
+  border:1px solid rgba(34,197,94,.2);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 80px rgba(34,197,94,.05);
+}
+.rule-card-header {
+  padding:16px 24px;
+  background:rgba(34,197,94,.06);
+  border-bottom:1px solid rgba(34,197,94,.12);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.rule-card-label {
+  font-family:var(--font-mono);font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green-500);
+  display:flex;align-items:center;gap:8px;
+}
+.rule-card-label::before {
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--green-500);
+  box-shadow:0 0 8px rgba(34,197,94,.5);
+}
+.rule-badge {
+  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:100px;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);
+  color:var(--green-500);
+}
+.rule-badge-amber {
+  background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);
+  color:var(--amber-400);
+}
+.rule-card-body { padding:24px; }
+.rule-row {
+  display:grid;grid-template-columns:100px 1fr;
+  gap:8px;padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  align-items:baseline;
+}
+.rule-row:last-child { border-bottom:none; }
+.rule-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate-500);
+}
+.rule-value { font-size:13px;color:#D4D8F0;line-height:1.5; }
+.rule-value-tag {
+  font-family:var(--font-mono);font-size:11px;
+  padding:3px 8px;border-radius:4px;
+  display:inline-block;
+}
+.tag-domain {
+  background:rgba(71,82,245,.08);border:1px solid rgba(71,82,245,.15);
+  color:var(--indigo-300);
+}
+.tag-if {
+  background:rgba(94,213,190,.06);border:1px solid rgba(94,213,190,.12);
+  color:var(--teal-300);
+}
+.rule-keyword {
+  font-family:var(--font-mono);font-size:11px;font-weight:600;
+  letter-spacing:.06em;
+  display:inline-block;margin-right:6px;
+}
+.kw-then { color:var(--indigo-300); }
+.kw-because { color:var(--green-500); }
+.rule-meta {
+  padding:16px 24px;
+  background:rgba(255,255,255,.02);
+  border-top:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;gap:12px;
+  font-size:11px;color:var(--slate-500);
+}
+.rule-avatar {
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg, var(--indigo-500), var(--teal-500));
+  font-size:9px;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+
+/* ── Product mockup: Slack card ── */
+.slack-card {
+  background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;
+  overflow:hidden;
+}
+.slack-header {
+  padding:14px 20px;
+  background:rgba(255,255,255,.03);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;gap:10px;
+}
+.slack-channel {
+  font-family:var(--font-mono);font-size:12px;font-weight:600;
+  color:var(--slate-400);
+}
+.slack-tag {
+  font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 8px;border-radius:100px;
+  background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.2);
+  color:var(--indigo-300);margin-left:auto;
+}
+.slack-body { padding:20px; }
+.slack-app-name {
+  font-size:13px;font-weight:600;color:#fff;
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:12px;
+}
+.slack-app-badge {
+  font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:1px 6px;border-radius:3px;
+  background:rgba(71,82,245,.15);color:var(--indigo-300);
+}
+.slack-time {
+  font-size:11px;color:var(--slate-600);margin-left:auto;font-weight:400;
+}
+.slack-msg {
+  font-size:13px;line-height:1.6;color:var(--slate-400);
+  margin-bottom:16px;
+}
+.slack-msg strong { color:#D4D8F0; }
+.slack-rule-preview {
+  padding:16px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  border-left:3px solid var(--indigo-400);
+  border-radius:8px;
+  margin-bottom:16px;
+}
+.slack-rule-if {
+  font-size:12px;color:var(--slate-400);line-height:1.6;
+  margin-bottom:8px;
+}
+.slack-because-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green-500);margin-bottom:6px;
+}
+.slack-because-input {
+  width:100%;padding:10px 12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(34,197,94,.2);
+  border-radius:6px;
+  font-size:12px;font-style:italic;color:var(--slate-400);
+  margin-bottom:16px;
+}
+.slack-actions {
+  display:flex;gap:8px;
+}
+.slack-btn {
+  font-size:12px;font-weight:600;
+  padding:8px 16px;border-radius:6px;
+  border:none;cursor:pointer;
+  transition:transform .15s;
+}
+.slack-btn:hover { transform:translateY(-1px); }
+.slack-btn-confirm {
+  background:var(--green-500);color:#fff;
+}
+.slack-btn-edit {
+  background:rgba(255,255,255,.08);color:var(--slate-300);
+  border:1px solid rgba(255,255,255,.1);
+}
+.slack-btn-dismiss {
+  background:rgba(255,255,255,.04);color:var(--slate-500);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+/* ── Product mockup: Mini dashboard ── */
+.dash-section { background:#0D0D22; }
+.dash-card {
+  margin-top:56px;
+  max-width:680px;
+  background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;
+  overflow:hidden;
+}
+.dash-header {
+  padding:16px 24px;
+  background:rgba(255,255,255,.03);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;gap:12px;
+}
+.dash-title {
+  font-family:var(--font-mono);font-size:11px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate-400);
+}
+.dash-tabs {
+  display:flex;gap:4px;margin-left:auto;
+}
+.dash-tab {
+  font-size:10px;font-weight:500;
+  padding:4px 10px;border-radius:4px;
+  color:var(--slate-500);
+}
+.dash-tab.active { background:rgba(255,255,255,.06);color:#fff; }
+.dash-body { padding:24px; }
+.dash-stats {
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-bottom:24px;
+}
+.dash-stat {
+  text-align:center;
+  padding:16px 8px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:10px;
+}
+.dash-stat-value {
+  font-family:var(--font-serif);font-size:28px;font-weight:300;font-style:italic;
+  line-height:1.1;margin-bottom:4px;
+}
+.dash-stat-label {
+  font-size:10px;font-weight:500;color:var(--slate-500);
+}
+.dash-activity-title {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--slate-500);margin-bottom:12px;
+}
+.dash-activity-item {
+  display:flex;align-items:center;gap:10px;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:12px;color:var(--slate-400);
+}
+.dash-activity-item:last-child { border-bottom:none; }
+.dash-dot {
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+}
+.dot-green { background:var(--green-500); }
+.dot-amber { background:var(--amber-400); }
+.dot-indigo { background:var(--indigo-400); }
+.dot-rose { background:var(--rose-500); }
+.dash-activity-time {
+  margin-left:auto;font-size:10px;color:var(--slate-600);
+  font-family:var(--font-mono);
+}
+
+/* ── Challenge section ── */
+.challenge-section { background:#0D0D22; }
+
+/* ── How it works section ── */
+.how-section { background:#09091A; }
+
+/* ── Timeline section ── */
+.timeline-section { background:#0D0D22; }
+.timeline {
+  margin-top:56px;
+  display:grid;gap:2px;
+  border-radius:14px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+}
+.timeline-item {
+  padding:32px 28px;
+  display:grid;grid-template-columns:56px 1fr;
+  gap:20px;align-items:start;
+  transition:background .2s;
+}
+.timeline-item:hover { background:rgba(255,255,255,.02); }
+.timeline-item:nth-child(1){background:#0D0D20}
+.timeline-item:nth-child(2){background:#0E0E22}
+.timeline-item:nth-child(3){background:#0D1620}
+.timeline-item:nth-child(4){background:rgba(34,197,94,.04)}
+.timeline-num {
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:14px;font-weight:600;
+  color:var(--indigo-400);
+  background:rgba(71,82,245,.08);
+  border:1px solid rgba(71,82,245,.15);
+}
+.timeline-item:nth-child(3) .timeline-num{color:var(--teal-300);background:rgba(94,213,190,.08);border-color:rgba(94,213,190,.15)}
+.timeline-item:nth-child(4) .timeline-num{color:var(--green-500);background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.15)}
+.timeline-body {}
+.timeline-title {
+  font-family:var(--font-serif);font-size:20px;font-weight:300;
+  color:#fff;margin-bottom:4px;letter-spacing:-.02em;
+}
+.timeline-subtitle {
+  font-family:var(--font-mono);font-size:10px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--slate-500);margin-bottom:12px;
+}
+.timeline-desc {
+  font-size:14px;line-height:1.7;color:var(--slate-400);
+}
+
+/* ── Metrics section ── */
+.metrics-section { background:#09091A; }
+.metrics-grid {
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;margin-top:56px;
+}
+@media(max-width:768px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.metrics-grid{grid-template-columns:1fr}}
+.metric-card {
+  padding:32px 20px;
+  background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;
+  text-align:center;
+  transition:border-color .2s;
+}
+.metric-card:hover { border-color:rgba(71,82,245,.25); }
+.metric-value {
+  font-family:var(--font-serif);
+  font-size:clamp(32px,4vw,48px);
+  font-weight:300;font-style:italic;
+  line-height:1.1;margin-bottom:8px;
+}
+.mv-indigo { color:var(--indigo-400); }
+.mv-teal { color:var(--teal-300); }
+.mv-green { color:var(--green-500); }
+.mv-amber { color:var(--amber-400); }
+.metric-label {
+  font-size:13px;font-weight:500;color:var(--slate-400);
+}
+
+/* ── Success criteria section ── */
+.criteria-section { background:#0D0D22; }
+
+/* ── Team section ── */
+.team-section { background:#09091A; }
+
+/* ── After section ── */
+.after-section { background:#0D0D22; }
+
+/* ── CTA form ── */
+.cta-section {
+  background:#060612;
+  padding:120px 24px;
+}
+.cta-h2 {
+  font-family:var(--font-serif);
+  font-size:clamp(36px,5vw,56px);
+  font-weight:300;line-height:1.1;letter-spacing:-.03em;
+  color:#fff;text-align:center;margin-bottom:16px;
+}
+.cta-h2 em { font-style:italic;color:var(--teal-300); }
+.cta-sub {
+  font-size:17px;line-height:1.7;color:var(--slate-400);
+  max-width:560px;margin:0 auto 48px;text-align:center;
+}
+.cta-form {
+  max-width:480px;margin:0 auto;
+}
+.cta-form-row {
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+@media(max-width:480px){.cta-form-row{grid-template-columns:1fr}}
+.cta-input,.cta-textarea {
+  width:100%;
+  padding:14px 16px;margin-bottom:12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;
+  color:#EDF0F7;
+  font-family:var(--font-sans);font-size:14px;
+  transition:border-color .2s;
+}
+.cta-input::placeholder,.cta-textarea::placeholder { color:var(--slate-600); }
+.cta-input:focus,.cta-textarea:focus { outline:none;border-color:var(--indigo-500); }
+.cta-textarea { min-height:100px;resize:vertical; }
+.cta-submit {
+  width:100%;padding:14px;margin-top:4px;
+  background:var(--indigo-500);color:#fff;
+  border:none;border-radius:8px;cursor:pointer;
+  font-family:var(--font-sans);font-size:15px;font-weight:600;
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.cta-submit:hover{
+  background:var(--indigo-400);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(71,82,245,.3);
+}
+.form-msg {
+  text-align:center;margin-top:16px;font-size:14px;
+  min-height:20px;
+}
+.form-msg.success { color:var(--green-500); }
+.form-msg.error { color:var(--rose-500); }
+
+/* ── Footer ── */
+footer {
+  padding:32px 24px;
+  border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;
+}
+.footer-logo {
+  font-family:var(--font-serif);
+  font-size:18px;font-weight:300;font-style:italic;
+  color:rgba(255,255,255,.35);margin-bottom:8px;
+}
+.footer-mono {
+  font-family:var(--font-mono);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate-600);
+}
+
+/* ── Desktop: hide mobile-only CTA ── */
+.mobile-cta-wrapper{display:none}
+@media(max-width:768px){.mobile-cta-wrapper{display:block;width:100%}}
+
+/* ── Mobile QA pass — v2.1 fixes ── */
+@media(max-width:768px){
+  /* Reduce section padding */
+  section{padding:64px 20px}
+  .cta-section{padding:80px 20px}
+
+  /* Hero: tighten top padding */
+  .hero{min-height:auto;padding:96px 20px 56px}
+
+  /* Dashboard stats: 1-col on mobile */
+  .dash-stats{grid-template-columns:1fr;gap:10px}
+
+  /* Dashboard header: stack on mobile */
+  .dash-header{flex-direction:column;align-items:flex-start;gap:8px}
+  .dash-tabs{margin-left:0}
+
+  /* Rule row: stack label above value */
+  .rule-row{grid-template-columns:1fr;gap:4px}
+  .rule-label{margin-bottom:0}
+
+  /* Slack buttons: wrap */
+  .slack-actions{flex-wrap:wrap}
+
+  /* Timeline: tighter on narrow */
+  .timeline-item{padding:24px 20px;grid-template-columns:40px 1fr;gap:14px}
+  .timeline-num{width:34px;height:34px;font-size:12px;border-radius:8px}
+  .timeline-title{font-size:17px}
+
+  /* Metrics grid already handled, but tighten gap */
+  .metrics-grid{gap:10px}
+
+  /* Cards: tighten */
+  .card{padding:22px 18px}
+  .card-title{font-size:16px}
+
+  /* Lede text: full width */
+  .section-lede{max-width:100%}
+
+  /* Preview grid gap */
+  .preview-grid{gap:20px}
+
+  /* Rule card body padding */
+  .rule-card-body{padding:18px}
+  .rule-meta{padding:12px 18px;flex-wrap:wrap;gap:8px}
+
+  /* Slack card padding */
+  .slack-body{padding:16px}
+  .slack-rule-preview{padding:12px}
+
+  /* Dashboard card responsive */
+  .dash-card{max-width:100%}
+  .dash-body{padding:18px}
+  .dash-stat{padding:12px 8px}
+  .dash-stat-value{font-size:22px}
+}
+
+/* ── Extra narrow (≤400px) ── */
+@media(max-width:400px){
+  .hero h1{font-size:36px}
+  .section-h2{font-size:30px}
+  .cta-h2{font-size:30px}
+  .hero-actions{flex-direction:column;width:100%}
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost{width:100%;text-align:center}
+  .metric-value{font-size:28px}
+  .dash-stats{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     NAV
+     ═══════════════════════════════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">FieldRules.</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="for-engineers.html">For Engineers</a></li>
+    <li><a href="for-domain-experts.html">For Experts</a></li>
+    <li><a href="for-researchers.html">For Researchers</a></li>
+    <li><a href="for-investors.html">For Investors</a></li>
+    <li><a href="for-pms.html">For PMs</a></li>
+    <li><a href="pilot.html" style="color:var(--teal-300);">Pilot</a></li>
+    <li class="mobile-cta-wrapper"><a href="#cta" class="mobile-cta">Request Access</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta desktop-cta">Request Access</a>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     1. HERO
+     ═══════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow" data-reveal>30-day structured pilot</div>
+  <h1 data-reveal>Make AI <em>auditable.</em></h1>
+  <p class="hero-sub" data-reveal>
+    Join our pilot program to explore how domain-expert reasoning rules can govern AI systems with unprecedented transparency and control.
+  </p>
+  <div class="hero-actions" data-reveal>
+    <a href="#cta" class="btn-primary">Start your pilot</a>
+    <a href="#timeline" class="btn-ghost">See the timeline</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     2. THE CHALLENGE
+     ═══════════════════════════════════════════════════ -->
+<section class="challenge-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>The challenge</div>
+    <h2 class="section-h2" data-reveal>Why your organization <em>needs this.</em></h2>
+    <p class="section-lede" data-reveal>
+      AI systems make increasingly critical decisions, yet organizations struggle to understand why those decisions are made. FieldRules solves this by capturing domain expert reasoning as IF/THEN/BECAUSE rules — creating unprecedented auditability, control, and trust.
+    </p>
+    <div class="card-grid card-grid-2" data-reveal>
+      <div class="card">
+        <div class="card-title">The problem</div>
+        <div class="card-text">
+          Black-box AI systems make high-stakes decisions without explanation. Regulatory pressure, stakeholder concerns, and internal governance gaps demand better solutions.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">The opportunity</div>
+        <div class="card-text">
+          By encoding domain expert knowledge as versioned rules, you gain complete visibility into AI behavior, improve decision quality, and demonstrate governance to regulators.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     3. HOW IT WORKS
+     ═══════════════════════════════════════════════════ -->
+<section class="how-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>How it works</div>
+    <h2 class="section-h2" data-reveal>Three steps to <em>auditable AI.</em></h2>
+    <p class="section-lede" data-reveal>
+      FieldRules transforms domain expertise into auditable AI governance through a simple three-step process.
+    </p>
+    <div class="card-grid card-grid-3" data-reveal>
+      <div class="card">
+        <div class="card-title">Capture rules</div>
+        <div class="card-text">
+          Work with your domain experts to define IF/THEN/BECAUSE rules that express their reasoning. Each rule captures the logic, the context, and the human judgment behind decisions.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Version &amp; audit</div>
+        <div class="card-text">
+          Every rule is versioned, timestamped, and linked to the expert who created it. Track changes, compare versions, and maintain a complete audit trail of governance decisions.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Govern AI</div>
+        <div class="card-text">
+          Apply your rules to AI systems in production. FieldRules ensures decisions align with expert reasoning, catching drift and enabling rapid course correction.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     3b. WHAT YOU'LL SEE — Rule Card + Slack Card
+     ═══════════════════════════════════════════════════ -->
+<section class="preview-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>What you'll see</div>
+    <h2 class="section-h2" data-reveal>Rules with <em>real reasoning.</em></h2>
+    <p class="section-lede" data-reveal>
+      Every rule your pilot captures has a structured IF/THEN/BECAUSE format, confirmed by the domain expert who owns the judgment call. Here's what they look like in practice.
+    </p>
+    <div class="preview-grid">
+
+      <!-- Rule card -->
+      <div class="rule-card" data-reveal>
+        <div class="rule-card-header">
+          <div class="rule-card-label">Confirmed rule · Onboarding</div>
+          <span class="rule-badge">Active</span>
+        </div>
+        <div class="rule-card-body">
+          <div class="rule-row">
+            <div class="rule-label">Rule</div>
+            <div class="rule-value">
+              <span class="rule-value-tag tag-domain">RULE-014</span>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-label">IF</div>
+            <div class="rule-value">
+              Trial site submits first patient report within 14 days <span class="rule-value-tag tag-if">AND</span> coordinator headcount &lt; 3
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-label">Then</div>
+            <div class="rule-value">
+              <span class="rule-keyword kw-then">THEN</span> Do not auto-advance to full onboarding. Assign dedicated specialist + schedule 48hr check-in.
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-label">Because</div>
+            <div class="rule-value">
+              <span class="rule-keyword kw-because">BECAUSE</span> "Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care."
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-label">Coverage</div>
+            <div class="rule-value" style="font-family:var(--font-mono);font-size:12px;color:var(--green-500);">91%</div>
+          </div>
+        </div>
+        <div class="rule-meta">
+          <div class="rule-avatar">JC</div>
+          <span>Jordan Chen · confirmed 2d ago</span>
+          <span style="margin-left:auto;font-family:var(--font-mono);font-size:10px;">v1.0</span>
+        </div>
+      </div>
+
+      <!-- Slack confirmation card -->
+      <div class="slack-card" data-reveal>
+        <div class="slack-header">
+          <div class="slack-channel"># ops-alerts</div>
+          <div class="slack-tag">Slack</div>
+        </div>
+        <div class="slack-body">
+          <div class="slack-app-name">
+            FieldRules
+            <span class="slack-app-badge">APP</span>
+            <span class="slack-time">2:14 PM</span>
+          </div>
+          <div class="slack-msg">
+            Hey Jordan — I flagged a rule pattern from ticket <strong>#4112</strong>. Does this match how you handle it?
+          </div>
+          <div class="slack-rule-preview">
+            <div class="slack-rule-if">
+              Trial site submits within 14 days <strong>AND</strong> coordinator headcount &lt; 3 <span class="rule-keyword kw-then">THEN</span> Hold auto-advance…
+            </div>
+          </div>
+          <div class="slack-because-label">BECAUSE — your words here</div>
+          <div class="slack-because-input">
+            Small sites go dark fast without personal attention — automation here signals we don't care…
+          </div>
+          <div class="slack-actions">
+            <button class="slack-btn slack-btn-confirm">✓ Confirm</button>
+            <button class="slack-btn slack-btn-edit">✎ Edit</button>
+            <button class="slack-btn slack-btn-dismiss">✕ Dismiss</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     4. PILOT TIMELINE
+     ═══════════════════════════════════════════════════ -->
+<section class="timeline-section" id="timeline">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Our process</div>
+    <h2 class="section-h2" data-reveal>Your 4-week <em>pilot timeline.</em></h2>
+    <p class="section-lede" data-reveal>
+      A structured program designed to quickly demonstrate value and build internal buy-in.
+    </p>
+    <div class="timeline" data-reveal>
+      <div class="timeline-item">
+        <div class="timeline-num">1</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Discovery &amp; setup</div>
+          <div class="timeline-subtitle">Days 1–5</div>
+          <div class="timeline-desc">
+            Kickoff workshop with your team. Identify 2–3 high-impact decision points where AI governance matters most. Set up FieldRules instance and train domain experts on the rule-capture interface.
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">2</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Rule capture</div>
+          <div class="timeline-subtitle">Days 6–12</div>
+          <div class="timeline-desc">
+            Domain experts work with our team to formalize their reasoning into FieldRules. Capture 15–25 rules across your chosen decision points. Begin baseline measurement of current AI behavior.
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">3</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Integration &amp; testing</div>
+          <div class="timeline-subtitle">Days 13–19</div>
+          <div class="timeline-desc">
+            Integrate FieldRules with your AI systems. Run parallel testing: compare AI decisions against your rule set. Document gaps, edge cases, and areas for refinement.
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">4</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Measurement &amp; decision</div>
+          <div class="timeline-subtitle">Days 20–30</div>
+          <div class="timeline-desc">
+            Measure impact against success criteria. Present findings to leadership. Decide on next steps: expand to production, refine rules, or scale to additional domains.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     5. WHAT WE MEASURE
+     ═══════════════════════════════════════════════════ -->
+<section class="metrics-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Outcomes</div>
+    <h2 class="section-h2" data-reveal>What we <em>measure.</em></h2>
+    <p class="section-lede" data-reveal>
+      Success is concrete and measurable. We track indicators that matter to your business.
+    </p>
+    <div class="metrics-grid" data-reveal>
+      <div class="metric-card">
+        <div class="metric-value mv-indigo">100%</div>
+        <div class="metric-label">Rule coverage</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value mv-teal">72h</div>
+        <div class="metric-label">Avg. rule audit time</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value mv-green">82%</div>
+        <div class="metric-label">AI / rule alignment</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value mv-amber">4/5</div>
+        <div class="metric-label">Expert satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     5b. YOUR PILOT DASHBOARD
+     ═══════════════════════════════════════════════════ -->
+<section class="dash-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Your dashboard</div>
+    <h2 class="section-h2" data-reveal>Track your pilot <em>in real time.</em></h2>
+    <p class="section-lede" data-reveal>
+      Your pilot dashboard shows rule coverage, reasoning quality, and team activity as it happens. No waiting for a weekly report.
+    </p>
+
+    <div class="dash-card" data-reveal>
+      <div class="dash-header">
+        <div class="dash-title">FieldRules · Pilot Dashboard</div>
+        <div class="dash-tabs">
+          <div class="dash-tab active">Overview</div>
+          <div class="dash-tab">Library</div>
+          <div class="dash-tab">Clusters</div>
+        </div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-stats">
+          <div class="dash-stat">
+            <div class="dash-stat-value" style="color:var(--green-500);">23</div>
+            <div class="dash-stat-label">Confirmed rules</div>
+          </div>
+          <div class="dash-stat">
+            <div class="dash-stat-value" style="color:var(--indigo-400);">94%</div>
+            <div class="dash-stat-label">Reasoning coverage</div>
+          </div>
+          <div class="dash-stat">
+            <div class="dash-stat-value" style="color:var(--teal-300);">1,240</div>
+            <div class="dash-stat-label">AI decisions governed</div>
+          </div>
+        </div>
+        <div class="dash-activity-title">Recent activity</div>
+        <div class="dash-activity-item">
+          <span class="dash-dot dot-green"></span>
+          <span><strong style="color:#D4D8F0;">Jordan Chen</strong> confirmed RULE-023 · Escalation</span>
+          <span class="dash-activity-time">2d ago</span>
+        </div>
+        <div class="dash-activity-item">
+          <span class="dash-dot dot-rose"></span>
+          <span><strong style="color:#D4D8F0;">Conflict detected</strong> RULE-011 ↔ RULE-023 · overlapping triggers</span>
+          <span class="dash-activity-time">3d ago</span>
+        </div>
+        <div class="dash-activity-item">
+          <span class="dash-dot dot-amber"></span>
+          <span><strong style="color:#D4D8F0;">RULE-019</strong> flagged — missing reasoning from Alex Martinez</span>
+          <span class="dash-activity-time">5d ago</span>
+        </div>
+        <div class="dash-activity-item">
+          <span class="dash-dot dot-indigo"></span>
+          <span><strong style="color:#D4D8F0;">3 new candidate rules</strong> extracted from Zendesk #4110–4112</span>
+          <span class="dash-activity-time">5d ago</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     6. SUCCESS CRITERIA
+     ═══════════════════════════════════════════════════ -->
+<section class="criteria-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Evaluation</div>
+    <h2 class="section-h2" data-reveal>Pilot success <em>criteria.</em></h2>
+    <p class="section-lede" data-reveal>
+      We've defined clear metrics to determine if this pilot is working for your organization.
+    </p>
+    <div class="card-grid card-grid-2" data-reveal>
+      <div class="card">
+        <div class="card-title">Governance effectiveness</div>
+        <div class="card-text">
+          At least 80% of AI decisions are explainable by captured rules. Clear gaps and edge cases are documented. Your team sees how rules improve decision quality.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Organizational adoption</div>
+        <div class="card-text">
+          Domain experts are actively using FieldRules. At least 2 additional teams express interest. Leadership sees value and approves expansion beyond the pilot scope.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Operational efficiency</div>
+        <div class="card-text">
+          Audit and governance tasks are faster. Rule versioning provides clear change history. Integrations with your AI systems work smoothly with no major rework required.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Risk &amp; compliance</div>
+        <div class="card-text">
+          Regulatory audits are easier with documented rule history. Bias and drift in AI decisions are measurable and addressable. You have concrete evidence of governance.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     7. WHO SHOULD PILOT
+     ═══════════════════════════════════════════════════ -->
+<section class="team-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Your team</div>
+    <h2 class="section-h2" data-reveal>Who should <em>pilot with us.</em></h2>
+    <p class="section-lede" data-reveal>
+      The best pilots include stakeholders from these roles. You don't need all of them, but this mix delivers the fastest results.
+    </p>
+    <div class="card-grid card-grid-2" data-reveal>
+      <div class="card">
+        <div class="card-title">Domain experts</div>
+        <div class="card-text">
+          Your lending, underwriting, claims, or compliance experts. These are the people who understand why good decisions are made. They'll drive rule capture and validation.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">AI / ML engineers</div>
+        <div class="card-text">
+          The team building or operating AI systems. They'll handle integration, testing, and measurement. They benefit most from understanding how rules govern AI behavior.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Compliance &amp; risk</div>
+        <div class="card-text">
+          Regulatory and risk teams see immediate value in auditability. They'll help define success criteria and validate that rules meet governance requirements.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Leadership sponsor</div>
+        <div class="card-text">
+          A director or VP who can clear calendars, ensure resources, and champion the pilot internally. Pilots succeed when they have visible leadership support.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     8. WHAT HAPPENS AFTER
+     ═══════════════════════════════════════════════════ -->
+<section class="after-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Next steps</div>
+    <h2 class="section-h2" data-reveal>What happens <em>after your pilot.</em></h2>
+    <p class="section-lede" data-reveal>
+      The pilot isn't the end — it's the beginning. After 30 days, your team will have data to decide what comes next.
+    </p>
+    <div class="card-grid card-grid-2" data-reveal>
+      <div class="card">
+        <div class="card-title">Production launch</div>
+        <div class="card-text">
+          The pilot proved value. You're ready to move FieldRules into production governance. We help you scale rule capture, set up continuous monitoring, and train your full team.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Expand &amp; refine</div>
+        <div class="card-text">
+          The concept works, but you want to refine your approach. We help you expand to additional decision domains, integrate with more AI systems, or improve rule coverage.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Learn &amp; iterate</div>
+        <div class="card-text">
+          The pilot surfaced gaps in your AI governance approach. You'll work with our team to iterate on your strategy, rules, and integrations before broader rollout.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Evaluate later</div>
+        <div class="card-text">
+          You've validated the approach but timing or resources aren't right. No problem. Your rules, data, and learnings are preserved. You can resume at any time.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     9. CTA FORM
+     ═══════════════════════════════════════════════════ -->
+<section class="cta-section" id="cta">
+  <div class="inner">
+    <h2 class="cta-h2" data-reveal>
+      Start your <em>pilot.</em>
+    </h2>
+    <p class="cta-sub" data-reveal>
+      Fill out the form below and our team will be in touch within 24 hours to discuss your specific use case and confirm your pilot dates.
+    </p>
+
+    <form class="cta-form" id="cta-form" data-reveal action="https://formsubmit.co/melanie.gower@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="FieldRules Pilot Interest — Pilot Page v2.1">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <div class="cta-form-row">
+        <input class="cta-input" type="text" name="name" placeholder="Your name" required>
+        <input class="cta-input" type="email" name="email" placeholder="you@company.com" required>
+      </div>
+      <input class="cta-input" type="text" name="company" placeholder="Company" required>
+      <input class="cta-input" type="text" name="role" placeholder="Your role" required>
+      <textarea class="cta-textarea" name="message" placeholder="Tell us about your use case (optional)"></textarea>
+      <button class="cta-submit" type="submit">Request pilot access</button>
+      <div class="form-msg" id="form-msg"></div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">FieldRules.</div>
+  <div class="footer-mono">fieldrules-pilot-v2.1 · Pilot · April 2026</div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════════ -->
+<script>
+// ── Data-reveal scroll animation ──
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+
+// ── Hamburger menu ──
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+// ── Smooth scroll for anchor links ──
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ── CTA form handler ──
+const ctaForm = document.getElementById('cta-form');
+const formMsg = document.getElementById('form-msg');
+ctaForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(ctaForm);
+  try {
+    const res = await fetch(ctaForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      formMsg.textContent = '✓ Thanks! We\'ll be in touch with pilot details.';
+      formMsg.className = 'form-msg success';
+      ctaForm.reset();
+    } else {
+      throw new Error('fail');
+    }
+  } catch (err) {
+    formMsg.textContent = 'Something went wrong. Please try again or email melanie.gower@gmail.com directly.';
+    formMsg.className = 'form-msg error';
+  }
+});
+</script>
+</body>
+</html>

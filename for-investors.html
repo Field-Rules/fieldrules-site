@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>FieldRules — For Investors</title>
+  <!-- VERSION: fieldrules-for-investors-v1.1 · For Investors · April 2026 · Refreshed with latest canonical docs -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --font-sans:'DM Sans',sans-serif;
+  --font-serif:'Fraunces',serif;
+  --font-mono:'DM Mono',monospace;
+  /* Palette */
+  --indigo-300:#A5AEFF;
+  --indigo-400:#818CF8;
+  --indigo-500:#4752F5;
+  --indigo-600:#3B45D6;
+  --indigo-700:#2D35A8;
+  --teal-300:#5ED5BE;
+  --teal-400:#3DC4AB;
+  --teal-500:#2AA896;
+  --teal-600:#1E8A7B;
+  --rose-500:#F43F5E;
+  --amber-400:#FBBF24;
+  --amber-500:#F59E0B;
+  --green-500:#22C55E;
+  --slate-300:#CBD5E1;
+  --slate-400:#A8B8CC;
+  --slate-500:#7B8CA0;
+  --slate-600:#5C6B7F;
+  /* CS leader color */
+  --amber-cs:#F59E0B;
+  --amber-cs-dim:rgba(245,158,11,.12);
+  --amber-cs-border:rgba(245,158,11,.25);
+}
+html { scroll-behavior:smooth; }
+section { scroll-margin-top: 56px; }
+body {
+  font-family:var(--font-sans);
+  background:#070714;
+  color:#EDF0F7;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+[data-reveal] {
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .55s ease, transform .55s ease;
+}
+[data-reveal].visible {
+  opacity:1;
+  transform:translateY(0);
+}
+/* ── Nav ── */
+nav {
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  display:flex;align-items:center;
+  padding:0 32px;height:56px;
+  background:rgba(7,7,20,.85);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-logo {
+  font-family:var(--font-serif);
+  font-size:20px;font-weight:300;font-style:italic;
+  color:#fff;letter-spacing:-.02em;
+  text-decoration:none;
+}
+.nav-links {
+  display:flex;align-items:center;gap:4px;
+  margin-left:40px;list-style:none;
+}
+.nav-links a {
+  font-size:13px;font-weight:500;
+  color:var(--slate-400);
+  text-decoration:none;
+  padding:5px 12px;border-radius:6px;
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
+.nav-cta {
+  margin-left:auto;
+  font-size:13px;font-weight:600;
+  padding:8px 18px;
+  background:var(--indigo-500);color:#fff;
+  border:none;border-radius:6px;cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
+/* ── Mobile hamburger ── */
+.hamburger {
+  display:none;
+  background:none;border:none;cursor:pointer;padding:8px;
+  flex-direction:column;gap:5px;margin-left:auto;
+}
+.hamburger span {
+  display:block;width:22px;height:2px;background:#fff;border-radius:2px;
+  transition:transform .25s ease,opacity .2s ease;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-links{
+    display:none;position:fixed;top:56px;left:0;right:0;
+    flex-direction:column;background:rgba(7,7,20,.97);
+    -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+    padding:16px 24px;gap:4px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:15px;padding:12px 16px;border-radius:8px}
+  .nav-cta{display:none}
+}
+/* ── Ghost engine demo chips ── */
+.dc-chip {
+  font-family:var(--font-sans);font-size:12px;font-weight:500;
+  padding:5px 14px;border-radius:100px;cursor:pointer;
+  background:rgba(255,255,255,.04);
+  color:var(--slate-400);
+  border:1px solid rgba(255,255,255,.09);
+  transition:color .15s,background .15s,border-color .15s;
+}
+.dc-chip:hover { color:#fff;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16); }
+.dc-chip--active {
+  color:#fff;background:rgba(71,82,245,.18);
+  border-color:rgba(71,82,245,.4);
+}
+/* Fix 3: transient tap-flash — applied then auto-removed by JS */
+.dc-chip-on {
+  animation:chipFlash .3s ease forwards;
+}
+@keyframes chipFlash {
+  0%   { background:rgba(71,82,245,.45); border-color:rgba(71,82,245,.7); }
+  100% { background:rgba(71,82,245,.18); border-color:rgba(71,82,245,.4); }
+}
+/* Demo step transitions — default hidden, only active visible */
+.demo-step { opacity:0; pointer-events:none; transition:opacity .25s ease; }
+.demo-step--active { opacity:1 !important; pointer-events:auto !important; }
+/* Demo body responsive height — override inline 500px */
+.demo-body { height:440px !important; }
+/* ── Auto-cycle progress bar ── */
+.dc-progress-wrap { display:flex;gap:6px;margin-top:10px; }
+.dc-progress-seg { flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;position:relative; }
+.dc-progress-fill { position:absolute;inset:0;background:var(--indigo-400);border-radius:2px;transform:scaleX(0);transform-origin:left; }
+.dc-progress-fill--active { animation:progFill 4s linear forwards; }
+.dc-progress-fill--done { transform:scaleX(1); }
+@keyframes progFill { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+@media(max-width:768px){ .demo-body { height:500px !important; } }
+@media(max-width:480px){ .demo-body { height:580px !important; } }
+section { padding:96px 24px; }
+.inner { max-width:1120px;margin:0 auto; }
+.section-eyebrow {
+  font-family:var(--font-mono);font-size:10px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--indigo-400);margin-bottom:16px;
+}
+.section-h2 {
+  font-family:var(--font-serif);
+  font-size:clamp(36px,5vw,56px);
+  font-weight:300;line-height:1.1;letter-spacing:-.03em;
+  color:#fff;margin-bottom:20px;
+}
+.section-h2 em { font-style:italic;color:var(--teal-300); }
+.section-lede {
+  font-size:17px;line-height:1.7;color:var(--slate-400);
+  max-width:600px;
+}
+/* ── Hero ── */
+.hero {
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  position:relative;overflow:hidden;
+}
+.hero-bg {
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(71,82,245,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(14,165,141,.1) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(71,82,245,.08) 0%, transparent 60%);
+  pointer-events:none;
+}
+.hero-grid {
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+  pointer-events:none;
+}
+.hero-eyebrow {
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal-300);
+  background:rgba(94,213,190,.08);
+  border:1px solid rgba(94,213,190,.2);
+  border-radius:100px;padding:6px 16px;
+  margin-bottom:32px;
+  position:relative;z-index:1;
+}
+.hero-eyebrow::before {
+  content:'';
+  width:6px;height:6px;border-radius:50%;
+  background:var(--teal-300);
+  animation:pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(.8)}
+}
+.hero h1 {
+  font-family:var(--font-serif);
+  font-size:clamp(48px,7vw,84px);
+  font-weight:300;line-height:1.05;
+  letter-spacing:-.03em;color:#fff;
+  margin-bottom:24px;
+  position:relative;z-index:1;
+  max-width:900px;
+}
+.hero h1 em {
+  font-style:italic;
+  background:linear-gradient(135deg, var(--indigo-300), var(--teal-300));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;color:transparent;
+}
+.hero-sub {
+  font-size:18px;font-weight:400;line-height:1.6;
+  color:var(--slate-400);
+  max-width:560px;margin:0 auto 48px;
+  position:relative;z-index:1;
+}
+.hero-actions {
+  display:flex;align-items:center;gap:16px;
+  position:relative;z-index:1;
+  flex-wrap:wrap;justify-content:center;
+}
+.btn-primary {
+  font-size:15px;font-weight:600;
+  padding:14px 28px;
+  background:var(--indigo-500);color:#fff;
+  border:none;border-radius:8px;cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 0 0 0 rgba(71,82,245,0);
+}
+.btn-primary:hover{
+  background:var(--indigo-400);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(71,82,245,.3);
+}
+.btn-ghost {
+  font-size:15px;font-weight:500;
+  padding:14px 28px;
+  background:rgba(255,255,255,.06);color:#EDF0F7;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.hero-trust {
+  display:flex;align-items:center;gap:24px;
+  margin-top:56px;
+  position:relative;z-index:1;
+  flex-wrap:wrap;justify-content:center;
+}
+.trust-item {
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:500;
+  color:var(--slate-500);
+  font-family:var(--font-mono);letter-spacing:.04em;
+}
+.trust-dot { width:6px;height:6px;border-radius:50%;background:var(--green-500);opacity:.7; }
+.trust-sep { color:rgba(255,255,255,.1);font-size:18px; }
+/* ── Rule card preview ── */
+.hero-preview {
+  margin-top:72px;
+  position:relative;z-index:1;
+  max-width:580px;width:100%;
+}
+.rule-card-preview {
+  background:#131628;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:24px;text-align:left;
+  box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1);
+}
+.rcp-header { display:flex;align-items:center;gap:10px;margin-bottom:20px; }
+.rcp-icon {
+  width:32px;height:32px;background:rgba(94,213,190,.1);
+  border:1px solid rgba(94,213,190,.2);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.rcp-meta { font-size:11px;color:var(--slate-500);font-family:var(--font-mono); }
+.rcp-meta strong { color:var(--slate-300); }
+.rcp-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;
+}
+.rcp-when { color:var(--amber-400); }
+.rcp-then { color:var(--teal-300); }
+.rcp-because { color:var(--indigo-300); }
+.rcp-row { margin-bottom:14px; }
+.rcp-val {
+  font-size:13px;color:#D4D8F0;line-height:1.5;
+  padding-left:12px;border-left:2px solid rgba(255,255,255,.08);
+}
+.rcp-footer {
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:20px;padding-top:16px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.rcp-author {
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;color:var(--slate-500);font-family:var(--font-mono);
+}
+.rcp-avatar {
+  width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg, var(--indigo-500), var(--teal-500));
+  font-size:9px;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.rcp-badge {
+  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:100px;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);
+  color:var(--green-500);
+}
+/* ── Contrastive prompt indicator inside rule card ── */
+.rcp-prompt-indicator {
+  margin-top:10px;padding:10px 14px;border-radius:8px;
+  background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.15);
+  display:flex;align-items:flex-start;gap:10px;
+}
+.rcp-prompt-icon {
+  flex-shrink:0;width:22px;height:22px;border-radius:6px;
+  background:rgba(71,82,245,.12);border:1px solid rgba(71,82,245,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--indigo-300);margin-top:1px;
+}
+.rcp-prompt-text {
+  font-size:11px;color:var(--slate-400);line-height:1.5;
+  font-family:var(--font-mono);
+}
+.rcp-prompt-text strong {
+  color:var(--indigo-300);font-weight:600;
+}
+.rcp-prompt-text .prompt-q {
+  color:var(--teal-300);font-style:italic;
+}
+/* ── Problem ── */
+.problem-section { background:#0D0D22; }
+.problem-grid {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:48px;margin-top:64px;align-items:start;
+}
+@media(max-width:768px){.problem-grid{grid-template-columns:1fr;gap:32px}}
+.problem-quote {
+  padding:32px;background:#0A0A1A;
+  border:1px solid rgba(255,255,255,.06);
+  border-left:3px solid var(--rose-500);
+  border-radius:12px;margin-bottom:24px;
+}
+.pq-text {
+  font-family:var(--font-serif);font-size:17px;font-weight:300;
+  font-style:italic;line-height:1.6;color:#D4D8F0;margin-bottom:16px;
+}
+.pq-credit { font-size:11px;color:var(--slate-500);font-family:var(--font-mono); }
+.problem-stat-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+.stat-card {
+  padding:24px;background:#0A0A1A;
+  border:1px solid rgba(255,255,255,.07);border-radius:10px;
+}
+.stat-n {
+  font-family:var(--font-serif);font-size:36px;font-weight:300;
+  color:var(--indigo-300);line-height:1;margin-bottom:8px;
+}
+.stat-label { font-size:12px;color:var(--slate-500);line-height:1.4; }
+.problem-right-title {
+  font-family:var(--font-serif);font-size:28px;font-weight:300;
+  line-height:1.2;color:#fff;margin-bottom:20px;letter-spacing:-.02em;
+}
+.problem-right-title em{font-style:italic;color:var(--rose-500)}
+.problem-body { font-size:15px;line-height:1.8;color:var(--slate-400);margin-bottom:24px; }
+.problem-tag {
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-family:var(--font-mono);font-weight:500;
+  padding:5px 12px;border-radius:100px;
+  background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);
+  color:var(--rose-500);margin:4px;
+}
+/* ── Not That ── */
+.notthat-section { background:#09091A; }
+.comparison-table {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;margin-top:56px;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+}
+@media(max-width:640px){.comparison-table{grid-template-columns:1fr}}
+.ct-header { padding:20px 28px;display:flex;align-items:center;gap:10px; }
+.ct-header-them { background:#111122; }
+.ct-header-us { background:rgba(71,82,245,.12); }
+.ct-header-label {
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--slate-500);
+}
+.ct-header-title {
+  font-family:var(--font-serif);font-size:22px;font-weight:300;
+  letter-spacing:-.02em;color:#fff;margin-top:4px;
+}
+.ct-header-them .ct-header-title { color:var(--slate-500); }
+.ct-row { display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.05); }
+@media(max-width:640px){.ct-row{grid-template-columns:1fr}.comparison-table{border:none;gap:0}}
+.ct-cell { padding:20px 28px;font-size:13px;line-height:1.6; }
+.ct-cell-them { background:#0E0E1F;color:var(--slate-500); }
+.ct-cell-us { background:rgba(71,82,245,.06);color:#D4D8F0;border-left:1px solid rgba(71,82,245,.15); }
+.ct-cell strong { display:block;margin-bottom:4px; }
+.ct-cell-them strong { color:var(--slate-400); }
+.ct-cell-us strong { color:var(--teal-300); }
+/* ── How It Works ── */
+.how-section { background:#09091A; }
+.steps {
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:32px;margin-top:64px;position:relative;
+}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
+.step-card {
+  padding:32px 28px;
+  background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+  position:relative;
+  transition:border-color .2s,box-shadow .2s;
+}
+.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.step-n {
+  font-family:var(--font-mono);font-size:11px;font-weight:600;
+  letter-spacing:.12em;color:var(--slate-600);
+  margin-bottom:20px;
+}
+.step-title {
+  font-family:var(--font-serif);font-size:20px;font-weight:300;
+  color:#fff;letter-spacing:-.01em;margin-bottom:12px;
+}
+.step-body { font-size:13px;line-height:1.7;color:var(--slate-400); }
+.step-tag {
+  display:inline-flex;margin-top:20px;
+  font-size:10px;font-family:var(--font-mono);font-weight:500;
+  padding:4px 10px;border-radius:6px;
+  background:rgba(255,255,255,.04);color:var(--slate-500);
+  border:1px solid rgba(255,255,255,.07);
+}
+/* ── The Layer Between ── */
+.layer-section { background:#060612; }
+.layer-diagram {
+  margin-top:64px;
+  position:relative;
+}
+.layer-flow {
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
+  align-items:center;
+  gap:0;
+  max-width:960px;
+  margin:0 auto 56px;
+}
+@media(max-width:900px){.layer-flow{grid-template-columns:1fr;gap:8px}}
+.lf-box {
+  padding:20px 24px;
+  border-radius:12px;
+  text-align:center;
+}
+.lf-box-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.lf-box-name {
+  font-family:var(--font-serif);font-size:16px;font-weight:300;
+  color:#fff;
+}
+.lf-arrow {
+  color:rgba(255,255,255,.15);
+  font-size:20px;
+  text-align:center;
+  padding:0 4px;
+}
+@media(max-width:900px){.lf-arrow{transform:rotate(90deg);font-size:16px}}
+/* Theirs: missing layer */
+.lf-product { background:#0E0E20;border:1px solid rgba(255,255,255,.08); }
+.lf-product .lf-box-label { color:var(--slate-600); }
+.lf-missing {
+  padding:20px 24px;border-radius:12px;
+  background:rgba(244,63,94,.04);
+  border:1px dashed rgba(244,63,94,.25);
+  text-align:center;
+  position:relative;
+}
+.lf-missing .lf-box-label { color:rgba(244,63,94,.5); }
+.lf-missing .lf-box-name { color:rgba(244,63,94,.6);font-style:italic;font-size:14px; }
+.lf-model { background:#0E0E20;border:1px solid rgba(255,255,255,.08); }
+.lf-model .lf-box-label { color:var(--slate-600); }
+.lf-output { background:#0E0E20;border:1px solid rgba(255,255,255,.08); }
+.lf-output .lf-box-label { color:var(--slate-600); }
+/* FieldRules: populated layer */
+.layer-with {
+  margin-top:48px;
+  max-width:960px;
+  margin-left:auto;margin-right:auto;
+}
+.layer-with-label {
+  font-family:var(--font-mono);font-size:10px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal-300);margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.layer-with-label::before {
+  content:'';width:24px;height:1px;background:var(--teal-300);opacity:.5;
+}
+.layer-populated {
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
+  align-items:center;
+  gap:0;
+}
+@media(max-width:900px){.layer-populated{grid-template-columns:1fr;gap:8px}}
+.lf-filled {
+  background:rgba(71,82,245,.08);
+  border:1px solid rgba(71,82,245,.25);
+  padding:20px 24px;border-radius:12px;
+  text-align:center;
+  position:relative;
+}
+.lf-filled .lf-box-label { color:var(--indigo-400); }
+.lf-filled .lf-box-name { color:#fff; }
+.lf-filled-arrow { color:rgba(71,82,245,.4);font-size:20px;text-align:center;padding:0 4px; }
+@media(max-width:900px){.lf-filled-arrow{transform:rotate(90deg);font-size:16px}}
+.lf-filled-prod { background:#0E0E20;border:1px solid rgba(71,82,245,.15); }
+.lf-filled-prod .lf-box-label { color:var(--indigo-400); }
+.lf-filled-model { background:#0E0E20;border:1px solid rgba(71,82,245,.15); }
+.lf-filled-model .lf-box-label { color:var(--indigo-400); }
+.lf-filled-out { background:rgba(94,213,190,.06);border:1px solid rgba(94,213,190,.2); }
+.lf-filled-out .lf-box-label { color:var(--teal-300); }
+.lf-filled-out .lf-box-name { color:var(--teal-300); }
+/* Three components */
+.layer-components {
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-top:48px;max-width:960px;
+  margin-left:auto;margin-right:auto;
+}
+@media(max-width:768px){.layer-components{grid-template-columns:1fr}}
+.lc-card {
+  padding:28px 24px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;background:#0D0D20;
+}
+.lc-num {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.lc-num-context { color:var(--amber-400); }
+.lc-num-constraints { color:var(--teal-300); }
+.lc-num-reasoning { color:var(--indigo-300); }
+.lc-title { font-size:15px;font-weight:600;color:#fff;margin-bottom:10px; }
+.lc-body { font-size:13px;line-height:1.7;color:var(--slate-400); }
+/* ── Who ── */
+.who-section { background:#0D0D22; }
+.buyer-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;margin-top:56px;
+}
+@media(max-width:768px){.buyer-grid{grid-template-columns:1fr}}
+.buyer-card {
+  padding:36px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  background:#111126;
+  position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.buyer-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.buyer-card-accent { position:absolute;top:0;left:0;right:0;height:3px; }
+.accent-ceo { background:linear-gradient(90deg, var(--indigo-400), var(--teal-400,#4ECDC4)); }
+.accent-product { background:linear-gradient(90deg, var(--teal-300), var(--indigo-300)); }
+.accent-cs { background:linear-gradient(90deg, var(--amber-500), var(--rose-500)); }
+.accent-eng { background:linear-gradient(90deg, #22C55E, #0EA5E9); }
+.buyer-avatar {
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-serif);font-size:22px;font-weight:300;font-style:italic;
+  color:#fff;margin-bottom:20px;
+}
+.av-ceo { background:linear-gradient(135deg, var(--indigo-700), var(--indigo-500)); }
+.av-product { background:linear-gradient(135deg, var(--teal-600), var(--teal-500)); }
+.av-cs { background:linear-gradient(135deg, #92400E, var(--amber-500)); }
+.av-eng { background:linear-gradient(135deg, #14532D, #22C55E); }
+.buyer-role {
+  font-family:var(--font-mono);font-size:10px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--slate-500);margin-bottom:8px;
+}
+.buyer-name {
+  font-family:var(--font-serif);font-size:24px;font-weight:300;
+  letter-spacing:-.02em;color:#fff;margin-bottom:16px;
+}
+.buyer-voice {
+  font-size:14px;line-height:1.7;color:var(--slate-400);
+  font-style:italic;margin-bottom:24px;padding:16px;
+  background:rgba(255,255,255,.03);border-radius:8px;
+  border-left:2px solid rgba(255,255,255,.1);
+}
+.buyer-needs { list-style:none;margin-bottom:24px; }
+.buyer-needs li {
+  font-size:13px;color:var(--slate-300);line-height:1.6;
+  padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:flex-start;gap:8px;
+}
+.buyer-needs li:last-child{border-bottom:none}
+.need-icon { color:var(--teal-300);flex-shrink:0;margin-top:2px; }
+.need-icon-amber { color:var(--amber-500);flex-shrink:0;margin-top:2px; }
+/* The layer callout inside buyer card */
+.buyer-layer {
+  margin-top:20px;
+  padding:16px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;
+}
+.bl-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.bl-label-ceo { color:var(--indigo-400); }
+.bl-label-pm { color:var(--teal-300); }
+.bl-label-cs { color:var(--amber-500); }
+.bl-label-eng { color:#22C55E; }
+.bl-text { font-size:12px;line-height:1.65;color:var(--slate-400); }
+.bl-text strong { color:#EDF0F7;font-weight:600; }
+/* ── Downstream loop ── */
+.loop-section { background:#070714;padding:80px 24px; }
+.loop-row {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2px;
+  margin-top:48px;
+  border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.06);
+  max-width:960px;margin-left:auto;margin-right:auto;
+}
+@media(max-width:768px){.loop-row{grid-template-columns:1fr 1fr}}
+.loop-step {
+  padding:28px 20px;
+  font-size:12px;
+  position:relative;
+}
+.loop-step:not(:last-child)::after {
+  content:'→';
+  position:absolute;right:-10px;top:50%;transform:translateY(-50%);
+  font-size:16px;color:rgba(255,255,255,.15);z-index:2;
+}
+@media(max-width:768px){.loop-step::after{display:none}}
+.ls-n {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;
+}
+.ls-title { font-size:14px;font-weight:600;color:#fff;margin-bottom:8px; }
+.ls-body { font-size:12px;line-height:1.6;color:var(--slate-400); }
+.loop-step:nth-child(1) { background:#0D0D20; }
+.loop-step:nth-child(1) .ls-n { color:var(--slate-600); }
+.loop-step:nth-child(2) { background:#0E0E22; }
+.loop-step:nth-child(2) .ls-n { color:var(--indigo-400); }
+.loop-step:nth-child(3) { background:#0D1620; }
+.loop-step:nth-child(3) .ls-n { color:var(--teal-300); }
+.loop-step:nth-child(4) { background:rgba(94,213,190,.05);border-left:1px solid rgba(94,213,190,.15); }
+.loop-step:nth-child(4) .ls-n { color:var(--teal-300); }
+.loop-path {
+  max-width:960px;margin:24px auto 0;
+  text-align:center;
+  font-family:var(--font-mono);font-size:11px;
+  color:var(--slate-600);letter-spacing:.04em;
+}
+/* ── CTA ── */
+.cta-section { background:#0D0D22;padding:120px 24px; }
+.cta-h2 {
+  font-family:var(--font-serif);
+  font-size:clamp(36px,6vw,64px);
+  font-weight:300;line-height:1.1;letter-spacing:-.03em;
+  color:#fff;margin-bottom:20px;
+}
+.cta-h2 em { font-style:italic;color:var(--teal-300); }
+.cta-sub { font-size:17px;line-height:1.7;color:var(--slate-400);max-width:520px;margin-bottom:40px; }
+.cta-form { display:flex;gap:12px;flex-wrap:wrap; }
+.cta-input {
+  flex:1;min-width:240px;
+  padding:14px 18px;
+  background:#0A0A1A;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;
+  font-family:var(--font-sans);font-size:14px;color:#fff;
+  outline:none;transition:border-color .2s;
+}
+.cta-input:focus{border-color:rgba(71,82,245,.5)}
+.cta-input::placeholder{color:var(--slate-600)}
+/* ── Footer ── */
+footer {
+  padding:32px 40px;
+  border-top:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-logo { font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff; }
+.footer-mono { font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em; }
+/* ── Research section ── */
+.research-section { background:#060612; }
+.research-grid {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:16px;margin-top:56px;
+}
+@media(max-width:768px){.research-grid{grid-template-columns:1fr}}
+.research-card {
+  padding:28px 28px 24px;
+  background:#0D0D20;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+  position:relative;
+}
+.research-card:hover{border-color:rgba(71,82,245,.25)}
+.rc-concept {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--indigo-400);margin-bottom:12px;
+}
+.rc-title {
+  font-family:var(--font-serif);font-size:18px;font-weight:300;
+  color:#fff;letter-spacing:-.01em;margin-bottom:10px;line-height:1.3;
+}
+.rc-body {
+  font-size:13px;line-height:1.75;color:var(--slate-400);margin-bottom:16px;
+}
+.rc-body strong { color:#C8CCE8; font-weight:500; }
+.rc-cite {
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-mono);font-size:10px;
+  color:var(--indigo-300);
+  background:rgba(71,82,245,.08);
+  border:1px solid rgba(71,82,245,.18);
+  border-radius:6px;padding:5px 10px;
+  text-decoration:none;
+  transition:background .15s,border-color .15s;
+  margin-right:6px;margin-top:4px;
+}
+.rc-cite:hover{background:rgba(71,82,245,.15);border-color:rgba(71,82,245,.35);color:#fff;}
+.rc-cite::before { content:'↗'; font-size:9px; opacity:.6; }
+.research-lead {
+  max-width:760px;margin-top:56px;
+  padding:28px 32px;
+  background:rgba(71,82,245,.05);
+  border:1px solid rgba(71,82,245,.15);
+  border-radius:14px;
+}
+.research-lead-label {
+  font-family:var(--font-mono);font-size:9px;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--teal-300);margin-bottom:14px;
+}
+.research-lead p {
+  font-size:15px;line-height:1.8;color:#C8CCE8;margin-bottom:12px;
+}
+.research-lead p:last-child { margin-bottom:0; }
+.research-lead strong { color:#fff;font-weight:500; }
+@keyframes becauseGlow {
+  0%   { box-shadow: 0 0 0 0 rgba(165,174,255,0); border-color: rgba(255,255,255,.08); }
+  40%  { box-shadow: 0 0 32px 6px rgba(165,174,255,.18), 0 0 0 1px rgba(165,174,255,.3); border-color: rgba(165,174,255,.4); }
+  70%  { box-shadow: 0 0 48px 10px rgba(165,174,255,.12), 0 0 0 1px rgba(165,174,255,.2); border-color: rgba(165,174,255,.25); }
+  100% { box-shadow: 0 0 0 0 rgba(165,174,255,0); border-color: rgba(255,255,255,.08); }
+}
+@keyframes becauseLabelPulse {
+  0%,100% { opacity: 1; letter-spacing: .12em; }
+  45%     { opacity: 1; letter-spacing: .22em; color: #C7CAFF; }
+}
+@keyframes becauseTextReveal {
+  0%   { color: var(--slate-400); }
+  40%  { color: #EDF0F7; text-shadow: 0 0 20px rgba(165,174,255,.35); }
+  100% { color: #D4D8F0; text-shadow: none; }
+}
+@keyframes becauseBorderPulse {
+  0%,100% { border-left-color: rgba(255,255,255,.08); }
+  45%     { border-left-color: rgba(165,174,255,.6); }
+}
+@keyframes ifThenFade {
+  0%   { opacity: 1; }
+  30%  { opacity: .38; }
+  100% { opacity: 1; }
+}
+/* Applied to the because row wrapper */
+.rcp-row-because {
+  margin-bottom: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  padding: 10px 12px 10px 10px;
+  background: transparent;
+  animation: becauseGlow 3.2s ease-in-out 1.8s infinite;
+  transition: background .3s;
+}
+.rcp-row-because .rcp-label {
+  animation: becauseLabelPulse 3.2s ease-in-out 1.8s infinite;
+}
+.rcp-row-because .rcp-val {
+  animation: becauseTextReveal 3.2s ease-in-out 1.8s infinite;
+}
+.rcp-row-because .rcp-val {
+  border-left: 2px solid rgba(255,255,255,.08);
+  animation: becauseTextReveal 3.2s ease-in-out 1.8s infinite, becauseBorderPulse 3.2s ease-in-out 1.8s infinite;
+}
+/* IF and THEN dim slightly when BECAUSE glows */
+.rcp-row-ifthen {
+  margin-bottom: 14px;
+  animation: ifThenFade 3.2s ease-in-out 1.8s infinite;
+}
+/* Floating "only humans write this" tooltip that fades in */
+.because-tooltip {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--indigo-300);
+  background: rgba(165,174,255,.08);
+  border: 1px solid rgba(165,174,255,.2);
+  border-radius: 100px;
+  padding: 3px 10px;
+  opacity: 0;
+  animation: tooltipBlink 3.2s ease-in-out 1.8s infinite;
+}
+@keyframes tooltipBlink {
+  0%,25%,100% { opacity: 0; transform: translateY(3px); }
+  45%,75%     { opacity: 1; transform: translateY(0); }
+}
+/* ── Form states ── */
+.cta-form { position:relative; }
+.cta-success {
+  font-family:var(--font-mono);font-size:15px;color:var(--green-500);
+  letter-spacing:.02em;padding:16px 0;
+  animation:fadeUp .4s ease both;
+}
+.cta-error {
+  font-size:13px;color:var(--rose-500);margin-top:10px;
+  font-family:var(--font-mono);letter-spacing:.02em;
+  animation:fadeUp .3s ease both;
+}
+.cta-input.invalid { border-color:var(--rose-500) !important; }
+.btn-primary:disabled {
+  opacity:.6;cursor:not-allowed;
+}
+@keyframes fadeUp {
+  from { opacity:0;transform:translateY(8px); }
+  to { opacity:1;transform:translateY(0); }
+}
+.lib-tab:hover:not(.lib-tab--active) { background:rgba(255,255,255,.08) !important; color:var(--slate-300) !important; }
+</style>
+</head>
+<body>
+</head>
+<body>
+<!-- NAV (Cross-site) -->
+<nav>
+  <a href="index.html" class="nav-logo" style="font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.25rem;color:#fff;text-decoration:none;letter-spacing:-.02em;">FieldRules.</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="for-engineers.html">For Engineers</a></li>
+    <li><a href="for-domain-experts.html">For Experts</a></li>
+    <li><a href="for-researchers.html">For Researchers</a></li>
+    <li><a href="for-investors.html" style="color:var(--teal-300);">For Investors</a></li>
+    <li><a href="for-pms.html">For PMs</a></li>
+    <li><a href="pilot.html">Pilot</a></li>
+  </ul>
+  <button class="hamburger" type="button" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  <a href="pilot.html" class="nav-cta">Request access</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow">🎯 Seed round · $1.5M–$3M · Category creation</div>
+  <h1 data-reveal>
+    Every AI-native SaaS product needs<br>a <em>context and harness layer.</em><br>No one has built it yet.
+  </h1>
+  <p class="hero-sub" data-reveal>
+    Your team's best people make judgment calls every day that shape how your product actually works. FieldRules captures that expertise — the rationale, the instinct, the hard-earned wisdom — and structures it so every AI decision your product makes is governed by the people who know best. Category-defining infrastructure for the AI-native stack.
+  </p>
+  <div class="hero-actions" data-reveal>
+    <button class="btn-primary" type="button">Investor deck</button>
+    <button class="btn-ghost" type="button">See the mechanism →</button>
+  </div>
+  <div class="hero-trust" data-reveal>
+    <div class="trust-item"><div class="trust-dot"></div>Pre-seed → Seed</div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item">$1.5M–$3M raise</div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item">Category creation · not feature</div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item">Forrester 2026: Tacit knowledge = #1 CS barrier</div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item">Karpathy validation · Inner thought monologue (March 2026)</div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item">First pilot Q3 2026</div>
+  </div>
+  <div class="hero-preview" data-reveal>
+    <div class="rule-card-preview">
+      <div class="rcp-header">
+        <div class="rcp-icon">⚡</div>
+        <div class="rcp-meta">
+          <div><strong>Clinical Operations SaaS</strong> · operational playbook</div>
+          <div>Identified from ticket #4112 · Trial site onboarding</div>
+        </div>
+      </div>
+      <div class="rcp-row rcp-row-ifthen">
+        <div class="rcp-label rcp-when">IF</div>
+        <div class="rcp-val">A trial site submits their first patient enrollment report within 14 days of activation AND their coordinator headcount is below 3</div>
+      </div>
+      <div class="rcp-row rcp-row-ifthen">
+        <div class="rcp-label rcp-then">THEN</div>
+        <div class="rcp-val">Do not auto-advance to full onboarding. Assign a dedicated specialist and schedule a 48-hour check-in before the site goes live with patients.</div>
+      </div>
+      <div class="rcp-row rcp-row-because">
+        <div class="rcp-label rcp-because">BECAUSE</div>
+        <div class="rcp-val">Sites this size with fast enrollment timelines are statistically high-dropout in weeks 3–5. Early intervention cuts churn by over half — but only if flagged before the standard onboarding flow locks in.</div>
+        <div class="because-tooltip">Only humans write this</div>
+        <div class="rcp-prompt-indicator">
+          <div class="rcp-prompt-icon">?</div>
+          <div class="rcp-prompt-text">
+            <strong>FieldRules asked:</strong> <span class="prompt-q">"What would go wrong if this rule didn't exist?"</span><br>
+            Not "why does this rule exist?" — contrastive prompts surface real reasoning, not post-hoc justification.
+          </div>
+        </div>
+      </div>
+      <div class="rcp-footer">
+        <div class="rcp-author">
+          <div class="rcp-avatar">J</div>
+          Jordan Chen · Domain Expert
+        </div>
+        <div class="rcp-badge">Confirmed</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- PROBLEM -->
+<section class="problem-section" id="problem">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>🚨 The Problem</div>
+    <div class="problem-grid">
+      <div>
+        <div class="problem-quote" data-reveal>
+          <div class="pq-text">"We're deploying AI across the product. I have no idea what logic it's applying to real decisions — or whose it is."</div>
+          <div class="pq-credit">CEO · Series B SaaS · Clinical operations</div>
+        </div>
+        <div class="problem-quote" data-reveal>
+          <div class="pq-text">"I've been doing this work for three years. Now for the first time, someone is asking me to make that official — and putting my name on it."</div>
+          <div class="pq-credit">VP Operations · Series A HealthTech</div>
+        </div>
+        <div class="problem-quote" data-reveal>
+          <div class="pq-text">"Half our business logic is buried in conditionals an engineer wrote two years ago based on a Slack message from a domain expert who no longer works here. That's what our AI is being asked to replace."</div>
+          <div class="pq-credit">CTO · Series B SaaS · Revenue operations</div>
+        </div>
+        <div class="problem-stat-grid" data-reveal>
+          <div class="stat-card">
+            <div class="stat-n">42%</div>
+            <div class="stat-label">of the expertise an employee performs is only known to that individual</div>
+            <div class="pq-credit" style="margin-top:8px;font-size:10px;color:var(--slate-600);">Panopto Workplace Knowledge Report, 2018</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n">18mo</div>
+            <div class="stat-label">average time before an AI integration reveals logic gaps it can't handle</div>
+            <div class="pq-credit" style="margin-top:8px;font-size:10px;color:var(--slate-600);">FieldRules customer research, 2024</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="problem-right-title" data-reveal>The people closest to your customers<br><em>know the rules.</em><br>Your AI doesn't — unless you structure them first.</h3>
+        <p class="problem-body" data-reveal>
+          Every AI application in your product — routing, pricing, compliance, onboarding, escalations, exception handling — will make decisions based on conditional logic. If you haven't built the layer that supplies that logic, the model fills it in from training data. The model applies the industry average, not your specific way of working.
+        </p>
+        <p class="problem-body" data-reveal>
+          That logic exists already — in the heads of the practitioners who handle real-world edge cases every day. It's accumulated over years of exceptions, client commitments, and judgment calls that never made it into a spec. FieldRules structures it before the AI ships without it.
+        </p>
+        <div data-reveal>
+          <span class="problem-tag">⚡ AI runs on generic defaults</span>
+          <span class="problem-tag">Every AI surface is affected</span>
+          <span class="problem-tag">Rules drift without notice</span>
+          <span class="problem-tag">Exception layer never reaches the model</span>
+          <span class="problem-tag">🔒 Real rules are hardcoded — not structured</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- NOT THAT -->
+<section class="notthat-section" id="notthat">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>📄 Not That</div>
+    <h2 class="section-h2" data-reveal>
+      Your documentation is<br><em>source material, not the answer.</em>
+    </h2>
+    <p class="section-lede" data-reveal>FieldRules doesn't replace your documentation motion — it uses it. Your Confluence pages, call transcripts, Jira tickets, Slack threads: everything that already exists becomes source material for structuring the conditional logic that was implicit in all of it but never structured, attributed, or made defensible.</p>
+    <!-- Source → Extraction transformation -->
+    <div style="margin-top:48px;max-width:960px;" data-reveal>
+      <!-- Row: inputs -->
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-600);margin-bottom:14px;">What already exists — unstructured, implicit, not AI-ready</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:0;">
+        <div style="padding:14px 16px;background:#0A0A18;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+          <div style="font-size:12px;font-weight:600;color:var(--slate-400);margin-bottom:4px;">Docs &amp; playbooks</div>
+          <div style="font-size:11px;color:var(--slate-600);line-height:1.5;">Confluence, Notion — standard case documented, exceptions omitted</div>
+        </div>
+        <div style="padding:14px 16px;background:#0A0A18;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+          <div style="font-size:12px;font-weight:600;color:var(--slate-400);margin-bottom:4px;">Call transcripts</div>
+          <div style="font-size:11px;color:var(--slate-600);line-height:1.5;">Gong, Chorus — judgment calls made live, reasoning never structured</div>
+        </div>
+        <div style="padding:14px 16px;background:#0A0A18;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+          <div style="font-size:12px;font-weight:600;color:var(--slate-400);margin-bottom:4px;">Tickets &amp; issues</div>
+          <div style="font-size:11px;color:var(--slate-600);line-height:1.5;">Jira, Linear, Zendesk — exceptions handled, BECAUSE never recorded</div>
+        </div>
+        <div style="padding:14px 16px;background:#0A0A18;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+          <div style="font-size:12px;font-weight:600;color:var(--slate-400);margin-bottom:4px;">💬 Slack threads</div>
+          <div style="font-size:11px;color:var(--slate-600);line-height:1.5;">Real-time decisions, edge case logic — implicit, ephemeral, unattributed</div>
+        </div>
+        <div style="padding:14px 16px;background:#0A0A18;border:1px solid rgba(244,63,94,.12);border-radius:8px;">
+          <div style="font-size:12px;font-weight:600;color:var(--rose-500);margin-bottom:4px;">Product code</div>
+          <div style="font-size:11px;color:var(--slate-600);line-height:1.5;">Hardcoded conditionals, routing logic, feature flags — rules already formalized, but locked in the codebase, unattributed, and invisible to the AI layer</div>
+        </div>
+      </div>
+      <!-- Arrow transform -->
+      <div style="display:flex;align-items:center;gap:16px;padding:20px 0 16px;">
+        <div style="flex:1;height:1px;background:linear-gradient(90deg, rgba(71,82,245,.08), rgba(71,82,245,.3));"></div>
+        <div style="padding:10px 20px;background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.3);border-radius:100px;font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);white-space:nowrap;">
+          FieldRules structuring layer
+        </div>
+        <div style="flex:1;height:1px;background:linear-gradient(90deg, rgba(71,82,245,.3), rgba(94,213,190,.3));"></div>
+        <div style="color:rgba(94,213,190,.4);font-size:18px;">↓</div>
+      </div>
+      <!-- Output: what FieldRules produces -->
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-300);margin-bottom:14px;">What FieldRules produces — stable, vetted, non-stale, AI-ready</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        <div style="padding:18px 20px;background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.2);border-radius:8px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:8px;">Structured</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:6px;">⚡ IF / THEN / BECAUSE</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.55;">Conditional logic in a format your AI can consume, your PM can spec from, and your board can audit. Not prose. Not a wiki page.</div>
+        </div>
+        <div style="padding:18px 20px;background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.2);border-radius:8px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:8px;">Vetted &amp; attributed</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:6px;">Practitioner-confirmed, never AI-invented</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.55;">The BECAUSE field is only ever the practitioner's words. Attribution is permanent. Every rule has a named source — not "the system" or "the model."</div>
+        </div>
+        <div style="padding:18px 20px;background:rgba(94,213,190,.05);border:1px solid rgba(94,213,190,.2);border-radius:8px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-300);margin-bottom:8px;">Stable &amp; non-stale</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:6px;">🔒 Versioned, conflict-detected, attributed</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.55;">Every rule carries a confirmation date and author. New behavior that contradicts an existing rule surfaces for review. Every AI decision is pinned to the rule version that answered it.</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:32px;max-width:960px;padding:24px 28px;background:#0D0D20;border:1px solid rgba(244,63,94,.18);border-radius:12px;border-left:3px solid var(--rose-500);" data-reveal>
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-500);margin-bottom:10px;">A note on the codebase as source of truth</div>
+      <p style="font-size:15px;line-height:1.7;color:#D4D8F0;margin-bottom:12px;">Your conditionals encode real business rules. But the model doesn't read your codebase at inference time — it gets a context window. Even if it could read every <code style="font-family:var(--font-mono);font-size:13px;color:var(--indigo-300);background:rgba(71,82,245,.1);padding:1px 6px;border-radius:4px;">if/else</code>, it still wouldn't have what it needs: the <em>reasoning</em>.</p>
+      <p style="font-size:15px;line-height:1.7;color:#D4D8F0;">Conditionals are imperative. They handle the cases you anticipated. Your AI is deployed for the cases you didn't — which means it needs to generalize, which requires the BECAUSE. That reasoning was never in the code to begin with. Think of it as the difference between hardcoding your feature flags versus externalizing them into config. Same instinct, one layer up.</p>
+    </div>
+    <div data-reveal style="margin-top:56px;border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;">
+      <!-- Column headers -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;">
+        <div style="padding:20px 28px;background:#111122;">
+          <div style="font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-500);margin-bottom:6px;">Documentation / RAG / Fine-tuning alone</div>
+          <div style="font-family:var(--font-serif);font-size:22px;font-weight:300;color:var(--slate-500);">What source material can't do by itself</div>
+        </div>
+        <div style="padding:20px 28px;background:rgba(71,82,245,.12);border-left:1px solid rgba(71,82,245,.2);">
+          <div style="font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:6px;">FieldRules — structuring layer on top</div>
+          <div style="font-family:var(--font-serif);font-size:22px;font-weight:300;color:#fff;">What the same source material becomes</div>
+        </div>
+      </div>
+      <!-- Row: What's captured -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.05);">
+        <div style="padding:24px 28px;background:#0E0E1F;">
+          <div style="font-size:12px;font-weight:600;color:var(--slate-400);margin-bottom:8px;">What's structured</div>
+          <div style="font-size:13px;color:var(--slate-500);line-height:1.65;">The standard case. What happens when nothing is complicated. The exception logic is present in the source material — but it's implicit, buried, and unstructured.</div>
+        </div>
+        <div style="padding:24px 28px;background:rgba(71,82,245,.05);border-left:1px solid rgba(71,82,245,.12);">
+          <div style="font-size:12px;font-weight:600;color:var(--teal-300);margin-bottom:8px;">What's structured</div>
+          <div style="font-size:13px;color:#D4D8F0;line-height:1.65;">Conditional logic surfaced from the same source material. Exceptions, edge cases, and judgment calls identified as IF/THEN/BECAUSE — explicit, structured, queryable.</div>
+        </div>
+      </div>
+      <!-- Row: How it's captured -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.05);">
+        <div style="padding:24px 28px;background:#0E0E1F;">
+          <div style="font-size:12px;font-weight:600;color:var(--slate-400);margin-bottom:8px;">How it's identified</div>
+          <div style="font-size:13px;color:var(--slate-500);line-height:1.65;">Someone has to sit down and write it. That task never happens, or happens once and goes stale. The documentation motion and the operational reality drift apart silently.</div>
+        </div>
+        <div style="padding:24px 28px;background:rgba(71,82,245,.05);border-left:1px solid rgba(71,82,245,.12);">
+          <div style="font-size:12px;font-weight:600;color:var(--teal-300);margin-bottom:8px;">How it's identified</div>
+          <div style="font-size:13px;color:#D4D8F0;line-height:1.65;">Identified from work in motion — right when a ticket is resolved, a call ends, a decision is made. Routed immediately to the right person for confirmation. 45 seconds, in the tool they're already in. No separate documentation task, no lag.</div>
+        </div>
+      </div>
+      <!-- Row: The reasoning -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.05);">
+        <div style="padding:24px 28px;background:#0E0E1F;">
+          <div style="font-size:12px;font-weight:600;color:var(--slate-400);margin-bottom:8px;">The reasoning</div>
+          <div style="font-size:13px;color:var(--slate-500);line-height:1.65;">Missing. Docs and transcripts record WHAT happened. The BECAUSE — why a rule applies — is almost never written down. It's the part AI can't generalize from, and the part that's almost always absent.</div>
+        </div>
+        <div style="padding:24px 28px;background:rgba(71,82,245,.05);border-left:1px solid rgba(71,82,245,.12);">
+          <div style="font-size:12px;font-weight:600;color:var(--teal-300);margin-bottom:8px;">The reasoning</div>
+          <div style="font-size:13px;color:#D4D8F0;line-height:1.65;">The BECAUSE field is never pre-filled. Only the practitioner's words go there — it's the one field no AI can generate. It's also what makes rules generalize correctly to novel situations the template didn't anticipate.</div>
+        </div>
+      </div>
+      <!-- Row: Reliability -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.05);">
+        <div style="padding:24px 28px;background:#0E0E1F;">
+          <div style="font-size:12px;font-weight:600;color:var(--slate-400);margin-bottom:8px;">Reliability &amp; legibility</div>
+          <div style="font-size:13px;color:var(--slate-500);line-height:1.65;">Drift is invisible. Nobody knows which version of a rule the AI applied, or when it was last reviewed. There's no event that triggers an update — only someone remembering to do it.</div>
+        </div>
+        <div style="padding:24px 28px;background:rgba(71,82,245,.05);border-left:1px solid rgba(71,82,245,.12);">
+          <div style="font-size:12px;font-weight:600;color:var(--teal-300);margin-bottom:8px;">Reliability &amp; legibility</div>
+          <div style="font-size:13px;color:#D4D8F0;line-height:1.65;">Every rule is versioned and carries its confirmation date and author. Every AI decision is pinned to the exact rule revision that answered it. When new behavior contradicts an existing rule, it surfaces for review — not silently.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>⚙️ How It Works</div>
+    <h2 class="section-h2" data-reveal>
+      The rule surfaces<br><em>where the logic already lives.</em>
+    </h2>
+    <p class="section-lede" data-reveal>No new surfaces. No documentation workflow. Rules are triggered by real operational signals — a ticket, a codebase conditional, a periodic review — wherever the logic was already hiding.</p>
+    <div class="steps">
+      <div class="step-card" data-reveal>
+        <div class="step-n">01</div>
+        <div class="step-title">🔍 Logic surfaces</div>
+        <div class="step-body">A support ticket resolves with an implicit judgment call. A periodic review surfaces an undocumented pattern. FieldRules detects the IF/THEN/BECAUSE structure and drafts a candidate rule. The practitioner never has to start from scratch.</div>
+        <div class="step-tag">Tickets · Periodic review · Slack</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">02</div>
+        <div class="step-title">💬 Domain expert confirms</div>
+        <div class="step-body">The domain expert gets a structured card in Slack. They confirm, edit, or dismiss — one tap. The BECAUSE field is never pre-filled. Only their words go there. That's the part that makes it defensible.</div>
+        <div class="step-tag">45 seconds · one decision</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">03</div>
+        <div class="step-title">🚀 Rule enters the library. Product specs from it. AI runs on it.</div>
+        <div class="step-body">Structured, attributed, versioned. The PM specs from it. Engineers build from it. AI agents use it as a control layer — so product decisions reflect your operational reality, not a generic model's defaults.</div>
+        <div class="step-tag">Library → product specs → AI control layer</div>
+      </div>
+    </div>
+
+    <!-- GHOST ENGINE DEMO -->
+    <div style="margin-top:56px;max-width:960px;" data-reveal>
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--slate-600);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+        <span style="width:20px;height:1px;background:rgba(255,255,255,.12);display:inline-block;"></span>
+        See the flow
+      </div>
+      <!-- Chip filters -->
+      <div id="demo-chips" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+        <button class="dc-chip dc-chip--active" data-step="0" type="button">Ticket resolved</button>
+        <button class="dc-chip" data-step="1" type="button">Rule detected</button>
+        <button class="dc-chip" data-step="2" type="button">Jordan confirms</button>
+        <button class="dc-chip" data-step="3" type="button">Rule goes live</button>
+      </div>
+      <div class="dc-progress-wrap" id="demo-progress">
+        <div class="dc-progress-seg"><div class="dc-progress-fill dc-progress-fill--active"></div></div>
+        <div class="dc-progress-seg"><div class="dc-progress-fill"></div></div>
+        <div class="dc-progress-seg"><div class="dc-progress-fill"></div></div>
+        <div class="dc-progress-seg"><div class="dc-progress-fill"></div></div>
+      </div>
+      <!-- Demo body — Fix 4: height:500px; overflow:hidden -->
+      <div class="demo-body" style="height:500px;overflow:hidden;position:relative;background:#0A0A1C;border:1px solid rgba(255,255,255,.08);border-radius:12px;">
+        <!-- Step 0: Ticket resolved -->
+        <div class="demo-step demo-step--active" data-step="0" style="position:absolute;inset:0;padding:28px 32px;overflow-y:auto;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-600);margin-bottom:16px;">Zendesk · Ticket #4112 · Resolved</div>
+          <div style="background:#111122;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:20px 22px;max-width:600px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+              <div style="width:28px;height:28px;border-radius:6px;background:rgba(71,82,245,.2);display:flex;align-items:center;justify-content:center;font-size:11px;">🎫</div>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:#fff;">Trial site onboarding — edge case escalation</div>
+                <div style="font-size:11px;color:var(--slate-600);font-family:var(--font-mono);">Assigned: Jordan Chen · Resolved 2 min ago</div>
+              </div>
+              <div style="margin-left:auto;font-size:11px;font-weight:600;padding:3px 10px;background:rgba(34,197,94,.12);color:#22C55E;border:1px solid rgba(34,197,94,.2);border-radius:100px;">Resolved</div>
+            </div>
+            <div style="font-size:13px;color:var(--slate-400);line-height:1.7;margin-bottom:14px;">Trial submitted first patient report on day 3 — coordinator is part-time only. Held back from auto-advance and looped in Marcus as dedicated specialist. Scheduled 48hr check-in. Small sites move fast when engaged but drop hard if unsupported.</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <div style="font-size:11px;padding:3px 10px;background:rgba(71,82,245,.1);color:var(--indigo-300);border:1px solid rgba(71,82,245,.18);border-radius:100px;font-family:var(--font-mono);">onboarding</div>
+              <div style="font-size:11px;padding:3px 10px;background:rgba(71,82,245,.1);color:var(--indigo-300);border:1px solid rgba(71,82,245,.18);border-radius:100px;font-family:var(--font-mono);">trial-site</div>
+              <div style="font-size:11px;padding:3px 10px;background:rgba(71,82,245,.1);color:var(--indigo-300);border:1px solid rgba(71,82,245,.18);border-radius:100px;font-family:var(--font-mono);">escalation</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);">→ FieldRules reads the resolution notes. Detection starts.</div>
+        </div>
+        <!-- Step 1: Rule detected -->
+        <div class="demo-step" data-step="1" style="position:absolute;inset:0;padding:28px 32px;overflow-y:auto;opacity:0;pointer-events:none;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-600);margin-bottom:16px;">FieldRules · Rule candidate identified</div>
+          <div style="background:#111122;border:1px solid rgba(71,82,245,.2);border-radius:10px;padding:20px 22px;max-width:600px;">
+            <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);margin-bottom:14px;">Candidate rule · Trial site onboarding</div>
+            <div style="margin-bottom:10px;">
+              <div style="font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-400);margin-bottom:4px;">IF</div>
+              <div style="font-size:13px;color:#C8CCE8;padding-left:10px;border-left:2px solid rgba(251,191,36,.25);line-height:1.6;">Trial site submits first patient report within 14 days AND coordinator headcount &lt; 3</div>
+            </div>
+            <div style="margin-bottom:10px;">
+              <div style="font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-300);margin-bottom:4px;">THEN</div>
+              <div style="font-size:13px;color:#C8CCE8;padding-left:10px;border-left:2px solid rgba(94,213,190,.25);line-height:1.6;">Do not auto-advance to full onboarding. Assign dedicated specialist + schedule 48hr check-in.</div>
+            </div>
+            <div style="background:rgba(165,174,255,.04);border:1px solid rgba(165,174,255,.12);border-radius:6px;padding:10px 12px;margin-top:4px;">
+              <div style="font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:4px;">BECAUSE</div>
+              <div style="font-size:12px;color:var(--slate-600);font-style:italic;">Awaiting Jordan's reasoning — this field is always blank until she writes it.</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);">→ Candidate rule routed to Jordan via Slack.</div>
+        </div>
+        <!-- Step 2: Jordan confirms — includes slack-because-input -->
+        <div class="demo-step" data-step="2" style="position:absolute;inset:0;padding:28px 32px;overflow-y:auto;opacity:0;pointer-events:none;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-600);margin-bottom:16px;">Slack · #ops-alerts · Jordan's view</div>
+          <div style="background:#1A1D21;border-radius:10px;border:1px solid rgba(255,255,255,.07);max-width:560px;overflow:hidden;">
+            <div style="padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--indigo-600),var(--teal-500));display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:12px;font-weight:300;font-style:italic;color:#fff;">FR</div>
+              <div style="font-size:13px;font-weight:700;color:#fff;">FieldRules</div>
+              <div style="font-size:10px;font-weight:600;letter-spacing:.05em;color:var(--teal-300);background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2);border-radius:4px;padding:1px 6px;">APP</div>
+            </div>
+            <div style="padding:16px;">
+              <p style="font-size:13px;color:#D4D8F0;line-height:1.6;margin-bottom:12px;">Hey Jordan — I spotted a pattern in <span style="color:var(--indigo-300);font-family:var(--font-mono);font-size:11px;">#4112</span>. Does this match how you handle it?</p>
+              <div style="background:#222529;border-left:3px solid var(--indigo-400);border-radius:6px;padding:12px 14px;margin-bottom:12px;font-size:12px;color:var(--slate-400);line-height:1.6;">
+                <strong style="color:#fff;display:block;margin-bottom:4px;">IF</strong> Trial site submits within 14 days AND coordinator headcount &lt; 3<br>
+                <strong style="color:var(--teal-300);display:block;margin-top:8px;margin-bottom:4px;">THEN</strong> Hold auto-advance · assign specialist · 48hr check-in
+              </div>
+              <!-- BECAUSE input — Fix 5: height:56px; overflow:hidden -->
+              <div style="margin-bottom:12px;">
+                <div style="font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:6px;">Your BECAUSE</div>
+                <div class="slack-because-input" style="height:56px;overflow:hidden;background:#111318;border:1px solid rgba(165,174,255,.2);border-radius:6px;padding:10px 12px;font-size:12px;color:#D4D8F0;line-height:1.5;">Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care — and they notice.</div>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button style="font-family:var(--font-sans);font-size:12px;font-weight:600;padding:6px 14px;background:var(--indigo-500);color:#fff;border:none;border-radius:6px;cursor:pointer;">✓ Confirm</button>
+                <button style="font-family:var(--font-sans);font-size:12px;font-weight:500;padding:6px 14px;background:transparent;color:var(--slate-300);border:1px solid rgba(255,255,255,.15);border-radius:6px;cursor:pointer;">✎ Edit</button>
+                <button style="font-family:var(--font-sans);font-size:12px;font-weight:500;padding:6px 14px;background:transparent;color:var(--slate-500);border:1px solid rgba(255,255,255,.07);border-radius:6px;cursor:pointer;">✕ Dismiss</button>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:16px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);">→ One tap. 45 seconds. Rule enters the library with her name on it.</div>
+        </div>
+        <!-- Step 3: Rule goes live -->
+        <div class="demo-step" data-step="3" style="position:absolute;inset:0;padding:28px 32px;overflow-y:auto;opacity:0;pointer-events:none;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-600);margin-bottom:16px;">FieldRules Rule Library · Confirmed</div>
+          <div style="background:#111122;border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:20px 22px;max-width:600px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 8px rgba(34,197,94,.5);"></div>
+              <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#22C55E;">Live · Trial site onboarding</div>
+              <div style="margin-left:auto;font-size:11px;color:var(--slate-600);font-family:var(--font-mono);">Confirmed by Jordan Chen · pending</div>
+            </div>
+            <div style="margin-bottom:10px;">
+              <div style="font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-400);margin-bottom:4px;">IF</div>
+              <div style="font-size:13px;color:#C8CCE8;padding-left:10px;border-left:2px solid rgba(251,191,36,.25);line-height:1.6;">Trial site submits first patient report within 14 days AND coordinator headcount &lt; 3</div>
+            </div>
+            <div style="margin-bottom:10px;">
+              <div style="font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-300);margin-bottom:4px;">THEN</div>
+              <div style="font-size:13px;color:#C8CCE8;padding-left:10px;border-left:2px solid rgba(94,213,190,.25);line-height:1.6;">Do not auto-advance to full onboarding. Assign dedicated specialist + schedule 48hr check-in.</div>
+            </div>
+            <div style="background:rgba(165,174,255,.06);border:1px solid rgba(165,174,255,.2);border-radius:6px;padding:10px 12px;margin-top:4px;">
+              <div style="font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);margin-bottom:4px;">BECAUSE — Jordan Chen</div>
+              <div style="font-size:13px;color:#D4D8F0;line-height:1.6;font-style:italic;">"Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care — and they notice."</div>
+            </div>
+            <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);display:flex;gap:20px;">
+              <div style="font-size:11px;color:var(--slate-600);font-family:var(--font-mono);">v1.0 · <span style="color:var(--slate-500);">Jordan Chen</span></div>
+              <div style="font-size:11px;color:var(--slate-600);font-family:var(--font-mono);">Used by: <span style="color:var(--teal-300);">@fieldrules AI layer</span></div>
+              <div style="font-size:11px;color:var(--slate-600);font-family:var(--font-mono);">Next review: <span style="color:var(--slate-400);">90 days</span></div>
+            </div>
+          </div>
+          <div style="margin-top:16px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);">→ Structured, attributed, versioned. AI agents query it at inference time.</div>
+        </div>
+      </div><!-- /.demo-body -->
+    </div><!-- /ghost engine demo -->
+
+    <!-- PRE-SEEDED LIBRARY CALLOUT -->
+    <div style="margin-top:32px;max-width:760px;padding:20px 24px;background:rgba(94,213,190,.04);border:1px solid rgba(94,213,190,.15);border-radius:10px;display:flex;gap:20px;align-items:flex-start;" data-reveal>
+      <div style="flex-shrink:0;width:32px;height:32px;border-radius:8px;background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2);display:flex;align-items:center;justify-content:center;font-size:15px;">📚</div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-400);margin-bottom:6px;">You don't start from zero</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:6px;">Pre-seeded industry best practices library</div>
+        <div style="font-size:13px;color:var(--slate-400);line-height:1.65;">FieldRules ships with a curated starter library of operational best practices — organized by domain: onboarding, escalation, exception handling, pricing, compliance, and renewal. These are the industry defaults your team will confirm, override, or extend with your specific operational logic. Day one you have something. Week four, it reflects how your company actually works.</div>
+      </div>
+    </div>
+    <!-- AUTHORSHIP / OWNERSHIP BLOCK -->
+    <div style="margin-top:64px;max-width:960px;" data-reveal>
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:6px;">Rule ownership</div>
+      <h3 style="font-family:var(--font-serif);font-size:clamp(22px,3vw,30px);font-weight:300;line-height:1.2;letter-spacing:-.02em;color:#fff;margin-bottom:10px;">The person who knows best<br><em style="font-style:italic;color:var(--teal-300);">is the author — not the approver.</em></h3>
+      <p style="font-size:15px;color:var(--slate-400);line-height:1.7;max-width:580px;margin-bottom:32px;">FieldRules doesn't route rules to a manager for sign-off. It routes them to the person whose judgment generated the rule in the first place. The reasoning isn't a summary written by someone else. It's authored by the domain expert — in their words, on their authority.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div style="padding:20px 22px;background:#0A0A1C;border:1px solid rgba(71,82,245,.15);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:10px;">Who becomes owner</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">The person closest to the edge case</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.65;">Rule ownership is assigned to the practitioner whose judgment the rule reflects — domain expert, operations lead, subject matter specialist. Not the person who happened to resolve the ticket. The person whose expertise explains <em>why</em> the rule is correct.</div>
+        </div>
+        <div style="padding:20px 22px;background:#0A0A1C;border:1px solid rgba(71,82,245,.15);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:10px;">What authoring means</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">BECAUSE is written, not rubber-stamped</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.65;">The IF and THEN are surfaced by FieldRules. The BECAUSE is never pre-filled — it exists only when the owner writes it. That constraint is permanent and architectural. A rule with no BECAUSE is a candidate, not a confirmed rule. It cannot feed the AI layer.</div>
+        </div>
+        <div style="padding:20px 22px;background:#0A0A1C;border:1px solid rgba(71,82,245,.15);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:10px;">What ownership gives you</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Visibility, attribution, and the right to revise</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.65;">Owners are notified when their rule is used, challenged, or proposed for change. Attribution is permanent — the rule carries their name in every downstream context it reaches. And they hold the pen: only the owner can revise the reasoning behind their rule.</div>
+        </div>
+      </div>
+    </div>
+    <!-- ELICITATION & BEHAVIORAL MOAT — FUNDRAISING -->
+    <div style="margin-top:80px;max-width:960px;" data-reveal>
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-300);margin-bottom:6px;">The Behavioral Moat</div>
+      <h3 style="font-family:var(--font-serif);font-size:clamp(22px,3vw,30px);font-weight:300;line-height:1.2;letter-spacing:-.02em;color:#fff;margin-bottom:10px;">The elicitation mechanism is <em style="font-style:italic;color:var(--teal-300);">the defensible layer.</em></h3>
+      <p style="font-size:15px;color:var(--slate-400);line-height:1.7;max-width:620px;margin-bottom:12px;">Anyone can build a rule schema. The moat is in how you get genuine reasoning out of a practitioner's head — reliably, at scale, and without degradation over time. This is a behavioral design problem with a research-backed solution.</p>
+      <p style="font-size:13px;color:var(--slate-500);line-height:1.6;max-width:620px;margin-bottom:32px;">FieldRules's elicitation layer is grounded in Nisbett &amp; Wilson (1977, 2,600+ citations) on confabulation, Lightman et al. (2023) on process reward signals, and the expert knowledge elicitation literature. It is the primary anti-commoditization mechanism.</p>
+      <!-- Forrester Market Timing -->
+      <div style="padding:24px 28px;background:rgba(94,213,190,.06);border:1px solid rgba(94,213,190,.2);border-radius:12px;margin-bottom:32px;border-left:3px solid var(--teal-400);" data-reveal>
+        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-300);margin-bottom:10px;">Market Timing</div>
+        <p style="font-size:15px;line-height:1.7;color:#D4D8F0;">Forrester's 2026 Predictions identified the exact gap we're solving: <strong style="color:#fff;">"The #1 barrier to AI-led customer service is that enterprises aren't capturing the tacit knowledge employees have but AI solutions don't: intuitive decisions a human employee makes or context-dependent conditional knowledge."</strong> The research and the market need align. Now is the moment.</p>
+      </div>
+      <!-- Research grounding -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+        <div style="padding:28px 24px;background:#0A0A1C;border:1px solid rgba(244,63,94,.15);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rose-500);margin-bottom:10px;">The problem every competitor will hit</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Ask "why?" and you get confabulation — not reasoning</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.65;">Nisbett &amp; Wilson (1977) established that humans have little direct introspective access to higher-order cognitive processes. When asked "why did you do that?", people confabulate — they generate plausible post-hoc explanations that don't reflect actual causal reasoning. This is devastating for RLHF-style preference feedback, for documentation-based knowledge structuring, and for any competitor that builds a rule schema and asks practitioners to fill in "the reason." They will get tautologies. We don't.</div>
+        </div>
+        <div style="padding:28px 24px;background:#0A0A1C;border:1px solid rgba(94,213,190,.18);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);margin-bottom:10px;">FieldRules's designed elicitation</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Structured protocols that route around confabulation</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.65;"><strong style="color:#EDF0F7;">Contrastive prompts</strong> ("what would go wrong?") force reasoning from failure, not rationalization. <strong style="color:#EDF0F7;">Incident-anchored elicitation</strong> generates questions from the specific triggering ticket — ungameable by repetition. <strong style="color:#EDF0F7;">Adaptive gap probing</strong> detects tautologies, missing outcomes, and unnamed risks after the first draft. One follow-up max. The BECAUSE field is never AI-generated, never pre-filled.</div>
+        </div>
+      </div>
+      <!-- Defensibility metrics -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;">
+        <div style="padding:20px 18px;background:rgba(71,82,245,.04);border:1px solid rgba(71,82,245,.12);border-radius:10px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:8px;">Anti-habituation</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.5;">Every pattern tested: <em>does it degrade by session 100?</em></div>
+        </div>
+        <div style="padding:20px 18px;background:rgba(71,82,245,.04);border:1px solid rgba(71,82,245,.12);border-radius:10px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:8px;">Process reward</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.5;">BECAUSE as reasoning steps, not preferences (Lightman 2023)</div>
+        </div>
+        <div style="padding:20px 18px;background:rgba(71,82,245,.04);border:1px solid rgba(71,82,245,.12);border-radius:10px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:8px;">Quality metrics</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.5;">Boilerplate rate, tautology rate, cosine similarity monitoring</div>
+        </div>
+        <div style="padding:20px 18px;background:rgba(71,82,245,.04);border:1px solid rgba(71,82,245,.12);border-radius:10px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:8px;">H3 framework</div>
+          <div style="font-size:12px;color:var(--slate-400);line-height:1.5;">Every AI suggestion governed by Helpful, Honest, Harmless</div>
+        </div>
+      </div>
+      <!-- Investor callout -->
+      <div style="padding:24px 28px;background:#0D0D20;border:1px solid rgba(71,82,245,.2);border-radius:12px;border-left:3px solid var(--indigo-500);max-width:760px;" data-reveal>
+        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:10px;">Why this is the moat</div>
+        <p style="font-size:15px;line-height:1.7;color:#D4D8F0;margin-bottom:12px;">The expert knowledge elicitation literature consistently shows that structured elicitation protocols produce higher-quality knowledge than unstructured feedback. FieldRules's IF/THEN/BECAUSE structure is a direct counter to the confabulation problem — it constrains the form of the response to structure the <em>rule</em>, not the <em>preference</em>.</p>
+        <p style="font-size:15px;line-height:1.7;color:#D4D8F0;"><strong style="color:#fff;">A competitor can copy the schema in a weekend. They cannot copy the behavioral elicitation layer without the research, the design iteration, and the longitudinal quality data that validates it.</strong> The 500th BECAUSE field confirmed through FieldRules's elicitation makes the first 499 more valuable. This is the compounding asset.</p>
+      </div>
+      <!-- Contrastive prompt visual mockup — the behavioral edge, visualized -->
+      <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-reveal>
+        <div style="padding:24px 24px 20px;background:#0E0E1F;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--rose-500);opacity:.7;"></div>
+            <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--rose-500);">What competitors will get</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--slate-400);margin-bottom:14px;">Prompt: "Why does this rule exist?"</div>
+          <div style="background:#0A0A18;border:1px solid rgba(244,63,94,.15);border-radius:8px;padding:14px 16px;">
+            <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);margin-bottom:6px;">Practitioner's BECAUSE</div>
+            <div style="font-size:13px;color:var(--slate-500);line-height:1.6;font-style:italic;">"Because it's important to catch these early and make sure the site gets proper support during onboarding."</div>
+            <div style="margin-top:10px;display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--rose-500);background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.18);border-radius:100px;padding:3px 10px;">⚠ Tautology — restates the rule</div>
+          </div>
+          <div style="margin-top:12px;font-size:11px;color:var(--slate-600);font-family:var(--font-mono);line-height:1.5;">Confabulation (Nisbett &amp; Wilson, 1977). Direct "why" produces post-hoc rationalization. No reasoning. No moat.</div>
+        </div>
+        <div style="padding:24px 24px 20px;background:rgba(71,82,245,.05);border-left:1px solid rgba(71,82,245,.15);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--teal-300);"></div>
+            <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-300);">What FieldRules's elicitation gets</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:#D4D8F0;margin-bottom:14px;">Prompt: "What would go wrong if this rule didn't exist?"</div>
+          <div style="background:rgba(165,174,255,.04);border:1px solid rgba(165,174,255,.18);border-radius:8px;padding:14px 16px;">
+            <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);margin-bottom:6px;">Practitioner's BECAUSE</div>
+            <div style="font-size:13px;color:#D4D8F0;line-height:1.6;font-style:italic;">"Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care — and they notice. We lost 3 trial sites this way in Q3 before I started catching them."</div>
+            <div style="margin-top:10px;display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-300);background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.18);border-radius:100px;padding:3px 10px;">✓ Real reasoning — failure mode + evidence</div>
+          </div>
+          <div style="margin-top:12px;font-size:11px;color:var(--slate-600);font-family:var(--font-mono);line-height:1.5;">Contrastive prompt routes around confabulation. Each incident is unique → ungameable. This is the compounding asset.</div>
+        </div>
+      </div>
+      <!-- Competitive positioning table -->
+      <div style="margin-top:32px;display:grid;grid-template-columns:auto 1fr 1fr;gap:2px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-reveal>
+        <div style="padding:14px 18px;background:#111122;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-500);">Category</div>
+        <div style="padding:14px 18px;background:#111122;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-500);">What they do</div>
+        <div style="padding:14px 18px;background:rgba(71,82,245,.12);font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-400);">Why it's not FieldRules</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;font-weight:600;color:var(--slate-300);border-top:1px solid rgba(255,255,255,.04);">Fine-tuning</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;color:var(--slate-500);border-top:1px solid rgba(255,255,255,.04);">Modify model weights</div>
+        <div style="padding:12px 18px;background:rgba(71,82,245,.04);font-size:12px;color:var(--slate-400);border-top:1px solid rgba(255,255,255,.04);border-left:1px solid rgba(71,82,245,.12);">Model-specific, expensive, no attribution</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;font-weight:600;color:var(--slate-300);border-top:1px solid rgba(255,255,255,.04);">RAG systems</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;color:var(--slate-500);border-top:1px solid rgba(255,255,255,.04);">Retrieve unstructured docs</div>
+        <div style="padding:12px 18px;background:rgba(71,82,245,.04);font-size:12px;color:var(--slate-400);border-top:1px solid rgba(255,255,255,.04);border-left:1px solid rgba(71,82,245,.12);">No IF/THEN logic, no reasoning, no confirmation</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;font-weight:600;color:var(--slate-300);border-top:1px solid rgba(255,255,255,.04);">AI guardrails</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;color:var(--slate-500);border-top:1px solid rgba(255,255,255,.04);">Filter inputs/outputs for safety</div>
+        <div style="padding:12px 18px;background:rgba(71,82,245,.04);font-size:12px;color:var(--slate-400);border-top:1px solid rgba(255,255,255,.04);border-left:1px solid rgba(71,82,245,.12);">Reactive blocking, not domain knowledge</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;font-weight:600;color:var(--slate-300);border-top:1px solid rgba(255,255,255,.04);">Agent memory</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;color:var(--slate-500);border-top:1px solid rgba(255,255,255,.04);">Store what happened</div>
+        <div style="padding:12px 18px;background:rgba(71,82,245,.04);font-size:12px;color:var(--slate-400);border-top:1px solid rgba(255,255,255,.04);border-left:1px solid rgba(71,82,245,.12);">Experiential, not prescriptive rules</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;font-weight:600;color:var(--slate-300);border-top:1px solid rgba(255,255,255,.04);">Rules engines</div>
+        <div style="padding:12px 18px;background:#0E0E1F;font-size:12px;color:var(--slate-500);border-top:1px solid rgba(255,255,255,.04);">Top-down imposed logic</div>
+        <div style="padding:12px 18px;background:rgba(71,82,245,.04);font-size:12px;color:var(--slate-400);border-top:1px solid rgba(255,255,255,.04);border-left:1px solid rgba(71,82,245,.12);">Not bottom-up, not for AI agents, no BECAUSE</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="layer-section" id="layer">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>🏗️ The Layer Between</div>
+    <h2 class="section-h2" data-reveal>
+      The AI doesn't know<br><em>how your company works.</em>
+    </h2>
+    <p class="section-lede" data-reveal>Between your product and the AI model, there's a layer that determines what context the AI receives, what constraints it operates under, and what reasoning it applies. Most companies haven't built it deliberately.</p>
+    <!-- STACK DIAGRAM -->
+    <div data-reveal style="margin:48px auto 56px;max-width:420px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+        <div style="width:100%;padding:18px 24px;background:#0D0D20;border:1px solid rgba(255,255,255,.08);border-radius:10px 10px 0 0;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-500);margin-bottom:4px;">🖥️ Your Product</div>
+          <div style="font-size:12px;color:var(--slate-400);">Support tickets · Product events · Periodic reviews</div>
+        </div>
+        <div style="width:2px;height:20px;background:rgba(255,255,255,.1);"></div>
+        <div style="width:100%;padding:20px 24px;background:linear-gradient(135deg,rgba(71,82,245,.12),rgba(94,213,190,.08));border:1.5px solid rgba(71,82,245,.35);border-radius:10px;text-align:center;position:relative;box-shadow:0 0 30px rgba(71,82,245,.1);">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-300);margin-bottom:4px;">🏗️ FieldRules — Context &amp; Harness Layer</div>
+          <div style="font-size:12px;color:var(--teal-300);">Structured rules · Human reasoning · Confirmed logic</div>
+          <div style="position:absolute;left:-12px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:var(--indigo-400);box-shadow:0 0 8px var(--indigo-400);"></div>
+          <div style="position:absolute;right:-12px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:var(--teal-400);box-shadow:0 0 8px var(--teal-400);"></div>
+        </div>
+        <div style="width:2px;height:20px;background:rgba(255,255,255,.1);"></div>
+        <div style="width:100%;padding:18px 24px;background:#0D0D20;border:1px solid rgba(255,255,255,.08);border-radius:0;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-500);margin-bottom:4px;">🤖 AI Model</div>
+          <div style="font-size:12px;color:var(--slate-400);">GPT-4 · Claude · Gemini · any frontier LLM</div>
+        </div>
+        <div style="width:2px;height:20px;background:rgba(255,255,255,.1);"></div>
+        <div style="width:100%;padding:18px 24px;background:#0D0D20;border:1px solid rgba(255,255,255,.08);border-radius:0 0 10px 10px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-500);margin-bottom:4px;">☁️ Infrastructure</div>
+          <div style="font-size:12px;color:var(--slate-400);">Hosting · APIs · Data stores</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;font-size:12px;color:var(--slate-500);font-family:var(--font-mono);">The highlighted layer is what FieldRules builds.</div>
+    </div>
+    <div class="layer-components" data-reveal>
+      <div class="lc-card">
+        <div class="lc-num lc-num-context">🎯 Context</div>
+        <div class="lc-title">What the AI knows about your situation</div>
+        <div class="lc-body">Not just the current request — the rules and conditions your team applies that the model couldn't know from training. IF this client tier AND this stage, THEN the handling is different. The model doesn't know that. Your domain expert does.</div>
+      </div>
+      <div class="lc-card">
+        <div class="lc-num lc-num-constraints">🛡️ Constraints</div>
+        <div class="lc-title">What the AI is and isn't allowed to do</div>
+        <div class="lc-body">Not generic safety guardrails — your specific policies. Some of these rules already exist: encoded in product conditionals, hardcoded by engineers who had to approximate the logic at ship time. But hardcoded isn't the same as structured. When a customer asks for an exception, what's allowed? When a compliance flag appears, what's the escalation path? A model without constraints will approximate. A model with a harness applies your rules — the real ones, not the ones your code was written to approximate.</div>
+      </div>
+      <div class="lc-card">
+        <div class="lc-num lc-num-reasoning">🧠 Reasoning</div>
+        <div class="lc-title">The BECAUSE behind the IF/THEN</div>
+        <div class="lc-body">The part most implementations miss entirely. The constraint tells the AI what to do. The reasoning tells it why — which is what allows the AI to apply the rule correctly to novel situations that don't exactly match the template.</div>
+      </div>
+    </div>
+    <div style="margin-top:40px;max-width:760px;padding:24px 28px;background:#0D0D20;border:1px solid rgba(71,82,245,.2);border-radius:12px;border-left:3px solid var(--indigo-500);" data-reveal>
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:10px;">The claim</div>
+      <p style="font-size:15px;line-height:1.7;color:#D4D8F0;">FieldRules is the only product whose primary design intent is to populate the context and harness layer from real operational behavior — not from documents, not from engineering assumptions, and not from model training. The AI model is commodity infrastructure. The layer between your product and the model is where differentiation lives. As models improve, harness code shrinks — prompts get shorter, custom tools get replaced by native capabilities. The confirmed rule library doesn't compress. It compounds.</p>
+    </div>
+    <!-- LIBRARY → AI VISUALIZATION (CONDENSED) -->
+    <div style="margin-top:64px;" data-reveal>
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--slate-600);margin-bottom:20px;display:flex;align-items:center;gap:12px;">
+        <span style="width:20px;height:1px;background:rgba(255,255,255,.1);display:inline-block;"></span>
+        What the layer actually contains — and how it reaches the model
+      </div>
+      <div style="max-width:760px;padding:24px 28px;background:#0D0D20;border:1px solid rgba(71,82,245,.15);border-radius:12px;">
+        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:12px;">At inference</div>
+        <p style="font-size:14px;color:#D4D8F0;line-height:1.7;margin-bottom:12px;">Relevant rules are selected from your library, assembled into a context payload with their IF, THEN, and BECAUSE clauses, and passed to the AI model. The model sees confirmed, versioned, attributed operational rules — never raw documentation.</p>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--slate-500);line-height:1.6;background:#0A0A18;border-left:2px solid var(--indigo-500);padding:12px 14px;border-radius:4px;">
+          Rule #14 (Onboarding) → IF trial site &lt; 3 coordinators AND enrollment &lt; 14d → THEN defer auto-advance → BECAUSE high-dropout risk in weeks 3–5.
+        </div>
+        <p style="font-size:12px;color:var(--slate-400);margin-top:12px;">Result: AI behavior matches your company — not the default.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAB SWITCHER: LIBRARY EXPLORER -->
+<div style="margin-top:64px;max-width:960px;" data-reveal>
+  <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--slate-600);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <span style="width:20px;height:1px;background:rgba(255,255,255,.12);display:inline-block;"></span>
+    What the rule library looks like
+  </div>
+  <div style="background:#0A0A1C;border:1px solid rgba(71,82,245,.2);border-radius:14px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5);">
+    <!-- App header bar -->
+    <div style="padding:14px 20px;background:#0D0D22;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:12px;">
+      <div style="width:26px;height:26px;background:var(--indigo-500);border-radius:5px;display:flex;align-items:center;justify-content:center;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div style="font-family:var(--font-serif);font-size:15px;font-weight:300;font-style:italic;color:#fff;">FieldRules</div>
+      <div id="lib-tabs" style="margin-left:auto;display:flex;gap:8px;">
+        <span class="lib-tab" data-tab="dashboard" style="font-size:10px;font-family:var(--font-mono);padding:4px 10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:var(--slate-500);cursor:pointer;transition:all .2s;">Dashboard</span>
+        <span class="lib-tab lib-tab--active" data-tab="library" style="font-size:10px;font-family:var(--font-mono);padding:4px 10px;background:rgba(71,82,245,.15);border:1px solid rgba(71,82,245,.25);border-radius:6px;color:var(--indigo-300);cursor:pointer;transition:all .2s;">Library</span>
+        <span class="lib-tab" data-tab="clusters" style="font-size:10px;font-family:var(--font-mono);padding:4px 10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:var(--slate-500);cursor:pointer;transition:all .2s;">Clusters</span>
+      </div>
+    </div>
+    <!-- ═══ DASHBOARD PANEL ═══ -->
+    <div id="lib-panel-dashboard" class="lib-panel" style="display:none;">
+      <!-- Stats row -->
+      <div style="padding:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:8px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);margin-bottom:8px;">Confirmed rules</div>
+          <div style="font-family:var(--font-serif);font-size:28px;font-weight:300;color:var(--teal-300);">47</div>
+          <div style="font-size:10px;color:var(--green-500);margin-top:4px;">↑ 12 this week</div>
+        </div>
+        <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:8px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);margin-bottom:8px;">Reasoning coverage</div>
+          <div style="font-family:var(--font-serif);font-size:28px;font-weight:300;color:var(--indigo-300);">94%</div>
+          <div style="font-size:10px;color:var(--slate-500);margin-top:4px;">3 rules awaiting reasoning</div>
+        </div>
+        <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:8px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);margin-bottom:8px;">Active domains</div>
+          <div style="font-family:var(--font-serif);font-size:28px;font-weight:300;color:var(--amber-400);">6</div>
+          <div style="font-size:10px;color:var(--slate-500);margin-top:4px;">Onboarding · Escalation · Pricing…</div>
+        </div>
+        <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:10px;">
+          <div style="font-family:var(--font-mono);font-size:8px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);margin-bottom:8px;">AI decisions governed</div>
+          <div style="font-family:var(--font-serif);font-size:28px;font-weight:300;color:#fff;">1,240</div>
+          <div style="font-size:10px;color:var(--green-500);margin-top:4px;">100% traceable to rule version</div>
+        </div>
+      </div>
+      <!-- Recent activity -->
+      <div style="padding:0 20px;">
+        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);margin-bottom:12px;">Recent activity</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="padding:12px 16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;display:flex;align-items:center;gap:12px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green-500);flex-shrink:0;"></div>
+            <span style="font-size:12px;color:#D4D8F0;flex:1;"><strong style="color:#fff;">Jordan Chen</strong> confirmed RULE-023 · Escalation</span>
+            <span style="font-size:10px;color:var(--slate-600);font-family:var(--font-mono);">2d ago</span>
+          </div>
+          <div style="padding:12px 16px;background:#111126;border:1px solid rgba(244,63,94,.1);border-radius:8px;display:flex;align-items:center;gap:12px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--amber-400);flex-shrink:0;"></div>
+            <span style="font-size:12px;color:#D4D8F0;flex:1;"><strong style="color:#fff;">Sam Okafor</strong> flagged RULE-019 · Onboarding</span>
+            <span style="font-size:10px;color:var(--slate-600);font-family:var(--font-mono);">4d ago</span>
+          </div>
+          <div style="padding:12px 16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;display:flex;align-items:center;gap:12px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--teal-400);flex-shrink:0;"></div>
+            <span style="font-size:12px;color:#D4D8F0;flex:1;"><strong style="color:#fff;">Jordan Chen</strong> drafted RULE-035 · Pricing</span>
+            <span style="font-size:10px;color:var(--slate-600);font-family:var(--font-mono);">6d ago</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:20px;border-top:1px solid rgba(255,255,255,.06);">
+        <button style="font-family:var(--font-sans);font-size:13px;font-weight:600;padding:10px 16px;width:100%;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .2s;">View dashboard →</button>
+      </div>
+    </div>
+    <!-- ═══ LIBRARY PANEL ═══ -->
+    <div id="lib-panel-library" class="lib-panel" style="display:block;">
+      <div style="padding:20px;display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);">Confirmed rules · 47</div>
+          <div style="font-size:11px;color:var(--slate-600);font-family:var(--font-mono);">v1.0 → v3.2</div>
+        </div>
+        <!-- Rule card: Onboarding -->
+        <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;">
+            <div style="padding:4px 8px;background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2);border-radius:4px;font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--teal-300);flex-shrink:0;">RULE-001</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;">Trial site onboarding — edge case</div>
+              <div style="font-size:11px;color:var(--slate-500);margin-bottom:6px;">IF trial site &lt; 3 coordinators AND enrollment &lt; 14d → THEN defer auto-advance</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <div style="font-size:9px;color:var(--indigo-300);background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.15);padding:2px 6px;border-radius:3px;font-family:var(--font-mono);">onboarding</div>
+                <div style="font-size:9px;color:var(--teal-300);background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.15);padding:2px 6px;border-radius:3px;font-family:var(--font-mono);">trial-site</div>
+              </div>
+            </div>
+            <div style="margin-left:auto;text-align:right;flex-shrink:0;">
+              <div style="font-size:11px;color:var(--slate-600);font-family:var(--font-mono);margin-bottom:4px;">Jordan Chen</div>
+              <div style="font-size:10px;color:var(--slate-500);font-family:var(--font-mono);">3 weeks ago</div>
+            </div>
+          </div>
+          <div style="font-size:12px;color:#D4D8F0;line-height:1.5;padding:10px 0;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);margin:10px 0;font-style:italic;">"Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care — and they notice."</div>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button style="font-family:var(--font-sans);font-size:10px;padding:6px 12px;background:var(--indigo-500);color:#fff;border:none;border-radius:4px;cursor:pointer;">Edit</button>
+            <button style="font-family:var(--font-sans);font-size:10px;padding:6px 12px;background:transparent;color:var(--slate-400);border:1px solid rgba(255,255,255,.1);border-radius:4px;cursor:pointer;">View full</button>
+          </div>
+        </div>
+        <!-- Rule card: Escalation -->
+        <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;">
+            <div style="padding:4px 8px;background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2);border-radius:4px;font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--teal-300);flex-shrink:0;">RULE-023</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;">Complex case escalation — auto-flag</div>
+              <div style="font-size:11px;color:var(--slate-500);margin-bottom:6px;">IF case touches 3+ systems AND no resolution path exists → THEN flag to senior ops</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <div style="font-size:9px;color:var(--indigo-300);background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.15);padding:2px 6px;border-radius:3px;font-family:var(--font-mono);">escalation</div>
+                <div style="font-size:9px;color:var(--teal-300);background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.15);padding:2px 6px;border-radius:3px;font-family:var(--font-mono);">exception-handling</div>
+              </div>
+            </div>
+            <div style="margin-left:auto;text-align:right;flex-shrink:0;">
+              <div style="font-size:11px;color:var(--slate-600);font-family:var(--font-mono);margin-bottom:4px;">Jordan Chen</div>
+              <div style="font-size:10px;color:var(--slate-500);font-family:var(--font-mono);">5 days ago</div>
+            </div>
+          </div>
+          <div style="font-size:12px;color:#D4D8F0;line-height:1.5;padding:10px 0;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);margin:10px 0;font-style:italic;">"Multi-system issues are black holes. If we're touching three systems and still no answer, senior ops has seen this pattern before."</div>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button style="font-family:var(--font-sans);font-size:10px;padding:6px 12px;background:var(--indigo-500);color:#fff;border:none;border-radius:4px;cursor:pointer;">Edit</button>
+            <button style="font-family:var(--font-sans);font-size:10px;padding:6px 12px;background:transparent;color:var(--slate-400);border:1px solid rgba(255,255,255,.1);border-radius:4px;cursor:pointer;">View full</button>
+          </div>
+        </div>
+      </div>
+      <div style="padding:20px;border-top:1px solid rgba(255,255,255,.06);">
+        <button style="font-family:var(--font-sans);font-size:13px;font-weight:600;padding:10px 16px;width:100%;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .2s;">Browse all rules →</button>
+      </div>
+    </div>
+    <!-- ═══ CLUSTERS PANEL ═══ -->
+    <div id="lib-panel-clusters" class="lib-panel" style="display:none;">
+      <div style="padding:20px;">
+        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);margin-bottom:14px;">Rule clusters by domain</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+          <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+            <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Onboarding</div>
+            <div style="font-size:12px;color:var(--teal-300);margin-bottom:6px;">12 rules</div>
+            <div style="font-size:11px;color:var(--slate-500);line-height:1.5;">Trial sites · Team composition · Ramp paths</div>
+          </div>
+          <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+            <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Escalation</div>
+            <div style="font-size:12px;color:var(--teal-300);margin-bottom:6px;">8 rules</div>
+            <div style="font-size:11px;color:var(--slate-500);line-height:1.5;">Complex cases · Multi-system issues · Time gates</div>
+          </div>
+          <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+            <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Pricing</div>
+            <div style="font-size:12px;color:var(--teal-300);margin-bottom:6px;">6 rules</div>
+            <div style="font-size:11px;color:var(--slate-500);line-height:1.5;">Volume discounts · Seat allocation · Enterprise tier</div>
+          </div>
+          <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+            <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Renewal</div>
+            <div style="font-size:12px;color:var(--teal-300);margin-bottom:6px;">5 rules</div>
+            <div style="font-size:11px;color:var(--slate-500);line-height:1.5;">Churn risk · Expansion · Contract terms</div>
+          </div>
+          <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+            <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Compliance</div>
+            <div style="font-size:12px;color:var(--teal-300);margin-bottom:6px;">7 rules</div>
+            <div style="font-size:11px;color:var(--slate-500);line-height:1.5;">SOC 2 · Data residency · Audit holds</div>
+          </div>
+          <div style="padding:16px;background:#111126;border:1px solid rgba(255,255,255,.06);border-radius:8px;">
+            <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">Exception handling</div>
+            <div style="font-size:12px;color:var(--teal-300);margin-bottom:6px;">3 rules</div>
+            <div style="font-size:11px;color:var(--slate-500);line-height:1.5;">Special requests · One-off overrides</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:20px;border-top:1px solid rgba(255,255,255,.06);">
+        <button style="font-family:var(--font-sans);font-size:13px;font-weight:600;padding:10px 16px;width:100%;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .2s;">Explore clusters →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXT & HARNESS: WHAT THE RESEARCH SHOWS -->
+<section class="research-section" id="research">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>📚 The Research</div>
+    <h2 class="section-h2" data-reveal>
+      This isn't our opinion.<br><em>It's where software is going.</em>
+    </h2>
+    <p class="section-lede" data-reveal>The context and harness layer isn't a product category we invented. It's a structural shift that the ML research community has been documenting for five years. Here's what the literature actually shows.</p>
+    <div class="research-grid" data-reveal>
+      <div class="research-card">
+        <div class="rc-concept">How humans make decisions without conscious access</div>
+        <div class="rc-title">People cannot reliably explain their own judgments</div>
+        <div class="rc-body">Nisbett & Wilson (1977) demonstrated that when asked to explain their decisions, humans <strong>cannot reliably identify the actual factors driving their behavior</strong> — they confabulate plausible explanations instead. The implication for AI is direct: you cannot extract your company's operational rules from employee introspection. They must be observed, extracted, and made explicit. This is foundational cognitive science that explains why every company needs a rules layer, not just documentation.</div>
+        <a class="rc-cite" href="https://doi.org/10.1037/0033-295X.84.3.231" target="_blank" rel="noopener">Nisbett & Wilson 1977 · Telling More Than We Can Know · Psychological Review</a>
+      </div>
+      <div class="research-card">
+        <div class="rc-concept">The visible feedback loop and learning transfer</div>
+        <div class="rc-title">10 minutes of beneficiary contact produces 142% increase in persistence, 171% increase in performance</div>
+        <div class="rc-body">Grant (2007) studied hospital callers — employees making outbound solicitation calls — and found that brief exposure to beneficiary stories produced dramatic performance gains. A single 10-minute meeting with a scholarship beneficiary increased call persistence by 142% and task performance by 171% in subsequent weeks. The insight applies directly to operational rules: when practitioners see how their rules translate into outcomes for end users, rule-building compounds. This is the productive friction paradox — the BECAUSE field is the highest-friction AND highest-value cognitive mechanism. Jordan confirms rules not because the interface is frictionless, but <em>because she sees how Morgan uses them.</em> Visibility of impact drives rule quality.</div>
+        <a class="rc-cite" href="https://doi.org/10.1177/0956797607306761" target="_blank" rel="noopener">Grant 2007 · The Significance of Task-Significance · Journal of Applied Psychology</a>
+      </div>
+      <div class="research-card">
+        <div class="rc-concept">Retrieval vs. fine-tuning for domain-specific knowledge</div>
+        <div class="rc-title">LLMs struggle to learn new operational rules through fine-tuning. Retrieval wins — but only if the rules are structured.</div>
+        <div class="rc-body">Ovadia et al. (2024) compared fine-tuning and retrieval-augmented generation (RAG) across knowledge-intensive tasks. <strong>RAG consistently outperforms fine-tuning for incorporating new and domain-specific knowledge</strong> — including knowledge encountered during training. Critically, LLMs struggle to learn new factual information from unsupervised fine-tuning at all. The implication is direct: your operational rules can't be baked into model weights reliably. They need to be supplied at inference — which means they need to be structured, retrievable, and correct before they enter the context.</div>
+        <a class="rc-cite" href="https://arxiv.org/abs/2312.05934" target="_blank" rel="noopener">Ovadia et al. 2024 · Fine-Tuning or Retrieval? · EMNLP 2024</a>
+      </div>
+      <div class="research-card">
+        <div class="rc-concept">Context engineering for agents</div>
+        <div class="rc-title">Structured, evolving context outperforms static prompts — and the gap compounds over time</div>
+        <div class="rc-body">Zhang et al. (2025) introduced ACE (Agentic Context Engineering), treating context not as a static prompt but as <strong>an evolving playbook that accumulates, refines, and organizes operational knowledge</strong> through structured generation, reflection, and curation cycles. Agents using structured, incrementally-maintained context outperformed strong baselines by +10.6% on agent benchmarks and +8.6% on domain-specific tasks. The key finding: <strong>a smaller model with well-engineered, structured context can match or exceed a larger model without it.</strong> The context layer isn't a feature of your AI product. It is your AI product.</div>
+        <a class="rc-cite" href="https://arxiv.org/abs/2510.04618" target="_blank" rel="noopener">Zhang et al. 2025 · Agentic Context Engineering (ACE) · arXiv Oct 2025</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:24px;font-family:var(--font-mono);font-size:12px;color:var(--indigo-300);">
+      <a href="/research" style="color:var(--indigo-300);text-decoration:none;border-bottom:1px solid rgba(71,82,245,.3);transition:border-color .15s;">See our full research page →</a>
+    </div>
+    <div class="research-lead" data-reveal>
+      <div class="research-lead-label">The throughline</div>
+      <p>The research converges on the same pattern: humans can't reliably articulate their own rules. LLM-based systems need structured, retrieved knowledge, not fine-tuned weights. And when that knowledge is well-engineered and incrementally maintained, it outperforms larger models working from static prompts. <strong>The layer between your product and the model is where performance, consistency, and defensibility are determined.</strong></p>
+      <p>Most companies have not built this layer deliberately. They have a system prompt, some RAG over documents, and business logic hardcoded by engineers who had to approximate the rules at ship time. That gap is what the research has been pointing at. FieldRules is built to close it — from operational behavior, not from documentation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW / INVESTMENT THESIS -->
+<section class="how-section" id="thesis" style="background:#0A0A1E;">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>💰 Investment Thesis</div>
+    <h2 class="section-h2" data-reveal>
+      The timing is structural,<br><em>not cyclical.</em>
+    </h2>
+    <p class="section-lede" data-reveal>Three forces are converging that make this category inevitable — and the window for the defining company is narrow.</p>
+    <div class="steps">
+      <div class="step-card" data-reveal>
+        <div class="step-n">01</div>
+        <div class="step-title">🤖 Every B2B SaaS product is adding AI</div>
+        <div class="step-body">Series A–B SaaS companies are integrating AI into their products. Every one of them needs conditional logic to govern what the AI does. Most are discovering — after they ship — that their documentation and RAG pipeline can't supply it. The gap is structural, not a skills problem. This validates Karpathy's thesis: the "inner thought monologue" (No Priors, March 2026) identifies the BECAUSE field as the AI capability bottleneck — the layer between the model and correct behavior.</div>
+        <div class="step-tag">100% of pipeline is integrating AI · Validated by Karpathy</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">02</div>
+        <div class="step-title">📈 Models commoditize. The layer compounds.</div>
+        <div class="step-body">As models improve, harness code shrinks — custom tools get replaced by native capabilities. But the confirmed rule library doesn't compress. It compounds. Every rule confirmed is a unit of operational IP that makes the AI more accurate and the company more defensible. The Tesla analog: neural nets eat through the stack. Custom logic gets replaced by learned logic — but governance doesn't disappear, it moves to the layer that feeds the model. The moat isn't the model. It's the layer.</div>
+        <div class="step-tag">Compounding moat · not depreciating asset</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">03</div>
+        <div class="step-title">🏆 No one has built the category-defining product</div>
+        <div class="step-body">Documentation tools (Confluence, Notion) record prose. Knowledge bases serve search. RAG pipelines retrieve chunks. None of them extract, structure, attribute, and version the conditional logic that AI needs to behave like your company. This is a new category — the context and harness layer — and it's forming now. Incumbents (Salesforce, HubSpot, Intercom) can't ship this because it requires: (1) visible feedback loop showing practitioner impact, (2) showing how rules map to outcomes, (3) structural moat against platform lock-in, and (4) PM-as-governance-checkpoint behavior — none of which fit their architecture or incentives.</div>
+        <div class="step-tag">Category creation · not feature addition</div>
+      </div>
+    </div>
+    <!-- Traction & validation -->
+    <div style="margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" data-reveal>
+      <div style="padding:24px;background:#0D0D20;border:1px solid rgba(71,82,245,.15);border-radius:10px;text-align:center;">
+        <div style="font-family:var(--font-serif);font-size:36px;font-weight:300;color:var(--indigo-300);line-height:1;margin-bottom:8px;">2</div>
+        <div style="font-size:12px;color:var(--slate-500);line-height:1.4;">Third-party validations<br>(CompanyOS + SkillNet)</div>
+      </div>
+      <div style="padding:24px;background:#0D0D20;border:1px solid rgba(71,82,245,.15);border-radius:10px;text-align:center;">
+        <div style="font-family:var(--font-serif);font-size:36px;font-weight:300;color:var(--teal-300);line-height:1;margin-bottom:8px;">6</div>
+        <div style="font-size:12px;color:var(--slate-500);line-height:1.4;">Published research citations<br>grounding the mechanism</div>
+      </div>
+      <div style="padding:24px;background:#0D0D20;border:1px solid rgba(71,82,245,.15);border-radius:10px;text-align:center;">
+        <div style="font-family:var(--font-serif);font-size:36px;font-weight:300;color:var(--amber-400);line-height:1;margin-bottom:8px;">Q2</div>
+        <div style="font-size:12px;color:var(--slate-500);line-height:1.4;">First pilot deployment<br>target · 2026</div>
+      </div>
+      <div style="padding:24px;background:#0D0D20;border:1px solid rgba(71,82,245,.15);border-radius:10px;text-align:center;">
+        <div style="font-family:var(--font-serif);font-size:36px;font-weight:300;color:var(--green-500);line-height:1;margin-bottom:8px;">2</div>
+        <div style="font-size:12px;color:var(--slate-500);line-height:1.4;">Cofounders<br>Product + Engineering</div>
+      </div>
+    </div>
+    <!-- Founding team callout -->
+    <div style="margin-top:40px;max-width:760px;padding:24px 28px;background:#0D0D20;border:1px solid rgba(94,213,190,.2);border-radius:12px;border-left:3px solid var(--teal-400);" data-reveal>
+      <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-300);margin-bottom:10px;">Founding team</div>
+      <div style="display:flex;gap:24px;margin-bottom:16px;">
+        <div style="flex:1;">
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:4px;">Melanie Gower</div>
+          <div style="font-size:11px;color:var(--indigo-300);font-family:var(--font-mono);margin-bottom:8px;">CEO · Product & GTM</div>
+          <p style="font-size:14px;line-height:1.65;color:#D4D8F0;margin:0;">Career at the intersection of CS operations, product, and AI. Built the operational playbooks that AI is now being asked to replace — and seen firsthand what happens when the logic layer is missing.</p>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:4px;">Hilary Rallo</div>
+          <div style="font-size:11px;color:var(--indigo-300);font-family:var(--font-mono);margin-bottom:8px;">CTO · Engineering</div>
+          <p style="font-size:14px;line-height:1.65;color:#D4D8F0;margin:0;">15 years as a fullstack engineer, primarily at B2B SaaS companies. Deep expertise in building the production systems that FieldRules integrates with — the ticket systems, the routing logic, the AI pipelines.</p>
+        </div>
+      </div>
+      <p style="font-size:14px;line-height:1.65;color:var(--slate-400);margin:0;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);">FieldRules isn't a hypothesis. It's the productization of a pattern both founders have observed across every B2B SaaS company they've worked with — the operational logic layer that AI needs but nobody has built deliberately.</p>
+    </div>
+  </div>
+</section>
+<!-- WHO IT'S FOR -->
+<section class="who-section" id="who">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>👥 Who It's For</div>
+    <h2 class="section-h2" data-reveal>
+      Four principals.<br><em>One layer.</em>
+    </h2>
+    <p class="section-lede" data-reveal>The same layer solves a different problem for every person who has to live with it.</p>
+    <div class="buyer-grid">
+      <!-- SAM / CEO -->
+      <div class="buyer-card" data-reveal>
+        <div class="buyer-card-accent accent-ceo"></div>
+        <div class="buyer-avatar av-ceo">S</div>
+        <div class="buyer-role">CEO / Founder</div>
+        <div class="buyer-name">CEO / Founder</div>
+        <div class="buyer-voice">"We're about to automate. I don't know what logic we're encoding — or whose."</div>
+        <ul class="buyer-needs">
+          <li><span class="need-icon">→</span>Defensible AI differentiation before competitors automate first</li>
+          <li><span class="need-icon">→</span>IP surface area metric for board and acquirers</li>
+          <li><span class="need-icon">→</span>Decision traceability for compliance and enterprise buyers</li>
+          <li><span class="need-icon">→</span>An answer to "what's actually powering this?"</li>
+        </ul>
+        <div class="buyer-layer">
+          <div class="bl-label bl-label-ceo">What the layer means for the CEO</div>
+          <div class="bl-text">When you integrate AI into your product, <strong>the AI doesn't know how your company works</strong>. It knows how companies in general work — the average, the standard case. The thing that makes your AI behave like <em>your</em> company — your specific rules, your exceptions, your "we always do it this way when the client is X" logic — has to be built deliberately and put between your product and the model. Most companies either haven't built it, or built it from documentation that doesn't reflect what actually happens in practice. <strong>FieldRules builds it from the people who actually do the work — and credits them permanently.</strong></div>
+        </div>
+      </div>
+      <!-- ALEX / PM -->
+      <div class="buyer-card" data-reveal>
+        <div class="buyer-card-accent accent-product"></div>
+        <div class="buyer-avatar av-product">A</div>
+        <div class="buyer-role">PM / Product</div>
+        <div class="buyer-name">Product Manager</div>
+        <div class="buyer-voice">"I'm building AI features on specs that don't reflect what practitioners actually do. Every edge case is a surprise after we ship."</div>
+        <ul class="buyer-needs">
+          <li><span class="need-icon">→</span>Spec material for the exception layer — not just the standard case</li>
+          <li><span class="need-icon">→</span>Cluster cards that generate Linear tickets directly from rule patterns</li>
+          <li><span class="need-icon">→</span>Provenance-backed roadmap arguments that survive retro</li>
+          <li><span class="need-icon">→</span>AI features that handle edge cases correctly from day one</li>
+        </ul>
+        <div class="buyer-layer">
+          <div class="bl-label bl-label-pm">What the layer means for the PM</div>
+          <div class="bl-text">When you write specs for AI features, you're deciding what the AI is allowed to do and what logic it applies. Today, that logic exists in three places: system prompts, RAG over docs, and <strong>hardcoded conditionals your engineers wrote by approximating what practitioners told them once</strong>. None of those sources are attributed, versioned, or confirmed by the people who actually apply the rules. Which means <strong>the AI knows the standard case but not the exceptions your operations team handles every day</strong>. FieldRules gives you the spec material for the exception layer — conditional rules, with the reasoning behind them, from the practitioners who carry them. <strong>Your AI feature built on FieldRules rules handles edge cases correctly from day one</strong>, not after the first wave of support tickets. For PMs, this means you're no longer building on approximations — you're building on the actual rules your business follows.</div>
+        </div>
+      </div>
+      <!-- JORDAN / CS LEADER -->
+      <div class="buyer-card" data-reveal>
+        <div class="buyer-card-accent accent-cs"></div>
+        <div class="buyer-avatar av-cs">J</div>
+        <div class="buyer-role">Domain Expert / Operations Lead</div>
+        <div class="buyer-name">Domain Expert</div>
+        <div class="buyer-voice">"I've been handling these edge cases for three years. For the first time, someone is asking me to make that official — and putting my name on it."</div>
+        <ul class="buyer-needs">
+          <li><span class="need-icon need-icon-amber">→</span>Credit and attribution for the knowledge they carry</li>
+          <li><span class="need-icon need-icon-amber">→</span>Confirmation workflow that takes 45 seconds — not a wiki task</li>
+          <li><span class="need-icon need-icon-amber">→</span>Visibility when their rules are used, updated, or challenged</li>
+          <li><span class="need-icon need-icon-amber">→</span>A seat at the table when the product is being built</li>
+        </ul>
+        <div class="buyer-layer">
+          <div class="bl-label bl-label-cs">What the layer means for the Domain Expert</div>
+          <div class="bl-text">When your company integrates AI, <strong>someone has to tell the AI how your company handles things</strong>. If nobody does, the AI guesses based on what it was trained on — which is the industry average, not your specific way of working. Today those instructions are probably written by engineers who had to approximate what you know. <strong>FieldRules makes your knowledge the source of those instructions</strong> — structured, verified, attributed to you, and updated as your practice evolves. You are the layer.</div>
+        </div>
+      </div>
+      <!-- RILEY / ENGINEER -->
+      <div class="buyer-card" data-reveal>
+        <div class="buyer-card-accent accent-eng"></div>
+        <div class="buyer-avatar av-eng">R</div>
+        <div class="buyer-role">Senior Engineer / Tech Lead</div>
+        <div class="buyer-name">Senior Engineer</div>
+        <div class="buyer-voice">"I wrote those conditionals. I had to guess at half of them. Nobody's ever going to audit that code — but now the AI is going to run on top of it."</div>
+        <ul class="buyer-needs">
+          <li><span class="need-icon" style="color:#22C55E;">→</span>A canonical, attributed source of truth for business logic — not a Slack thread from two years ago</li>
+          <li><span class="need-icon" style="color:#22C55E;">→</span>Clear provenance so "who decided this" has an answer at 11pm</li>
+          <li><span class="need-icon" style="color:#22C55E;">→</span>Rules that are human-readable by stakeholders, not just engineers</li>
+          <li><span class="need-icon" style="color:#22C55E;">→</span>Something to point to when product asks "why does it do that?"</li>
+        </ul>
+        <div class="buyer-layer">
+          <div class="bl-label bl-label-eng">What the layer means for the Engineer</div>
+          <div class="bl-text">Engineers are the accidental keepers of operational logic — not because they should be, but because the code is the only place rules are formally expressed. Every conditional is an approximation: what the engineer understood, from whoever they could reach, at the time they had to ship. <strong>FieldRules makes the engineer the builder, not the archaeologist.</strong> The rule arrives structured, attributed, and confirmed by the person who owns it. Your job is to implement it correctly — not to reconstruct what it was supposed to be.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- DOWNSTREAM LOOP -->
+<section class="loop-section" id="loop">
+  <div class="inner" style="text-align:center;">
+    <div class="section-eyebrow" style="text-align:center;" data-reveal>🔄 The full loop</div>
+    <h2 class="section-h2" style="text-align:center;" data-reveal>
+      The library is a byproduct.<br><em>Product behavior is the destination.</em>
+    </h2>
+    <p class="section-lede" style="max-width:600px;margin:0 auto 0;" data-reveal>Rules don't stop at the library. They feed product specs. They govern AI agents. They become the control layer for every product decision downstream. A two-way loop: consumption → authoring → visible feedback.</p>
+  </div>
+  <div class="loop-row" data-reveal>
+    <div class="loop-step">
+      <div class="ls-n">01</div>
+      <div class="ls-title">Ticket → Rule</div>
+      <div class="ls-body">Domain expert confirms a rule from a real ticket. IF/THEN/BECAUSE. Attributed, versioned, structured.</div>
+    </div>
+    <div class="loop-step">
+      <div class="ls-n">02</div>
+      <div class="ls-title">Rule → Spec</div>
+      <div class="ls-body">Product manager sees rule clusters. Each cluster becomes a Linear ticket. One rule, one spec, one feature — provenance chain intact.</div>
+    </div>
+    <div class="loop-step">
+      <div class="ls-n">03</div>
+      <div class="ls-title">Spec → Product</div>
+      <div class="ls-body">Engineers build from the domain expert's logic. The feature ships with the operational exception layer baked in from day one.</div>
+    </div>
+    <div class="loop-step">
+      <div class="ls-n">04</div>
+      <div class="ls-title">Rules → AI Control Layer</div>
+      <div class="ls-body">AI agents use your confirmed rules as the context and harness layer. They approve, route, and escalate based on your operational logic — not generic model defaults.</div>
+    </div>
+  </div>
+  <div class="loop-path" data-reveal>ticket → rule → library → product specs + AI control layer</div>
+</section>
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="inner">
+    <h2 class="cta-h2" data-reveal>
+      🤝 The category is forming.<br><em>Let's talk.</em>
+    </h2>
+    <p class="cta-sub" data-reveal>
+      FieldRules is raising a $1.5M–$3M seed round to build the context and harness layer for AI-native SaaS. We're looking for investors who understand infrastructure timing, category creation, and the compounding value of structured operational logic.
+    </p>
+    <form class="cta-form" data-reveal id="cta-form" autocomplete="on">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <input class="cta-input" type="email" name="email" placeholder="your@fund.com" required>
+      <button class="btn-primary" type="submit">Request investor deck</button>
+    </form>
+    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>
+      Two cofounders · Pre-seed → Seed · First pilot Q3 2026 · Third-party validated (CompanyOS + SkillNet)
+    </p>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">FieldRules.</div>
+  <div class="footer-mono">fieldrules-for-investors-v1.1 · For Investors · April 2026 · Refreshed with latest canonical docs</div>
+  <div class="footer-mono">Seed Round · $1.5M–$3M · Category creation for AI-native SaaS</div>
+</footer>
+<script>
+try {
+  document.addEventListener('DOMContentLoaded', function() {
+    // ── Reveal on scroll ──
+    var els = document.querySelectorAll('[data-reveal]');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el) { observer.observe(el); });
+    // ── Smooth scroll helper (works inside iframes) ──
+    var NAV_HEIGHT = 56;
+    function scrollTo(id) {
+      var target = id === 'top' ? document.body : document.getElementById(id);
+      if (!target) return;
+      var top = id === 'top' ? 0 : target.getBoundingClientRect().top + window.pageYOffset - NAV_HEIGHT;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+    // ── Ghost engine demo chip interaction + auto-cycle ──
+    var demoChips = document.querySelectorAll('#demo-chips .dc-chip');
+    var demoSteps = document.querySelectorAll('.demo-step');
+    var progressFills = document.querySelectorAll('#demo-progress .dc-progress-fill');
+    var autoStep = 0;
+    var autoTimer = null;
+    var autoPaused = false;
+
+    function goToStep(n) {
+      autoStep = n;
+      demoChips.forEach(function(c) { c.classList.remove('dc-chip--active'); });
+      demoSteps.forEach(function(s) { s.classList.remove('demo-step--active'); });
+      var chip = document.querySelector('#demo-chips .dc-chip[data-step="' + n + '"]');
+      var step = document.querySelector('.demo-step[data-step="' + n + '"]');
+      if (chip) chip.classList.add('dc-chip--active');
+      if (step) step.classList.add('demo-step--active');
+      // Update progress bar
+      progressFills.forEach(function(f, i) {
+        f.classList.remove('dc-progress-fill--active', 'dc-progress-fill--done');
+        if (i < n) f.classList.add('dc-progress-fill--done');
+        else if (i === n) f.classList.add('dc-progress-fill--active');
+      });
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(function() {
+        if (!autoPaused) {
+          autoStep = (autoStep + 1) % 4;
+          goToStep(autoStep);
+        }
+      }, 4000);
+    }
+
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    // Manual click
+    demoChips.forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        var step = parseInt(this.dataset.step, 10);
+        goToStep(step);
+        // Restart auto from this step
+        startAuto();
+        // Tap flash
+        var tappedChip = this;
+        tappedChip.classList.add('dc-chip-on');
+        tappedChip.addEventListener('animationend', function onEnd() {
+          tappedChip.classList.remove('dc-chip-on');
+          tappedChip.removeEventListener('animationend', onEnd);
+        });
+      });
+    });
+
+    // Pause on hover, resume on leave
+    var demoContainer = document.getElementById('demo-chips');
+    var demoBody = document.querySelector('.demo-body');
+    [demoContainer, demoBody].forEach(function(el) {
+      if (!el) return;
+      el.addEventListener('mouseenter', function() { autoPaused = true; });
+      el.addEventListener('mouseleave', function() { autoPaused = false; });
+    });
+
+    // Start auto-cycle
+    goToStep(0);
+    startAuto();
+    // ── Intercept all anchor href="#..." clicks ──
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = this.getAttribute('href').slice(1) || 'top';
+        scrollTo(id);
+      });
+    });
+    // ── Hero buttons ──
+    var heroBtns = document.querySelectorAll('.hero-actions button');
+    if (heroBtns[0]) heroBtns[0].addEventListener('click', function() { scrollTo('cta'); });
+    if (heroBtns[1]) heroBtns[1].addEventListener('click', function() { scrollTo('problem'); });
+    // ── Nav CTA + all other CTA buttons ──
+    document.querySelectorAll('.nav-cta, .cta-section .btn-primary').forEach(function(btn) {
+      btn.addEventListener('click', function() { scrollTo('cta'); });
+    });
+    // ── Active nav link on scroll ──
+    var sections = ['problem','how','layer','research','thesis','who','cta'];
+    var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    function setActive() {
+      var scrollY = window.pageYOffset + NAV_HEIGHT + 32;
+      var current = '';
+      sections.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) current = id;
+      });
+      navLinks.forEach(function(a) {
+        var id = a.getAttribute('href').slice(1);
+        a.classList.toggle('active', id === current);
+      });
+    }
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+    // ── Hamburger menu ──
+    var hamburger = document.querySelector('.hamburger');
+    var navLinksEl = document.querySelector('.nav-links');
+    if (hamburger && navLinksEl) {
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        navLinksEl.classList.toggle('open');
+      });
+      navLinksEl.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          hamburger.classList.remove('open');
+          navLinksEl.classList.remove('open');
+        });
+      });
+    }
+    // ── Form submission via FormSubmit.co ──
+    var ctaForm = document.getElementById('cta-form');
+    if (ctaForm) {
+      ctaForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var input = ctaForm.querySelector('.cta-input');
+        var btn = ctaForm.querySelector('.btn-primary');
+        var email = input.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          input.classList.add('invalid');
+          input.addEventListener('input', function() { input.classList.remove('invalid'); }, { once: true });
+          return;
+        }
+        var btnText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending\u2026';
+        fetch('https://formsubmit.co/ajax/melanie.gower@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            _subject: 'FieldRules — New inquiry (investor page)',
+            _template: 'table'
+          })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.success === 'true' || data.success === true) {
+            ctaForm.innerHTML = '<p class="cta-success">\u2713 Request received. We\u2019ll follow up shortly.</p>';
+          } else { throw new Error('fail'); }
+        })
+        .catch(function() {
+          btn.disabled = false;
+          btn.textContent = btnText;
+          var old = ctaForm.querySelector('.cta-error');
+          if (old) old.remove();
+          var err = document.createElement('p');
+          err.className = 'cta-error';
+          err.textContent = 'Something went wrong \u2014 try again or email melanie.gower@gmail.com';
+          ctaForm.appendChild(err);
+          setTimeout(function() { err.remove(); }, 6000);
+        });
+      });
+    }
+  });
+} catch(e) { console.warn('FieldRules marketing init error:', e); }
+
+// Tab switcher functionality + auto-cycle
+var libTabs = document.querySelectorAll('#lib-tabs .lib-tab');
+var libPanels = document.querySelectorAll('.lib-panel');
+var tabOrder = ['dashboard', 'library', 'clusters'];
+var currentTabIndex = 1; // Start at library
+var tabAutoTimer = null;
+var tabAutoPaused = false;
+
+function switchTab(tabName) {
+  var tabIndex = tabOrder.indexOf(tabName);
+  if (tabIndex >= 0) currentTabIndex = tabIndex;
+
+  libTabs.forEach(function(t) {
+    t.classList.remove('lib-tab--active');
+    t.style.background = 'rgba(255,255,255,.04)';
+    t.style.borderColor = 'rgba(255,255,255,.08)';
+    t.style.color = 'var(--slate-500)';
+  });
+  libPanels.forEach(function(p) { p.style.display = 'none'; });
+
+  var activeTab = document.querySelector('#lib-tabs .lib-tab[data-tab="' + tabName + '"]');
+  if (activeTab) {
+    activeTab.classList.add('lib-tab--active');
+    activeTab.style.background = 'rgba(71,82,245,.15)';
+    activeTab.style.borderColor = 'rgba(71,82,245,.25)';
+    activeTab.style.color = 'var(--indigo-300)';
+  }
+  var panel = document.getElementById('lib-panel-' + tabName);
+  if (panel) panel.style.display = 'block';
+}
+
+function startTabAuto() {
+  if (tabAutoTimer) clearInterval(tabAutoTimer);
+  tabAutoTimer = setInterval(function() {
+    if (!tabAutoPaused) {
+      currentTabIndex = (currentTabIndex + 1) % 3;
+      switchTab(tabOrder[currentTabIndex]);
+    }
+  }, 5000);
+}
+
+libTabs.forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    var target = this.dataset.tab;
+    switchTab(target);
+    startTabAuto();
+  });
+});
+
+// Pause on hover, resume on leave
+var libTabsContainer = document.getElementById('lib-tabs');
+var libContent = document.querySelector('[id^="lib-panel"]');
+[libTabsContainer, document.querySelector('.section-eyebrow + h2 + .section-lede')?.parentElement].filter(Boolean).forEach(function(el) {
+  el.addEventListener('mouseenter', function() { tabAutoPaused = true; });
+  el.addEventListener('mouseleave', function() { tabAutoPaused = false; });
+});
+
+// Start auto-cycle
+switchTab(tabOrder[currentTabIndex]);
+startTabAuto();
+</script>
+</body></html>
