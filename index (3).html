@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3 — for-product-managers -->
-<title>For Product Managers — FieldRules</title>
-<meta name="description" content="Stop speccing features against business logic you can't verify. Query the rule library. Get governance before you hand work to engineering.">
-<meta property="og:title" content="For Product Managers — FieldRules">
-<meta property="og:description" content="Query the rule library before you spec. Get governance answers that an AI can't guess from context.">
+<!-- VERSION: fieldrules-site-v3.1 — index -->
+<title>FieldRules — Your team's reasoning, governing every decision</title>
+<meta name="description" content="FieldRules captures the judgment calls your team carries — edge cases, instinct, hard-won logic — and structures it so every decision your product makes is governed by the people who know best.">
+<meta property="og:title" content="FieldRules — Your team's reasoning, governing every decision">
+<meta property="og:description" content="FieldRules captures the judgment calls your team carries and structures them so every AI decision your product makes is governed by the people who know best.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://fieldrules.ai/for-product-managers">
-<link rel="canonical" href="https://fieldrules.ai/for-product-managers">
+<meta property="og:url" content="https://fieldrules.ai">
+<link rel="canonical" href="https://fieldrules.ai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -43,7 +43,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
 .nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
 .nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
-.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;margin-top:8px;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.nav-dropdown::after{content:'';position:absolute;top:100%;left:0;width:100%;height:12px}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .nav-dropdown:hover .nav-dropdown-menu{display:block}
 .nav-dropdown-menu a{display:block;padding:8px 14px;border-radius:6px;font-size:13px;color:var(--slate-400);text-decoration:none;transition:color .15s,background .15s}
 .nav-dropdown-menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
@@ -121,38 +122,63 @@ section{padding:96px 24px}
 .because-tooltip{display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);background:rgba(165,174,255,.08);border:1px solid rgba(165,174,255,.2);border-radius:100px;padding:3px 10px;opacity:0;animation:tooltipBlink 3.2s ease-in-out 1.8s infinite}
 @keyframes tooltipBlink{0%,25%,100%{opacity:0;transform:translateY(3px)}45%,75%{opacity:1;transform:translateY(0)}}
 
-/* ── PM-specific sections ── */
-.pattern-section{background:#0D0D22}
-.pattern-content{max-width:680px}
-.pattern-body{font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px}
-.pattern-body strong{color:#D4D8F0;font-weight:500}
-.pattern-callout{padding:28px 32px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.15);border-left:3px solid var(--indigo-500);border-radius:12px;font-family:var(--font-serif);font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0}
-
-.governance-section{background:#09091A}
-.governance-contrast{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;max-width:900px}
-@media(max-width:768px){.governance-contrast{grid-template-columns:1fr}}
-.gc-card{padding:28px 24px;border-radius:14px;text-align:left}
-.gc-card--before{background:#0E0E1F;border:1px solid rgba(255,255,255,.07)}
-.gc-card--after{background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.2)}
-.gc-label{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
-.gc-card--before .gc-label{color:var(--slate-600)}
-.gc-card--after .gc-label{color:var(--indigo-400)}
-.gc-scenario{font-size:12px;color:var(--slate-500);line-height:1.5;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,.03);margin-bottom:16px;font-family:var(--font-mono)}
-.gc-query{font-size:14px;line-height:1.65;padding:12px 16px;border-radius:8px}
-.gc-card--before .gc-query{color:var(--slate-500);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)}
-.gc-card--after .gc-query{color:#D4D8F0;background:rgba(165,174,255,.06);border:1px solid rgba(165,174,255,.15)}
-.governance-explanation{max-width:680px;margin-top:40px;font-size:16px;line-height:1.75;color:var(--slate-400)}
-.governance-explanation strong{color:#D4D8F0;font-weight:500}
-
-.outcomes-section{background:#0D0D22}
-.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px;position:relative}
-@media(max-width:768px){.outcomes-grid{grid-template-columns:1fr}}
-.outcome-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
-.outcome-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
-.outcome-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
-.outcome-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
-.outcome-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
-
+/* ── Sections ── */
+.paradox-section{background:#0D0D22}
+.paradox-content{max-width:680px}
+.paradox-body{font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px}
+.paradox-body strong{color:#D4D8F0;font-weight:500}
+.paradox-callout{padding:28px 32px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.15);border-left:3px solid var(--indigo-500);border-radius:12px;font-family:var(--font-serif);font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0}
+.because-section{background:#09091A}
+.because-contrast{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;max-width:900px}
+@media(max-width:768px){.because-contrast{grid-template-columns:1fr}}
+.bc-card{padding:28px 24px;border-radius:14px;text-align:left}
+.bc-card--generic{background:#0E0E1F;border:1px solid rgba(255,255,255,.07)}
+.bc-card--real{background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.2)}
+.bc-label{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.bc-card--generic .bc-label{color:var(--slate-600)}
+.bc-card--real .bc-label{color:var(--indigo-400)}
+.bc-ifthen{font-size:12px;color:var(--slate-500);line-height:1.5;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,.03);margin-bottom:16px;font-family:var(--font-mono)}
+.bc-because-text{font-size:14px;line-height:1.65;padding:12px 16px;border-radius:8px}
+.bc-card--generic .bc-because-text{color:var(--slate-500);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)}
+.bc-card--real .bc-because-text{color:#D4D8F0;background:rgba(165,174,255,.06);border:1px solid rgba(165,174,255,.15)}
+.because-explanation{max-width:680px;margin-top:40px;font-size:16px;line-height:1.75;color:var(--slate-400)}
+.because-explanation strong{color:#D4D8F0;font-weight:500}
+.how-section{background:linear-gradient(180deg,#09091A 0%,#0D0E2A 50%,#09091A 100%)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px;position:relative}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
+.step-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
+.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.step-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
+.step-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.step-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.rhs-section{background:#060612}
+.rhs-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:56px;align-items:center}
+@media(max-width:768px){.rhs-grid{grid-template-columns:1fr;gap:32px}}
+.rhs-body{font-size:16px;line-height:1.75;color:var(--slate-400);margin-bottom:20px}
+.rhs-body strong{color:#D4D8F0;font-weight:500}
+.rhs-pitch{padding:24px;background:rgba(94,213,190,.05);border:1px solid rgba(94,213,190,.15);border-radius:12px;font-family:var(--font-serif);font-size:17px;font-weight:300;font-style:italic;line-height:1.5;color:var(--teal-300)}
+.rhs-viz{padding:28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px}
+.rhs-viz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.rhs-viz-title{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-500)}
+.rhs-viz-score{font-family:var(--font-serif);font-size:42px;font-weight:300;color:var(--teal-300);line-height:1}
+.rhs-viz-label{font-size:11px;color:var(--slate-600);font-family:var(--font-mono);margin-top:4px}
+.rhs-bar-group{margin-top:20px}
+.rhs-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.rhs-bar-name{width:120px;flex-shrink:0;font-size:11px;color:var(--slate-500);font-family:var(--font-mono);text-align:right}
+.rhs-bar-track{flex:1;height:8px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden}
+.rhs-bar-fill{height:100%;border-radius:4px;transition:width 1s ease}
+.rhs-bar-fill--high{background:var(--teal-300)}.rhs-bar-fill--mid{background:var(--amber-400)}.rhs-bar-fill--low{background:var(--rose-500)}
+.rhs-bar-val{width:36px;flex-shrink:0;font-size:11px;color:var(--slate-500);font-family:var(--font-mono)}
+.who-section{background:#0D0D22}
+.who-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:56px}
+@media(max-width:640px){.who-grid{grid-template-columns:1fr}}
+.who-card{padding:32px 28px;background:#0A0A1A;border:1px solid rgba(255,255,255,.07);border-radius:14px;text-decoration:none;display:block;transition:border-color .2s,box-shadow .2s,transform .2s}
+.who-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08);transform:translateY(-3px)}
+.who-card-icon{font-size:24px;margin-bottom:16px}
+.who-card-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:8px}
+.who-card-pain{font-size:13px;line-height:1.6;color:var(--slate-500);margin-bottom:12px}
+.who-card-value{font-size:13px;line-height:1.6;color:var(--teal-300)}
+.who-card-arrow{display:inline-flex;align-items:center;gap:4px;margin-top:16px;font-size:12px;font-weight:600;color:var(--indigo-300);font-family:var(--font-mono);letter-spacing:.04em}
 .cta-section{background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(71,82,245,.12) 0%,transparent 70%);padding:120px 24px}
 .cta-h2{font-family:var(--font-serif);font-size:clamp(36px,6vw,64px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
 .cta-h2 em{font-style:italic;color:var(--teal-300)}
@@ -176,12 +202,12 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <nav>
   <a href="/" class="nav-logo">FieldRules.</a>
   <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/#how">How It Works</a>
+    <a href="/" class="active">Home</a>
+    <a href="#how">How It Works</a>
     <div class="nav-dropdown">
       <button class="nav-dropdown-trigger">For&hellip;</button>
       <div class="nav-dropdown-menu">
-        <a href="for-product-managers.html" class="active"><span class="dd-label">Product Managers</span><span class="dd-sub">Query the rule library before speccing</span></a>
+        <a href="for-product-managers.html"><span class="dd-label">Product Managers</span><span class="dd-sub">Query the rule library before speccing</span></a>
         <a href="for-domain-experts.html"><span class="dd-label">Domain Experts</span><span class="dd-sub">Your name goes on your judgment calls</span></a>
         <a href="for-engineers.html"><span class="dd-label">Engineers</span><span class="dd-sub">Externalize hardcoded business logic</span></a>
         <a href="for-researchers.html"><span class="dd-label">Researchers</span><span class="dd-sub">50 years of knowledge engineering, applied</span></a>
@@ -206,117 +232,181 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
-  <div class="hero-eyebrow" data-reveal>For Product Managers</div>
+  <div class="hero-eyebrow" data-reveal>The layer between your team's expertise and your product's decisions</div>
   <h1 data-reveal>
-    You're speccing features against business logic<br>
-    <em>you can't verify.</em>
+    Your best people make judgment calls every day that shape how your product works.<br>
+    <em>None of it is written down.</em>
   </h1>
   <p class="hero-sub" data-reveal>
-    Stop guessing at governance. Query the rule library before you send work to engineering. Get answers from the domain experts who wrote them — not from an AI interpolating context from Slack threads.
+    FieldRules captures the reasoning your team carries — the edge cases, the hard-won instinct, the logic that never made it into a spec — and structures it so every decision your product makes is governed by the people who know best. Not the model's defaults.
   </p>
   <div class="hero-actions" data-reveal>
     <a href="#cta" class="btn-primary">Request early access</a>
-    <a href="#pattern" class="btn-ghost">See the pattern &rarr;</a>
+    <a href="#how" class="btn-ghost">See how it works &rarr;</a>
   </div>
   <div class="hero-preview" data-reveal>
     <div class="rule-card-preview">
       <div class="rcp-header">
-        <div class="rcp-icon">💳</div>
-        <div class="rcp-meta"><div><strong>Fintech Platform</strong> &middot; billing and renewals</div><div>Confirmed by Finance Lead &middot; Used in 47 specs</div></div>
+        <div class="rcp-icon">&#9889;</div>
+        <div class="rcp-meta"><div><strong>Clinical Operations SaaS</strong> &middot; operational playbook</div><div>Identified from ticket #4112 &middot; Trial site onboarding</div></div>
       </div>
       <div class="rcp-row rcp-row-ifthen">
         <div class="rcp-label rcp-when">IF</div>
-        <div class="rcp-val">A customer's annual renewal is within 30 days AND their usage is above the threshold for the next tier</div>
+        <div class="rcp-val">A trial site submits their first patient enrollment report within 14 days of activation AND their coordinator headcount is below 3</div>
       </div>
       <div class="rcp-row rcp-row-ifthen">
         <div class="rcp-label rcp-then">THEN</div>
-        <div class="rcp-val">Show an upgrade prompt in the dashboard — but only if their CSM has logged outreach contact within 14 days</div>
+        <div class="rcp-val">Do not auto-advance to full onboarding. Assign a dedicated specialist and schedule a 48-hour check-in before the site goes live with patients.</div>
       </div>
       <div class="rcp-row rcp-row-because">
         <div class="rcp-label rcp-because">BECAUSE</div>
-        <div class="rcp-val">Customers who see an upgrade without recent CSM contact have a 68% bounce rate on renewal. But when the CSM has already opened the door, the upgrade prompt becomes a close — not a surprise.</div>
+        <div class="rcp-val">Sites this size with fast enrollment timelines are statistically high-dropout in weeks 3&ndash;5. Early intervention cuts churn by over half &mdash; but only if flagged before the standard onboarding flow locks in.</div>
         <div class="because-tooltip">Only humans write this</div>
       </div>
       <div class="rcp-footer">
-        <div class="rcp-author"><div class="rcp-avatar">J</div>J. Rivera &middot; Finance Lead</div>
+        <div class="rcp-author"><div class="rcp-avatar">J</div>Domain Expert &middot; CS Lead</div>
         <div class="rcp-badge">Confirmed</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- THE PATTERN -->
-<section class="pattern-section" id="pattern">
+<!-- WHY NOW -->
+<section class="paradox-section" id="paradox">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>The Pattern</div>
-    <h2 class="section-h2" data-reveal>The spec that<br><em>never asks the right question.</em></h2>
-    <div class="pattern-content">
-      <p class="pattern-body" data-reveal>You write a spec. It describes what the feature should do. It's clear. It's detailed. You ship it to engineering.</p>
-      <p class="pattern-body" data-reveal>Then someone Slacks the CS lead: "Wait — do we actually do this for enterprise accounts?" You don't know. So you ask the domain expert. They give you a partial answer. You reply-all with a half-clarification. Spec goes back to engineering. A week later, you're rebuilding what they already shipped.</p>
-      <p class="pattern-body" data-reveal>This happens because <strong>your spec asked "what should the feature do" — not "what does the business actually require."</strong></p>
-      <div class="pattern-callout" data-reveal>The rule library answers the question you didn't know to ask.</div>
+    <div class="section-eyebrow" data-reveal>Why Now</div>
+    <h2 class="section-h2" data-reveal>The better AI gets,<br><em>the more your people matter.</em></h2>
+    <div class="paradox-content">
+      <p class="paradox-body" data-reveal>Everything an agent can do, another agent can replicate. The only thing that can't be replicated is <strong>the reasoning your people carry about why your company does things differently.</strong></p>
+      <p class="paradox-body" data-reveal>That reasoning &mdash; the conditional judgment, the exception-handling logic, the domain expertise that was never written down &mdash; is the layer agents can't scrape, can't reverse-engineer, and can't pattern-match from training data.</p>
+      <div class="paradox-callout" data-reveal>FieldRules makes that layer real before it walks out the door.</div>
     </div>
   </div>
 </section>
 
-<!-- PRE-BUILD GOVERNANCE CHECK -->
-<section class="governance-section" id="governance">
+<!-- THE BECAUSE -->
+<section class="because-section" id="because">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>Pre-Build Governance</div>
-    <h2 class="section-h2" data-reveal>Query before you write.<br><em>Not after.</em></h2>
-    <div class="governance-contrast" data-reveal>
-      <div class="gc-card gc-card--before">
-        <div class="gc-label">What you do now</div>
-        <div class="gc-scenario">You write a spec for "show renewal prompt." Engineering builds it. You realize mid-sprint: "Oh, we have a rule about CSM contact." Rebuild.</div>
-        <div class="gc-query"><strong style="color:var(--slate-400);font-size:10px;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">Result</strong>Governance becomes a blocker, not a guide.</div>
+    <div class="section-eyebrow" data-reveal>The part no AI can write</div>
+    <h2 class="section-h2" data-reveal>Documentation produces compliance.<br><em>FieldRules elicits reasoning.</em></h2>
+    <div class="because-contrast" data-reveal>
+      <div class="bc-card bc-card--generic">
+        <div class="bc-label">What documentation produces</div>
+        <div class="bc-ifthen">IF a trial site submits enrollment within 14 days with &lt;3 coordinators THEN assign specialist &amp; schedule check-in</div>
+        <div class="bc-because-text"><strong style="color:var(--slate-400);font-size:10px;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">BECAUSE</strong>&ldquo;Because it's important to catch these early.&rdquo;</div>
       </div>
-      <div class="gc-card gc-card--after">
-        <div class="gc-label">What FieldRules enables</div>
-        <div class="gc-scenario">Before you spec, you query: "What are all the rules that touch customer renewals?" You get a list. You read them. You build them into the spec from the start.</div>
-        <div class="gc-query"><strong style="color:var(--indigo-300);font-size:10px;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">Result</strong>Governance becomes part of the thinking, not a surprise.</div>
+      <div class="bc-card bc-card--real">
+        <div class="bc-label">What FieldRules elicits</div>
+        <div class="bc-ifthen">IF a trial site submits enrollment within 14 days with &lt;3 coordinators THEN assign specialist &amp; schedule check-in</div>
+        <div class="bc-because-text"><strong style="color:var(--indigo-300);font-size:10px;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">BECAUSE</strong>&ldquo;Sites this size with fast enrollment timelines are statistically high-dropout in weeks 3&ndash;5. Early intervention cuts churn by over half &mdash; but only if flagged before the standard onboarding flow locks in.&rdquo;</div>
       </div>
     </div>
-    <div class="governance-explanation" data-reveal>
-      <p>The difference is timing. When you query the rule library <em>before</em> you spec, the reasoning that would have blocked you later becomes the reasoning that shapes you now.</p>
-      <p style="margin-top:12px">No rebuilds. No surprise conversations in mid-sprint. Just <strong>better specs</strong>, written the first time.</p>
-    </div>
-  </div>
-</section>
-
-<!-- THE BECAUSE MOMENT -->
-<section class="pattern-section">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>The Difference</div>
-    <h2 class="section-h2" data-reveal>The reasoning<br><em>that lives in a Slack thread.</em></h2>
-    <div class="pattern-content">
-      <p class="pattern-body" data-reveal>A domain expert knows why a rule exists. They know what breaks if you break it. They know the exception cases and the edge cases and the one thing that will never work even though it looks like it should.</p>
-      <p class="pattern-body" data-reveal>But unless that expert is in the room when you write the spec, that reasoning stays in their head. Or scattered across a Slack thread that nobody else will ever read.</p>
-      <div class="pattern-callout" data-reveal>FieldRules puts that reasoning in a place where you can find it when you spec.</div>
+    <div class="because-explanation" data-reveal>
+      <p>The first version is what documentation produces. The second is what FieldRules elicits &mdash; because it asks <strong>&ldquo;what would go wrong if this rule didn't exist?&rdquo;</strong> instead of &ldquo;why does this rule exist?&rdquo;</p>
+      <p style="margin-top:12px">That single design choice is the difference between compliance and reasoning.</p>
     </div>
   </div>
 </section>
 
-<!-- WHAT CHANGES -->
-<section class="outcomes-section" id="outcomes">
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>What Changes</div>
-    <h2 class="section-h2" data-reveal>When you can query governance.</h2>
-    <div class="outcomes-grid">
-      <div class="outcome-card" data-reveal>
-        <div class="outcome-n">01</div>
-        <div class="outcome-title">You stop guessing at domain logic</div>
-        <div class="outcome-body">Before you spec, you ask the rule library: "What rules affect this feature?" You get a structured answer from the people who actually know. No Slack threads. No surprise rebuilds.</div>
+    <div class="section-eyebrow" data-reveal>How It Works</div>
+    <h2 class="section-h2" data-reveal>Three steps. <em>No new behavior.</em></h2>
+    <div class="steps">
+      <div class="step-card" data-reveal>
+        <div class="step-n">01</div>
+        <div class="step-title">Logic surfaces from work already happening</div>
+        <div class="step-body">FieldRules detects implicit business logic in the artifacts your team already produces &mdash; Jira tickets, Slack threads, code reviews. No new intake forms. No documentation rituals.</div>
       </div>
-      <div class="outcome-card" data-reveal>
-        <div class="outcome-n">02</div>
-        <div class="outcome-title">Engineering gets specs that are complete</div>
-        <div class="outcome-body">Your spec doesn't just describe what the feature does — it describes why the feature does it. You've already consulted the rule library. Engineering builds once. Correctly.</div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">02</div>
+        <div class="step-title">Domain expert confirms in 45 seconds</div>
+        <div class="step-body">A Slack card arrives with the detected rule. One tap to confirm, edit, or dismiss. Then the BECAUSE field &mdash; always blank until they write it. Their words, their reasoning, their name on it.</div>
       </div>
-      <div class="outcome-card" data-reveal>
-        <div class="outcome-n">03</div>
-        <div class="outcome-title">Governance becomes part of thinking, not a blocker</div>
-        <div class="outcome-body">Constraints aren't surprises. They're built in from the moment you start writing. The feature you ship is the feature you meant to ship.</div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">03</div>
+        <div class="step-title">The rule enters the library</div>
+        <div class="step-body">PM specs from it. AI runs on it. Engineer builds from it. The rule is versioned, attributed, and queryable &mdash; and when a PM's query hits a gap, the right expert gets a signal that their judgment is needed.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- REASONING HEALTH SCORE -->
+<section class="rhs-section" id="rhs">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>The Metric</div>
+    <h2 class="section-h2" data-reveal>Not just what rules exist &mdash;<br><em>whether they're actually thinking.</em></h2>
+    <div class="rhs-grid">
+      <div class="rhs-content" data-reveal>
+        <p class="rhs-body">Most governance tools count rules. FieldRules measures whether the reasoning behind them is <strong>real</strong>.</p>
+        <p class="rhs-body">The Reasoning Health Score tracks whether your rule library contains genuine operational judgment or just form-filling. It detects tautology, declining depth, missing consequence-naming &mdash; the signals that mean your experts are going through the motions instead of thinking.</p>
+        <div class="rhs-pitch">Every AI governance tool tells you what rules exist. FieldRules is the only one that tells you whether your rules are actually thinking.</div>
+      </div>
+      <div class="rhs-viz" data-reveal>
+        <div class="rhs-viz-header"><div class="rhs-viz-title">Reasoning Health Score</div></div>
+        <div style="display:flex;align-items:baseline;gap:8px"><div class="rhs-viz-score">84</div><div class="rhs-viz-label">/ 100 &middot; Healthy</div></div>
+        <div class="rhs-bar-group">
+          <div class="rhs-bar-row"><div class="rhs-bar-name">Specificity</div><div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:91%"></div></div><div class="rhs-bar-val">91</div></div>
+          <div class="rhs-bar-row"><div class="rhs-bar-name">Causal depth</div><div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:87%"></div></div><div class="rhs-bar-val">87</div></div>
+          <div class="rhs-bar-row"><div class="rhs-bar-name">Counterfactual</div><div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:82%"></div></div><div class="rhs-bar-val">82</div></div>
+          <div class="rhs-bar-row"><div class="rhs-bar-name">Non-tautology</div><div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--mid" style="width:74%"></div></div><div class="rhs-bar-val">74</div></div>
+          <div class="rhs-bar-row"><div class="rhs-bar-name">Consequence</div><div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:86%"></div></div><div class="rhs-bar-val">86</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT FOR -->
+<section class="who-section" id="who">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Built For</div>
+    <h2 class="section-h2" data-reveal>Every role in the loop.</h2>
+    <div class="who-grid">
+      <a href="for-product-managers.html" class="who-card" data-reveal>
+        <div class="who-card-icon">&#128203;</div>
+        <div class="who-card-title">Product Managers</div>
+        <div class="who-card-pain">You're speccing features against business logic you can't verify.</div>
+        <div class="who-card-value">Query the rule library before you send work to engineering.</div>
+        <div class="who-card-arrow">Learn more &rarr;</div>
+      </a>
+      <a href="for-domain-experts.html" class="who-card" data-reveal>
+        <div class="who-card-icon">&#129504;</div>
+        <div class="who-card-title">Domain Experts</div>
+        <div class="who-card-pain">Your judgment calls are invisible. Nobody credits them.</div>
+        <div class="who-card-value">Your name goes on every rule you author &mdash; permanently.</div>
+        <div class="who-card-arrow">Learn more &rarr;</div>
+      </a>
+      <a href="for-engineers.html" class="who-card" data-reveal>
+        <div class="who-card-icon">&#9881;&#65039;</div>
+        <div class="who-card-title">Engineers</div>
+        <div class="who-card-pain">Every if/else encoding a business judgment is debt from a Slack message.</div>
+        <div class="who-card-value">Read from a structured rule library instead of hardcoded conditionals.</div>
+        <div class="who-card-arrow">Learn more &rarr;</div>
+      </a>
+      <a href="for-researchers.html" class="who-card" data-reveal>
+        <div class="who-card-icon">&#128300;</div>
+        <div class="who-card-title">Researchers</div>
+        <div class="who-card-pain">50 years of knowledge engineering research &mdash; still no production implementation.</div>
+        <div class="who-card-value">Contrastive elicitation, anti-habituation, and process reward models &mdash; applied.</div>
+        <div class="who-card-arrow">Learn more &rarr;</div>
+      </a>
+      <a href="for-ceos.html" class="who-card" data-reveal>
+        <div class="who-card-icon">&#127970;</div>
+        <div class="who-card-title">CEOs</div>
+        <div class="who-card-pain">Your team's best reasoning walks out the door every time someone leaves.</div>
+        <div class="who-card-value">A board-level metric that proves your governance layer is alive, not decorative.</div>
+        <div class="who-card-arrow">Learn more &rarr;</div>
+      </a>
+      <a href="for-engineers.html" class="who-card" data-reveal>
+        <div class="who-card-icon">&#129302;</div>
+        <div class="who-card-title">AI Agents</div>
+        <div class="who-card-pain">Your agents make decisions from training data defaults &mdash; not your company's logic.</div>
+        <div class="who-card-value">Same rule library, same reasoning, same governance &mdash; different caller.</div>
+        <div class="who-card-arrow">See the integration model &rarr;</div>
+      </a>
     </div>
   </div>
 </section>
@@ -324,8 +414,8 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="inner">
-    <h2 class="cta-h2" data-reveal>Stop speccing from<br><em>Slack threads.</em></h2>
-    <p class="cta-sub" data-reveal>Query the rule library. Get governance answers before you write the spec. We're onboarding product teams individually.</p>
+    <h2 class="cta-h2" data-reveal>The reasoning is yours.<br><em>Make sure the AI knows it.</em></h2>
+    <p class="cta-sub" data-reveal>We're onboarding a small number of teams manually. One pilot customer at a time. If the timing is right for you, let's talk.</p>
     <form class="cta-form" data-reveal id="cta-form" action="https://formsubmit.co/melanie.gower@gmail.com" method="POST" autocomplete="on">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <input class="cta-input" type="email" name="email" placeholder="your@company.com" required>
@@ -337,8 +427,8 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">fieldrules-site-v3 · for-product-managers</div>
-  <div class="footer-mono">Query governance before you spec</div>
+  <div class="footer-mono">fieldrules-site-v3 &middot; April 2026</div>
+  <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
 <script>

@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3 — for-ceos -->
-<title>For CEOs — FieldRules</title>
-<meta name="description" content="The reasoning layer that compounds. As autonomous agents replicate execution, competitive advantage moves to the reasoning layer—the judgment, logic, and principles that guide decisions.">
-<meta property="og:title" content="For CEOs — FieldRules">
-<meta property="og:description" content="The reasoning layer that compounds. As autonomous agents replicate execution, competitive advantage moves to the reasoning layer—the judgment, logic, and principles that guide decisions.">
+<!-- VERSION: fieldrules-site-v3 · pilot -->
+<title>FieldRules Pilot — Become a founding AI governance partner</title>
+<meta name="description" content="Join the FieldRules pilot. Work with us to implement the human reasoning layer for AI decisions in your product, starting week zero.">
+<meta property="og:title" content="FieldRules Pilot — Become a founding AI governance partner">
+<meta property="og:description" content="Join the FieldRules pilot. Work with us to implement the human reasoning layer for AI decisions in your product, starting week zero.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://fieldrules.ai/for-ceos">
-<link rel="canonical" href="https://fieldrules.ai/for-ceos">
+<meta property="og:url" content="https://fieldrules.ai/pilot">
+<link rel="canonical" href="https://fieldrules.ai/pilot">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ── Reset & base ── */
@@ -43,7 +43,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
 .nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
 .nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
-.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;margin-top:8px;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.nav-dropdown::after{content:'';position:absolute;top:100%;left:0;width:100%;height:12px}.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .nav-dropdown:hover .nav-dropdown-menu{display:block}
 .nav-dropdown-menu a{display:block;padding:8px 14px;border-radius:6px;font-size:13px;color:var(--slate-400);text-decoration:none;transition:color .15s,background .15s}
 .nav-dropdown-menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
@@ -72,10 +72,6 @@ section{padding:96px 24px}
 .section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
 .section-h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
 .section-h2 em{font-style:italic;color:var(--teal-300)}
-.section-lede{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px}
-.step-key{margin-top:32px;font-size:16px;line-height:1.7;color:var(--slate-400);max-width:680px}
-.step-key strong{color:#D4D8F0;font-weight:500}
-.flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin:48px 0}
 
 /* ── Hero ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
@@ -93,44 +89,37 @@ section{padding:96px 24px}
 .hero-actions{display:flex;align-items:center;gap:16px;position:relative;z-index:3;flex-wrap:wrap;justify-content:center}
 .btn-primary{font-size:15px;font-weight:600;padding:14px 28px;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 0 0 rgba(71,82,245,0);text-decoration:none;display:inline-block}
 .btn-primary:hover{background:var(--indigo-400);transform:translateY(-2px);box-shadow:0 8px 24px rgba(71,82,245,.3)}
-.btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;display:inline-block}
+.btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
-
-/* ── Step cards ── */
-.step-card{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:32px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1)}
-.step-card-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:12px}
-.step-card-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;line-height:1.2}
-
-/* ── RHS sections ── */
-.rhs-section{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin:48px 0}
-.rhs-body{font-size:17px;line-height:1.7;color:var(--slate-400)}
-.rhs-body strong{color:#D4D8F0;font-weight:500}
-.rhs-grid{display:grid;grid-template-columns:1fr}
-.rhs-viz{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:32px 28px;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1)}
-.rhs-viz-header{text-align:center;margin-bottom:32px}
-.rhs-viz-score{font-family:var(--font-serif);font-size:48px;font-weight:300;color:#fff;line-height:1.1}
-.rhs-viz-label{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);margin-top:8px}
-.rhs-bar-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.rhs-bar-label{font-family:var(--font-mono);font-size:12px;font-weight:500;color:var(--slate-400);min-width:120px}
-.rhs-bar-track{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
-.rhs-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal-300),var(--indigo-400));border-radius:3px}
-.rhs-bar-val{font-family:var(--font-mono);font-size:12px;color:var(--slate-300);min-width:35px;text-align:right}
-
-.rhs-pitch{background:rgba(71,82,245,.08);border:1px solid rgba(71,82,245,.2);border-radius:10px;padding:20px;margin-top:24px;font-size:14px;line-height:1.6;color:#D4D8F0}
-.rhs-pitch strong{color:#E8EAF2;font-weight:500}
 
 /* ── Sections ── */
 .paradox-section{background:#0D0D22}
-.moat-section{background:#09091A}
-.metric-section{background:#060612}
-.economics-section{background:#0D0D22}
-.why-us-section{background:#09091A}
-
-.paradox-body{font-size:17px;line-height:1.7;color:var(--slate-400);margin-bottom:28px}
-.paradox-callout{background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);border-radius:10px;padding:20px;margin-top:32px;font-size:14px;line-height:1.6;color:#D4D8F0}
-.paradox-callout strong{color:#E8EAF2;font-weight:500}
-
-/* ── CTA ── */
+.paradox-content{max-width:680px}
+.paradox-body{font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px}
+.paradox-body strong{color:#D4D8F0;font-weight:500}
+.paradox-callout{padding:28px 32px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.15);border-left:3px solid var(--indigo-500);border-radius:12px;font-family:var(--font-serif);font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0}
+.how-section{background:linear-gradient(180deg,#09091A 0%,#0D0E2A 50%,#09091A 100%)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px;position:relative}
+.steps.four-col{grid-template-columns:repeat(4,1fr)}
+@media(max-width:768px){
+  .steps{grid-template-columns:1fr}
+  .steps.four-col{grid-template-columns:1fr}
+}
+.step-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
+.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.step-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
+.step-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.step-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.who-section{background:#0D0D22}
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px}
+@media(max-width:768px){.who-grid{grid-template-columns:1fr}}
+.who-card{padding:32px 28px;background:#0A0A1A;border:1px solid rgba(255,255,255,.07);border-radius:14px;text-decoration:none;display:block;transition:border-color .2s,box-shadow .2s,transform .2s}
+.who-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08);transform:translateY(-3px)}
+.who-card-icon{font-size:24px;margin-bottom:16px}
+.who-card-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:8px}
+.who-card-pain{font-size:13px;line-height:1.6;color:var(--slate-500);margin-bottom:12px}
+.who-card-value{font-size:13px;line-height:1.6;color:var(--teal-300)}
+.who-card-arrow{display:inline-flex;align-items:center;gap:4px;margin-top:16px;font-size:12px;font-weight:600;color:var(--indigo-300);font-family:var(--font-mono);letter-spacing:.04em}
 .cta-section{background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(71,82,245,.12) 0%,transparent 70%);padding:120px 24px}
 .cta-h2{font-family:var(--font-serif);font-size:clamp(36px,6vw,64px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
 .cta-h2 em{font-style:italic;color:var(--teal-300)}
@@ -144,23 +133,26 @@ section{padding:96px 24px}
 .cta-input.invalid{border-color:var(--rose-500)!important}
 .btn-primary:disabled{opacity:.6;cursor:not-allowed}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px}
+@media(max-width:768px){.benefits-grid{grid-template-columns:1fr}}
+.benefit-card{padding:32px 28px;background:#0A0A1A;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
+.benefit-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.benefit-icon{font-size:28px;margin-bottom:16px}
+.benefit-title{font-family:var(--font-serif);font-size:18px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.benefit-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
 footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .footer-logo{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff}
 .footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
-
-@media(max-width:768px){
-  .rhs-section{grid-template-columns:1fr;gap:40px}
-}
 </style>
 </head>
 <body>
-<!-- NAV -->
+<!-- NAV — pilot page specific -->
 <nav>
   <a href="/" class="nav-logo">FieldRules.</a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/#how">How It Works</a>
+    <a href="pilot.html" class="active">Pilot</a>
     <div class="nav-dropdown">
       <button class="nav-dropdown-trigger">For&hellip;</button>
       <div class="nav-dropdown-menu">
@@ -168,13 +160,12 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
         <a href="for-domain-experts.html"><span class="dd-label">Domain Experts</span><span class="dd-sub">Your name goes on your judgment calls</span></a>
         <a href="for-engineers.html"><span class="dd-label">Engineers</span><span class="dd-sub">Externalize hardcoded business logic</span></a>
         <a href="for-researchers.html"><span class="dd-label">Researchers</span><span class="dd-sub">50 years of knowledge engineering, applied</span></a>
-        <a href="for-ceos.html" class="active"><span class="dd-label">CEOs</span><span class="dd-sub">The reasoning layer that compounds</span></a>
+        <a href="for-ceos.html"><span class="dd-label">CEOs</span><span class="dd-sub">The reasoning layer that compounds</span></a>
       </div>
     </div>
-    <a href="pilot.html">Pilot</a>
   </div>
   <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  <a href="#cta" class="nav-cta">Request access</a>
+  <a href="#cta" class="nav-cta">Apply now</a>
 </nav>
 
 <!-- HERO -->
@@ -189,171 +180,134 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
-  <div class="hero-eyebrow" data-reveal>The reasoning layer</div>
-  <h1 data-reveal>The better AI gets at building companies, <em>the more valuable it becomes to be a company that captured why it does things differently.</em></h1>
+  <div class="hero-eyebrow" data-reveal>Be a founding partner</div>
+  <h1 data-reveal>
+    Build the human reasoning layer<br>
+    <em>for your AI decisions.</em>
+  </h1>
   <p class="hero-sub" data-reveal>
-    Autonomous agents are replicating execution. What they can't replicate is judgment—the principles, logic, and reasoning that guide decisions when the rulebook doesn't exist. That layer compounds. FieldRules is how you own it.
+    We're working with a small number of teams to implement FieldRules from day one. If you're shipping AI features and need governance that doesn't feel like compliance, let's talk.
   </p>
   <div class="hero-actions" data-reveal>
-    <a href="#cta" class="btn-primary">Request early access</a>
-    <a href="#metric" class="btn-ghost">See the metric &rarr;</a>
+    <a href="#cta" class="btn-primary">Apply to pilot</a>
+    <a href="#reasoning" class="btn-ghost">See what week zero looks like &rarr;</a>
   </div>
 </section>
 
-<!-- THE THESIS -->
-<section class="paradox-section" id="paradox">
+<!-- WEEK ZERO: REASONING -->
+<section class="paradox-section" id="reasoning">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>The Thesis</div>
-    <h2 class="section-h2" data-reveal>Everything an agent can do, <em>another agent can replicate.</em></h2>
-
-    <p class="paradox-body" data-reveal>
-      The moment one AI system executes your business logic, every other AI system can execute it too. Fine-tuning buys you months. Guardrails buy you a few more. But the actual reasoning—the judgment calls, the principles, the layer between the product and the model—that's where defensibility lives. That's what doesn't compress.
-    </p>
-
-    <p class="paradox-body" data-reveal>
-      The problem is simple: you don't have a way to capture it. Your reasoning lives in Slack threads, in JIRA epics, in the heads of domain experts, in ad-hoc decisions made by your team. When you hire new people, you try to teach them. When you need to audit decisions, you trace backward. When regulation comes, you scramble to explain why you did what you did.
-    </p>
-
-    <div class="paradox-callout" data-reveal>
-      <strong>FieldRules changes the equation:</strong> You systematically capture the reasoning that matters—confirmed, attributed, versioned, queryable—so the layer that can't be replicated becomes your actual product asset.
+    <div class="section-eyebrow" data-reveal>Week Zero</div>
+    <h2 class="section-h2" data-reveal>We start by <em>listening.</em></h2>
+    <div class="paradox-content">
+      <p class="paradox-body" data-reveal>Week one is not onboarding. It's us interviewing your team in depth about the judgment calls you're encoding into features right now.</p>
+      <p class="paradox-body" data-reveal>We sit with your product leads, your domain experts, your engineers. We read your Slack archives, your design docs, your Jira history. We ask the questions: <strong>&ldquo;What would go wrong if this rule didn't exist? Who carries this logic? What happens in a year if nobody remembers this call?&rdquo;</strong></p>
+      <div class="paradox-callout" data-reveal>By end of week zero, you have a library. By week two, you're enforcing it. By week four, you're reading from it instead of hardcoding.</div>
     </div>
   </div>
 </section>
 
-<!-- DEFENSIBILITY -->
-<section class="moat-section" id="moat">
+<!-- WHO WE'RE LOOKING FOR -->
+<section class="who-section" id="who">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>Defensibility</div>
-    <h2 class="section-h2" data-reveal>Six components. <em>None of them compress.</em></h2>
-
-    <div class="flow-grid" data-reveal>
-      <div class="step-card">
-        <div class="step-card-num">01</div>
-        <div class="step-card-title">Confirmation Model</div>
+    <div class="section-eyebrow" data-reveal>Who We're Looking For</div>
+    <h2 class="section-h2" data-reveal>You're shipping AI this year.</h2>
+    <div class="who-grid">
+      <div class="who-card" data-reveal>
+        <div class="who-card-icon">🚀</div>
+        <div class="who-card-title">Shipping AI Soon</div>
+        <div class="who-card-pain">You have models or agents deployed this quarter, not six months from now.</div>
+        <div class="who-card-value">Pilot slots are for teams executing right now, not planning.</div>
       </div>
-      <div class="step-card">
-        <div class="step-card-num">02</div>
-        <div class="step-card-title">BECAUSE Elicitation</div>
+      <div class="who-card" data-reveal>
+        <div class="who-card-icon">🧠</div>
+        <div class="who-card-title">Reasoning Exists</div>
+        <div class="who-card-pain">You have domain logic worth preserving—edge cases, judgment calls, business rules that shape decisions.</div>
+        <div class="who-card-value">We work best with teams that already know their reasoning is valuable.</div>
       </div>
-      <div class="step-card">
-        <div class="step-card-num">03</div>
-        <div class="step-card-title">Rule Lifecycle</div>
-      </div>
-      <div class="step-card">
-        <div class="step-card-num">04</div>
-        <div class="step-card-title">Visible Feedback Loop</div>
-      </div>
-      <div class="step-card">
-        <div class="step-card-num">05</div>
-        <div class="step-card-title">Skill Graph Provenance</div>
-      </div>
-      <div class="step-card">
-        <div class="step-card-num">06</div>
-        <div class="step-card-title">Eval Instrumentation</div>
-      </div>
-    </div>
-
-    <div class="step-key" data-reveal>
-      Each component reinforces the others. The result: a <strong>confirmed rule library that compounds in depth</strong>, not just breadth. You don't just accumulate rules. You accumulate reasoning that's been tested, revised, attributed, and proven to work.
-    </div>
-  </div>
-</section>
-
-<!-- THE METRIC -->
-<section class="metric-section" id="metric">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>The Metric</div>
-    <h2 class="section-h2" data-reveal>Not just what rules exist — <em>whether they're actually thinking.</em></h2>
-
-    <div class="rhs-section" data-reveal>
-      <div>
-        <div class="rhs-body">
-          Every governance tool counts rules. <strong>FieldRules measures reasoning health.</strong> How specific is each rule? How much causal depth are you capturing? Are your rules tautologies, or are they actually explaining why?
-        </div>
-        <div class="rhs-pitch">
-          <strong>Reasoning Health Score:</strong> Your rules library, reduced to a single north-star metric that reflects how much real judgment you've actually captured—not how many rules you've written.
-        </div>
-      </div>
-
-      <div class="rhs-viz">
-        <div class="rhs-viz-header">
-          <div class="rhs-viz-score">84/100</div>
-          <div class="rhs-viz-label">Healthy</div>
-        </div>
-        <div class="rhs-bar-row">
-          <div class="rhs-bar-label">Specificity</div>
-          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:91%"></div></div>
-          <div class="rhs-bar-val">91</div>
-        </div>
-        <div class="rhs-bar-row">
-          <div class="rhs-bar-label">Causal depth</div>
-          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:87%"></div></div>
-          <div class="rhs-bar-val">87</div>
-        </div>
-        <div class="rhs-bar-row">
-          <div class="rhs-bar-label">Counterfactual</div>
-          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:82%"></div></div>
-          <div class="rhs-bar-val">82</div>
-        </div>
-        <div class="rhs-bar-row">
-          <div class="rhs-bar-label">Non-tautology</div>
-          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:74%"></div></div>
-          <div class="rhs-bar-val">74</div>
-        </div>
-        <div class="rhs-bar-row">
-          <div class="rhs-bar-label">Consequence</div>
-          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:86%"></div></div>
-          <div class="rhs-bar-val">86</div>
-        </div>
+      <div class="who-card" data-reveal>
+        <div class="who-card-icon">👥</div>
+        <div class="who-card-title">Cross-functional Buy-in</div>
+        <div class="who-card-pain">You have stakeholders from product, engineering, and domain expertise who see the value of governance.</div>
+        <div class="who-card-value">This works with teams, not lone operators.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- THE BUSINESS -->
-<section class="economics-section" id="economics">
+<!-- PARTNER BENEFITS -->
+<section class="how-section" id="benefits">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>The Business</div>
-    <h2 class="section-h2" data-reveal>~98% gross margins. <em>Flat per-query costs.</em></h2>
-
-    <p class="paradox-body" data-reveal>
-      The unit economics are simple: you pay for confirmation—one human look at each rule, one human explanation. After that, the cost per query is flat. The rule library scales without incremental input cost. Your Reasoning Health Score becomes an efficiency metric: how much leverage you've built from each human decision.
-    </p>
-
-    <p class="paradox-body" data-reveal>
-      Every rule that enters the library is a unit of leverage. Every revision that improves reasoning health is compound leverage. Every agent decision that runs against your rules is value—pure WARC metric. The business model isn't licenses or per-seat. It's the worth of reasoning, measured and tradeable.
-    </p>
+    <div class="section-eyebrow" data-reveal>As a Pilot Partner</div>
+    <h2 class="section-h2" data-reveal>You get to shape<br><em>what we build next.</em></h2>
+    <div class="benefits-grid">
+      <div class="benefit-card" data-reveal>
+        <div class="benefit-icon">⏱</div>
+        <div class="benefit-title">Direct access to the team</div>
+        <div class="benefit-body">Dedicated engineer, weekly sync, direct Slack channel with founders. You're not a test case—you're a collaborator.</div>
+      </div>
+      <div class="benefit-card" data-reveal>
+        <div class="benefit-icon">🔨</div>
+        <div class="benefit-title">Customized implementation</div>
+        <div class="benefit-body">We build the integration your stack needs, not a generic template. Your Slack flow, your API shape, your workflow.</div>
+      </div>
+      <div class="benefit-card" data-reveal>
+        <div class="benefit-icon">📊</div>
+        <div class="benefit-title">First-look at new features</div>
+        <div class="benefit-body">You shape the product roadmap. New capabilities roll out to you first. Your feedback directly influences what every future customer gets.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- WHY US -->
-<section class="why-us-section" id="why-us">
+<!-- THE PROCESS -->
+<section class="how-section" id="process">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>Why Us</div>
-    <h2 class="section-h2" data-reveal>Built this before. <em>Building it again at the architecture level.</em></h2>
-
-    <p class="section-lede" data-reveal>
-      Melanie architected the reasoning layer at Optera. She knows what works at scale, what breaks under pressure, and why most approaches collapse when you try to compound reasoning depth instead of breadth. FieldRules is built from that experience—designed to scale the thing that actually matters.
-    </p>
+    <div class="section-eyebrow" data-reveal>How This Works</div>
+    <h2 class="section-h2" data-reveal>Four phases. <em>30 days.</em></h2>
+    <div class="steps four-col">
+      <div class="step-card" data-reveal>
+        <div class="step-n">Week 1</div>
+        <div class="step-title">Listening</div>
+        <div class="step-body">We conduct structured interviews with your team to surface the reasoning you're encoding right now. By end of week, you have a first rule library.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">Week 2</div>
+        <div class="step-title">Integration</div>
+        <div class="step-body">We build the connection between FieldRules and your stack. Slack notifications, API flows, your team's workflow—not ours.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">Week 3</div>
+        <div class="step-title">Enforcement</div>
+        <div class="step-body">Your AI systems start reading from the rule library. One feature at a time. Your experts approve what ships; your model obeys what they write.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">Week 4</div>
+        <div class="step-title">Measurement</div>
+        <div class="step-body">We measure reasoning health and governance signal. You see what changed in team behavior, decision velocity, and AI consistency.</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="inner">
-    <h2 class="cta-h2" data-reveal>The reasoning is yours.<br><em>Make sure the AI knows it.</em></h2>
+    <h2 class="cta-h2" data-reveal>Ready to shape the future<br><em>of AI governance?</em></h2>
+    <p class="cta-sub" data-reveal>We're selective about pilot partners because we build custom, not templated. Tell us about your team, your reasoning, and your timeline.</p>
     <form class="cta-form" data-reveal id="cta-form" action="https://formsubmit.co/melanie.gower@gmail.com" method="POST" autocomplete="on">
+      <input type="hidden" name="_subject" value="FieldRules Pilot — New application">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <input class="cta-input" type="email" name="email" placeholder="your@company.com" required>
-      <button class="btn-primary" type="submit">Request access</button>
+      <button class="btn-primary" type="submit">Apply now</button>
     </form>
-    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>No deck. No demo-ware. We start with a conversation.</p>
+    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>We'll follow up within 48 hours. One conversation at a time.</p>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">fieldrules-site-v3 · for-ceos</div>
+  <div class="footer-mono">fieldrules-site-v3 · pilot</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
@@ -367,11 +321,9 @@ document.addEventListener('DOMContentLoaded',function(){
   if(ham&&links){ham.addEventListener('click',function(){ham.classList.toggle('open');links.classList.toggle('open')})}
   var form=document.getElementById('cta-form');
   if(form){form.addEventListener('submit',function(e){
-    e.preventDefault();
     var email=form.querySelector('input[name="email"]');
-    if(!email.value||!email.value.includes('@')){email.classList.add('invalid');return}
+    if(!email.value||!email.value.includes('@')){e.preventDefault();email.classList.add('invalid');return}
     email.classList.remove('invalid');
-    form.innerHTML='<div class="cta-success">Thanks! We\'ll be in touch shortly.</div>';
   })}
 
   // Dual-video crossfade
