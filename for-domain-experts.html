@@ -352,9 +352,9 @@ document.addEventListener('DOMContentLoaded',function(){
     function scheduleSwap(){
       if(swapScheduled)return;
       active.addEventListener('timeupdate',function onTime(){
-        if(\!active.duration)return;
+        if(!active.duration)return;
         const timeLeft=active.duration-active.currentTime;
-        if(timeLeft<=XFADE&&\!swapScheduled){
+        if(timeLeft<=XFADE&&!swapScheduled){
           swapScheduled=true;
           standby.currentTime=0;
           standby.play();
