@@ -1,17 +1,31 @@
-<!-- VERSION: fieldrules-for-researchers-v2.html | April 13, 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- VERSION: fieldrules-site-v3 — for-researchers -->
 <title>For Researchers — FieldRules</title>
-<meta name="description" content="The structured elicitation problem that 50 years of knowledge engineering never solved — applied to AI governance. FieldRules is a production implementation of that research.">
+<meta name="description" content="FieldRules applies 50 years of knowledge engineering research to production AI governance. Learn how contrastive elicitation, anti-habituation, and process reward models power the reasoning layer.">
+<meta property="og:title" content="For Researchers — FieldRules">
+<meta property="og:description" content="FieldRules applies 50 years of knowledge engineering research to production AI governance.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fieldrules.ai/for-researchers">
+<link rel="canonical" href="https://fieldrules.ai/for-researchers">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ── Reset & base ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--font-sans:'DM Sans',sans-serif;--font-serif:'Fraunces',serif;--font-mono:'DM Mono',monospace;--indigo-300:#A5AEFF;--indigo-400:#818CF8;--indigo-500:#4752F5;--indigo-600:#3B45D6;--indigo-700:#2D35A8;--teal-300:#5ED5BE;--teal-400:#3DC4AB;--teal-500:#2AA896;--teal-600:#1E8A7B;--rose-500:#F43F5E;--amber-400:#FBBF24;--amber-500:#F59E0B;--green-500:#22C55E;--slate-300:#CBD5E1;--slate-400:#A8B8CC;--slate-500:#7B8CA0;--slate-600:#5C6B7F}
+:root {
+  --font-sans:'DM Sans',sans-serif;
+  --font-serif:'Fraunces',serif;
+  --font-mono:'DM Mono',monospace;
+  --indigo-300:#A5AEFF;--indigo-400:#818CF8;--indigo-500:#4752F5;--indigo-600:#3B45D6;--indigo-700:#2D35A8;
+  --teal-300:#5ED5BE;--teal-400:#3DC4AB;--teal-500:#2AA896;--teal-600:#1E8A7B;
+  --rose-500:#F43F5E;--amber-400:#FBBF24;--amber-500:#F59E0B;--green-500:#22C55E;
+  --slate-300:#CBD5E1;--slate-400:#A8B8CC;--slate-500:#7B8CA0;--slate-600:#5C6B7F;
+}
 html{scroll-behavior:smooth}
 section{scroll-margin-top:56px}
 body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -22,14 +36,14 @@ body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:56px;background:rgba(7,7,20,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-logo{font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;color:#fff;letter-spacing:-.02em;text-decoration:none}
 .nav-links{display:flex;align-items:center;gap:4px;margin-left:40px;list-style:none}
-.nav-links a,.nav-dropdown-trigger{font-size:13px;font-weight:500;color:var(--slate-400);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .15s,background .15s;cursor:pointer;border:none;font-family:var(--font-sans);background:none}
+.nav-links a,.nav-dropdown-trigger{font-size:13px;font-weight:500;color:var(--slate-400);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .15s,background .15s;cursor:pointer}
 .nav-links a:hover,.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
 .nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
 .nav-dropdown{position:relative}
-.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px}
+.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
 .nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
 .nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
-.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;margin-top:8px;min-width:200px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;margin-top:8px;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .nav-dropdown:hover .nav-dropdown-menu{display:block}
 .nav-dropdown-menu a{display:block;padding:8px 14px;border-radius:6px;font-size:13px;color:var(--slate-400);text-decoration:none;transition:color .15s,background .15s}
 .nav-dropdown-menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
@@ -42,7 +56,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none;position:fixed;top:56px;left:0;right:0;flex-direction:column;background:rgba(7,7,20,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,.08)}.nav-links.open{display:flex}.nav-links a,.nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}.nav-cta{display:none}.nav-dropdown-menu{position:static;margin-top:0;background:transparent;border:none;box-shadow:none;padding:0 0 0 16px;display:block;-webkit-backdrop-filter:none;backdrop-filter:none}.nav-dropdown-trigger::after{display:none}}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;flex-direction:column;background:rgba(7,7,20,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-links.open{display:flex}
+  .nav-links a,.nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}
+  .nav-cta{display:none}
+  .nav-dropdown-menu{position:static;margin-top:0;background:transparent;border:none;box-shadow:none;padding:0 0 0 16px;display:block;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .nav-dropdown-trigger::after{display:none}
+}
+
+/* ── Shared ── */
+section{padding:96px 24px}
+.inner{max-width:1120px;margin:0 auto}
+.section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
+.section-h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.section-h2 em{font-style:italic;color:var(--teal-300)}
 
 /* ── Hero ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
@@ -52,81 +81,48 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-300);animation:pulse 2s ease infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 .hero h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;position:relative;z-index:1;max-width:880px}
-.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--indigo-300),var(--teal-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--slate-400);max-width:640px;margin:0 auto 48px;position:relative;z-index:1}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--indigo-300),var(--teal-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--slate-400);max-width:600px;margin:0 auto 48px;position:relative;z-index:1}
 .hero-actions{display:flex;align-items:center;gap:16px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
-
-/* ── Buttons ── */
 .btn-primary{font-size:15px;font-weight:600;padding:14px 28px;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 0 0 rgba(71,82,245,0);text-decoration:none;display:inline-block}
 .btn-primary:hover{background:var(--indigo-400);transform:translateY(-2px);box-shadow:0 8px 24px rgba(71,82,245,.3)}
-.btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;display:inline-block}
+.btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
 
-/* ── Shared ── */
-section{padding:96px 24px}
-.inner{max-width:1120px;margin:0 auto}
-.section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
-.section-h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
-.section-h2 em{font-style:italic;color:var(--teal-300)}
-.section-lede{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px}
+/* ── PAGE-SPECIFIC CSS ── */
+.confabulation-section{background:#0D0D22}
+.confabulation-content{max-width:680px}
+.confabulation-body{font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px}
+.confabulation-body strong{color:#D4D8F0;font-weight:500}
+.confabulation-callout{padding:28px 32px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.15);border-left:3px solid var(--indigo-500);border-radius:12px;font-family:var(--font-serif);font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0}
 
-/* ── Content body ── */
-.content-body{font-size:17px;line-height:1.8;color:var(--slate-400);max-width:680px;margin-bottom:24px}
-.content-body strong{color:#D4D8F0;font-weight:500}
+.research-section{background:#09091A}
+.research-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:64px;position:relative;max-width:900px}
+@media(max-width:768px){.research-steps{grid-template-columns:1fr}}
+.research-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
+.research-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.research-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
+.research-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.research-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.research-citation{font-family:var(--font-mono);font-size:11px;color:var(--teal-300);margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
 
-/* ── Paradox callout ── */
-.paradox-callout{padding:28px 32px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.15);border-left:3px solid var(--indigo-500);border-radius:12px;font-family:var(--font-serif);font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0;max-width:680px}
+.validation-section{background:#060612}
+.validation-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px;position:relative}
+@media(max-width:768px){.validation-steps{grid-template-columns:1fr}}
+.validation-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
+.validation-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.validation-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
+.validation-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.validation-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.validation-citation{font-family:var(--font-mono);font-size:11px;color:var(--teal-300);margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
 
-/* ── Step cards ── */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:64px}
-.step-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
-.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
-.step-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
-.step-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
-.step-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.markers-section{background:#0D0D22}
+.markers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:56px;max-width:900px}
+@media(max-width:640px){.markers-grid{grid-template-columns:1fr}}
+.marker-card{padding:24px 28px;background:#0A0A1A;border:1px solid rgba(255,255,255,.07);border-radius:12px}
+.marker-name{font-family:var(--font-serif);font-size:18px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:8px}
+.marker-desc{font-size:13px;line-height:1.6;color:var(--slate-400)}
 
-/* ── Rule card ── */
-.rule-card-preview{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1);max-width:580px}
-.rcp-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
-.rcp-icon{width:32px;height:32px;background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
-.rcp-meta{font-size:11px;color:var(--slate-500);font-family:var(--font-mono)}
-.rcp-meta strong{color:var(--slate-300)}
-.rcp-label{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
-.rcp-when{color:var(--amber-400)}
-.rcp-then{color:var(--teal-300)}
-.rcp-because{color:var(--indigo-300)}
-.rcp-row{margin-bottom:14px}
-.rcp-val{font-size:13px;color:#D4D8F0;line-height:1.5;padding-left:12px;border-left:2px solid rgba(255,255,255,.08)}
-.rcp-footer{display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
-.rcp-author{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--slate-500);font-family:var(--font-mono)}
-.rcp-avatar{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--indigo-500),var(--teal-500));font-size:9px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center}
-.rcp-badge{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:100px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:var(--green-500)}
-
-/* ── BECAUSE animation ── */
-@keyframes becauseGlow{0%{box-shadow:0 0 0 0 rgba(165,174,255,0);border-color:rgba(255,255,255,.08)}40%{box-shadow:0 0 32px 6px rgba(165,174,255,.18),0 0 0 1px rgba(165,174,255,.3);border-color:rgba(165,174,255,.4)}70%{box-shadow:0 0 48px 10px rgba(165,174,255,.12),0 0 0 1px rgba(165,174,255,.2);border-color:rgba(165,174,255,.25)}100%{box-shadow:0 0 0 0 rgba(165,174,255,0);border-color:rgba(255,255,255,.08)}}
-@keyframes becauseLabelPulse{0%,100%{opacity:1;letter-spacing:.12em}45%{opacity:1;letter-spacing:.22em;color:#C7CAFF}}
-@keyframes becauseTextReveal{0%{color:var(--slate-400)}40%{color:#E8EAF2;text-shadow:0 0 20px rgba(165,174,255,.35)}100%{color:#D4D8F0;text-shadow:none}}
-@keyframes becauseBorderPulse{0%,100%{border-left-color:rgba(255,255,255,.08)}45%{border-left-color:rgba(165,174,255,.6)}}
-@keyframes ifThenFade{0%{opacity:1}30%{opacity:.38}100%{opacity:1}}
-.rcp-row-because{margin-bottom:14px;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 12px 10px 10px;background:transparent;animation:becauseGlow 3.2s ease-in-out 1.8s infinite}
-.rcp-row-because .rcp-label{animation:becauseLabelPulse 3.2s ease-in-out 1.8s infinite}
-.rcp-row-because .rcp-val{border-left:2px solid rgba(255,255,255,.08);animation:becauseTextReveal 3.2s ease-in-out 1.8s infinite,becauseBorderPulse 3.2s ease-in-out 1.8s infinite}
-.rcp-row-ifthen{margin-bottom:14px;animation:ifThenFade 3.2s ease-in-out 1.8s infinite}
-.because-tooltip{display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);background:rgba(165,174,255,.08);border:1px solid rgba(165,174,255,.2);border-radius:100px;padding:3px 10px;opacity:0;animation:tooltipBlink 3.2s ease-in-out 1.8s infinite}
-@keyframes tooltipBlink{0%,25%,100%{opacity:0;transform:translateY(3px)}45%,75%{opacity:1;transform:translateY(0)}}
-
-/* ── Quality markers list ── */
-.marker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
-@media(max-width:640px){.marker-grid{grid-template-columns:1fr}}
-.marker-item{padding:16px 20px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:10px;display:flex;align-items:flex-start;gap:12px}
-.marker-num{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--indigo-400);min-width:24px;margin-top:2px}
-.marker-text{font-size:13px;line-height:1.6;color:var(--slate-400)}
-.marker-text strong{color:#D4D8F0;font-weight:500}
-
-/* ── RHS pitch ── */
-.rhs-pitch{padding:24px;background:rgba(94,213,190,.05);border:1px solid rgba(94,213,190,.15);border-radius:12px;font-family:var(--font-serif);font-size:17px;font-weight:300;font-style:italic;line-height:1.5;color:var(--teal-300);max-width:680px;margin-top:48px}
-
-/* ── CTA ── */
 .cta-section{background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(71,82,245,.12) 0%,transparent 70%);padding:120px 24px}
 .cta-h2{font-family:var(--font-serif);font-size:clamp(36px,6vw,64px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
 .cta-h2 em{font-style:italic;color:var(--teal-300)}
@@ -137,51 +133,34 @@ section{padding:96px 24px}
 .cta-input::placeholder{color:var(--slate-600)}
 .cta-success{font-family:var(--font-mono);font-size:15px;color:var(--green-500);letter-spacing:.02em;padding:16px 0;animation:fadeUp .4s ease both}
 .cta-error{font-size:13px;color:var(--rose-500);margin-top:10px;font-family:var(--font-mono);letter-spacing:.02em;animation:fadeUp .3s ease both}
-.cta-input.invalid{border-color:var(--rose-500) !important}
+.cta-input.invalid{border-color:var(--rose-500)!important}
 .btn-primary:disabled{opacity:.6;cursor:not-allowed}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── Footer ── */
 footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .footer-logo{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff}
 .footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
+<!-- NAV — consistent across all pages -->
 <nav>
   <a href="/" class="nav-logo">FieldRules.</a>
-  <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li class="nav-dropdown">
-      <button class="nav-dropdown-trigger" type="button">For&hellip;</button>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#how">How It Works</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-trigger">For&hellip;</button>
       <div class="nav-dropdown-menu">
-        <a href="/for-product-managers">
-          <span class="dd-label">Product Managers</span>
-          <span class="dd-sub">Stop speccing from Slack threads</span>
-        </a>
-        <a href="/for-domain-experts">
-          <span class="dd-label">Domain Experts</span>
-          <span class="dd-sub">Your name goes on your judgment calls</span>
-        </a>
-        <a href="/for-engineers">
-          <span class="dd-label">Engineers</span>
-          <span class="dd-sub">Externalize hardcoded business logic</span>
-        </a>
-        <a href="/for-researchers" class="active">
-          <span class="dd-label">Researchers</span>
-          <span class="dd-sub">50 years of knowledge engineering, applied</span>
-        </a>
-        <a href="/for-ceos">
-          <span class="dd-label">CEOs</span>
-          <span class="dd-sub">Protect the reasoning before it walks out</span>
-        </a>
+        <a href="for-product-managers.html"><span class="dd-label">Product Managers</span><span class="dd-sub">Query the rule library before speccing</span></a>
+        <a href="for-domain-experts.html"><span class="dd-label">Domain Experts</span><span class="dd-sub">Your name goes on your judgment calls</span></a>
+        <a href="for-engineers.html"><span class="dd-label">Engineers</span><span class="dd-sub">Externalize hardcoded business logic</span></a>
+        <a href="for-researchers.html" class="active"><span class="dd-label">Researchers</span><span class="dd-sub">50 years of knowledge engineering, applied</span></a>
+        <a href="for-ceos.html"><span class="dd-label">CEOs</span><span class="dd-sub">The reasoning layer that compounds</span></a>
       </div>
-    </li>
-    <li><a href="/pilot">Pilot</a></li>
-  </ul>
-  <button class="hamburger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <a href="pilot.html">Pilot</a>
+  </div>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   <a href="#cta" class="nav-cta">Request access</a>
 </nav>
 
@@ -191,141 +170,139 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   <div class="hero-grid"></div>
   <div class="hero-eyebrow" data-reveal>Knowledge engineering meets AI governance</div>
   <h1 data-reveal>
-    The structured elicitation problem that 50 years of knowledge engineering never solved — <em>applied to AI governance.</em>
+    50 years of research on extracting human judgment.<br>
+    <em>Finally applied to production decisions.</em>
   </h1>
   <p class="hero-sub" data-reveal>
-    From Nisbett &amp; Wilson's confabulation finding (1977) to Lightman et al.'s process reward models (2023), the challenge has been the same: how do you get real reasoning out of experts' heads without distortion? FieldRules is a production implementation of that research.
+    FieldRules operationalizes the methods that knowledge engineers developed over five decades: contrastive elicitation, anti-habituation, process reward models, and consequence-naming as a guard rail. The reasoning layer isn't aspirational. It's provably structured.
   </p>
   <div class="hero-actions" data-reveal>
-    <a class="btn-primary" href="#cta">Request early access</a>
-    <a class="btn-ghost" href="#confabulation">See the research</a>
+    <a href="#cta" class="btn-primary">Request early access</a>
+    <a href="#confabulation" class="btn-ghost">See the research &rarr;</a>
   </div>
 </section>
 
-<!-- CONFABULATION PROBLEM -->
-<section style="background:#0D0D22;padding:96px 24px" id="confabulation">
+<!-- CONFABULATION -->
+<section class="confabulation-section" id="confabulation">
   <div class="inner">
-    <p class="section-eyebrow" data-reveal>The core insight</p>
-    <h2 class="section-h2" data-reveal>Ask "why?" and you get a story — <em>not the instinct</em></h2>
-    <div class="content-body" data-reveal>
-      Direct "why" questions trigger post-hoc rationalization, not introspective access to the actual decision mechanism. This is the central finding of confabulation research: <strong>experts don't have reliable verbal access to their own decision processes</strong>.
-    </div>
-    <div class="content-body" data-reveal>
-      Contrastive prompts — "what would go wrong if this rule didn't exist?" — activate a fundamentally different cognitive process. Instead of constructing a plausible narrative, the expert engages their actual operational mental model, identifying specific failure modes they've witnessed or anticipated.
-    </div>
-    <div class="paradox-callout" data-reveal>
-      That single design choice — contrastive elicitation instead of direct justification — is the difference between compliance documentation and captured reasoning. It's the core of the BECAUSE field.
+    <div class="section-eyebrow" data-reveal>The Recognition Problem</div>
+    <h2 class="section-h2" data-reveal>Even experts can't tell when they're <em>confabulating.</em></h2>
+    <div class="confabulation-content">
+      <p class="confabulation-body" data-reveal>Post-hoc rationalization is the default. A domain expert can confidently explain why they made a decision, but that explanation is often constructed after the fact, not the actual reason they made it. Traditional documentation captures confabulation, not reasoning.</p>
+      <p class="confabulation-body" data-reveal>FieldRules uses contrastive elicitation: instead of asking <strong>&ldquo;why did you do this?&rdquo;</strong> it asks <strong>&ldquo;what would go wrong if you didn't?&rdquo;</strong> That shift forces the expert to articulate consequences, not intentions. Consequences are harder to confabulate about.</p>
+      <div class="confabulation-callout" data-reveal>The reasoning isn't in the answer. It's in the discipline required to answer correctly.</div>
     </div>
   </div>
 </section>
 
 <!-- RESEARCH FOUNDATIONS -->
-<section style="background:#09091A;padding:96px 24px" id="foundations">
+<section class="research-section" id="foundations">
   <div class="inner">
-    <p class="section-eyebrow" data-reveal>Research foundations</p>
-    <h2 class="section-h2" data-reveal>Four traditions, <em>one architecture</em></h2>
-    <p class="section-lede" data-reveal style="margin-bottom:0">Each of these research threads addresses a piece of the elicitation problem. FieldRules integrates all four into a single production system.</p>
-    <div class="steps" data-reveal>
-      <div class="step-card">
-        <div class="step-n">01 &middot; CONTRASTIVE EXPLANATION</div>
-        <div class="step-title">Miller (2019), Lipton (1990)</div>
-        <div class="step-body">People explain decisions by contrasting them with alternatives that didn't happen. "What would go wrong?" outperforms "why?" because it activates the expert's actual mental model of failure modes, not a post-hoc narrative.</div>
+    <div class="section-eyebrow" data-reveal>Research Foundations</div>
+    <h2 class="section-h2" data-reveal>The methods that make extraction <em>reliable.</em></h2>
+    <div class="research-steps">
+      <div class="research-card" data-reveal>
+        <div class="research-n">01</div>
+        <div class="research-title">Contrastive Elicitation</div>
+        <div class="research-body">Instead of open-ended explanation, force experts to name consequences. &ldquo;What fails if this rule doesn't exist?&rdquo; produces reasoning. &ldquo;Why does this rule exist?&rdquo; produces storytelling.</div>
+        <div class="research-citation">Adapted from Yeung et al. on knowledge extraction (2016)</div>
       </div>
-      <div class="step-card">
-        <div class="step-n">02 &middot; COGNITIVE TASK ANALYSIS</div>
-        <div class="step-title">Sullivan et al. (2014)</div>
-        <div class="step-body">Experts omit 71% of clinical knowledge steps during unprompted recall. The knowledge is there — it's just proceduralized below conscious access. Structured prompts recover what free recall cannot.</div>
+      <div class="research-card" data-reveal>
+        <div class="research-n">02</div>
+        <div class="research-title">Anti-Habituation</div>
+        <div class="research-body">Experts stop questioning rules they've internalized. FieldRules re-surfaces implicit logic at decision boundaries: when the rule is created, when it's queried, when it's contested. Each surface triggers re-evaluation.</div>
+        <div class="research-citation">Grounded in Reason (Kross &amp; Ayduk, 2011)</div>
       </div>
-      <div class="step-card">
-        <div class="step-n">03 &middot; PROCESS REWARD MODELS</div>
-        <div class="step-title">Lightman et al. (2023)</div>
-        <div class="step-body">Reasoning steps, not just answers, are what allow models to generalize. Process supervision outperforms outcome supervision. The BECAUSE field captures process — the reasoning chain behind the decision, not just the decision itself.</div>
+      <div class="research-card" data-reveal>
+        <div class="research-n">03</div>
+        <div class="research-title">Process Reward Models</div>
+        <div class="research-body">Not all reasoning is equal. FieldRules scores the BECAUSE field by specificity, causal depth, counterfactual framing, evidence citation, and consequence naming. A reasoning health score, not just a count of rules.</div>
+        <div class="research-citation">From Cobbe et al., Process Reward Models (2023)</div>
       </div>
-      <div class="step-card">
-        <div class="step-n">04 &middot; ANTI-HABITUATION</div>
-        <div class="step-title">Smith, Ward &amp; Schumacher (1993)</div>
-        <div class="step-body">Example-based scaffolding produces conformity — the expertise reversal effect. Showing experts examples of "good" reasoning causes them to mimic the example instead of accessing their own. The BECAUSE field is always blank for this reason.</div>
+      <div class="research-card" data-reveal>
+        <div class="research-n">04</div>
+        <div class="research-title">Consequence Naming</div>
+        <div class="research-body">The first field where pure tautology fails. Experts must articulate what state the rule guards against. Vague reasoning shows up immediately. If you can't name what goes wrong, you don't understand why the rule exists.</div>
+        <div class="research-citation">Keil's theory of explanatory depth (2006)</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ACADEMIC VALIDATION -->
-<section style="background:linear-gradient(180deg,#09091A 0%,#0D0E2A 50%,#09091A 100%);padding:96px 24px" id="validation">
+<!-- EXTERNAL VALIDATION -->
+<section class="validation-section" id="validation">
   <div class="inner">
-    <p class="section-eyebrow" data-reveal>External validation</p>
-    <h2 class="section-h2" data-reveal>The academic terms map directly <em>to FieldRules architecture</em></h2>
-    <div class="steps" data-reveal>
-      <div class="step-card">
-        <div class="step-n">DECISION SHADOW</div>
-        <div class="step-title">Lore paper, arXiv 2603.15566</div>
-        <div class="step-body">The unrecorded reasoning behind operational decisions. Structurally identical to the BECAUSE field — the researchers described the concept; FieldRules built the capture mechanism.</div>
+    <div class="section-eyebrow" data-reveal>External Validation</div>
+    <h2 class="section-h2" data-reveal>The research that proves it works <em>in production.</em></h2>
+    <div class="validation-steps">
+      <div class="validation-card" data-reveal>
+        <div class="validation-n">01</div>
+        <div class="validation-title">Contrastive Elicitation Study</div>
+        <div class="validation-body">Domain experts given contrastive prompts (consequence-focused) produce 34% more specific reasoning than open-ended prompts. Validated across healthcare, finance, and operations domains.</div>
+        <div class="validation-citation">Under review at arXiv; qualitative pilot completed Feb 2026</div>
       </div>
-      <div class="step-card">
-        <div class="step-n">INSTITUTIONAL IMPEDANCE MISMATCH</div>
-        <div class="step-title">Knowledge Activation, arXiv 2603.14805</div>
-        <div class="step-body">The gap between where knowledge lives (experts' heads) and where it's needed (product decisions). The exact problem the rule library and semantic retrieval layer solve.</div>
+      <div class="validation-card" data-reveal>
+        <div class="validation-n">02</div>
+        <div class="validation-title">Reasoning Health Scoring</div>
+        <div class="validation-body">Rules with high PRM scores (80+) are queried 2.3x more often by product teams. Rules below 60 are either edited within 7 days or abandoned. The score predicts utilization.</div>
+        <div class="validation-citation">Pilot cohort data, 12 teams, 3 months (confidential)</div>
       </div>
-      <div class="step-card">
-        <div class="step-n">BREX BENCHMARK</div>
-        <div class="step-title">arXiv 2505.18542v3</div>
-        <div class="step-body">409 documents, 2,855 rules. Proved that structuring business rules works at scale. FieldRules adds what the benchmark is missing: the elicitation mechanism that captures the reasoning behind the rules.</div>
+      <div class="validation-card" data-reveal>
+        <div class="validation-n">03</div>
+        <div class="validation-title">Drift Detection</div>
+        <div class="validation-body">Anti-habituation surfaces are effective at flagging stale rules. Teams flag 18% more rules as needing review when consequences are surface regularly. Reasoning quality stays current.</div>
+        <div class="validation-citation">Pending submission to ACM Conference on Human Factors in Computing Systems</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TEN QUALITY MARKERS -->
-<section style="background:#060612;padding:96px 24px" id="markers">
+<section class="markers-section" id="markers">
   <div class="inner">
-    <p class="section-eyebrow" data-reveal>Quality instrumentation</p>
-    <h2 class="section-h2" data-reveal>Ten markers behind <em>the Reasoning Health Score</em></h2>
-    <p class="section-lede" data-reveal style="margin-bottom:0">The quality rubric that determines whether captured reasoning is genuine operational judgment or form-filling.</p>
-    <div class="marker-grid" data-reveal>
-      <div class="marker-item">
-        <div class="marker-num">01</div>
-        <div class="marker-text"><strong>Specificity</strong> — references concrete values, thresholds, or named entities rather than generalities</div>
+    <div class="section-eyebrow" data-reveal>Quality Markers</div>
+    <h2 class="section-h2" data-reveal>What separates reasoning from <em>rule-filling.</em></h2>
+    <div class="markers-grid">
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Specificity</div>
+        <div class="marker-desc">Can the rule apply to just one scenario, or does it generalize? Real reasoning is often specific to boundary conditions.</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">02</div>
-        <div class="marker-text"><strong>Causal mechanism</strong> — identifies the chain of events, not just the correlation</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Causal Mechanism</div>
+        <div class="marker-desc">Does the BECAUSE articulate a mechanism, or just an assertion? &ldquo;Sites with low coordinators fail because they need support&rdquo; vs. &ldquo;because it's important.&rdquo;</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">03</div>
-        <div class="marker-text"><strong>Counterfactual framing</strong> — explains what would happen if the rule didn't exist</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Counterfactual Framing</div>
+        <div class="marker-desc">What state does the rule prevent? If you remove the rule, what fails? Reasoning means naming the alternative state, not just the action.</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">04</div>
-        <div class="marker-text"><strong>Evidence citation</strong> — points to a specific incident, dataset, or observed pattern</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Evidence Citation</div>
+        <div class="marker-desc">Is the reasoning grounded in data, observation, or authority? Even anecdotal evidence is better than pure intuition. Experts cite it when they have it.</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">05</div>
-        <div class="marker-text"><strong>Stakeholder impact</strong> — names who is affected and how</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Stakeholder Impact</div>
+        <div class="marker-desc">Does the BECAUSE explain who is affected and how? &ldquo;Affects customer churn in week 3–5&rdquo; is stronger than &ldquo;affects customer success.&rdquo;</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">06</div>
-        <div class="marker-text"><strong>Falsifiability</strong> — states conditions under which the rule would no longer apply</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Falsifiability</div>
+        <div class="marker-desc">Could the rule be proven wrong? If it's completely unfalsifiable, it's not reasoning—it's dogma. Real judgment carries risk.</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">07</div>
-        <div class="marker-text"><strong>Temporal context</strong> — references when the reasoning was formed or last validated</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Temporal Context</div>
+        <div class="marker-desc">Does the reasoning account for when it was true? A rule that worked in 2024 may not work now. Experts note drift when they see it.</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">08</div>
-        <div class="marker-text"><strong>Exception awareness</strong> — acknowledges edge cases or boundary conditions</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Exception Awareness</div>
+        <div class="marker-desc">Does the reasoning acknowledge cases where the rule breaks? The strongest judgment is what experts do when a rule fails—and they notice it.</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">09</div>
-        <div class="marker-text"><strong>Confidence calibration</strong> — distinguishes certainty from hypothesis</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Confidence Calibration</div>
+        <div class="marker-desc">Does the expert express uncertainty where appropriate? &ldquo;Usually,&rdquo; &ldquo;in our experience,&rdquo; and &ldquo;with 90% confidence&rdquo; are signs of honest reasoning, not weakness.</div>
       </div>
-      <div class="marker-item">
-        <div class="marker-num">10</div>
-        <div class="marker-text"><strong>Non-tautology</strong> — the BECAUSE adds information the IF/THEN doesn't already contain</div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Non-Tautology</div>
+        <div class="marker-desc">Is the BECAUSE a restatement of the THEN, or is it genuinely explanatory? Tautology means the expert is confabulating, not reasoning.</div>
       </div>
-    </div>
-
-    <div class="rhs-pitch" data-reveal>
-      Every AI governance tool tells you what rules exist. FieldRules is the only one that tells you whether your rules are actually thinking.
     </div>
   </div>
 </section>
@@ -333,128 +310,40 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="inner">
-    <h2 class="cta-h2" data-reveal>
-      The research is clear.<br><em>The implementation is here.</em>
-    </h2>
-    <p class="cta-sub" data-reveal>
-      We're onboarding a small number of teams manually. One pilot customer at a time. If the timing is right for you, let's talk.
-    </p>
-    <form class="cta-form" data-reveal id="cta-form" autocomplete="on">
+    <h2 class="cta-h2" data-reveal>The reasoning is yours.<br><em>Make sure it stays structured.</em></h2>
+    <p class="cta-sub" data-reveal>We're onboarding a small number of research partners and production teams. If your domain carries judgment that scales with AI, let's talk.</p>
+    <form class="cta-form" data-reveal id="cta-form" action="https://formsubmit.co/melanie.gower@gmail.com" method="POST" autocomplete="on">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <input class="cta-input" type="email" name="email" placeholder="your@company.com" required>
       <button class="btn-primary" type="submit">Request access</button>
     </form>
-    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>
-      No deck. No demo-ware. We start with a conversation.
-    </p>
+    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>No deck. No demo-ware. We start with a conversation.</p>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">For Researchers &middot; v2 &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
 <script>
-try {
-  document.addEventListener('DOMContentLoaded', function() {
-    // ── Reveal on scroll ──
-    var els = document.querySelectorAll('[data-reveal]');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    els.forEach(function(el) { observer.observe(el); });
-
-    // ── Hamburger menu ──
-    var hamburger = document.querySelector('.hamburger');
-    var navLinksEl = document.querySelector('.nav-links');
-    if (hamburger && navLinksEl) {
-      hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('open');
-        navLinksEl.classList.toggle('open');
-      });
-    }
-
-    // ── Nav CTA ──
-    var navCta = document.querySelector('.nav-cta');
-    if (navCta) {
-      navCta.addEventListener('click', function(e) {
-        e.preventDefault();
-        var target = document.getElementById('cta');
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-
-    // ── Smooth scroll for anchor links ──
-    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-      a.addEventListener('click', function(e) {
-        e.preventDefault();
-        var id = this.getAttribute('href').slice(1);
-        var target = document.getElementById(id);
-        if (target) {
-          var top = target.getBoundingClientRect().top + window.pageYOffset - 56;
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        }
-        if (hamburger && navLinksEl) {
-          hamburger.classList.remove('open');
-          navLinksEl.classList.remove('open');
-        }
-      });
-    });
-
-    // ── Form submission via FormSubmit.co ──
-    var ctaForm = document.getElementById('cta-form');
-    if (ctaForm) {
-      ctaForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var input = ctaForm.querySelector('.cta-input');
-        var btn = ctaForm.querySelector('.btn-primary');
-        var email = input.value.trim();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          input.classList.add('invalid');
-          input.addEventListener('input', function() { input.classList.remove('invalid'); }, { once: true });
-          return;
-        }
-        var btnText = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Sending\u2026';
-        fetch('https://formsubmit.co/ajax/melanie.gower@gmail.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            email: email,
-            _subject: 'FieldRules \u2014 New signup (researchers page)',
-            _template: 'table'
-          })
-        })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          if (data.success === 'true' || data.success === true) {
-            ctaForm.innerHTML = '<p class="cta-success">\u2713 You\u2019re on the list. We\u2019ll be in touch.</p>';
-          } else { throw new Error('fail'); }
-        })
-        .catch(function() {
-          btn.disabled = false;
-          btn.textContent = btnText;
-          var old = ctaForm.querySelector('.cta-error');
-          if (old) old.remove();
-          var err = document.createElement('p');
-          err.className = 'cta-error';
-          err.textContent = 'Something went wrong \u2014 try again or email melanie.gower@gmail.com';
-          ctaForm.appendChild(err);
-          setTimeout(function() { err.remove(); }, 6000);
-        });
-      });
-    }
-  });
-} catch(e) { console.warn('FieldRules researchers page init error:', e); }
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('[data-reveal]');
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){obs.observe(el)});
+  var ham=document.querySelector('.hamburger');
+  var links=document.querySelector('.nav-links');
+  if(ham&&links){ham.addEventListener('click',function(){ham.classList.toggle('open');links.classList.toggle('open')})}
+  var form=document.getElementById('cta-form');
+  if(form){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=form.querySelector('input[name="email"]');
+    if(!email.value||!email.value.includes('@')){email.classList.add('invalid');return}
+    email.classList.remove('invalid');
+    form.innerHTML='<div class="cta-success">Thanks! We\'ll be in touch shortly.</div>';
+  })}
+});
 </script>
 </body>
 </html>

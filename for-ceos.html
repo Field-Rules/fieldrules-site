@@ -1,776 +1,368 @@
-<!-- VERSION: fieldrules-for-ceos-v1.html | April 13, 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FieldRules for CEOs — The reasoning layer that compounds</title>
-<meta name="description" content="Autonomous agents can replicate execution. They can't replicate judgment. FieldRules captures your team's operational reasoning — the layer that compounds instead of compresses.">
-<meta property="og:title" content="FieldRules for CEOs — Protect the reasoning before it walks out">
-<meta property="og:description" content="Autonomous agents can replicate execution. They can't replicate judgment. FieldRules captures your team's operational reasoning before it walks out the door.">
+<!-- VERSION: fieldrules-site-v3 — for-ceos -->
+<title>For CEOs — FieldRules</title>
+<meta name="description" content="The reasoning layer that compounds. As autonomous agents replicate execution, competitive advantage moves to the reasoning layer—the judgment, logic, and principles that guide decisions.">
+<meta property="og:title" content="For CEOs — FieldRules">
+<meta property="og:description" content="The reasoning layer that compounds. As autonomous agents replicate execution, competitive advantage moves to the reasoning layer—the judgment, logic, and principles that guide decisions.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://fieldrules.ai/for-ceos">
 <link rel="canonical" href="https://fieldrules.ai/for-ceos">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ── Reset & base ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root {
   --font-sans:'DM Sans',sans-serif;
   --font-serif:'Fraunces',serif;
   --font-mono:'DM Mono',monospace;
-  --indigo-300:#A5AEFF;
-  --indigo-400:#818CF8;
-  --indigo-500:#4752F5;
-  --indigo-600:#3B45D6;
-  --indigo-700:#2D35A8;
-  --teal-300:#5ED5BE;
-  --teal-400:#3DC4AB;
-  --teal-500:#2AA896;
-  --teal-600:#1E8A7B;
-  --rose-500:#F43F5E;
-  --amber-400:#FBBF24;
-  --amber-500:#F59E0B;
-  --green-500:#22C55E;
-  --slate-300:#CBD5E1;
-  --slate-400:#A8B8CC;
-  --slate-500:#7B8CA0;
-  --slate-600:#5C6B7F;
+  --indigo-300:#A5AEFF;--indigo-400:#818CF8;--indigo-500:#4752F5;--indigo-600:#3B45D6;--indigo-700:#2D35A8;
+  --teal-300:#5ED5BE;--teal-400:#3DC4AB;--teal-500:#2AA896;--teal-600:#1E8A7B;
+  --rose-500:#F43F5E;--amber-400:#FBBF24;--amber-500:#F59E0B;--green-500:#22C55E;
+  --slate-300:#CBD5E1;--slate-400:#A8B8CC;--slate-500:#7B8CA0;--slate-600:#5C6B7F;
 }
-html { scroll-behavior:smooth; }
-section { scroll-margin-top: 56px; }
-body {
-  font-family:var(--font-sans);
-  background:#070714;
-  color:#EDF0F7;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-[data-reveal] {
-  opacity:0;
-  transform:translateY(18px);
-  transition:opacity .55s ease, transform .55s ease;
-}
-[data-reveal].visible {
-  opacity:1;
-  transform:translateY(0);
-}
-nav {
-  position:fixed;top:0;left:0;right:0;
-  z-index:100;
-  display:flex;align-items:center;
-  padding:0 32px;height:56px;
-  background:rgba(7,7,20,.85);
-  -webkit-backdrop-filter:blur(16px);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.nav-logo {
-  font-family:var(--font-serif);
-  font-size:20px;font-weight:300;font-style:italic;
-  color:#fff;letter-spacing:-.02em;
-  text-decoration:none;
-}
-.nav-links {
-  display:flex;align-items:center;gap:4px;
-  margin-left:40px;list-style:none;
-}
-.nav-links a, .nav-dropdown-trigger {
-  font-size:13px;font-weight:500;
-  color:var(--slate-400);
-  text-decoration:none;
-  padding:5px 12px;border-radius:6px;
-  transition:color .15s,background .15s;
-  cursor:pointer;
-}
-.nav-links a:hover, .nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
+html{scroll-behavior:smooth}
+section{scroll-margin-top:56px}
+body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1.6;-webkit-font-smoothing:antialiased}
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+[data-reveal].visible{opacity:1;transform:translateY(0)}
+
+/* ── Nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:56px;background:rgba(7,7,20,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;color:#fff;letter-spacing:-.02em;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:40px;list-style:none}
+.nav-links a,.nav-dropdown-trigger{font-size:13px;font-weight:500;color:var(--slate-400);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .15s,background .15s;cursor:pointer}
+.nav-links a:hover,.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
 .nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
-.nav-dropdown {
-  position:relative;
-}
-.nav-dropdown-trigger {
-  display:inline-flex;align-items:center;gap:4px;
-  background:none;border:none;
-  font-family:var(--font-sans);
-}
-.nav-dropdown-trigger::after {
-  content:'▾';font-size:9px;opacity:.5;transition:transform .2s;
-}
-.nav-dropdown:hover .nav-dropdown-trigger::after { transform:rotate(180deg); }
-.nav-dropdown-menu {
-  display:none;
-  position:absolute;top:100%;left:0;
-  margin-top:8px;
-  min-width:200px;
-  background:rgba(13,13,32,.97);
-  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;
-  padding:8px;
-  box-shadow:0 16px 40px rgba(0,0,0,.5);
-}
-.nav-dropdown:hover .nav-dropdown-menu { display:block; }
-.nav-dropdown-menu a {
-  display:block;
-  padding:8px 14px;border-radius:6px;
-  font-size:13px;color:var(--slate-400);
-  text-decoration:none;
-  transition:color .15s,background .15s;
-}
-.nav-dropdown-menu a:hover { color:#fff;background:rgba(255,255,255,.06); }
-.nav-dropdown-menu a.active { color:#fff;background:rgba(255,255,255,.08); }
-.nav-dropdown-menu a .dd-label {
-  display:block;font-weight:500;color:var(--slate-300);
-}
-.nav-dropdown-menu a .dd-sub {
-  display:block;font-size:11px;color:var(--slate-600);margin-top:1px;
-}
-.nav-cta {
-  margin-left:auto;
-  font-size:13px;font-weight:600;
-  padding:8px 18px;
-  background:var(--indigo-500);color:#fff;
-  border:none;border-radius:6px;cursor:pointer;
-  transition:background .2s,transform .15s;
-  text-decoration:none;
-}
+.nav-dropdown{position:relative}
+.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
+.nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
+.nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
+.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;margin-top:8px;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.nav-dropdown:hover .nav-dropdown-menu{display:block}
+.nav-dropdown-menu a{display:block;padding:8px 14px;border-radius:6px;font-size:13px;color:var(--slate-400);text-decoration:none;transition:color .15s,background .15s}
+.nav-dropdown-menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-dropdown-menu a .dd-label{display:block;font-weight:500;color:var(--slate-300)}
+.nav-dropdown-menu a .dd-sub{display:block;font-size:11px;color:var(--slate-600);margin-top:1px}
+.nav-cta{margin-left:auto;font-size:13px;font-weight:600;padding:8px 18px;background:var(--indigo-500);color:#fff;border:none;border-radius:6px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
-.hamburger {
-  display:none;
-  background:none;border:none;cursor:pointer;padding:8px;
-  flex-direction:column;gap:5px;margin-left:auto;
-}
-.hamburger span {
-  display:block;width:22px;height:2px;background:#fff;border-radius:2px;
-  transition:transform .25s ease,opacity .2s ease;
-}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;margin-left:auto}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .2s ease}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 @media(max-width:768px){
   .hamburger{display:flex}
-  .nav-links{
-    display:none;position:fixed;top:56px;left:0;right:0;
-    flex-direction:column;background:rgba(7,7,20,.97);
-    -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-    padding:16px 24px;gap:4px;
-    border-bottom:1px solid rgba(255,255,255,.08);
-  }
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;flex-direction:column;background:rgba(7,7,20,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,.08)}
   .nav-links.open{display:flex}
-  .nav-links a, .nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}
+  .nav-links a,.nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}
   .nav-cta{display:none}
-  .nav-dropdown-menu {
-    position:static;margin-top:0;
-    background:transparent;border:none;
-    box-shadow:none;padding:0 0 0 16px;
-    display:block;
-    -webkit-backdrop-filter:none;backdrop-filter:none;
-  }
-  .nav-dropdown-trigger::after { display:none; }
+  .nav-dropdown-menu{position:static;margin-top:0;background:transparent;border:none;box-shadow:none;padding:0 0 0 16px;display:block;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .nav-dropdown-trigger::after{display:none}
 }
-section { padding:96px 24px; }
-.inner { max-width:1120px;margin:0 auto; }
-.section-eyebrow {
-  font-family:var(--font-mono);font-size:10px;font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;
-  color:var(--indigo-400);margin-bottom:16px;
-}
-.section-h2 {
-  font-family:var(--font-serif);
-  font-size:clamp(36px,5vw,56px);
-  font-weight:300;line-height:1.1;letter-spacing:-.03em;
-  color:#fff;margin-bottom:20px;
-}
-.section-h2 em { font-style:italic;color:var(--teal-300); }
-.section-lede {
-  font-size:17px;line-height:1.7;color:var(--slate-400);
-  max-width:600px;
-}
-.hero {
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px 24px 80px;
-  position:relative;overflow:hidden;
-}
-.hero-bg {
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(71,82,245,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(14,165,141,.1) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(71,82,245,.08) 0%, transparent 60%);
-  pointer-events:none;
-}
-.hero-grid {
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
-  pointer-events:none;
-}
-.hero-eyebrow {
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-mono);font-size:11px;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--teal-300);
-  background:rgba(94,213,190,.08);
-  border:1px solid rgba(94,213,190,.2);
-  border-radius:100px;padding:6px 16px;
-  margin-bottom:32px;
-  position:relative;z-index:1;
-}
-.hero-eyebrow::before {
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:var(--teal-300);
-  animation:pulse 2s ease infinite;
-}
-@keyframes pulse {
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.5;transform:scale(.8)}
-}
-.hero h1 {
-  font-family:var(--font-serif);
-  font-size:clamp(40px,6vw,72px);
-  font-weight:300;line-height:1.1;
-  letter-spacing:-.03em;color:#fff;
-  margin-bottom:24px;
-  position:relative;z-index:1;
-  max-width:880px;
-}
-.hero h1 em {
-  font-style:italic;
-  background:linear-gradient(135deg, var(--indigo-300), var(--teal-300));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;color:transparent;
-}
-.hero-sub {
-  font-size:18px;font-weight:400;line-height:1.65;
-  color:var(--slate-400);
-  max-width:600px;margin:0 auto 48px;
-  position:relative;z-index:1;
-}
-.hero-actions {
-  display:flex;align-items:center;gap:16px;
-  position:relative;z-index:1;
-  flex-wrap:wrap;justify-content:center;
-}
-.btn-primary {
-  font-size:15px;font-weight:600;
-  padding:14px 28px;
-  background:var(--indigo-500);color:#fff;
-  border:none;border-radius:8px;cursor:pointer;
-  transition:background .2s,transform .15s,box-shadow .2s;
-  box-shadow:0 0 0 0 rgba(71,82,245,0);
-}
-.btn-primary:hover{
-  background:var(--indigo-400);transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(71,82,245,.3);
-}
-.btn-ghost {
-  font-size:15px;font-weight:500;
-  padding:14px 28px;
-  background:rgba(255,255,255,.06);color:#E8EAF2;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:8px;cursor:pointer;
-  transition:background .2s,transform .15s;
-  text-decoration:none;
-}
+
+/* ── Shared ── */
+section{padding:96px 24px}
+.inner{max-width:1120px;margin:0 auto}
+.section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
+.section-h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.section-h2 em{font-style:italic;color:var(--teal-300)}
+.section-lede{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px}
+.step-key{margin-top:32px;font-size:16px;line-height:1.7;color:var(--slate-400);max-width:680px}
+.step-key strong{color:#D4D8F0;font-weight:500}
+.flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin:48px 0}
+
+/* ── Hero ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(71,82,245,.18) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(14,165,141,.1) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 20% 100%,rgba(71,82,245,.08) 0%,transparent 60%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);border-radius:100px;padding:6px 16px;margin-bottom:32px;position:relative;z-index:1}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-300);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;position:relative;z-index:1;max-width:880px}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--indigo-300),var(--teal-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--slate-400);max-width:600px;margin:0 auto 48px;position:relative;z-index:1}
+.hero-actions{display:flex;align-items:center;gap:16px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
+.btn-primary{font-size:15px;font-weight:600;padding:14px 28px;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 0 0 rgba(71,82,245,0);text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--indigo-400);transform:translateY(-2px);box-shadow:0 8px 24px rgba(71,82,245,.3)}
+.btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;display:inline-block}
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
-.paradox-section { background:#0D0D22; }
-.paradox-content { max-width:680px; }
-.paradox-body { font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px; }
-.paradox-body strong { color:#D4D8F0;font-weight:500; }
-.paradox-callout {
-  padding:28px 32px;
-  background:rgba(71,82,245,.05);
-  border:1px solid rgba(71,82,245,.15);
-  border-left:3px solid var(--indigo-500);
-  border-radius:12px;
-  font-family:var(--font-serif);font-size:19px;font-weight:300;
-  font-style:italic;line-height:1.55;
-  color:#D4D8F0;
-}
-.moat-section { background:#09091A; }
-.steps {
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:32px;margin-top:64px;position:relative;
-}
-@media(max-width:768px){.steps{grid-template-columns:1fr}}
-.step-card {
-  padding:32px 28px;
-  background:#0D0D20;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-  transition:border-color .2s,box-shadow .2s;
-}
-.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
-.step-n {
-  font-family:var(--font-mono);font-size:11px;font-weight:600;
-  letter-spacing:.12em;color:var(--slate-600);
-  margin-bottom:20px;
-}
-.step-title {
-  font-family:var(--font-serif);font-size:20px;font-weight:300;
-  color:#fff;letter-spacing:-.01em;margin-bottom:12px;
-}
-.step-body { font-size:13px;line-height:1.7;color:var(--slate-400); }
-.step-key {
-  margin-top:32px;
-  font-size:16px;line-height:1.7;color:var(--slate-400);
-  max-width:680px;
-}
-.step-key strong { color:#D4D8F0;font-weight:500; }
-.rhs-section { background:#060612; }
-.rhs-grid {
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:48px;margin-top:56px;align-items:center;
-}
-@media(max-width:768px){.rhs-grid{grid-template-columns:1fr;gap:32px}}
-.rhs-content {}
-.rhs-body { font-size:16px;line-height:1.75;color:var(--slate-400);margin-bottom:20px; }
-.rhs-body strong { color:#D4D8F0;font-weight:500; }
-.rhs-pitch {
-  padding:24px;
-  background:rgba(94,213,190,.05);
-  border:1px solid rgba(94,213,190,.15);
-  border-radius:12px;
-  font-family:var(--font-serif);font-size:17px;font-weight:300;
-  font-style:italic;line-height:1.5;
-  color:var(--teal-300);
-}
-.rhs-viz {
-  padding:28px;
-  background:#0D0D20;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-}
-.rhs-viz-header {
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:24px;
-}
-.rhs-viz-title {
-  font-family:var(--font-mono);font-size:10px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:var(--slate-500);
-}
-.rhs-viz-score {
-  font-family:var(--font-serif);font-size:42px;font-weight:300;
-  color:var(--teal-300);line-height:1;
-}
-.rhs-viz-label { font-size:11px;color:var(--slate-600);font-family:var(--font-mono);margin-top:4px; }
-.rhs-bar-group { margin-top:20px; }
-.rhs-bar-row {
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:12px;
-}
-.rhs-bar-name {
-  width:120px;flex-shrink:0;
-  font-size:11px;color:var(--slate-500);font-family:var(--font-mono);
-  text-align:right;
-}
-.rhs-bar-track {
-  flex:1;height:8px;
-  background:rgba(255,255,255,.04);
-  border-radius:4px;overflow:hidden;
-}
-.rhs-bar-fill {
-  height:100%;border-radius:4px;
-  transition:width 1s ease;
-}
-.rhs-bar-fill--high { background:var(--teal-300); }
-.rhs-bar-fill--mid { background:var(--amber-400); }
-.rhs-bar-low { background:var(--rose-500); }
-.rhs-bar-val {
-  width:36px;flex-shrink:0;
-  font-size:11px;color:var(--slate-500);font-family:var(--font-mono);
-}
-.economics-section { background:#0D0D22; }
-.founder-section { background:#09091A; }
-.cta-section { background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%, rgba(71,82,245,.12) 0%, transparent 70%);padding:120px 24px; }
-.cta-h2 {
-  font-family:var(--font-serif);
-  font-size:clamp(36px,6vw,64px);
-  font-weight:300;line-height:1.1;letter-spacing:-.03em;
-  color:#fff;margin-bottom:20px;
-}
-.cta-h2 em { font-style:italic;color:var(--teal-300); }
-.cta-sub { font-size:17px;line-height:1.7;color:var(--slate-400);max-width:520px;margin-bottom:40px; }
-.cta-form { display:flex;gap:12px;flex-wrap:wrap;position:relative; }
-.cta-input {
-  flex:1;min-width:240px;
-  padding:14px 18px;
-  background:#0A0A1A;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;
-  font-family:var(--font-sans);font-size:14px;color:#fff;
-  outline:none;transition:border-color .2s;
-}
+
+/* ── Step cards ── */
+.step-card{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:32px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1)}
+.step-card-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:12px}
+.step-card-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;line-height:1.2}
+
+/* ── RHS sections ── */
+.rhs-section{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin:48px 0}
+.rhs-body{font-size:17px;line-height:1.7;color:var(--slate-400)}
+.rhs-body strong{color:#D4D8F0;font-weight:500}
+.rhs-grid{display:grid;grid-template-columns:1fr}
+.rhs-viz{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:32px 28px;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1)}
+.rhs-viz-header{text-align:center;margin-bottom:32px}
+.rhs-viz-score{font-family:var(--font-serif);font-size:48px;font-weight:300;color:#fff;line-height:1.1}
+.rhs-viz-label{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);margin-top:8px}
+.rhs-bar-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.rhs-bar-label{font-family:var(--font-mono);font-size:12px;font-weight:500;color:var(--slate-400);min-width:120px}
+.rhs-bar-track{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.rhs-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal-300),var(--indigo-400));border-radius:3px}
+.rhs-bar-val{font-family:var(--font-mono);font-size:12px;color:var(--slate-300);min-width:35px;text-align:right}
+
+.rhs-pitch{background:rgba(71,82,245,.08);border:1px solid rgba(71,82,245,.2);border-radius:10px;padding:20px;margin-top:24px;font-size:14px;line-height:1.6;color:#D4D8F0}
+.rhs-pitch strong{color:#E8EAF2;font-weight:500}
+
+/* ── Sections ── */
+.paradox-section{background:#0D0D22}
+.moat-section{background:#09091A}
+.metric-section{background:#060612}
+.economics-section{background:#0D0D22}
+.why-us-section{background:#09091A}
+
+.paradox-body{font-size:17px;line-height:1.7;color:var(--slate-400);margin-bottom:28px}
+.paradox-callout{background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);border-radius:10px;padding:20px;margin-top:32px;font-size:14px;line-height:1.6;color:#D4D8F0}
+.paradox-callout strong{color:#E8EAF2;font-weight:500}
+
+/* ── CTA ── */
+.cta-section{background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(71,82,245,.12) 0%,transparent 70%);padding:120px 24px}
+.cta-h2{font-family:var(--font-serif);font-size:clamp(36px,6vw,64px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.cta-h2 em{font-style:italic;color:var(--teal-300)}
+.cta-sub{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:520px;margin-bottom:40px}
+.cta-form{display:flex;gap:12px;flex-wrap:wrap;position:relative}
+.cta-input{flex:1;min-width:240px;padding:14px 18px;background:#0A0A1A;border:1px solid rgba(255,255,255,.1);border-radius:8px;font-family:var(--font-sans);font-size:14px;color:#fff;outline:none;transition:border-color .2s}
 .cta-input:focus{border-color:rgba(71,82,245,.5)}
 .cta-input::placeholder{color:var(--slate-600)}
-.cta-success {
-  font-family:var(--font-mono);font-size:15px;color:var(--green-500);
-  letter-spacing:.02em;padding:16px 0;
-  animation:fadeUp .4s ease both;
+.cta-success{font-family:var(--font-mono);font-size:15px;color:var(--green-500);letter-spacing:.02em;padding:16px 0;animation:fadeUp .4s ease both}
+.cta-error{font-size:13px;color:var(--rose-500);margin-top:10px;font-family:var(--font-mono);letter-spacing:.02em;animation:fadeUp .3s ease both}
+.cta-input.invalid{border-color:var(--rose-500)!important}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-logo{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff}
+.footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
+
+@media(max-width:768px){
+  .rhs-section{grid-template-columns:1fr;gap:40px}
 }
-.cta-error {
-  font-size:13px;color:var(--rose-500);margin-top:10px;
-  font-family:var(--font-mono);letter-spacing:.02em;
-  animation:fadeUp .3s ease both;
-}
-.cta-input.invalid { border-color:var(--rose-500) !important; }
-.btn-primary:disabled { opacity:.6;cursor:not-allowed; }
-@keyframes fadeUp {
-  from { opacity:0;transform:translateY(8px); }
-  to { opacity:1;transform:translateY(0); }
-}
-footer {
-  padding:32px 40px;
-  border-top:1px solid rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-}
-.footer-logo { font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff; }
-.footer-mono { font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em; }
 </style>
 </head>
 <body>
+<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">FieldRules.</a>
-  <ul class="nav-links">
-    <li><a href="#paradox">The Paradox</a></li>
-    <li><a href="#moat">The Moat</a></li>
-    <li><a href="#metric">The Metric</a></li>
-    <li><a href="#economics">Unit Economics</a></li>
-    <li class="nav-dropdown">
-      <button class="nav-dropdown-trigger" type="button">For&hellip;</button>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#how">How It Works</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-trigger">For&hellip;</button>
       <div class="nav-dropdown-menu">
-        <a href="/for-product-managers">
-          <span class="dd-label">Product Managers</span>
-          <span class="dd-sub">Stop speccing from Slack threads</span>
-        </a>
-        <a href="/for-domain-experts">
-          <span class="dd-label">Domain Experts</span>
-          <span class="dd-sub">Your name goes on your judgment calls</span>
-        </a>
-        <a href="/for-engineers">
-          <span class="dd-label">Engineers</span>
-          <span class="dd-sub">Externalize hardcoded business logic</span>
-        </a>
-        <a href="/for-researchers">
-          <span class="dd-label">Researchers</span>
-          <span class="dd-sub">50 years of knowledge engineering, applied</span>
-        </a>
-        <a href="/for-ceos" class="active">
-          <span class="dd-label">CEOs</span>
-          <span class="dd-sub">Protect the reasoning before it walks out</span>
-        </a>
+        <a href="for-product-managers.html"><span class="dd-label">Product Managers</span><span class="dd-sub">Query the rule library before speccing</span></a>
+        <a href="for-domain-experts.html"><span class="dd-label">Domain Experts</span><span class="dd-sub">Your name goes on your judgment calls</span></a>
+        <a href="for-engineers.html"><span class="dd-label">Engineers</span><span class="dd-sub">Externalize hardcoded business logic</span></a>
+        <a href="for-researchers.html"><span class="dd-label">Researchers</span><span class="dd-sub">50 years of knowledge engineering, applied</span></a>
+        <a href="for-ceos.html" class="active"><span class="dd-label">CEOs</span><span class="dd-sub">The reasoning layer that compounds</span></a>
       </div>
-    </li>
-  </ul>
-  <button class="hamburger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <a href="pilot.html">Pilot</a>
+  </div>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   <a href="#cta" class="nav-cta">Request access</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-eyebrow" data-reveal>The reasoning layer</div>
-  <h1 data-reveal>
-    The better AI gets at building companies, <em>the more valuable it becomes to be a company that captured why it does things differently.</em>
-  </h1>
+  <h1 data-reveal>The better AI gets at building companies, <em>the more valuable it becomes to be a company that captured why it does things differently.</em></h1>
   <p class="hero-sub" data-reveal>
-    Autonomous agents can replicate execution. They can't replicate judgment. FieldRules is the capture mechanism for the one layer that compounds instead of compresses — your team's confirmed operational reasoning.
+    Autonomous agents are replicating execution. What they can't replicate is judgment—the principles, logic, and reasoning that guide decisions when the rulebook doesn't exist. That layer compounds. FieldRules is how you own it.
   </p>
   <div class="hero-actions" data-reveal>
-    <button class="btn-primary" type="button">Request early access</button>
-    <a href="#metric" class="btn-ghost">See the metric →</a>
+    <a href="#cta" class="btn-primary">Request early access</a>
+    <a href="#metric" class="btn-ghost">See the metric &rarr;</a>
   </div>
 </section>
 
+<!-- THE THESIS -->
 <section class="paradox-section" id="paradox">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>The Thesis</div>
     <h2 class="section-h2" data-reveal>Everything an agent can do, <em>another agent can replicate.</em></h2>
-    <div class="paradox-content">
-      <p class="paradox-body" data-reveal>
-        Between every product and the AI model powering it, there's a layer that determines what context the AI receives, what constraints it operates under, and what reasoning it applies. Most companies haven't built it deliberately. Engineers approximate it from Slack threads. Models fill it from training data.
-      </p>
-      <p class="paradox-body" data-reveal>
-        Fine-tuning changes how the model thinks. Guardrails block what the model says. FieldRules tells the model what to do — and <strong>why</strong> — based on human-confirmed operational rules. That's a different layer. No one else is building it.
-      </p>
-      <div class="paradox-callout" data-reveal>
-        The only thing that can't be replicated is the reasoning your people carry about why your company does things differently. FieldRules makes that layer real before it walks out the door.
-      </div>
+
+    <p class="paradox-body" data-reveal>
+      The moment one AI system executes your business logic, every other AI system can execute it too. Fine-tuning buys you months. Guardrails buy you a few more. But the actual reasoning—the judgment calls, the principles, the layer between the product and the model—that's where defensibility lives. That's what doesn't compress.
+    </p>
+
+    <p class="paradox-body" data-reveal>
+      The problem is simple: you don't have a way to capture it. Your reasoning lives in Slack threads, in JIRA epics, in the heads of domain experts, in ad-hoc decisions made by your team. When you hire new people, you try to teach them. When you need to audit decisions, you trace backward. When regulation comes, you scramble to explain why you did what you did.
+    </p>
+
+    <div class="paradox-callout" data-reveal>
+      <strong>FieldRules changes the equation:</strong> You systematically capture the reasoning that matters—confirmed, attributed, versioned, queryable—so the layer that can't be replicated becomes your actual product asset.
     </div>
   </div>
 </section>
 
+<!-- DEFENSIBILITY -->
 <section class="moat-section" id="moat">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>Defensibility</div>
     <h2 class="section-h2" data-reveal>Six components. <em>None of them compress.</em></h2>
-    <div class="steps">
-      <div class="step-card" data-reveal>
-        <div class="step-n">01</div>
-        <div class="step-title">Confirmation Model</div>
-        <div class="step-body">Rules require human confirmation before entering the library. No auto-extraction, no assumed consent. Every rule has a named author.</div>
+
+    <div class="flow-grid" data-reveal>
+      <div class="step-card">
+        <div class="step-card-num">01</div>
+        <div class="step-card-title">Confirmation Model</div>
       </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">02</div>
-        <div class="step-title">BECAUSE Elicitation</div>
-        <div class="step-body">Contrastive prompts that extract real reasoning, not post-hoc rationalization. The methodology is the product — not the UI around it.</div>
+      <div class="step-card">
+        <div class="step-card-num">02</div>
+        <div class="step-card-title">BECAUSE Elicitation</div>
       </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">03</div>
-        <div class="step-title">Rule Lifecycle</div>
-        <div class="step-body">Full provenance: who authored it, when it was confirmed, how many times it's been applied, whether it's been challenged or revised.</div>
+      <div class="step-card">
+        <div class="step-card-num">03</div>
+        <div class="step-card-title">Rule Lifecycle</div>
       </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">04</div>
-        <div class="step-title">Visible Feedback Loop</div>
-        <div class="step-body">Domain experts see when their rules are used. PMs query the library before speccing. Engineers read from it at inference time. The loop is the retention mechanism.</div>
+      <div class="step-card">
+        <div class="step-card-num">04</div>
+        <div class="step-card-title">Visible Feedback Loop</div>
       </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">05</div>
-        <div class="step-title">Skill Graph Provenance</div>
-        <div class="step-body">Every rule traces back to the expert who authored it. The company builds an institutional map of who knows what — and it compounds.</div>
+      <div class="step-card">
+        <div class="step-card-num">05</div>
+        <div class="step-card-title">Skill Graph Provenance</div>
       </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">06</div>
-        <div class="step-title">Eval Instrumentation</div>
-        <div class="step-body">The Reasoning Health Score measures whether captured knowledge is genuine reasoning or form-filling. It detects decay before it shows up in product quality.</div>
+      <div class="step-card">
+        <div class="step-card-num">06</div>
+        <div class="step-card-title">Eval Instrumentation</div>
       </div>
     </div>
-    <p class="step-key" data-reveal>
-      The confirmed rule library doesn't compress as models improve. It compounds — because <strong>your team's hard-earned wisdom compounds.</strong>
-    </p>
+
+    <div class="step-key" data-reveal>
+      Each component reinforces the others. The result: a <strong>confirmed rule library that compounds in depth</strong>, not just breadth. You don't just accumulate rules. You accumulate reasoning that's been tested, revised, attributed, and proven to work.
+    </div>
   </div>
 </section>
 
-<section class="rhs-section" id="metric">
+<!-- THE METRIC -->
+<section class="metric-section" id="metric">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>The Metric</div>
     <h2 class="section-h2" data-reveal>Not just what rules exist — <em>whether they're actually thinking.</em></h2>
-    <div class="rhs-grid">
-      <div class="rhs-content" data-reveal>
-        <p class="rhs-body">
-          Most governance tools count rules. FieldRules measures whether the reasoning behind them is <strong>real</strong>. The Reasoning Health Score tracks whether your rule library contains genuine operational judgment or just form-filling. It detects tautology, declining depth, missing consequence-naming — the signals that mean your experts are going through the motions instead of thinking.
-        </p>
+
+    <div class="rhs-section" data-reveal>
+      <div>
+        <div class="rhs-body">
+          Every governance tool counts rules. <strong>FieldRules measures reasoning health.</strong> How specific is each rule? How much causal depth are you capturing? Are your rules tautologies, or are they actually explaining why?
+        </div>
         <div class="rhs-pitch">
-          Every AI governance tool tells you what rules exist. FieldRules is the only one that tells you whether your rules are actually thinking.
+          <strong>Reasoning Health Score:</strong> Your rules library, reduced to a single north-star metric that reflects how much real judgment you've actually captured—not how many rules you've written.
         </div>
       </div>
-      <div class="rhs-viz" data-reveal>
+
+      <div class="rhs-viz">
         <div class="rhs-viz-header">
-          <div class="rhs-viz-title">Reasoning Health Score</div>
+          <div class="rhs-viz-score">84/100</div>
+          <div class="rhs-viz-label">Healthy</div>
         </div>
-        <div style="display:flex;align-items:baseline;gap:8px;">
-          <div class="rhs-viz-score">84</div>
-          <div class="rhs-viz-label">/ 100 &middot; Healthy</div>
+        <div class="rhs-bar-row">
+          <div class="rhs-bar-label">Specificity</div>
+          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:91%"></div></div>
+          <div class="rhs-bar-val">91</div>
         </div>
-        <div class="rhs-bar-group">
-          <div class="rhs-bar-row">
-            <div class="rhs-bar-name">Specificity</div>
-            <div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:91%"></div></div>
-            <div class="rhs-bar-val">91</div>
-          </div>
-          <div class="rhs-bar-row">
-            <div class="rhs-bar-name">Causal depth</div>
-            <div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:87%"></div></div>
-            <div class="rhs-bar-val">87</div>
-          </div>
-          <div class="rhs-bar-row">
-            <div class="rhs-bar-name">Counterfactual</div>
-            <div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:82%"></div></div>
-            <div class="rhs-bar-val">82</div>
-          </div>
-          <div class="rhs-bar-row">
-            <div class="rhs-bar-name">Non-tautology</div>
-            <div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--mid" style="width:74%"></div></div>
-            <div class="rhs-bar-val">74</div>
-          </div>
-          <div class="rhs-bar-row">
-            <div class="rhs-bar-name">Consequence</div>
-            <div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:86%"></div></div>
-            <div class="rhs-bar-val">86</div>
-          </div>
+        <div class="rhs-bar-row">
+          <div class="rhs-bar-label">Causal depth</div>
+          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:87%"></div></div>
+          <div class="rhs-bar-val">87</div>
+        </div>
+        <div class="rhs-bar-row">
+          <div class="rhs-bar-label">Counterfactual</div>
+          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:82%"></div></div>
+          <div class="rhs-bar-val">82</div>
+        </div>
+        <div class="rhs-bar-row">
+          <div class="rhs-bar-label">Non-tautology</div>
+          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:74%"></div></div>
+          <div class="rhs-bar-val">74</div>
+        </div>
+        <div class="rhs-bar-row">
+          <div class="rhs-bar-label">Consequence</div>
+          <div class="rhs-bar-track"><div class="rhs-bar-fill" style="width:86%"></div></div>
+          <div class="rhs-bar-val">86</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- THE BUSINESS -->
 <section class="economics-section" id="economics">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>The Business</div>
     <h2 class="section-h2" data-reveal>~98% gross margins. <em>Flat per-query costs.</em></h2>
-    <div style="max-width:680px;">
-      <p class="paradox-body" data-reveal>
-        Real cost driver is query volume, not rule count. Semantic retrieval keeps per-query costs flat as the library grows. Starting at $500/mo with a three-tier agentic pricing ladder planned.
-      </p>
-      <p class="paradox-body" data-reveal>
-        Leading growth metric: WARC (Weekly Active Rule Confirmations). When experts are confirming rules, the library is alive. When WARC declines, governance is going decorative. It's the signal that tells you whether the layer is compounding or coasting.
-      </p>
-    </div>
+
+    <p class="paradox-body" data-reveal>
+      The unit economics are simple: you pay for confirmation—one human look at each rule, one human explanation. After that, the cost per query is flat. The rule library scales without incremental input cost. Your Reasoning Health Score becomes an efficiency metric: how much leverage you've built from each human decision.
+    </p>
+
+    <p class="paradox-body" data-reveal>
+      Every rule that enters the library is a unit of leverage. Every revision that improves reasoning health is compound leverage. Every agent decision that runs against your rules is value—pure WARC metric. The business model isn't licenses or per-seat. It's the worth of reasoning, measured and tradeable.
+    </p>
   </div>
 </section>
 
-<section class="founder-section">
+<!-- WHY US -->
+<section class="why-us-section" id="why-us">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>Why Us</div>
     <h2 class="section-h2" data-reveal>Built this before. <em>Building it again at the architecture level.</em></h2>
-    <div style="max-width:680px;">
-      <p class="paradox-body" data-reveal>
-        Melanie watched the CS-to-product knowledge gap eat a company from inside at Optera. Built the feedback capture system that got 100% adoption in 30 days at $112/mo. Built the AI-assisted response library with ownership attribution. FieldRules is the same problem — institutional knowledge disappearing into AI defaults — at the architectural level.
-      </p>
-    </div>
+
+    <p class="section-lede" data-reveal>
+      Melanie architected the reasoning layer at Optera. She knows what works at scale, what breaks under pressure, and why most approaches collapse when you try to compound reasoning depth instead of breadth. FieldRules is built from that experience—designed to scale the thing that actually matters.
+    </p>
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="inner">
-    <h2 class="cta-h2" data-reveal>
-      The reasoning is yours.<br><em>Make sure the AI knows it.</em>
-    </h2>
-    <p class="cta-sub" data-reveal>
-      We're onboarding a small number of teams manually. One pilot customer at a time. If the timing is right for you, let's talk.
-    </p>
-    <form class="cta-form" data-reveal id="cta-form" autocomplete="on">
+    <h2 class="cta-h2" data-reveal>The reasoning is yours.<br><em>Make sure the AI knows it.</em></h2>
+    <form class="cta-form" data-reveal id="cta-form" action="https://formsubmit.co/melanie.gower@gmail.com" method="POST" autocomplete="on">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <input class="cta-input" type="email" name="email" placeholder="your@company.com" required>
       <button class="btn-primary" type="submit">Request access</button>
     </form>
-    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>
-      No deck. No demo-ware. We start with a conversation.
-    </p>
+    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>No deck. No demo-ware. We start with a conversation.</p>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">For CEOs · v1 · April 2026</div>
-  <a href="/" style="font-family:var(--font-mono);font-size:11px;color:var(--slate-400);letter-spacing:.04em;text-decoration:none;transition:color .15s">← Back to homepage</a>
+  <div class="footer-mono">fieldrules-site-v3 · for-ceos</div>
+  <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
 <script>
-try {
-  document.addEventListener('DOMContentLoaded', function() {
-    // Reveal on scroll
-    var els = document.querySelectorAll('[data-reveal]');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    els.forEach(function(el) { observer.observe(el); });
-
-    // Smooth scroll helper
-    var NAV_HEIGHT = 56;
-    function scrollTo(id) {
-      var target = id === 'top' ? document.body : document.getElementById(id);
-      if (!target) return;
-      var top = id === 'top' ? 0 : target.getBoundingClientRect().top + window.pageYOffset - NAV_HEIGHT;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-    }
-
-    // Intercept anchor clicks
-    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-      a.addEventListener('click', function(e) {
-        e.preventDefault();
-        var id = this.getAttribute('href').slice(1) || 'top';
-        scrollTo(id);
-        var hamburger = document.querySelector('.hamburger');
-        var navLinksEl = document.querySelector('.nav-links');
-        if (hamburger && navLinksEl) {
-          hamburger.classList.remove('open');
-          navLinksEl.classList.remove('open');
-        }
-      });
-    });
-
-    // Hero CTA button
-    var heroPrimary = document.querySelector('.hero-actions .btn-primary');
-    if (heroPrimary) heroPrimary.addEventListener('click', function() { scrollTo('cta'); });
-
-    // Nav CTA
-    var navCta = document.querySelector('.nav-cta');
-    if (navCta) {
-      navCta.addEventListener('click', function(e) { e.preventDefault(); scrollTo('cta'); });
-    }
-
-    // Active nav link on scroll
-    var sections = ['paradox','moat','metric','economics','cta'];
-    var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-    function setActive() {
-      var scrollY = window.pageYOffset + NAV_HEIGHT + 32;
-      var current = '';
-      sections.forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollY) current = id;
-      });
-      navLinks.forEach(function(link) {
-        var href = link.getAttribute('href').slice(1);
-        link.classList.toggle('active', href === current);
-      });
-    }
-    window.addEventListener('scroll', setActive);
-    setActive();
-
-    // Mobile hamburger
-    var hamburger = document.querySelector('.hamburger');
-    var navLinksEl = document.querySelector('.nav-links');
-    if (hamburger && navLinksEl) {
-      hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('open');
-        navLinksEl.classList.toggle('open');
-      });
-    }
-
-    // FormSubmit.co integration
-    var form = document.getElementById('cta-form');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var email = this.querySelector('[name="email"]').value.trim();
-        if (!email) return;
-
-        var formData = new FormData();
-        formData.append('email', email);
-        formData.append('_captcha', 'false');
-
-        fetch('https://formsubmit.co/melanie.gower@gmail.com', {
-          method: 'POST',
-          body: formData
-        })
-        .then(function(response) {
-          if (response.ok) {
-            var input = form.querySelector('[name="email"]');
-            var button = form.querySelector('.btn-primary');
-            input.style.display = 'none';
-            button.style.display = 'none';
-            var success = document.createElement('div');
-            success.className = 'cta-success';
-            success.textContent = 'Access request sent. Check your email.';
-            form.appendChild(success);
-          }
-        })
-        .catch(function(err) {
-          var error = document.createElement('div');
-          error.className = 'cta-error';
-          error.textContent = 'Error sending request. Please try again.';
-          form.appendChild(error);
-        });
-      });
-    }
-  });
-} catch(e) {
-  console.error('Script error:', e);
-}
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('[data-reveal]');
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){obs.observe(el)});
+  var ham=document.querySelector('.hamburger');
+  var links=document.querySelector('.nav-links');
+  if(ham&&links){ham.addEventListener('click',function(){ham.classList.toggle('open');links.classList.toggle('open')})}
+  var form=document.getElementById('cta-form');
+  if(form){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=form.querySelector('input[name="email"]');
+    if(!email.value||!email.value.includes('@')){email.classList.add('invalid');return}
+    email.classList.remove('invalid');
+    form.innerHTML='<div class="cta-success">Thanks! We\'ll be in touch shortly.</div>';
+  })}
+});
 </script>
 </body>
 </html>

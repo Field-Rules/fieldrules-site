@@ -1,14 +1,13 @@
-<!-- VERSION: fieldrules-pilot-v1.html | April 13, 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FieldRules Pilot Program — Shape the operational logic layer</title>
-<meta name="description" content="Join 3–5 teams shaping FieldRules. Partner-forward, not procurement. You're not buying a product — you're building one alongside us.">
-<meta property="og:title" content="FieldRules Pilot Program">
-<meta property="og:description" content="Join 3–5 teams shaping FieldRules. You're not buying a product — you're building one.">
-<meta property="og:image" content="https://fieldrules.ai/og-pilot.png">
+<!-- VERSION: fieldrules-site-v3 · pilot -->
+<title>FieldRules Pilot — Become a founding AI governance partner</title>
+<meta name="description" content="Join the FieldRules pilot. Work with us to implement the human reasoning layer for AI decisions in your product, starting week zero.">
+<meta property="og:title" content="FieldRules Pilot — Become a founding AI governance partner">
+<meta property="og:description" content="Join the FieldRules pilot. Work with us to implement the human reasoning layer for AI decisions in your product, starting week zero.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fieldrules.ai/pilot">
 <link rel="canonical" href="https://fieldrules.ai/pilot">
@@ -22,659 +21,300 @@
   --font-sans:'DM Sans',sans-serif;
   --font-serif:'Fraunces',serif;
   --font-mono:'DM Mono',monospace;
-  --indigo-300:#A5AEFF;
-  --indigo-400:#818CF8;
-  --indigo-500:#4752F5;
-  --indigo-600:#3B45D6;
-  --indigo-700:#2D35A8;
-  --teal-300:#5ED5BE;
-  --teal-400:#3DC4AB;
-  --teal-500:#2AA896;
-  --teal-600:#1E8A7B;
-  --rose-500:#F43F5E;
-  --amber-400:#FBBF24;
-  --amber-500:#F59E0B;
-  --green-500:#22C55E;
-  --slate-300:#CBD5E1;
-  --slate-400:#A8B8CC;
-  --slate-500:#7B8CA0;
-  --slate-600:#5C6B7F;
+  --indigo-300:#A5AEFF;--indigo-400:#818CF8;--indigo-500:#4752F5;--indigo-600:#3B45D6;--indigo-700:#2D35A8;
+  --teal-300:#5ED5BE;--teal-400:#3DC4AB;--teal-500:#2AA896;--teal-600:#1E8A7B;
+  --rose-500:#F43F5E;--amber-400:#FBBF24;--amber-500:#F59E0B;--green-500:#22C55E;
+  --slate-300:#CBD5E1;--slate-400:#A8B8CC;--slate-500:#7B8CA0;--slate-600:#5C6B7F;
 }
-html { scroll-behavior:smooth; }
-section { scroll-margin-top: 56px; }
-body {
-  font-family:var(--font-sans);
-  background:#070714;
-  color:#EDF0F7;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-[data-reveal] {
-  opacity:0;
-  transform:translateY(18px);
-  transition:opacity .55s ease, transform .55s ease;
-}
-[data-reveal].visible {
-  opacity:1;
-  transform:translateY(0);
-}
+html{scroll-behavior:smooth}
+section{scroll-margin-top:56px}
+body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1.6;-webkit-font-smoothing:antialiased}
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+[data-reveal].visible{opacity:1;transform:translateY(0)}
+
 /* ── Nav ── */
-nav {
-  position:fixed;top:0;left:0;right:0;
-  z-index:100;
-  display:flex;align-items:center;
-  padding:0 32px;height:56px;
-  background:rgba(7,7,20,.85);
-  -webkit-backdrop-filter:blur(16px);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.nav-logo {
-  font-family:var(--font-serif);
-  font-size:20px;font-weight:300;font-style:italic;
-  color:#fff;letter-spacing:-.02em;
-  text-decoration:none;
-}
-.nav-links {
-  display:flex;align-items:center;gap:4px;
-  margin-left:40px;list-style:none;
-}
-.nav-links a, .nav-dropdown-trigger {
-  font-size:13px;font-weight:500;
-  color:var(--slate-400);
-  text-decoration:none;
-  padding:5px 12px;border-radius:6px;
-  transition:color .15s,background .15s;
-  cursor:pointer;
-}
-.nav-links a:hover, .nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:56px;background:rgba(7,7,20,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;color:#fff;letter-spacing:-.02em;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:40px;list-style:none}
+.nav-links a,.nav-dropdown-trigger{font-size:13px;font-weight:500;color:var(--slate-400);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .15s,background .15s;cursor:pointer}
+.nav-links a:hover,.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
 .nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
-/* Dropdown */
-.nav-dropdown {
-  position:relative;
-}
-.nav-dropdown-trigger {
-  display:inline-flex;align-items:center;gap:4px;
-  background:none;border:none;
-  font-family:var(--font-sans);
-}
-.nav-dropdown-trigger::after {
-  content:'▾';font-size:9px;opacity:.5;transition:transform .2s;
-}
-.nav-dropdown:hover .nav-dropdown-trigger::after { transform:rotate(180deg); }
-.nav-dropdown-menu {
-  display:none;
-  position:absolute;top:100%;left:0;
-  margin-top:8px;
-  min-width:200px;
-  background:rgba(13,13,32,.97);
-  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;
-  padding:8px;
-  box-shadow:0 16px 40px rgba(0,0,0,.5);
-}
-.nav-dropdown:hover .nav-dropdown-menu { display:block; }
-.nav-dropdown-menu a {
-  display:block;
-  padding:8px 14px;border-radius:6px;
-  font-size:13px;color:var(--slate-400);
-  text-decoration:none;
-  transition:color .15s,background .15s;
-}
-.nav-dropdown-menu a:hover { color:#fff;background:rgba(255,255,255,.06); }
-.nav-dropdown-menu a .dd-label {
-  display:block;font-weight:500;color:var(--slate-300);
-}
-.nav-dropdown-menu a .dd-sub {
-  display:block;font-size:11px;color:var(--slate-600);margin-top:1px;
-}
-.nav-cta {
-  margin-left:auto;
-  font-size:13px;font-weight:600;
-  padding:8px 18px;
-  background:var(--indigo-500);color:#fff;
-  border:none;border-radius:6px;cursor:pointer;
-  transition:background .2s,transform .15s;
-  text-decoration:none;
-}
+.nav-dropdown{position:relative}
+.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
+.nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
+.nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
+.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;margin-top:8px;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.nav-dropdown:hover .nav-dropdown-menu{display:block}
+.nav-dropdown-menu a{display:block;padding:8px 14px;border-radius:6px;font-size:13px;color:var(--slate-400);text-decoration:none;transition:color .15s,background .15s}
+.nav-dropdown-menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-dropdown-menu a .dd-label{display:block;font-weight:500;color:var(--slate-300)}
+.nav-dropdown-menu a .dd-sub{display:block;font-size:11px;color:var(--slate-600);margin-top:1px}
+.nav-cta{margin-left:auto;font-size:13px;font-weight:600;padding:8px 18px;background:var(--indigo-500);color:#fff;border:none;border-radius:6px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
-/* ── Mobile hamburger ── */
-.hamburger {
-  display:none;
-  background:none;border:none;cursor:pointer;padding:8px;
-  flex-direction:column;gap:5px;margin-left:auto;
-}
-.hamburger span {
-  display:block;width:22px;height:2px;background:#fff;border-radius:2px;
-  transition:transform .25s ease,opacity .2s ease;
-}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;margin-left:auto}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .2s ease}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 @media(max-width:768px){
   .hamburger{display:flex}
-  .nav-links{
-    display:none;position:fixed;top:56px;left:0;right:0;
-    flex-direction:column;background:rgba(7,7,20,.97);
-    -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-    padding:16px 24px;gap:4px;
-    border-bottom:1px solid rgba(255,255,255,.08);
-  }
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;flex-direction:column;background:rgba(7,7,20,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,.08)}
   .nav-links.open{display:flex}
-  .nav-links a, .nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}
+  .nav-links a,.nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}
   .nav-cta{display:none}
-  .nav-dropdown-menu {
-    position:static;margin-top:0;
-    background:transparent;border:none;
-    box-shadow:none;padding:0 0 0 16px;
-    display:block;
-    -webkit-backdrop-filter:none;backdrop-filter:none;
-  }
-  .nav-dropdown-trigger::after { display:none; }
+  .nav-dropdown-menu{position:static;margin-top:0;background:transparent;border:none;box-shadow:none;padding:0 0 0 16px;display:block;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .nav-dropdown-trigger::after{display:none}
 }
+
 /* ── Shared ── */
-section { padding:96px 24px; }
-.inner { max-width:1120px;margin:0 auto; }
-.section-eyebrow {
-  font-family:var(--font-mono);font-size:10px;font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;
-  color:var(--indigo-400);margin-bottom:16px;
-}
-.section-h2 {
-  font-family:var(--font-serif);
-  font-size:clamp(36px,5vw,56px);
-  font-weight:300;line-height:1.1;letter-spacing:-.03em;
-  color:#fff;margin-bottom:20px;
-}
-.section-h2 em { font-style:italic;color:var(--teal-300); }
-.section-lede {
-  font-size:17px;line-height:1.7;color:var(--slate-400);
-  max-width:600px;
-}
+section{padding:96px 24px}
+.inner{max-width:1120px;margin:0 auto}
+.section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
+.section-h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.section-h2 em{font-style:italic;color:var(--teal-300)}
+
 /* ── Hero ── */
-.hero {
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px 24px 80px;
-  position:relative;overflow:hidden;
-}
-.hero-bg {
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(71,82,245,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(14,165,141,.1) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(71,82,245,.08) 0%, transparent 60%);
-  pointer-events:none;
-}
-.hero-grid {
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
-  pointer-events:none;
-}
-.hero-eyebrow {
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-mono);font-size:11px;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--teal-300);
-  background:rgba(94,213,190,.08);
-  border:1px solid rgba(94,213,190,.2);
-  border-radius:100px;padding:6px 16px;
-  margin-bottom:32px;
-  position:relative;z-index:1;
-}
-.hero-eyebrow::before {
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:var(--teal-300);
-  animation:pulse 2s ease infinite;
-}
-@keyframes pulse {
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.5;transform:scale(.8)}
-}
-.hero h1 {
-  font-family:var(--font-serif);
-  font-size:clamp(40px,6vw,72px);
-  font-weight:300;line-height:1.1;
-  letter-spacing:-.03em;color:#fff;
-  margin-bottom:24px;
-  position:relative;z-index:1;
-  max-width:880px;
-}
-.hero h1 em {
-  font-style:italic;
-  background:linear-gradient(135deg, var(--indigo-300), var(--teal-300));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;color:transparent;
-}
-.hero-sub {
-  font-size:18px;font-weight:400;line-height:1.65;
-  color:var(--slate-400);
-  max-width:600px;margin:0 auto 48px;
-  position:relative;z-index:1;
-}
-.hero-actions {
-  display:flex;align-items:center;gap:16px;
-  position:relative;z-index:1;
-  flex-wrap:wrap;justify-content:center;
-}
-.btn-primary {
-  font-size:15px;font-weight:600;
-  padding:14px 28px;
-  background:var(--indigo-500);color:#fff;
-  border:none;border-radius:8px;cursor:pointer;
-  transition:background .2s,transform .15s,box-shadow .2s;
-  box-shadow:0 0 0 0 rgba(71,82,245,0);
-}
-.btn-primary:hover{
-  background:var(--indigo-400);transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(71,82,245,.3);
-}
-.btn-ghost {
-  font-size:15px;font-weight:500;
-  padding:14px 28px;
-  background:rgba(255,255,255,.06);color:#E8EAF2;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:8px;cursor:pointer;
-  transition:background .2s,transform .15s;
-  text-decoration:none;
-}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(71,82,245,.18) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(14,165,141,.1) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 20% 100%,rgba(71,82,245,.08) 0%,transparent 60%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);border-radius:100px;padding:6px 16px;margin-bottom:32px;position:relative;z-index:1}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-300);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;position:relative;z-index:1;max-width:880px}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--indigo-300),var(--teal-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--slate-400);max-width:600px;margin:0 auto 48px;position:relative;z-index:1}
+.hero-actions{display:flex;align-items:center;gap:16px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
+.btn-primary{font-size:15px;font-weight:600;padding:14px 28px;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 0 0 rgba(71,82,245,0);text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--indigo-400);transform:translateY(-2px);box-shadow:0 8px 24px rgba(71,82,245,.3)}
+.btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
-/* ── Paradox callout ── */
-.paradox-section { background:#0D0D22; }
-.paradox-body { font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px; }
-.paradox-body strong { color:#D4D8F0;font-weight:500; }
-.paradox-callout {
-  padding:28px 32px;
-  background:rgba(71,82,245,.05);
-  border:1px solid rgba(71,82,245,.15);
-  border-left:3px solid var(--indigo-500);
-  border-radius:12px;
-  font-family:var(--font-serif);font-size:19px;font-weight:300;
-  font-style:italic;line-height:1.55;
-  color:#D4D8F0;
+
+/* ── Sections ── */
+.paradox-section{background:#0D0D22}
+.paradox-content{max-width:680px}
+.paradox-body{font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px}
+.paradox-body strong{color:#D4D8F0;font-weight:500}
+.paradox-callout{padding:28px 32px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.15);border-left:3px solid var(--indigo-500);border-radius:12px;font-family:var(--font-serif);font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0}
+.how-section{background:linear-gradient(180deg,#09091A 0%,#0D0E2A 50%,#09091A 100%)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px;position:relative}
+.steps.four-col{grid-template-columns:repeat(4,1fr)}
+@media(max-width:768px){
+  .steps{grid-template-columns:1fr}
+  .steps.four-col{grid-template-columns:1fr}
 }
-/* ── Step card ── */
-.steps {
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:32px;margin-top:64px;position:relative;
-}
-@media(max-width:768px){.steps{grid-template-columns:1fr}}
-.steps.four-col {
-  grid-template-columns:repeat(4,1fr);
-}
-@media(max-width:1024px){.steps.four-col{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.steps.four-col{grid-template-columns:1fr}}
-.step-card {
-  padding:32px 28px;
-  background:#0D0D20;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-  transition:border-color .2s,box-shadow .2s;
-}
+.step-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
 .step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
-.step-n {
-  font-family:var(--font-mono);font-size:11px;font-weight:600;
-  letter-spacing:.12em;color:var(--slate-600);
-  margin-bottom:20px;
-}
-.step-title {
-  font-family:var(--font-serif);font-size:20px;font-weight:300;
-  color:#fff;letter-spacing:-.01em;margin-bottom:12px;
-}
-.step-body { font-size:13px;line-height:1.7;color:var(--slate-400); }
-/* ── CTA ── */
-.cta-section { background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%, rgba(71,82,245,.12) 0%, transparent 70%);padding:120px 24px; }
-.cta-h2 {
-  font-family:var(--font-serif);
-  font-size:clamp(36px,6vw,64px);
-  font-weight:300;line-height:1.1;letter-spacing:-.03em;
-  color:#fff;margin-bottom:20px;
-}
-.cta-h2 em { font-style:italic;color:var(--teal-300); }
-.cta-sub { font-size:17px;line-height:1.7;color:var(--slate-400);max-width:520px;margin-bottom:40px; }
-.cta-form { display:flex;gap:12px;flex-wrap:wrap;position:relative; }
-.cta-input {
-  flex:1;min-width:240px;
-  padding:14px 18px;
-  background:#0A0A1A;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;
-  font-family:var(--font-sans);font-size:14px;color:#fff;
-  outline:none;transition:border-color .2s;
-}
+.step-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
+.step-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.step-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.who-section{background:#0D0D22}
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px}
+@media(max-width:768px){.who-grid{grid-template-columns:1fr}}
+.who-card{padding:32px 28px;background:#0A0A1A;border:1px solid rgba(255,255,255,.07);border-radius:14px;text-decoration:none;display:block;transition:border-color .2s,box-shadow .2s,transform .2s}
+.who-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08);transform:translateY(-3px)}
+.who-card-icon{font-size:24px;margin-bottom:16px}
+.who-card-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:8px}
+.who-card-pain{font-size:13px;line-height:1.6;color:var(--slate-500);margin-bottom:12px}
+.who-card-value{font-size:13px;line-height:1.6;color:var(--teal-300)}
+.who-card-arrow{display:inline-flex;align-items:center;gap:4px;margin-top:16px;font-size:12px;font-weight:600;color:var(--indigo-300);font-family:var(--font-mono);letter-spacing:.04em}
+.cta-section{background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(71,82,245,.12) 0%,transparent 70%);padding:120px 24px}
+.cta-h2{font-family:var(--font-serif);font-size:clamp(36px,6vw,64px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.cta-h2 em{font-style:italic;color:var(--teal-300)}
+.cta-sub{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:520px;margin-bottom:40px}
+.cta-form{display:flex;gap:12px;flex-wrap:wrap;position:relative}
+.cta-input{flex:1;min-width:240px;padding:14px 18px;background:#0A0A1A;border:1px solid rgba(255,255,255,.1);border-radius:8px;font-family:var(--font-sans);font-size:14px;color:#fff;outline:none;transition:border-color .2s}
 .cta-input:focus{border-color:rgba(71,82,245,.5)}
 .cta-input::placeholder{color:var(--slate-600)}
-.cta-success {
-  font-family:var(--font-mono);font-size:15px;color:var(--green-500);
-  letter-spacing:.02em;padding:16px 0;
-  animation:fadeUp .4s ease both;
-}
-.cta-error {
-  font-size:13px;color:var(--rose-500);margin-top:10px;
-  font-family:var(--font-mono);letter-spacing:.02em;
-  animation:fadeUp .3s ease both;
-}
-.cta-input.invalid { border-color:var(--rose-500) !important; }
-.btn-primary:disabled { opacity:.6;cursor:not-allowed; }
-@keyframes fadeUp {
-  from { opacity:0;transform:translateY(8px); }
-  to { opacity:1;transform:translateY(0); }
-}
-/* ── Footer ── */
-footer {
-  padding:32px 40px;
-  border-top:1px solid rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-  background:#060612;
-}
-.footer-logo { font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff; }
-.footer-mono { font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em; }
-footer a { color:var(--indigo-400);text-decoration:none; }
-footer a:hover { color:var(--indigo-300); }
+.cta-success{font-family:var(--font-mono);font-size:15px;color:var(--green-500);letter-spacing:.02em;padding:16px 0;animation:fadeUp .4s ease both}
+.cta-error{font-size:13px;color:var(--rose-500);margin-top:10px;font-family:var(--font-mono);letter-spacing:.02em;animation:fadeUp .3s ease both}
+.cta-input.invalid{border-color:var(--rose-500)!important}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px}
+@media(max-width:768px){.benefits-grid{grid-template-columns:1fr}}
+.benefit-card{padding:32px 28px;background:#0A0A1A;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
+.benefit-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.benefit-icon{font-size:28px;margin-bottom:16px}
+.benefit-title{font-family:var(--font-serif);font-size:18px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.benefit-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-logo{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff}
+.footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
 </style>
 </head>
 <body>
-<!-- NAV -->
+<!-- NAV — pilot page specific -->
 <nav>
   <a href="/" class="nav-logo">FieldRules.</a>
-  <ul class="nav-links">
-    <li><a href="#reasoning">Week Zero</a></li>
-    <li><a href="#who">Who We're Looking For</a></li>
-    <li><a href="#benefits">What You Get</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li class="nav-dropdown">
-      <button class="nav-dropdown-trigger" type="button">For&hellip;</button>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#how">How It Works</a>
+    <a href="pilot.html" class="active">Pilot</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-trigger">For&hellip;</button>
       <div class="nav-dropdown-menu">
-        <a href="/for-product-managers">
-          <span class="dd-label">Product Managers</span>
-          <span class="dd-sub">Stop speccing from Slack threads</span>
-        </a>
-        <a href="/for-domain-experts">
-          <span class="dd-label">Domain Experts</span>
-          <span class="dd-sub">Your name goes on your judgment calls</span>
-        </a>
-        <a href="/for-engineers">
-          <span class="dd-label">Engineers</span>
-          <span class="dd-sub">Externalize hardcoded business logic</span>
-        </a>
-        <a href="/for-researchers">
-          <span class="dd-label">Researchers</span>
-          <span class="dd-sub">50 years of knowledge engineering, applied</span>
-        </a>
-        <a href="/for-ceos">
-          <span class="dd-label">CEOs</span>
-          <span class="dd-sub">Protect the reasoning before it walks out</span>
-        </a>
+        <a href="for-product-managers.html"><span class="dd-label">Product Managers</span><span class="dd-sub">Query the rule library before speccing</span></a>
+        <a href="for-domain-experts.html"><span class="dd-label">Domain Experts</span><span class="dd-sub">Your name goes on your judgment calls</span></a>
+        <a href="for-engineers.html"><span class="dd-label">Engineers</span><span class="dd-sub">Externalize hardcoded business logic</span></a>
+        <a href="for-researchers.html"><span class="dd-label">Researchers</span><span class="dd-sub">50 years of knowledge engineering, applied</span></a>
+        <a href="for-ceos.html"><span class="dd-label">CEOs</span><span class="dd-sub">The reasoning layer that compounds</span></a>
       </div>
-    </li>
-    <li><a href="/pilot" class="active">Pilot</a></li>
-  </ul>
-  <button class="hamburger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
-  <a href="#cta" class="nav-cta">Apply</a>
+    </div>
+  </div>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="#cta" class="nav-cta">Apply now</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-eyebrow" data-reveal>Pilot program · 3–5 teams</div>
+  <div class="hero-eyebrow" data-reveal>Be a founding partner</div>
   <h1 data-reveal>
-    We're selecting 3–5 teams to build the operational logic layer <em>alongside us.</em>
+    Build the human reasoning layer<br>
+    <em>for your AI decisions.</em>
   </h1>
   <p class="hero-sub" data-reveal>
-    You're not buying a product. You're shaping one. We're looking for teams where the gap between domain expertise and product decisions is already painful — and where someone cares enough to fix it.
+    We're working with a small number of teams to implement FieldRules from day one. If you're shipping AI features and need governance that doesn't feel like compliance, let's talk.
   </p>
   <div class="hero-actions" data-reveal>
-    <button class="btn-primary" type="button">Apply for the pilot</button>
-    <a href="#benefits" class="btn-ghost">See what you get →</a>
+    <a href="#cta" class="btn-primary">Apply to pilot</a>
+    <a href="#reasoning" class="btn-ghost">See what week zero looks like &rarr;</a>
   </div>
 </section>
 
-<!-- REASONING ADVANTAGE EVAL -->
+<!-- WEEK ZERO: REASONING -->
 <section class="paradox-section" id="reasoning">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>Week Zero</div>
-    <h2 class="section-h2" data-reveal>See the difference <em>before you commit.</em></h2>
-    <div style="max-width:680px;margin-top:40px;">
-      <p class="paradox-body" data-reveal>
-        Before any integration, before any code changes, we run a research-grade evaluation. We take a sample of your team's existing rules — from wikis, playbooks, Slack threads, wherever they live today — and compare them with and without BECAUSE reasoning.
-      </p>
-      <p class="paradox-body" data-reveal>
-        You see the quality gap in your own data. The difference between "escalate if urgent" and the real reasoning your senior specialist would give. That eval is yours to keep regardless of what happens next.
-      </p>
-      <div class="paradox-callout" data-reveal>
-        The Reasoning Advantage Eval shows you what your governance layer is missing — in your own domain, with your own rules — before you commit to anything.
-      </div>
+    <h2 class="section-h2" data-reveal>We start by <em>listening.</em></h2>
+    <div class="paradox-content">
+      <p class="paradox-body" data-reveal>Week one is not onboarding. It's us interviewing your team in depth about the judgment calls you're encoding into features right now.</p>
+      <p class="paradox-body" data-reveal>We sit with your product leads, your domain experts, your engineers. We read your Slack archives, your design docs, your Jira history. We ask the questions: <strong>&ldquo;What would go wrong if this rule didn't exist? Who carries this logic? What happens in a year if nobody remembers this call?&rdquo;</strong></p>
+      <div class="paradox-callout" data-reveal>By end of week zero, you have a library. By week two, you're enforcing it. By week four, you're reading from it instead of hardcoding.</div>
     </div>
   </div>
 </section>
 
-<!-- IDEAL PARTNERS -->
-<section style="background:#09091A;" id="who">
+<!-- WHO WE'RE LOOKING FOR -->
+<section class="who-section" id="who">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>Who We're Looking For</div>
-    <h2 class="section-h2" data-reveal>The pilot works best when <em>the pain is already real.</em></h2>
-    <div class="steps">
-      <div class="step-card" data-reveal>
-        <div class="step-n">YOU HAVE</div>
-        <div class="step-title">Domain experts whose judgment shapes the product</div>
-        <div class="step-body">CS leads, operations specialists, clinical experts — people who make judgment calls every day that deviate from the standard playbook because they know something it doesn't.</div>
+    <h2 class="section-h2" data-reveal>You're shipping AI this year.</h2>
+    <div class="who-grid">
+      <div class="who-card" data-reveal>
+        <div class="who-card-icon">🚀</div>
+        <div class="who-card-title">Shipping AI Soon</div>
+        <div class="who-card-pain">You have models or agents deployed this quarter, not six months from now.</div>
+        <div class="who-card-value">Pilot slots are for teams executing right now, not planning.</div>
       </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">YOU FEEL</div>
-        <div class="step-title">The Slack-and-wait pattern</div>
-        <div class="step-body">PMs Slack a domain expert for business logic, wait hours for a half-complete answer, spec from it anyway. Engineers hardcode the result. Six weeks later, a customer hits the edge case.</div>
+      <div class="who-card" data-reveal>
+        <div class="who-card-icon">🧠</div>
+        <div class="who-card-title">Reasoning Exists</div>
+        <div class="who-card-pain">You have domain logic worth preserving—edge cases, judgment calls, business rules that shape decisions.</div>
+        <div class="who-card-value">We work best with teams that already know their reasoning is valuable.</div>
       </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">YOU KNOW</div>
-        <div class="step-title">AI is about to make this worse</div>
-        <div class="step-body">You're deploying or planning AI agents that will make decisions using your company's logic — and you know that logic isn't captured anywhere a model can read from.</div>
-      </div>
-    </div>
-    <p style="margin-top:40px;font-size:16px;line-height:1.75;color:var(--slate-400);">
-      Ideal partners have a PM team that ships features against domain expertise they can't verify — <strong style="color:#D4D8F0;">and knows it.</strong>
-    </p>
-  </div>
-</section>
-
-<!-- WHAT YOU GET -->
-<section class="paradox-section" id="benefits">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>Partner Benefits</div>
-    <h2 class="section-h2" data-reveal>Three things you get <em>that nobody else will.</em></h2>
-    <div class="steps">
-      <div class="step-card" data-reveal>
-        <div class="step-n">01</div>
-        <div class="step-title">Founder Access</div>
-        <div class="step-body">Direct line to Melanie throughout the pilot. Weekly syncs, async Slack, whatever cadence works. You're not talking to a CSM — you're talking to the person building the product.</div>
-      </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">02</div>
-        <div class="step-title">Priority Deployment</div>
-        <div class="step-body">Your team gets the product first. Your feedback shapes the roadmap directly. Features you need get built in the sprint they're requested, not added to a backlog.</div>
-      </div>
-      <div class="step-card" data-reveal>
-        <div class="step-n">03</div>
-        <div class="step-title">Shape the Product</div>
-        <div class="step-body">Your domain, your edge cases, your workflow becomes part of the product's DNA. Early partners don't just use FieldRules — they define what it becomes.</div>
+      <div class="who-card" data-reveal>
+        <div class="who-card-icon">👥</div>
+        <div class="who-card-title">Cross-functional Buy-in</div>
+        <div class="who-card-pain">You have stakeholders from product, engineering, and domain expertise who see the value of governance.</div>
+        <div class="who-card-value">This works with teams, not lone operators.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section style="background:#09091A;" id="how">
+<!-- PARTNER BENEFITS -->
+<section class="how-section" id="benefits">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>The Process</div>
-    <h2 class="section-h2" data-reveal>The pilot is four weeks. <em>Here's what happens.</em></h2>
+    <div class="section-eyebrow" data-reveal>As a Pilot Partner</div>
+    <h2 class="section-h2" data-reveal>You get to shape<br><em>what we build next.</em></h2>
+    <div class="benefits-grid">
+      <div class="benefit-card" data-reveal>
+        <div class="benefit-icon">⏱</div>
+        <div class="benefit-title">Direct access to the team</div>
+        <div class="benefit-body">Dedicated engineer, weekly sync, direct Slack channel with founders. You're not a test case—you're a collaborator.</div>
+      </div>
+      <div class="benefit-card" data-reveal>
+        <div class="benefit-icon">🔨</div>
+        <div class="benefit-title">Customized implementation</div>
+        <div class="benefit-body">We build the integration your stack needs, not a generic template. Your Slack flow, your API shape, your workflow.</div>
+      </div>
+      <div class="benefit-card" data-reveal>
+        <div class="benefit-icon">📊</div>
+        <div class="benefit-title">First-look at new features</div>
+        <div class="benefit-body">You shape the product roadmap. New capabilities roll out to you first. Your feedback directly influences what every future customer gets.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROCESS -->
+<section class="how-section" id="process">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>How This Works</div>
+    <h2 class="section-h2" data-reveal>Four phases. <em>30 days.</em></h2>
     <div class="steps four-col">
       <div class="step-card" data-reveal>
-        <div class="step-n">WEEK 0</div>
-        <div class="step-title">Reasoning Advantage Eval</div>
-        <div class="step-body">We assess your existing rule base. You see the quality gap in your own data.</div>
+        <div class="step-n">Week 1</div>
+        <div class="step-title">Listening</div>
+        <div class="step-body">We conduct structured interviews with your team to surface the reasoning you're encoding right now. By end of week, you have a first rule library.</div>
       </div>
       <div class="step-card" data-reveal>
-        <div class="step-n">WEEK 1</div>
-        <div class="step-title">First Rules Confirmed</div>
-        <div class="step-body">Your domain experts start confirming rules. 45 seconds per rule. BECAUSE field always blank until they write it.</div>
+        <div class="step-n">Week 2</div>
+        <div class="step-title">Integration</div>
+        <div class="step-body">We build the connection between FieldRules and your stack. Slack notifications, API flows, your team's workflow—not ours.</div>
       </div>
       <div class="step-card" data-reveal>
-        <div class="step-n">WEEK 2–3</div>
-        <div class="step-title">Library Takes Shape</div>
-        <div class="step-body">PMs start querying. Engineers start reading. The feedback loop activates.</div>
+        <div class="step-n">Week 3</div>
+        <div class="step-title">Enforcement</div>
+        <div class="step-body">Your AI systems start reading from the rule library. One feature at a time. Your experts approve what ships; your model obeys what they write.</div>
       </div>
       <div class="step-card" data-reveal>
-        <div class="step-n">WEEK 4</div>
-        <div class="step-title">Reasoning Health Score</div>
-        <div class="step-body">You see the metric. Real reasoning vs. form-filling. The board-level number that proves the layer is alive.</div>
+        <div class="step-n">Week 4</div>
+        <div class="step-title">Measurement</div>
+        <div class="step-body">We measure reasoning health and governance signal. You see what changed in team behavior, decision velocity, and AI consistency.</div>
       </div>
     </div>
-    <p style="margin-top:40px;font-size:16px;line-height:1.75;color:var(--slate-400);">
-      Want the full mechanism? <a href="/#how" style="color:var(--indigo-400);text-decoration:none;">See how it works on the homepage →</a>
-    </p>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="inner">
-    <h2 class="cta-h2" data-reveal>
-      You're not buying a product. <em>You're shaping one.</em>
-    </h2>
-    <p class="cta-sub" data-reveal>
-      We're onboarding 3–5 teams for the first cohort. If the timing is right, apply below and we'll set up a conversation within 48 hours.
-    </p>
-    <form class="cta-form" data-reveal id="cta-form" autocomplete="on">
+    <h2 class="cta-h2" data-reveal>Ready to shape the future<br><em>of AI governance?</em></h2>
+    <p class="cta-sub" data-reveal>We're selective about pilot partners because we build custom, not templated. Tell us about your team, your reasoning, and your timeline.</p>
+    <form class="cta-form" data-reveal id="cta-form" action="https://formsubmit.co/melanie.gower@gmail.com" method="POST" autocomplete="on">
+      <input type="hidden" name="_subject" value="FieldRules Pilot — New application">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <input class="cta-input" type="email" name="email" placeholder="your@company.com" required>
       <button class="btn-primary" type="submit">Apply now</button>
     </form>
-    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>
-      No deck. No procurement process. We start with a conversation.
-    </p>
+    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>We'll follow up within 48 hours. One conversation at a time.</p>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">Pilot Program · v1 · April 2026</div>
-  <div class="footer-mono"><a href="/">← Back to homepage</a></div>
+  <div class="footer-mono">fieldrules-site-v3 · pilot</div>
+  <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
 <script>
-try {
-  document.addEventListener('DOMContentLoaded', function() {
-    // ── Reveal on scroll ──
-    var els = document.querySelectorAll('[data-reveal]');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    els.forEach(function(el) { observer.observe(el); });
-
-    // ── Smooth scroll helper ──
-    var NAV_HEIGHT = 56;
-    function scrollTo(id) {
-      var target = id === 'top' ? document.body : document.getElementById(id);
-      if (!target) return;
-      var top = id === 'top' ? 0 : target.getBoundingClientRect().top + window.pageYOffset - NAV_HEIGHT;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-    }
-
-    // ── Intercept anchor clicks ──
-    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-      a.addEventListener('click', function(e) {
-        e.preventDefault();
-        var id = this.getAttribute('href').slice(1) || 'top';
-        scrollTo(id);
-        // Close mobile menu if open
-        var hamburger = document.querySelector('.hamburger');
-        var navLinksEl = document.querySelector('.nav-links');
-        if (hamburger && navLinksEl) {
-          hamburger.classList.remove('open');
-          navLinksEl.classList.remove('open');
-        }
-      });
-    });
-
-    // ── Hero CTA button ──
-    var heroPrimary = document.querySelector('.hero-actions .btn-primary');
-    if (heroPrimary) heroPrimary.addEventListener('click', function() { scrollTo('cta'); });
-
-    // ── Nav CTA ──
-    var navCta = document.querySelector('.nav-cta');
-    if (navCta) {
-      navCta.addEventListener('click', function(e) { e.preventDefault(); scrollTo('cta'); });
-    }
-
-    // ── Hamburger menu ──
-    var hamburger = document.querySelector('.hamburger');
-    var navLinksEl = document.querySelector('.nav-links');
-    if (hamburger && navLinksEl) {
-      hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('open');
-        navLinksEl.classList.toggle('open');
-      });
-    }
-
-    // ── Form submission via FormSubmit.co ──
-    var ctaForm = document.getElementById('cta-form');
-    if (ctaForm) {
-      ctaForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var input = ctaForm.querySelector('.cta-input');
-        var btn = ctaForm.querySelector('.btn-primary');
-        var email = input.value.trim();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          input.classList.add('invalid');
-          input.addEventListener('input', function() { input.classList.remove('invalid'); }, { once: true });
-          return;
-        }
-        var btnText = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Sending…';
-        fetch('https://formsubmit.co/ajax/melanie.gower@gmail.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            email: email,
-            _subject: 'FieldRules Pilot — New application',
-            _template: 'table'
-          })
-        })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          if (data.success === 'true' || data.success === true) {
-            ctaForm.innerHTML = '<p class="cta-success">✓ Application received. We'll be in touch within 48 hours.</p>';
-          } else { throw new Error('fail'); }
-        })
-        .catch(function() {
-          btn.disabled = false;
-          btn.textContent = btnText;
-          var old = ctaForm.querySelector('.cta-error');
-          if (old) old.remove();
-          var err = document.createElement('p');
-          err.className = 'cta-error';
-          err.textContent = 'Something went wrong — try again or email melanie.gower@gmail.com';
-          ctaForm.appendChild(err);
-          setTimeout(function() { err.remove(); }, 6000);
-        });
-      });
-    }
-  });
-} catch(e) { console.warn('FieldRules pilot init error:', e); }
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('[data-reveal]');
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){obs.observe(el)});
+  var ham=document.querySelector('.hamburger');
+  var links=document.querySelector('.nav-links');
+  if(ham&&links){ham.addEventListener('click',function(){ham.classList.toggle('open');links.classList.toggle('open')})}
+  var form=document.getElementById('cta-form');
+  if(form){form.addEventListener('submit',function(e){
+    var email=form.querySelector('input[name="email"]');
+    if(!email.value||!email.value.includes('@')){e.preventDefault();email.classList.add('invalid');return}
+    email.classList.remove('invalid');
+  })}
+});
 </script>
 </body>
 </html>
