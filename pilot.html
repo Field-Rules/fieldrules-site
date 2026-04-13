@@ -1,10 +1,17 @@
+<!-- VERSION: fieldrules-pilot-v1.html | April 13, 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="FieldRules Pilot — 30-day structured program to make AI decisions auditable with domain-expert reasoning rules.">
-<title>FieldRules | Pilot Program — fieldrules-pilot-v2.1</title>
+<title>FieldRules Pilot Program — Shape the operational logic layer</title>
+<meta name="description" content="Join 3–5 teams shaping FieldRules. Partner-forward, not procurement. You're not buying a product — you're building one alongside us.">
+<meta property="og:title" content="FieldRules Pilot Program">
+<meta property="og:description" content="Join 3–5 teams shaping FieldRules. You're not buying a product — you're building one.">
+<meta property="og:image" content="https://fieldrules.ai/og-pilot.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fieldrules.ai/pilot">
+<link rel="canonical" href="https://fieldrules.ai/pilot">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -33,8 +40,8 @@
   --slate-500:#7B8CA0;
   --slate-600:#5C6B7F;
 }
-html { scroll-behavior:smooth;overflow-x:hidden; }
-section { scroll-margin-top:56px; }
+html { scroll-behavior:smooth; }
+section { scroll-margin-top: 56px; }
 body {
   font-family:var(--font-sans);
   background:#070714;
@@ -51,7 +58,6 @@ body {
   opacity:1;
   transform:translateY(0);
 }
-
 /* ── Nav ── */
 nav {
   position:fixed;top:0;left:0;right:0;
@@ -73,15 +79,56 @@ nav {
   display:flex;align-items:center;gap:4px;
   margin-left:40px;list-style:none;
 }
-.nav-links a {
+.nav-links a, .nav-dropdown-trigger {
   font-size:13px;font-weight:500;
   color:var(--slate-400);
   text-decoration:none;
   padding:5px 12px;border-radius:6px;
   transition:color .15s,background .15s;
+  cursor:pointer;
 }
-.nav-links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-links a:hover, .nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
 .nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
+/* Dropdown */
+.nav-dropdown {
+  position:relative;
+}
+.nav-dropdown-trigger {
+  display:inline-flex;align-items:center;gap:4px;
+  background:none;border:none;
+  font-family:var(--font-sans);
+}
+.nav-dropdown-trigger::after {
+  content:'▾';font-size:9px;opacity:.5;transition:transform .2s;
+}
+.nav-dropdown:hover .nav-dropdown-trigger::after { transform:rotate(180deg); }
+.nav-dropdown-menu {
+  display:none;
+  position:absolute;top:100%;left:0;
+  margin-top:8px;
+  min-width:200px;
+  background:rgba(13,13,32,.97);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  padding:8px;
+  box-shadow:0 16px 40px rgba(0,0,0,.5);
+}
+.nav-dropdown:hover .nav-dropdown-menu { display:block; }
+.nav-dropdown-menu a {
+  display:block;
+  padding:8px 14px;border-radius:6px;
+  font-size:13px;color:var(--slate-400);
+  text-decoration:none;
+  transition:color .15s,background .15s;
+}
+.nav-dropdown-menu a:hover { color:#fff;background:rgba(255,255,255,.06); }
+.nav-dropdown-menu a .dd-label {
+  display:block;font-weight:500;color:var(--slate-300);
+}
+.nav-dropdown-menu a .dd-sub {
+  display:block;font-size:11px;color:var(--slate-600);margin-top:1px;
+}
 .nav-cta {
   margin-left:auto;
   font-size:13px;font-weight:600;
@@ -92,40 +139,41 @@ nav {
   text-decoration:none;
 }
 .nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
+/* ── Mobile hamburger ── */
 .hamburger {
-  display:none;flex-direction:column;gap:5px;cursor:pointer;
-  margin-left:auto;background:none;border:none;padding:4px;
+  display:none;
+  background:none;border:none;cursor:pointer;padding:8px;
+  flex-direction:column;gap:5px;margin-left:auto;
 }
 .hamburger span {
-  width:20px;height:2px;background:#EDF0F7;border-radius:1px;
-  transition:all .3s;display:block;
+  display:block;width:22px;height:2px;background:#fff;border-radius:2px;
+  transition:transform .25s ease,opacity .2s ease;
 }
-.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 @media(max-width:768px){
+  .hamburger{display:flex}
   .nav-links{
-    position:fixed;top:56px;left:0;right:0;
-    background:rgba(7,7,20,.97);
-    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-    flex-direction:column;padding:24px;gap:8px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    display:none;margin-left:0;
+    display:none;position:fixed;top:56px;left:0;right:0;
+    flex-direction:column;background:rgba(7,7,20,.97);
+    -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+    padding:16px 24px;gap:4px;
+    border-bottom:1px solid rgba(255,255,255,.08);
   }
   .nav-links.open{display:flex}
-  .hamburger{display:flex}
-  .nav-cta.desktop-cta{display:none}
-  .nav-links .mobile-cta{
-    display:block;margin-top:8px;
-    text-align:center;padding:12px 18px;
-    background:var(--indigo-500);color:#fff;
-    border-radius:6px;font-size:14px;font-weight:600;
-    text-decoration:none;
+  .nav-links a, .nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}
+  .nav-cta{display:none}
+  .nav-dropdown-menu {
+    position:static;margin-top:0;
+    background:transparent;border:none;
+    box-shadow:none;padding:0 0 0 16px;
+    display:block;
+    -webkit-backdrop-filter:none;backdrop-filter:none;
   }
-  nav{padding:0 16px}
+  .nav-dropdown-trigger::after { display:none; }
 }
-
-/* ── Common ── */
+/* ── Shared ── */
 section { padding:96px 24px; }
 .inner { max-width:1120px;margin:0 auto; }
 .section-eyebrow {
@@ -142,9 +190,8 @@ section { padding:96px 24px; }
 .section-h2 em { font-style:italic;color:var(--teal-300); }
 .section-lede {
   font-size:17px;line-height:1.7;color:var(--slate-400);
-  max-width:640px;
+  max-width:600px;
 }
-
 /* ── Hero ── */
 .hero {
   min-height:100vh;
@@ -156,9 +203,9 @@ section { padding:96px 24px; }
 .hero-bg {
   position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(71,82,245,.12) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(94,213,190,.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(71,82,245,.06) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(71,82,245,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(14,165,141,.1) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(71,82,245,.08) 0%, transparent 60%);
   pointer-events:none;
 }
 .hero-grid {
@@ -174,17 +221,16 @@ section { padding:96px 24px; }
   display:inline-flex;align-items:center;gap:8px;
   font-family:var(--font-mono);font-size:11px;font-weight:500;
   letter-spacing:.12em;text-transform:uppercase;
-  color:var(--indigo-400);
-  background:rgba(71,82,245,.08);
-  border:1px solid rgba(71,82,245,.2);
+  color:var(--teal-300);
+  background:rgba(94,213,190,.08);
+  border:1px solid rgba(94,213,190,.2);
   border-radius:100px;padding:6px 16px;
   margin-bottom:32px;
   position:relative;z-index:1;
 }
 .hero-eyebrow::before {
-  content:'';
-  width:6px;height:6px;border-radius:50%;
-  background:var(--indigo-400);
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--teal-300);
   animation:pulse 2s ease infinite;
 }
 @keyframes pulse {
@@ -193,21 +239,21 @@ section { padding:96px 24px; }
 }
 .hero h1 {
   font-family:var(--font-serif);
-  font-size:clamp(44px,6.5vw,78px);
-  font-weight:300;line-height:1.05;
+  font-size:clamp(40px,6vw,72px);
+  font-weight:300;line-height:1.1;
   letter-spacing:-.03em;color:#fff;
   margin-bottom:24px;
   position:relative;z-index:1;
-  max-width:900px;
+  max-width:880px;
 }
 .hero h1 em {
   font-style:italic;
-  background:linear-gradient(135deg, var(--indigo-400), var(--teal-300));
+  background:linear-gradient(135deg, var(--indigo-300), var(--teal-300));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   background-clip:text;color:transparent;
 }
 .hero-sub {
-  font-size:18px;font-weight:400;line-height:1.6;
+  font-size:18px;font-weight:400;line-height:1.65;
   color:var(--slate-400);
   max-width:600px;margin:0 auto 48px;
   position:relative;z-index:1;
@@ -223,7 +269,7 @@ section { padding:96px 24px; }
   background:var(--indigo-500);color:#fff;
   border:none;border-radius:8px;cursor:pointer;
   transition:background .2s,transform .15s,box-shadow .2s;
-  text-decoration:none;display:inline-block;
+  box-shadow:0 0 0 0 rgba(71,82,245,0);
 }
 .btn-primary:hover{
   background:var(--indigo-400);transform:translateY(-2px);
@@ -232,1078 +278,403 @@ section { padding:96px 24px; }
 .btn-ghost {
   font-size:15px;font-weight:500;
   padding:14px 28px;
-  background:rgba(255,255,255,.06);color:#EDF0F7;
+  background:rgba(255,255,255,.06);color:#E8EAF2;
   border:1px solid rgba(255,255,255,.12);
   border-radius:8px;cursor:pointer;
   transition:background .2s,transform .15s;
-  text-decoration:none;display:inline-block;
+  text-decoration:none;
 }
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
-
-/* ── Cards (generic) ── */
-.card-grid {
-  display:grid;gap:20px;margin-top:56px;
-}
-.card-grid-2 { grid-template-columns:repeat(2,1fr); }
-.card-grid-3 { grid-template-columns:repeat(3,1fr); }
-@media(max-width:768px){.card-grid-2,.card-grid-3{grid-template-columns:1fr}}
-.card {
-  padding:28px 24px;
-  background:#0D0D20;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:12px;
-  transition:border-color .2s,transform .2s;
-}
-.card:hover { border-color:rgba(71,82,245,.25);transform:translateY(-3px); }
-.card-title {
-  font-family:var(--font-serif);font-size:18px;font-weight:300;
-  color:#fff;margin-bottom:12px;letter-spacing:-.01em;
-}
-.card-text {
-  font-size:14px;line-height:1.7;color:var(--slate-400);
-}
-
-/* ── Product mockup: Rule card ── */
-.preview-section { background:#060612; }
-.preview-grid {
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:32px;margin-top:56px;align-items:start;
-}
-@media(max-width:768px){.preview-grid{grid-template-columns:1fr}}
-
-.rule-card {
-  background:#0D0D20;
-  border:1px solid rgba(34,197,94,.2);
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 80px rgba(34,197,94,.05);
-}
-.rule-card-header {
-  padding:16px 24px;
-  background:rgba(34,197,94,.06);
-  border-bottom:1px solid rgba(34,197,94,.12);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.rule-card-label {
-  font-family:var(--font-mono);font-size:10px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--green-500);
-  display:flex;align-items:center;gap:8px;
-}
-.rule-card-label::before {
-  content:'';width:7px;height:7px;border-radius:50%;
-  background:var(--green-500);
-  box-shadow:0 0 8px rgba(34,197,94,.5);
-}
-.rule-badge {
-  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 10px;border-radius:100px;
-  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);
-  color:var(--green-500);
-}
-.rule-badge-amber {
-  background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);
-  color:var(--amber-400);
-}
-.rule-card-body { padding:24px; }
-.rule-row {
-  display:grid;grid-template-columns:100px 1fr;
-  gap:8px;padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,.05);
-  align-items:baseline;
-}
-.rule-row:last-child { border-bottom:none; }
-.rule-label {
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--slate-500);
-}
-.rule-value { font-size:13px;color:#D4D8F0;line-height:1.5; }
-.rule-value-tag {
-  font-family:var(--font-mono);font-size:11px;
-  padding:3px 8px;border-radius:4px;
-  display:inline-block;
-}
-.tag-domain {
-  background:rgba(71,82,245,.08);border:1px solid rgba(71,82,245,.15);
-  color:var(--indigo-300);
-}
-.tag-if {
-  background:rgba(94,213,190,.06);border:1px solid rgba(94,213,190,.12);
-  color:var(--teal-300);
-}
-.rule-keyword {
-  font-family:var(--font-mono);font-size:11px;font-weight:600;
-  letter-spacing:.06em;
-  display:inline-block;margin-right:6px;
-}
-.kw-then { color:var(--indigo-300); }
-.kw-because { color:var(--green-500); }
-.rule-meta {
-  padding:16px 24px;
-  background:rgba(255,255,255,.02);
-  border-top:1px solid rgba(255,255,255,.05);
-  display:flex;align-items:center;gap:12px;
-  font-size:11px;color:var(--slate-500);
-}
-.rule-avatar {
-  width:22px;height:22px;border-radius:50%;
-  background:linear-gradient(135deg, var(--indigo-500), var(--teal-500));
-  font-size:9px;font-weight:700;color:#fff;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-
-/* ── Product mockup: Slack card ── */
-.slack-card {
-  background:#0D0D20;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:16px;
-  overflow:hidden;
-}
-.slack-header {
-  padding:14px 20px;
-  background:rgba(255,255,255,.03);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;align-items:center;gap:10px;
-}
-.slack-channel {
-  font-family:var(--font-mono);font-size:12px;font-weight:600;
-  color:var(--slate-400);
-}
-.slack-tag {
-  font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  padding:2px 8px;border-radius:100px;
-  background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.2);
-  color:var(--indigo-300);margin-left:auto;
-}
-.slack-body { padding:20px; }
-.slack-app-name {
-  font-size:13px;font-weight:600;color:#fff;
-  display:flex;align-items:center;gap:8px;
-  margin-bottom:12px;
-}
-.slack-app-badge {
-  font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  padding:1px 6px;border-radius:3px;
-  background:rgba(71,82,245,.15);color:var(--indigo-300);
-}
-.slack-time {
-  font-size:11px;color:var(--slate-600);margin-left:auto;font-weight:400;
-}
-.slack-msg {
-  font-size:13px;line-height:1.6;color:var(--slate-400);
-  margin-bottom:16px;
-}
-.slack-msg strong { color:#D4D8F0; }
-.slack-rule-preview {
-  padding:16px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-  border-left:3px solid var(--indigo-400);
-  border-radius:8px;
-  margin-bottom:16px;
-}
-.slack-rule-if {
-  font-size:12px;color:var(--slate-400);line-height:1.6;
-  margin-bottom:8px;
-}
-.slack-because-label {
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--green-500);margin-bottom:6px;
-}
-.slack-because-input {
-  width:100%;padding:10px 12px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(34,197,94,.2);
-  border-radius:6px;
-  font-size:12px;font-style:italic;color:var(--slate-400);
-  margin-bottom:16px;
-}
-.slack-actions {
-  display:flex;gap:8px;
-}
-.slack-btn {
-  font-size:12px;font-weight:600;
-  padding:8px 16px;border-radius:6px;
-  border:none;cursor:pointer;
-  transition:transform .15s;
-}
-.slack-btn:hover { transform:translateY(-1px); }
-.slack-btn-confirm {
-  background:var(--green-500);color:#fff;
-}
-.slack-btn-edit {
-  background:rgba(255,255,255,.08);color:var(--slate-300);
-  border:1px solid rgba(255,255,255,.1);
-}
-.slack-btn-dismiss {
-  background:rgba(255,255,255,.04);color:var(--slate-500);
-  border:1px solid rgba(255,255,255,.06);
-}
-
-/* ── Product mockup: Mini dashboard ── */
-.dash-section { background:#0D0D22; }
-.dash-card {
-  margin-top:56px;
-  max-width:680px;
-  background:#0D0D20;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:16px;
-  overflow:hidden;
-}
-.dash-header {
-  padding:16px 24px;
-  background:rgba(255,255,255,.03);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;align-items:center;gap:12px;
-}
-.dash-title {
-  font-family:var(--font-mono);font-size:11px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--slate-400);
-}
-.dash-tabs {
-  display:flex;gap:4px;margin-left:auto;
-}
-.dash-tab {
-  font-size:10px;font-weight:500;
-  padding:4px 10px;border-radius:4px;
-  color:var(--slate-500);
-}
-.dash-tab.active { background:rgba(255,255,255,.06);color:#fff; }
-.dash-body { padding:24px; }
-.dash-stats {
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:16px;margin-bottom:24px;
-}
-.dash-stat {
-  text-align:center;
-  padding:16px 8px;
-  background:rgba(255,255,255,.02);
-  border:1px solid rgba(255,255,255,.05);
-  border-radius:10px;
-}
-.dash-stat-value {
-  font-family:var(--font-serif);font-size:28px;font-weight:300;font-style:italic;
-  line-height:1.1;margin-bottom:4px;
-}
-.dash-stat-label {
-  font-size:10px;font-weight:500;color:var(--slate-500);
-}
-.dash-activity-title {
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--slate-500);margin-bottom:12px;
-}
-.dash-activity-item {
-  display:flex;align-items:center;gap:10px;
-  padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,.04);
-  font-size:12px;color:var(--slate-400);
-}
-.dash-activity-item:last-child { border-bottom:none; }
-.dash-dot {
-  width:6px;height:6px;border-radius:50%;flex-shrink:0;
-}
-.dot-green { background:var(--green-500); }
-.dot-amber { background:var(--amber-400); }
-.dot-indigo { background:var(--indigo-400); }
-.dot-rose { background:var(--rose-500); }
-.dash-activity-time {
-  margin-left:auto;font-size:10px;color:var(--slate-600);
-  font-family:var(--font-mono);
-}
-
-/* ── Challenge section ── */
-.challenge-section { background:#0D0D22; }
-
-/* ── How it works section ── */
-.how-section { background:#09091A; }
-
-/* ── Timeline section ── */
-.timeline-section { background:#0D0D22; }
-.timeline {
-  margin-top:56px;
-  display:grid;gap:2px;
-  border-radius:14px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.07);
-}
-.timeline-item {
-  padding:32px 28px;
-  display:grid;grid-template-columns:56px 1fr;
-  gap:20px;align-items:start;
-  transition:background .2s;
-}
-.timeline-item:hover { background:rgba(255,255,255,.02); }
-.timeline-item:nth-child(1){background:#0D0D20}
-.timeline-item:nth-child(2){background:#0E0E22}
-.timeline-item:nth-child(3){background:#0D1620}
-.timeline-item:nth-child(4){background:rgba(34,197,94,.04)}
-.timeline-num {
-  width:40px;height:40px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-mono);font-size:14px;font-weight:600;
-  color:var(--indigo-400);
-  background:rgba(71,82,245,.08);
+/* ── Paradox callout ── */
+.paradox-section { background:#0D0D22; }
+.paradox-body { font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px; }
+.paradox-body strong { color:#D4D8F0;font-weight:500; }
+.paradox-callout {
+  padding:28px 32px;
+  background:rgba(71,82,245,.05);
   border:1px solid rgba(71,82,245,.15);
+  border-left:3px solid var(--indigo-500);
+  border-radius:12px;
+  font-family:var(--font-serif);font-size:19px;font-weight:300;
+  font-style:italic;line-height:1.55;
+  color:#D4D8F0;
 }
-.timeline-item:nth-child(3) .timeline-num{color:var(--teal-300);background:rgba(94,213,190,.08);border-color:rgba(94,213,190,.15)}
-.timeline-item:nth-child(4) .timeline-num{color:var(--green-500);background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.15)}
-.timeline-body {}
-.timeline-title {
-  font-family:var(--font-serif);font-size:20px;font-weight:300;
-  color:#fff;margin-bottom:4px;letter-spacing:-.02em;
+/* ── Step card ── */
+.steps {
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:32px;margin-top:64px;position:relative;
 }
-.timeline-subtitle {
-  font-family:var(--font-mono);font-size:10px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--slate-500);margin-bottom:12px;
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
+.steps.four-col {
+  grid-template-columns:repeat(4,1fr);
 }
-.timeline-desc {
-  font-size:14px;line-height:1.7;color:var(--slate-400);
-}
-
-/* ── Metrics section ── */
-.metrics-section { background:#09091A; }
-.metrics-grid {
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:12px;margin-top:56px;
-}
-@media(max-width:768px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.metrics-grid{grid-template-columns:1fr}}
-.metric-card {
-  padding:32px 20px;
+@media(max-width:1024px){.steps.four-col{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.steps.four-col{grid-template-columns:1fr}}
+.step-card {
+  padding:32px 28px;
   background:#0D0D20;
   border:1px solid rgba(255,255,255,.07);
-  border-radius:12px;
-  text-align:center;
-  transition:border-color .2s;
+  border-radius:14px;
+  transition:border-color .2s,box-shadow .2s;
 }
-.metric-card:hover { border-color:rgba(71,82,245,.25); }
-.metric-value {
-  font-family:var(--font-serif);
-  font-size:clamp(32px,4vw,48px);
-  font-weight:300;font-style:italic;
-  line-height:1.1;margin-bottom:8px;
+.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.step-n {
+  font-family:var(--font-mono);font-size:11px;font-weight:600;
+  letter-spacing:.12em;color:var(--slate-600);
+  margin-bottom:20px;
 }
-.mv-indigo { color:var(--indigo-400); }
-.mv-teal { color:var(--teal-300); }
-.mv-green { color:var(--green-500); }
-.mv-amber { color:var(--amber-400); }
-.metric-label {
-  font-size:13px;font-weight:500;color:var(--slate-400);
+.step-title {
+  font-family:var(--font-serif);font-size:20px;font-weight:300;
+  color:#fff;letter-spacing:-.01em;margin-bottom:12px;
 }
-
-/* ── Success criteria section ── */
-.criteria-section { background:#0D0D22; }
-
-/* ── Team section ── */
-.team-section { background:#09091A; }
-
-/* ── After section ── */
-.after-section { background:#0D0D22; }
-
-/* ── CTA form ── */
-.cta-section {
-  background:#060612;
-  padding:120px 24px;
-}
+.step-body { font-size:13px;line-height:1.7;color:var(--slate-400); }
+/* ── CTA ── */
+.cta-section { background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%, rgba(71,82,245,.12) 0%, transparent 70%);padding:120px 24px; }
 .cta-h2 {
   font-family:var(--font-serif);
-  font-size:clamp(36px,5vw,56px);
+  font-size:clamp(36px,6vw,64px);
   font-weight:300;line-height:1.1;letter-spacing:-.03em;
-  color:#fff;text-align:center;margin-bottom:16px;
+  color:#fff;margin-bottom:20px;
 }
 .cta-h2 em { font-style:italic;color:var(--teal-300); }
-.cta-sub {
-  font-size:17px;line-height:1.7;color:var(--slate-400);
-  max-width:560px;margin:0 auto 48px;text-align:center;
-}
-.cta-form {
-  max-width:480px;margin:0 auto;
-}
-.cta-form-row {
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-}
-@media(max-width:480px){.cta-form-row{grid-template-columns:1fr}}
-.cta-input,.cta-textarea {
-  width:100%;
-  padding:14px 16px;margin-bottom:12px;
-  background:rgba(255,255,255,.04);
+.cta-sub { font-size:17px;line-height:1.7;color:var(--slate-400);max-width:520px;margin-bottom:40px; }
+.cta-form { display:flex;gap:12px;flex-wrap:wrap;position:relative; }
+.cta-input {
+  flex:1;min-width:240px;
+  padding:14px 18px;
+  background:#0A0A1A;
   border:1px solid rgba(255,255,255,.1);
   border-radius:8px;
-  color:#EDF0F7;
-  font-family:var(--font-sans);font-size:14px;
-  transition:border-color .2s;
+  font-family:var(--font-sans);font-size:14px;color:#fff;
+  outline:none;transition:border-color .2s;
 }
-.cta-input::placeholder,.cta-textarea::placeholder { color:var(--slate-600); }
-.cta-input:focus,.cta-textarea:focus { outline:none;border-color:var(--indigo-500); }
-.cta-textarea { min-height:100px;resize:vertical; }
-.cta-submit {
-  width:100%;padding:14px;margin-top:4px;
-  background:var(--indigo-500);color:#fff;
-  border:none;border-radius:8px;cursor:pointer;
-  font-family:var(--font-sans);font-size:15px;font-weight:600;
-  transition:background .2s,transform .15s,box-shadow .2s;
+.cta-input:focus{border-color:rgba(71,82,245,.5)}
+.cta-input::placeholder{color:var(--slate-600)}
+.cta-success {
+  font-family:var(--font-mono);font-size:15px;color:var(--green-500);
+  letter-spacing:.02em;padding:16px 0;
+  animation:fadeUp .4s ease both;
 }
-.cta-submit:hover{
-  background:var(--indigo-400);transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(71,82,245,.3);
+.cta-error {
+  font-size:13px;color:var(--rose-500);margin-top:10px;
+  font-family:var(--font-mono);letter-spacing:.02em;
+  animation:fadeUp .3s ease both;
 }
-.form-msg {
-  text-align:center;margin-top:16px;font-size:14px;
-  min-height:20px;
+.cta-input.invalid { border-color:var(--rose-500) !important; }
+.btn-primary:disabled { opacity:.6;cursor:not-allowed; }
+@keyframes fadeUp {
+  from { opacity:0;transform:translateY(8px); }
+  to { opacity:1;transform:translateY(0); }
 }
-.form-msg.success { color:var(--green-500); }
-.form-msg.error { color:var(--rose-500); }
-
 /* ── Footer ── */
 footer {
-  padding:32px 24px;
+  padding:32px 40px;
   border-top:1px solid rgba(255,255,255,.06);
-  text-align:center;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  background:#060612;
 }
-.footer-logo {
-  font-family:var(--font-serif);
-  font-size:18px;font-weight:300;font-style:italic;
-  color:rgba(255,255,255,.35);margin-bottom:8px;
-}
-.footer-mono {
-  font-family:var(--font-mono);font-size:10px;font-weight:500;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--slate-600);
-}
-
-/* ── Desktop: hide mobile-only CTA ── */
-.mobile-cta-wrapper{display:none}
-@media(max-width:768px){.mobile-cta-wrapper{display:block;width:100%}}
-
-/* ── Mobile QA pass — v2.1 fixes ── */
-@media(max-width:768px){
-  /* Reduce section padding */
-  section{padding:64px 20px}
-  .cta-section{padding:80px 20px}
-
-  /* Hero: tighten top padding */
-  .hero{min-height:auto;padding:96px 20px 56px}
-
-  /* Dashboard stats: 1-col on mobile */
-  .dash-stats{grid-template-columns:1fr;gap:10px}
-
-  /* Dashboard header: stack on mobile */
-  .dash-header{flex-direction:column;align-items:flex-start;gap:8px}
-  .dash-tabs{margin-left:0}
-
-  /* Rule row: stack label above value */
-  .rule-row{grid-template-columns:1fr;gap:4px}
-  .rule-label{margin-bottom:0}
-
-  /* Slack buttons: wrap */
-  .slack-actions{flex-wrap:wrap}
-
-  /* Timeline: tighter on narrow */
-  .timeline-item{padding:24px 20px;grid-template-columns:40px 1fr;gap:14px}
-  .timeline-num{width:34px;height:34px;font-size:12px;border-radius:8px}
-  .timeline-title{font-size:17px}
-
-  /* Metrics grid already handled, but tighten gap */
-  .metrics-grid{gap:10px}
-
-  /* Cards: tighten */
-  .card{padding:22px 18px}
-  .card-title{font-size:16px}
-
-  /* Lede text: full width */
-  .section-lede{max-width:100%}
-
-  /* Preview grid gap */
-  .preview-grid{gap:20px}
-
-  /* Rule card body padding */
-  .rule-card-body{padding:18px}
-  .rule-meta{padding:12px 18px;flex-wrap:wrap;gap:8px}
-
-  /* Slack card padding */
-  .slack-body{padding:16px}
-  .slack-rule-preview{padding:12px}
-
-  /* Dashboard card responsive */
-  .dash-card{max-width:100%}
-  .dash-body{padding:18px}
-  .dash-stat{padding:12px 8px}
-  .dash-stat-value{font-size:22px}
-}
-
-/* ── Extra narrow (≤400px) ── */
-@media(max-width:400px){
-  .hero h1{font-size:36px}
-  .section-h2{font-size:30px}
-  .cta-h2{font-size:30px}
-  .hero-actions{flex-direction:column;width:100%}
-  .hero-actions .btn-primary,
-  .hero-actions .btn-ghost{width:100%;text-align:center}
-  .metric-value{font-size:28px}
-  .dash-stats{grid-template-columns:1fr}
-}
+.footer-logo { font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff; }
+.footer-mono { font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em; }
+footer a { color:var(--indigo-400);text-decoration:none; }
+footer a:hover { color:var(--indigo-300); }
 </style>
 </head>
 <body>
-
-<!-- ═══════════════════════════════════════════════════
-     NAV
-     ═══════════════════════════════════════════════════ -->
+<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">FieldRules.</a>
+  <a href="/" class="nav-logo">FieldRules.</a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="for-engineers.html">For Engineers</a></li>
-    <li><a href="for-domain-experts.html">For Experts</a></li>
-    <li><a href="for-researchers.html">For Researchers</a></li>
-    <li><a href="for-investors.html">For Investors</a></li>
-    <li><a href="for-pms.html">For PMs</a></li>
-    <li><a href="pilot.html" style="color:var(--teal-300);">Pilot</a></li>
-    <li class="mobile-cta-wrapper"><a href="#cta" class="mobile-cta">Request Access</a></li>
+    <li><a href="#reasoning">Week Zero</a></li>
+    <li><a href="#who">Who We're Looking For</a></li>
+    <li><a href="#benefits">What You Get</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-trigger" type="button">For&hellip;</button>
+      <div class="nav-dropdown-menu">
+        <a href="/for-product-managers">
+          <span class="dd-label">Product Managers</span>
+          <span class="dd-sub">Stop speccing from Slack threads</span>
+        </a>
+        <a href="/for-domain-experts">
+          <span class="dd-label">Domain Experts</span>
+          <span class="dd-sub">Your name goes on your judgment calls</span>
+        </a>
+        <a href="/for-engineers">
+          <span class="dd-label">Engineers</span>
+          <span class="dd-sub">Externalize hardcoded business logic</span>
+        </a>
+        <a href="/for-researchers">
+          <span class="dd-label">Researchers</span>
+          <span class="dd-sub">50 years of knowledge engineering, applied</span>
+        </a>
+        <a href="/for-ceos">
+          <span class="dd-label">CEOs</span>
+          <span class="dd-sub">Protect the reasoning before it walks out</span>
+        </a>
+      </div>
+    </li>
+    <li><a href="/pilot" class="active">Pilot</a></li>
   </ul>
-  <a href="#cta" class="nav-cta desktop-cta">Request Access</a>
-  <button class="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="#cta" class="nav-cta">Apply</a>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════
-     1. HERO
-     ═══════════════════════════════════════════════════ -->
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-eyebrow" data-reveal>30-day structured pilot</div>
-  <h1 data-reveal>Make AI <em>auditable.</em></h1>
+  <div class="hero-eyebrow" data-reveal>Pilot program · 3–5 teams</div>
+  <h1 data-reveal>
+    We're selecting 3–5 teams to build the operational logic layer <em>alongside us.</em>
+  </h1>
   <p class="hero-sub" data-reveal>
-    Join our pilot program to explore how domain-expert reasoning rules can govern AI systems with unprecedented transparency and control.
+    You're not buying a product. You're shaping one. We're looking for teams where the gap between domain expertise and product decisions is already painful — and where someone cares enough to fix it.
   </p>
   <div class="hero-actions" data-reveal>
-    <a href="#cta" class="btn-primary">Start your pilot</a>
-    <a href="#timeline" class="btn-ghost">See the timeline</a>
+    <button class="btn-primary" type="button">Apply for the pilot</button>
+    <a href="#benefits" class="btn-ghost">See what you get →</a>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     2. THE CHALLENGE
-     ═══════════════════════════════════════════════════ -->
-<section class="challenge-section">
+<!-- REASONING ADVANTAGE EVAL -->
+<section class="paradox-section" id="reasoning">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>The challenge</div>
-    <h2 class="section-h2" data-reveal>Why your organization <em>needs this.</em></h2>
-    <p class="section-lede" data-reveal>
-      AI systems make increasingly critical decisions, yet organizations struggle to understand why those decisions are made. FieldRules solves this by capturing domain expert reasoning as IF/THEN/BECAUSE rules — creating unprecedented auditability, control, and trust.
-    </p>
-    <div class="card-grid card-grid-2" data-reveal>
-      <div class="card">
-        <div class="card-title">The problem</div>
-        <div class="card-text">
-          Black-box AI systems make high-stakes decisions without explanation. Regulatory pressure, stakeholder concerns, and internal governance gaps demand better solutions.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">The opportunity</div>
-        <div class="card-text">
-          By encoding domain expert knowledge as versioned rules, you gain complete visibility into AI behavior, improve decision quality, and demonstrate governance to regulators.
-        </div>
+    <div class="section-eyebrow" data-reveal>Week Zero</div>
+    <h2 class="section-h2" data-reveal>See the difference <em>before you commit.</em></h2>
+    <div style="max-width:680px;margin-top:40px;">
+      <p class="paradox-body" data-reveal>
+        Before any integration, before any code changes, we run a research-grade evaluation. We take a sample of your team's existing rules — from wikis, playbooks, Slack threads, wherever they live today — and compare them with and without BECAUSE reasoning.
+      </p>
+      <p class="paradox-body" data-reveal>
+        You see the quality gap in your own data. The difference between "escalate if urgent" and the real reasoning your senior specialist would give. That eval is yours to keep regardless of what happens next.
+      </p>
+      <div class="paradox-callout" data-reveal>
+        The Reasoning Advantage Eval shows you what your governance layer is missing — in your own domain, with your own rules — before you commit to anything.
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     3. HOW IT WORKS
-     ═══════════════════════════════════════════════════ -->
-<section class="how-section">
+<!-- IDEAL PARTNERS -->
+<section style="background:#09091A;" id="who">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>How it works</div>
-    <h2 class="section-h2" data-reveal>Three steps to <em>auditable AI.</em></h2>
-    <p class="section-lede" data-reveal>
-      FieldRules transforms domain expertise into auditable AI governance through a simple three-step process.
+    <div class="section-eyebrow" data-reveal>Who We're Looking For</div>
+    <h2 class="section-h2" data-reveal>The pilot works best when <em>the pain is already real.</em></h2>
+    <div class="steps">
+      <div class="step-card" data-reveal>
+        <div class="step-n">YOU HAVE</div>
+        <div class="step-title">Domain experts whose judgment shapes the product</div>
+        <div class="step-body">CS leads, operations specialists, clinical experts — people who make judgment calls every day that deviate from the standard playbook because they know something it doesn't.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">YOU FEEL</div>
+        <div class="step-title">The Slack-and-wait pattern</div>
+        <div class="step-body">PMs Slack a domain expert for business logic, wait hours for a half-complete answer, spec from it anyway. Engineers hardcode the result. Six weeks later, a customer hits the edge case.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">YOU KNOW</div>
+        <div class="step-title">AI is about to make this worse</div>
+        <div class="step-body">You're deploying or planning AI agents that will make decisions using your company's logic — and you know that logic isn't captured anywhere a model can read from.</div>
+      </div>
+    </div>
+    <p style="margin-top:40px;font-size:16px;line-height:1.75;color:var(--slate-400);">
+      Ideal partners have a PM team that ships features against domain expertise they can't verify — <strong style="color:#D4D8F0;">and knows it.</strong>
     </p>
-    <div class="card-grid card-grid-3" data-reveal>
-      <div class="card">
-        <div class="card-title">Capture rules</div>
-        <div class="card-text">
-          Work with your domain experts to define IF/THEN/BECAUSE rules that express their reasoning. Each rule captures the logic, the context, and the human judgment behind decisions.
-        </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="paradox-section" id="benefits">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Partner Benefits</div>
+    <h2 class="section-h2" data-reveal>Three things you get <em>that nobody else will.</em></h2>
+    <div class="steps">
+      <div class="step-card" data-reveal>
+        <div class="step-n">01</div>
+        <div class="step-title">Founder Access</div>
+        <div class="step-body">Direct line to Melanie throughout the pilot. Weekly syncs, async Slack, whatever cadence works. You're not talking to a CSM — you're talking to the person building the product.</div>
       </div>
-      <div class="card">
-        <div class="card-title">Version &amp; audit</div>
-        <div class="card-text">
-          Every rule is versioned, timestamped, and linked to the expert who created it. Track changes, compare versions, and maintain a complete audit trail of governance decisions.
-        </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">02</div>
+        <div class="step-title">Priority Deployment</div>
+        <div class="step-body">Your team gets the product first. Your feedback shapes the roadmap directly. Features you need get built in the sprint they're requested, not added to a backlog.</div>
       </div>
-      <div class="card">
-        <div class="card-title">Govern AI</div>
-        <div class="card-text">
-          Apply your rules to AI systems in production. FieldRules ensures decisions align with expert reasoning, catching drift and enabling rapid course correction.
-        </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">03</div>
+        <div class="step-title">Shape the Product</div>
+        <div class="step-body">Your domain, your edge cases, your workflow becomes part of the product's DNA. Early partners don't just use FieldRules — they define what it becomes.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     3b. WHAT YOU'LL SEE — Rule Card + Slack Card
-     ═══════════════════════════════════════════════════ -->
-<section class="preview-section">
+<!-- HOW IT WORKS -->
+<section style="background:#09091A;" id="how">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>What you'll see</div>
-    <h2 class="section-h2" data-reveal>Rules with <em>real reasoning.</em></h2>
-    <p class="section-lede" data-reveal>
-      Every rule your pilot captures has a structured IF/THEN/BECAUSE format, confirmed by the domain expert who owns the judgment call. Here's what they look like in practice.
-    </p>
-    <div class="preview-grid">
-
-      <!-- Rule card -->
-      <div class="rule-card" data-reveal>
-        <div class="rule-card-header">
-          <div class="rule-card-label">Confirmed rule · Onboarding</div>
-          <span class="rule-badge">Active</span>
-        </div>
-        <div class="rule-card-body">
-          <div class="rule-row">
-            <div class="rule-label">Rule</div>
-            <div class="rule-value">
-              <span class="rule-value-tag tag-domain">RULE-014</span>
-            </div>
-          </div>
-          <div class="rule-row">
-            <div class="rule-label">IF</div>
-            <div class="rule-value">
-              Trial site submits first patient report within 14 days <span class="rule-value-tag tag-if">AND</span> coordinator headcount &lt; 3
-            </div>
-          </div>
-          <div class="rule-row">
-            <div class="rule-label">Then</div>
-            <div class="rule-value">
-              <span class="rule-keyword kw-then">THEN</span> Do not auto-advance to full onboarding. Assign dedicated specialist + schedule 48hr check-in.
-            </div>
-          </div>
-          <div class="rule-row">
-            <div class="rule-label">Because</div>
-            <div class="rule-value">
-              <span class="rule-keyword kw-because">BECAUSE</span> "Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care."
-            </div>
-          </div>
-          <div class="rule-row">
-            <div class="rule-label">Coverage</div>
-            <div class="rule-value" style="font-family:var(--font-mono);font-size:12px;color:var(--green-500);">91%</div>
-          </div>
-        </div>
-        <div class="rule-meta">
-          <div class="rule-avatar">JC</div>
-          <span>Jordan Chen · confirmed 2d ago</span>
-          <span style="margin-left:auto;font-family:var(--font-mono);font-size:10px;">v1.0</span>
-        </div>
+    <div class="section-eyebrow" data-reveal>The Process</div>
+    <h2 class="section-h2" data-reveal>The pilot is four weeks. <em>Here's what happens.</em></h2>
+    <div class="steps four-col">
+      <div class="step-card" data-reveal>
+        <div class="step-n">WEEK 0</div>
+        <div class="step-title">Reasoning Advantage Eval</div>
+        <div class="step-body">We assess your existing rule base. You see the quality gap in your own data.</div>
       </div>
-
-      <!-- Slack confirmation card -->
-      <div class="slack-card" data-reveal>
-        <div class="slack-header">
-          <div class="slack-channel"># ops-alerts</div>
-          <div class="slack-tag">Slack</div>
-        </div>
-        <div class="slack-body">
-          <div class="slack-app-name">
-            FieldRules
-            <span class="slack-app-badge">APP</span>
-            <span class="slack-time">2:14 PM</span>
-          </div>
-          <div class="slack-msg">
-            Hey Jordan — I flagged a rule pattern from ticket <strong>#4112</strong>. Does this match how you handle it?
-          </div>
-          <div class="slack-rule-preview">
-            <div class="slack-rule-if">
-              Trial site submits within 14 days <strong>AND</strong> coordinator headcount &lt; 3 <span class="rule-keyword kw-then">THEN</span> Hold auto-advance…
-            </div>
-          </div>
-          <div class="slack-because-label">BECAUSE — your words here</div>
-          <div class="slack-because-input">
-            Small sites go dark fast without personal attention — automation here signals we don't care…
-          </div>
-          <div class="slack-actions">
-            <button class="slack-btn slack-btn-confirm">✓ Confirm</button>
-            <button class="slack-btn slack-btn-edit">✎ Edit</button>
-            <button class="slack-btn slack-btn-dismiss">✕ Dismiss</button>
-          </div>
-        </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">WEEK 1</div>
+        <div class="step-title">First Rules Confirmed</div>
+        <div class="step-body">Your domain experts start confirming rules. 45 seconds per rule. BECAUSE field always blank until they write it.</div>
       </div>
-
+      <div class="step-card" data-reveal>
+        <div class="step-n">WEEK 2–3</div>
+        <div class="step-title">Library Takes Shape</div>
+        <div class="step-body">PMs start querying. Engineers start reading. The feedback loop activates.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">WEEK 4</div>
+        <div class="step-title">Reasoning Health Score</div>
+        <div class="step-body">You see the metric. Real reasoning vs. form-filling. The board-level number that proves the layer is alive.</div>
+      </div>
     </div>
+    <p style="margin-top:40px;font-size:16px;line-height:1.75;color:var(--slate-400);">
+      Want the full mechanism? <a href="/#how" style="color:var(--indigo-400);text-decoration:none;">See how it works on the homepage →</a>
+    </p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     4. PILOT TIMELINE
-     ═══════════════════════════════════════════════════ -->
-<section class="timeline-section" id="timeline">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>Our process</div>
-    <h2 class="section-h2" data-reveal>Your 4-week <em>pilot timeline.</em></h2>
-    <p class="section-lede" data-reveal>
-      A structured program designed to quickly demonstrate value and build internal buy-in.
-    </p>
-    <div class="timeline" data-reveal>
-      <div class="timeline-item">
-        <div class="timeline-num">1</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Discovery &amp; setup</div>
-          <div class="timeline-subtitle">Days 1–5</div>
-          <div class="timeline-desc">
-            Kickoff workshop with your team. Identify 2–3 high-impact decision points where AI governance matters most. Set up FieldRules instance and train domain experts on the rule-capture interface.
-          </div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-num">2</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Rule capture</div>
-          <div class="timeline-subtitle">Days 6–12</div>
-          <div class="timeline-desc">
-            Domain experts work with our team to formalize their reasoning into FieldRules. Capture 15–25 rules across your chosen decision points. Begin baseline measurement of current AI behavior.
-          </div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-num">3</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Integration &amp; testing</div>
-          <div class="timeline-subtitle">Days 13–19</div>
-          <div class="timeline-desc">
-            Integrate FieldRules with your AI systems. Run parallel testing: compare AI decisions against your rule set. Document gaps, edge cases, and areas for refinement.
-          </div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-num">4</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Measurement &amp; decision</div>
-          <div class="timeline-subtitle">Days 20–30</div>
-          <div class="timeline-desc">
-            Measure impact against success criteria. Present findings to leadership. Decide on next steps: expand to production, refine rules, or scale to additional domains.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     5. WHAT WE MEASURE
-     ═══════════════════════════════════════════════════ -->
-<section class="metrics-section">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>Outcomes</div>
-    <h2 class="section-h2" data-reveal>What we <em>measure.</em></h2>
-    <p class="section-lede" data-reveal>
-      Success is concrete and measurable. We track indicators that matter to your business.
-    </p>
-    <div class="metrics-grid" data-reveal>
-      <div class="metric-card">
-        <div class="metric-value mv-indigo">100%</div>
-        <div class="metric-label">Rule coverage</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value mv-teal">72h</div>
-        <div class="metric-label">Avg. rule audit time</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value mv-green">82%</div>
-        <div class="metric-label">AI / rule alignment</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value mv-amber">4/5</div>
-        <div class="metric-label">Expert satisfaction</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     5b. YOUR PILOT DASHBOARD
-     ═══════════════════════════════════════════════════ -->
-<section class="dash-section">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>Your dashboard</div>
-    <h2 class="section-h2" data-reveal>Track your pilot <em>in real time.</em></h2>
-    <p class="section-lede" data-reveal>
-      Your pilot dashboard shows rule coverage, reasoning quality, and team activity as it happens. No waiting for a weekly report.
-    </p>
-
-    <div class="dash-card" data-reveal>
-      <div class="dash-header">
-        <div class="dash-title">FieldRules · Pilot Dashboard</div>
-        <div class="dash-tabs">
-          <div class="dash-tab active">Overview</div>
-          <div class="dash-tab">Library</div>
-          <div class="dash-tab">Clusters</div>
-        </div>
-      </div>
-      <div class="dash-body">
-        <div class="dash-stats">
-          <div class="dash-stat">
-            <div class="dash-stat-value" style="color:var(--green-500);">23</div>
-            <div class="dash-stat-label">Confirmed rules</div>
-          </div>
-          <div class="dash-stat">
-            <div class="dash-stat-value" style="color:var(--indigo-400);">94%</div>
-            <div class="dash-stat-label">Reasoning coverage</div>
-          </div>
-          <div class="dash-stat">
-            <div class="dash-stat-value" style="color:var(--teal-300);">1,240</div>
-            <div class="dash-stat-label">AI decisions governed</div>
-          </div>
-        </div>
-        <div class="dash-activity-title">Recent activity</div>
-        <div class="dash-activity-item">
-          <span class="dash-dot dot-green"></span>
-          <span><strong style="color:#D4D8F0;">Jordan Chen</strong> confirmed RULE-023 · Escalation</span>
-          <span class="dash-activity-time">2d ago</span>
-        </div>
-        <div class="dash-activity-item">
-          <span class="dash-dot dot-rose"></span>
-          <span><strong style="color:#D4D8F0;">Conflict detected</strong> RULE-011 ↔ RULE-023 · overlapping triggers</span>
-          <span class="dash-activity-time">3d ago</span>
-        </div>
-        <div class="dash-activity-item">
-          <span class="dash-dot dot-amber"></span>
-          <span><strong style="color:#D4D8F0;">RULE-019</strong> flagged — missing reasoning from Alex Martinez</span>
-          <span class="dash-activity-time">5d ago</span>
-        </div>
-        <div class="dash-activity-item">
-          <span class="dash-dot dot-indigo"></span>
-          <span><strong style="color:#D4D8F0;">3 new candidate rules</strong> extracted from Zendesk #4110–4112</span>
-          <span class="dash-activity-time">5d ago</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     6. SUCCESS CRITERIA
-     ═══════════════════════════════════════════════════ -->
-<section class="criteria-section">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>Evaluation</div>
-    <h2 class="section-h2" data-reveal>Pilot success <em>criteria.</em></h2>
-    <p class="section-lede" data-reveal>
-      We've defined clear metrics to determine if this pilot is working for your organization.
-    </p>
-    <div class="card-grid card-grid-2" data-reveal>
-      <div class="card">
-        <div class="card-title">Governance effectiveness</div>
-        <div class="card-text">
-          At least 80% of AI decisions are explainable by captured rules. Clear gaps and edge cases are documented. Your team sees how rules improve decision quality.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Organizational adoption</div>
-        <div class="card-text">
-          Domain experts are actively using FieldRules. At least 2 additional teams express interest. Leadership sees value and approves expansion beyond the pilot scope.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Operational efficiency</div>
-        <div class="card-text">
-          Audit and governance tasks are faster. Rule versioning provides clear change history. Integrations with your AI systems work smoothly with no major rework required.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Risk &amp; compliance</div>
-        <div class="card-text">
-          Regulatory audits are easier with documented rule history. Bias and drift in AI decisions are measurable and addressable. You have concrete evidence of governance.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     7. WHO SHOULD PILOT
-     ═══════════════════════════════════════════════════ -->
-<section class="team-section">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>Your team</div>
-    <h2 class="section-h2" data-reveal>Who should <em>pilot with us.</em></h2>
-    <p class="section-lede" data-reveal>
-      The best pilots include stakeholders from these roles. You don't need all of them, but this mix delivers the fastest results.
-    </p>
-    <div class="card-grid card-grid-2" data-reveal>
-      <div class="card">
-        <div class="card-title">Domain experts</div>
-        <div class="card-text">
-          Your lending, underwriting, claims, or compliance experts. These are the people who understand why good decisions are made. They'll drive rule capture and validation.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">AI / ML engineers</div>
-        <div class="card-text">
-          The team building or operating AI systems. They'll handle integration, testing, and measurement. They benefit most from understanding how rules govern AI behavior.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Compliance &amp; risk</div>
-        <div class="card-text">
-          Regulatory and risk teams see immediate value in auditability. They'll help define success criteria and validate that rules meet governance requirements.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Leadership sponsor</div>
-        <div class="card-text">
-          A director or VP who can clear calendars, ensure resources, and champion the pilot internally. Pilots succeed when they have visible leadership support.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     8. WHAT HAPPENS AFTER
-     ═══════════════════════════════════════════════════ -->
-<section class="after-section">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>Next steps</div>
-    <h2 class="section-h2" data-reveal>What happens <em>after your pilot.</em></h2>
-    <p class="section-lede" data-reveal>
-      The pilot isn't the end — it's the beginning. After 30 days, your team will have data to decide what comes next.
-    </p>
-    <div class="card-grid card-grid-2" data-reveal>
-      <div class="card">
-        <div class="card-title">Production launch</div>
-        <div class="card-text">
-          The pilot proved value. You're ready to move FieldRules into production governance. We help you scale rule capture, set up continuous monitoring, and train your full team.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Expand &amp; refine</div>
-        <div class="card-text">
-          The concept works, but you want to refine your approach. We help you expand to additional decision domains, integrate with more AI systems, or improve rule coverage.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Learn &amp; iterate</div>
-        <div class="card-text">
-          The pilot surfaced gaps in your AI governance approach. You'll work with our team to iterate on your strategy, rules, and integrations before broader rollout.
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Evaluate later</div>
-        <div class="card-text">
-          You've validated the approach but timing or resources aren't right. No problem. Your rules, data, and learnings are preserved. You can resume at any time.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     9. CTA FORM
-     ═══════════════════════════════════════════════════ -->
+<!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="inner">
     <h2 class="cta-h2" data-reveal>
-      Start your <em>pilot.</em>
+      You're not buying a product. <em>You're shaping one.</em>
     </h2>
     <p class="cta-sub" data-reveal>
-      Fill out the form below and our team will be in touch within 24 hours to discuss your specific use case and confirm your pilot dates.
+      We're onboarding 3–5 teams for the first cohort. If the timing is right, apply below and we'll set up a conversation within 48 hours.
     </p>
-
-    <form class="cta-form" id="cta-form" data-reveal action="https://formsubmit.co/melanie.gower@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="FieldRules Pilot Interest — Pilot Page v2.1">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <div class="cta-form-row">
-        <input class="cta-input" type="text" name="name" placeholder="Your name" required>
-        <input class="cta-input" type="email" name="email" placeholder="you@company.com" required>
-      </div>
-      <input class="cta-input" type="text" name="company" placeholder="Company" required>
-      <input class="cta-input" type="text" name="role" placeholder="Your role" required>
-      <textarea class="cta-textarea" name="message" placeholder="Tell us about your use case (optional)"></textarea>
-      <button class="cta-submit" type="submit">Request pilot access</button>
-      <div class="form-msg" id="form-msg"></div>
+    <form class="cta-form" data-reveal id="cta-form" autocomplete="on">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <input class="cta-input" type="email" name="email" placeholder="your@company.com" required>
+      <button class="btn-primary" type="submit">Apply now</button>
     </form>
+    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>
+      No deck. No procurement process. We start with a conversation.
+    </p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">fieldrules-pilot-v2.1 · Pilot · April 2026</div>
+  <div class="footer-mono">Pilot Program · v1 · April 2026</div>
+  <div class="footer-mono"><a href="/">← Back to homepage</a></div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════
-     SCRIPTS
-     ═══════════════════════════════════════════════════ -->
 <script>
-// ── Data-reveal scroll animation ──
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObs.unobserve(e.target);
+try {
+  document.addEventListener('DOMContentLoaded', function() {
+    // ── Reveal on scroll ──
+    var els = document.querySelectorAll('[data-reveal]');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el) { observer.observe(el); });
+
+    // ── Smooth scroll helper ──
+    var NAV_HEIGHT = 56;
+    function scrollTo(id) {
+      var target = id === 'top' ? document.body : document.getElementById(id);
+      if (!target) return;
+      var top = id === 'top' ? 0 : target.getBoundingClientRect().top + window.pageYOffset - NAV_HEIGHT;
+      window.scrollTo({ top: top, behavior: 'smooth' });
     }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
-document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
 
-// ── Hamburger menu ──
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  navLinks.classList.toggle('open');
-});
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    navLinks.classList.remove('open');
-  });
-});
-
-// ── Smooth scroll for anchor links ──
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    const href = link.getAttribute('href');
-    if (href === '#') return;
-    const target = document.querySelector(href);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-// ── CTA form handler ──
-const ctaForm = document.getElementById('cta-form');
-const formMsg = document.getElementById('form-msg');
-ctaForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formData = new FormData(ctaForm);
-  try {
-    const res = await fetch(ctaForm.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
+    // ── Intercept anchor clicks ──
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = this.getAttribute('href').slice(1) || 'top';
+        scrollTo(id);
+        // Close mobile menu if open
+        var hamburger = document.querySelector('.hamburger');
+        var navLinksEl = document.querySelector('.nav-links');
+        if (hamburger && navLinksEl) {
+          hamburger.classList.remove('open');
+          navLinksEl.classList.remove('open');
+        }
+      });
     });
-    if (res.ok) {
-      formMsg.textContent = '✓ Thanks! We\'ll be in touch with pilot details.';
-      formMsg.className = 'form-msg success';
-      ctaForm.reset();
-    } else {
-      throw new Error('fail');
+
+    // ── Hero CTA button ──
+    var heroPrimary = document.querySelector('.hero-actions .btn-primary');
+    if (heroPrimary) heroPrimary.addEventListener('click', function() { scrollTo('cta'); });
+
+    // ── Nav CTA ──
+    var navCta = document.querySelector('.nav-cta');
+    if (navCta) {
+      navCta.addEventListener('click', function(e) { e.preventDefault(); scrollTo('cta'); });
     }
-  } catch (err) {
-    formMsg.textContent = 'Something went wrong. Please try again or email melanie.gower@gmail.com directly.';
-    formMsg.className = 'form-msg error';
-  }
-});
+
+    // ── Hamburger menu ──
+    var hamburger = document.querySelector('.hamburger');
+    var navLinksEl = document.querySelector('.nav-links');
+    if (hamburger && navLinksEl) {
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        navLinksEl.classList.toggle('open');
+      });
+    }
+
+    // ── Form submission via FormSubmit.co ──
+    var ctaForm = document.getElementById('cta-form');
+    if (ctaForm) {
+      ctaForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var input = ctaForm.querySelector('.cta-input');
+        var btn = ctaForm.querySelector('.btn-primary');
+        var email = input.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          input.classList.add('invalid');
+          input.addEventListener('input', function() { input.classList.remove('invalid'); }, { once: true });
+          return;
+        }
+        var btnText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        fetch('https://formsubmit.co/ajax/melanie.gower@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            _subject: 'FieldRules Pilot — New application',
+            _template: 'table'
+          })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.success === 'true' || data.success === true) {
+            ctaForm.innerHTML = '<p class="cta-success">✓ Application received. We'll be in touch within 48 hours.</p>';
+          } else { throw new Error('fail'); }
+        })
+        .catch(function() {
+          btn.disabled = false;
+          btn.textContent = btnText;
+          var old = ctaForm.querySelector('.cta-error');
+          if (old) old.remove();
+          var err = document.createElement('p');
+          err.className = 'cta-error';
+          err.textContent = 'Something went wrong — try again or email melanie.gower@gmail.com';
+          ctaForm.appendChild(err);
+          setTimeout(function() { err.remove(); }, 6000);
+        });
+      });
+    }
+  });
+} catch(e) { console.warn('FieldRules pilot init error:', e); }
 </script>
 </body>
 </html>

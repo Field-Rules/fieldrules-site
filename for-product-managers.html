@@ -1,11 +1,11 @@
-<!-- VERSION: fieldrules-for-researchers-v2.html | April 13, 2026 -->
+<!-- VERSION: fieldrules-for-product-managers-v3.html | April 13, 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>For Researchers — FieldRules</title>
-<meta name="description" content="The structured elicitation problem that 50 years of knowledge engineering never solved — applied to AI governance. FieldRules is a production implementation of that research.">
+<title>For Product Managers — FieldRules</title>
+<meta name="description" content="Stop speccing features against business logic you can't verify. FieldRules gives PMs a queryable rule library grounded in confirmed domain expertise.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
@@ -53,7 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 .hero h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;position:relative;z-index:1;max-width:880px}
 .hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--indigo-300),var(--teal-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--slate-400);max-width:640px;margin:0 auto 48px;position:relative;z-index:1}
+.hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--slate-400);max-width:600px;margin:0 auto 48px;position:relative;z-index:1}
 .hero-actions{display:flex;align-items:center;gap:16px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
 
 /* ── Buttons ── */
@@ -70,20 +70,18 @@ section{padding:96px 24px}
 .section-h2 em{font-style:italic;color:var(--teal-300)}
 .section-lede{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px}
 
-/* ── Content body ── */
-.content-body{font-size:17px;line-height:1.8;color:var(--slate-400);max-width:680px;margin-bottom:24px}
-.content-body strong{color:#D4D8F0;font-weight:500}
+/* ── The Pattern section ── */
+.pattern-section{background:#0D0D22}
+.pattern-body{font-size:17px;line-height:1.8;color:var(--slate-400);max-width:680px;margin-bottom:24px}
+.pattern-body strong{color:#D4D8F0;font-weight:500}
 
 /* ── Paradox callout ── */
 .paradox-callout{padding:28px 32px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.15);border-left:3px solid var(--indigo-500);border-radius:12px;font-family:var(--font-serif);font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0;max-width:680px}
 
-/* ── Step cards ── */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:64px}
-.step-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
-.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
-.step-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
-.step-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
-.step-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+/* ── Governance check section ── */
+.governance-section{background:#09091A}
+.governance-body{font-size:16px;line-height:1.75;color:var(--slate-400);max-width:680px;margin-bottom:24px}
+.governance-body strong{color:#D4D8F0;font-weight:500}
 
 /* ── Rule card ── */
 .rule-card-preview{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1);max-width:580px}
@@ -115,13 +113,15 @@ section{padding:96px 24px}
 .because-tooltip{display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);background:rgba(165,174,255,.08);border:1px solid rgba(165,174,255,.2);border-radius:100px;padding:3px 10px;opacity:0;animation:tooltipBlink 3.2s ease-in-out 1.8s infinite}
 @keyframes tooltipBlink{0%,25%,100%{opacity:0;transform:translateY(3px)}45%,75%{opacity:1;transform:translateY(0)}}
 
-/* ── Quality markers list ── */
-.marker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
-@media(max-width:640px){.marker-grid{grid-template-columns:1fr}}
-.marker-item{padding:16px 20px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:10px;display:flex;align-items:flex-start;gap:12px}
-.marker-num{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--indigo-400);min-width:24px;margin-top:2px}
-.marker-text{font-size:13px;line-height:1.6;color:var(--slate-400)}
-.marker-text strong{color:#D4D8F0;font-weight:500}
+/* ── Outcomes section ── */
+.outcomes-section{background:linear-gradient(180deg,#09091A 0%,#0D0E2A 50%,#09091A 100%)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
+.step-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
+.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.step-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
+.step-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.step-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
 
 /* ── RHS pitch ── */
 .rhs-pitch{padding:24px;background:rgba(94,213,190,.05);border:1px solid rgba(94,213,190,.15);border-radius:12px;font-family:var(--font-serif);font-size:17px;font-weight:300;font-style:italic;line-height:1.5;color:var(--teal-300);max-width:680px;margin-top:48px}
@@ -157,7 +157,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <li class="nav-dropdown">
       <button class="nav-dropdown-trigger" type="button">For&hellip;</button>
       <div class="nav-dropdown-menu">
-        <a href="/for-product-managers">
+        <a href="/for-product-managers" class="active">
           <span class="dd-label">Product Managers</span>
           <span class="dd-sub">Stop speccing from Slack threads</span>
         </a>
@@ -169,7 +169,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
           <span class="dd-label">Engineers</span>
           <span class="dd-sub">Externalize hardcoded business logic</span>
         </a>
-        <a href="/for-researchers" class="active">
+        <a href="/for-researchers">
           <span class="dd-label">Researchers</span>
           <span class="dd-sub">50 years of knowledge engineering, applied</span>
         </a>
@@ -189,138 +189,111 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-eyebrow" data-reveal>Knowledge engineering meets AI governance</div>
+  <div class="hero-eyebrow" data-reveal>The primary buyer page</div>
   <h1 data-reveal>
-    The structured elicitation problem that 50 years of knowledge engineering never solved — <em>applied to AI governance.</em>
+    You're speccing features against business logic <em>you can't verify.</em>
   </h1>
   <p class="hero-sub" data-reveal>
-    From Nisbett &amp; Wilson's confabulation finding (1977) to Lightman et al.'s process reward models (2023), the challenge has been the same: how do you get real reasoning out of experts' heads without distortion? FieldRules is a production implementation of that research.
+    The edge cases live in someone's head, in a Slack thread from six months ago, or in an if-statement an engineer wrote to approximate what CS told them in a ticket. There's no structured place to check. You ship and hope the logic is right.
   </p>
   <div class="hero-actions" data-reveal>
     <a class="btn-primary" href="#cta">Request early access</a>
-    <a class="btn-ghost" href="#confabulation">See the research</a>
+    <a class="btn-ghost" href="#pattern">See the pattern</a>
   </div>
 </section>
 
-<!-- CONFABULATION PROBLEM -->
-<section style="background:#0D0D22;padding:96px 24px" id="confabulation">
+<!-- THE PATTERN -->
+<section class="pattern-section" id="pattern">
   <div class="inner">
-    <p class="section-eyebrow" data-reveal>The core insight</p>
-    <h2 class="section-h2" data-reveal>Ask "why?" and you get a story — <em>not the instinct</em></h2>
-    <div class="content-body" data-reveal>
-      Direct "why" questions trigger post-hoc rationalization, not introspective access to the actual decision mechanism. This is the central finding of confabulation research: <strong>experts don't have reliable verbal access to their own decision processes</strong>.
+    <p class="section-eyebrow" data-reveal>The pattern you recognize</p>
+    <h2 class="section-h2" data-reveal>Every sprint, <em>the same thing happens</em></h2>
+    <div class="pattern-body" data-reveal>
+      You're writing a spec for a pricing exception handler. You know there are rules about when discounts require VP approval, but you don't know exactly what they are. So you <strong>Slack Jordan</strong>. She's in three customer calls. She replies four hours later with a paragraph that covers some of it.
     </div>
-    <div class="content-body" data-reveal>
-      Contrastive prompts — "what would go wrong if this rule didn't exist?" — activate a fundamentally different cognitive process. Instead of constructing a plausible narrative, the expert engages their actual operational mental model, identifying specific failure modes they've witnessed or anticipated.
+    <div class="pattern-body" data-reveal>
+      You spec from that paragraph, knowing it's incomplete. The engineer builds it. Six weeks later, a customer hits the edge case Jordan would have caught.
     </div>
     <div class="paradox-callout" data-reveal>
-      That single design choice — contrastive elicitation instead of direct justification — is the difference between compliance documentation and captured reasoning. It's the core of the BECAUSE field.
+      This is the gap FieldRules closes. Not by replacing Jordan — by making sure her expertise is structured, queryable, and available before you send work to engineering.
     </div>
   </div>
 </section>
 
-<!-- RESEARCH FOUNDATIONS -->
-<section style="background:#09091A;padding:96px 24px" id="foundations">
+<!-- PRE-BUILD GOVERNANCE CHECK -->
+<section class="governance-section" id="governance">
   <div class="inner">
-    <p class="section-eyebrow" data-reveal>Research foundations</p>
-    <h2 class="section-h2" data-reveal>Four traditions, <em>one architecture</em></h2>
-    <p class="section-lede" data-reveal style="margin-bottom:0">Each of these research threads addresses a piece of the elicitation problem. FieldRules integrates all four into a single production system.</p>
+    <p class="section-eyebrow" data-reveal>The pre-build governance check</p>
+    <h2 class="section-h2" data-reveal>Query the rule library <em>before you send work to engineering</em></h2>
+    <div class="governance-body" data-reveal>
+      FieldRules is where you check the operational logic before it becomes a ticket. Search the rule library for "pricing exception" and see every confirmed rule your team has authored — with the reasoning, the author, and the confirmation date.
+    </div>
+    <div class="governance-body" data-reveal>
+      When your query hits a gap — a situation where <strong>no rule exists</strong> — the right domain expert gets a live signal that their expertise is needed. Not a Slack DM you hope they see. A structured prompt, routed to the person whose judgment matters, surfaced at the moment it's relevant.
+    </div>
+    <div class="governance-body" data-reveal>
+      That's the <strong>two-way loop</strong>: your query creates the rule that didn't exist yet.
+    </div>
+  </div>
+</section>
+
+<!-- PM BECAUSE MOMENT -->
+<section style="background:#09091A;padding:96px 24px" id="because">
+  <div class="inner">
+    <p class="section-eyebrow" data-reveal>The BECAUSE moment</p>
+    <h2 class="section-h2" data-reveal>The reasoning Alex needs <em>to spec correctly</em></h2>
+    <p class="section-lede" data-reveal style="margin-bottom:48px">
+      This is a real rule about renewal pricing exceptions. The BECAUSE field explains <em>why</em> the 15% threshold exists — reasoning a PM needs to spec correctly and currently doesn't have access to.
+    </p>
+
+    <div class="rule-card-preview" data-reveal style="margin:0 auto">
+      <div class="rcp-header">
+        <div class="rcp-icon">💰</div>
+        <div class="rcp-meta"><strong>Renewal Pricing Exceptions</strong> &middot; Confirmed Apr 2026</div>
+      </div>
+      <div class="rcp-row-ifthen">
+        <div class="rcp-label rcp-when">WHEN</div>
+        <div class="rcp-val">Account requests a renewal discount above the standard 10% tier and the account manager flags it for approval</div>
+      </div>
+      <div class="rcp-row-ifthen">
+        <div class="rcp-label rcp-then">THEN</div>
+        <div class="rcp-val">Any discount above 15% requires VP-Finance sign-off before the quote is sent. Between 10–15%, CS lead can approve with documented rationale.</div>
+      </div>
+      <div class="rcp-row-because">
+        <div class="rcp-label rcp-because">BECAUSE</div>
+        <div class="rcp-val">Above 15%, the unit economics flip — the account becomes unprofitable in year 2 once support costs are loaded. We learned this the hard way with three enterprise accounts in Q3 2024 that renewed at 18–22% discounts and all churned within 14 months anyway. The discount didn't save them; it just delayed the conversation we should have had about fit.</div>
+        <div class="because-tooltip">← This is what makes the rule real</div>
+      </div>
+      <div class="rcp-footer">
+        <div class="rcp-author">
+          <div class="rcp-avatar">JR</div>
+          Jordan Rivera &middot; CS Lead
+        </div>
+        <div class="rcp-badge">Confirmed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT CHANGES -->
+<section class="outcomes-section" id="outcomes">
+  <div class="inner">
+    <p class="section-eyebrow" data-reveal>What changes for you</p>
+    <h2 class="section-h2" data-reveal>Three outcomes, <em>not three features</em></h2>
     <div class="steps" data-reveal>
       <div class="step-card">
-        <div class="step-n">01 &middot; CONTRASTIVE EXPLANATION</div>
-        <div class="step-title">Miller (2019), Lipton (1990)</div>
-        <div class="step-body">People explain decisions by contrasting them with alternatives that didn't happen. "What would go wrong?" outperforms "why?" because it activates the expert's actual mental model of failure modes, not a post-hoc narrative.</div>
+        <div class="step-n">01</div>
+        <div class="step-title">Specs grounded in confirmed logic</div>
+        <div class="step-body">Your specs are built on confirmed operational rules with named authors and documented reasoning — not approximations from a Slack thread you half-remember.</div>
       </div>
       <div class="step-card">
-        <div class="step-n">02 &middot; COGNITIVE TASK ANALYSIS</div>
-        <div class="step-title">Sullivan et al. (2014)</div>
-        <div class="step-body">Experts omit 71% of clinical knowledge steps during unprompted recall. The knowledge is there — it's just proceduralized below conscious access. Structured prompts recover what free recall cannot.</div>
+        <div class="step-n">02</div>
+        <div class="step-title">Edge cases surface before engineering builds</div>
+        <div class="step-body">When you query the rule library, gaps surface immediately. The right domain expert gets prompted. The edge case that would have shown up in production shows up in your spec instead.</div>
       </div>
       <div class="step-card">
-        <div class="step-n">03 &middot; PROCESS REWARD MODELS</div>
-        <div class="step-title">Lightman et al. (2023)</div>
-        <div class="step-body">Reasoning steps, not just answers, are what allow models to generalize. Process supervision outperforms outcome supervision. The BECAUSE field captures process — the reasoning chain behind the decision, not just the decision itself.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-n">04 &middot; ANTI-HABITUATION</div>
-        <div class="step-title">Smith, Ward &amp; Schumacher (1993)</div>
-        <div class="step-body">Example-based scaffolding produces conformity — the expertise reversal effect. Showing experts examples of "good" reasoning causes them to mimic the example instead of accessing their own. The BECAUSE field is always blank for this reason.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ACADEMIC VALIDATION -->
-<section style="background:linear-gradient(180deg,#09091A 0%,#0D0E2A 50%,#09091A 100%);padding:96px 24px" id="validation">
-  <div class="inner">
-    <p class="section-eyebrow" data-reveal>External validation</p>
-    <h2 class="section-h2" data-reveal>The academic terms map directly <em>to FieldRules architecture</em></h2>
-    <div class="steps" data-reveal>
-      <div class="step-card">
-        <div class="step-n">DECISION SHADOW</div>
-        <div class="step-title">Lore paper, arXiv 2603.15566</div>
-        <div class="step-body">The unrecorded reasoning behind operational decisions. Structurally identical to the BECAUSE field — the researchers described the concept; FieldRules built the capture mechanism.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-n">INSTITUTIONAL IMPEDANCE MISMATCH</div>
-        <div class="step-title">Knowledge Activation, arXiv 2603.14805</div>
-        <div class="step-body">The gap between where knowledge lives (experts' heads) and where it's needed (product decisions). The exact problem the rule library and semantic retrieval layer solve.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-n">BREX BENCHMARK</div>
-        <div class="step-title">arXiv 2505.18542v3</div>
-        <div class="step-body">409 documents, 2,855 rules. Proved that structuring business rules works at scale. FieldRules adds what the benchmark is missing: the elicitation mechanism that captures the reasoning behind the rules.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TEN QUALITY MARKERS -->
-<section style="background:#060612;padding:96px 24px" id="markers">
-  <div class="inner">
-    <p class="section-eyebrow" data-reveal>Quality instrumentation</p>
-    <h2 class="section-h2" data-reveal>Ten markers behind <em>the Reasoning Health Score</em></h2>
-    <p class="section-lede" data-reveal style="margin-bottom:0">The quality rubric that determines whether captured reasoning is genuine operational judgment or form-filling.</p>
-    <div class="marker-grid" data-reveal>
-      <div class="marker-item">
-        <div class="marker-num">01</div>
-        <div class="marker-text"><strong>Specificity</strong> — references concrete values, thresholds, or named entities rather than generalities</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">02</div>
-        <div class="marker-text"><strong>Causal mechanism</strong> — identifies the chain of events, not just the correlation</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">03</div>
-        <div class="marker-text"><strong>Counterfactual framing</strong> — explains what would happen if the rule didn't exist</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">04</div>
-        <div class="marker-text"><strong>Evidence citation</strong> — points to a specific incident, dataset, or observed pattern</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">05</div>
-        <div class="marker-text"><strong>Stakeholder impact</strong> — names who is affected and how</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">06</div>
-        <div class="marker-text"><strong>Falsifiability</strong> — states conditions under which the rule would no longer apply</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">07</div>
-        <div class="marker-text"><strong>Temporal context</strong> — references when the reasoning was formed or last validated</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">08</div>
-        <div class="marker-text"><strong>Exception awareness</strong> — acknowledges edge cases or boundary conditions</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">09</div>
-        <div class="marker-text"><strong>Confidence calibration</strong> — distinguishes certainty from hypothesis</div>
-      </div>
-      <div class="marker-item">
-        <div class="marker-num">10</div>
-        <div class="marker-text"><strong>Non-tautology</strong> — the BECAUSE adds information the IF/THEN doesn't already contain</div>
+        <div class="step-n">03</div>
+        <div class="step-title">Domain expertise has a permanent home</div>
+        <div class="step-body">Jordan's judgment calls don't live in a Slack thread that scrolls away. They live in a queryable, versioned library that your entire team can build from — and that survives when people leave.</div>
       </div>
     </div>
 
@@ -334,7 +307,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <section class="cta-section" id="cta">
   <div class="inner">
     <h2 class="cta-h2" data-reveal>
-      The research is clear.<br><em>The implementation is here.</em>
+      Stop speccing from Slack threads.<br><em>Request early access.</em>
     </h2>
     <p class="cta-sub" data-reveal>
       We're onboarding a small number of teams manually. One pilot customer at a time. If the timing is right for you, let's talk.
@@ -353,7 +326,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">For Researchers &middot; v2 &middot; April 2026</div>
+  <div class="footer-mono">For Product Managers &middot; v3 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
@@ -430,7 +403,7 @@ try {
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             email: email,
-            _subject: 'FieldRules \u2014 New signup (researchers page)',
+            _subject: 'FieldRules \u2014 New signup (PM page)',
             _template: 'table'
           })
         })
@@ -454,7 +427,7 @@ try {
       });
     }
   });
-} catch(e) { console.warn('FieldRules researchers page init error:', e); }
+} catch(e) { console.warn('FieldRules PM page init error:', e); }
 </script>
 </body>
 </html>

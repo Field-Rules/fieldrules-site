@@ -1,23 +1,19 @@
+<!-- VERSION: fieldrules-for-ceos-v1.html | April 13, 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: Public Marketing v10 — FieldRules -->
-<!-- nav-mode: in-page + audience dropdown -->
-<title>FieldRules — Your team's reasoning, governing every decision</title>
-<meta name="description" content="FieldRules captures the judgment calls your team carries — edge cases, instinct, hard-won logic — and structures it so every decision your product makes is governed by the people who know best.">
-<meta property="og:title" content="FieldRules — Your team's reasoning, governing every decision">
-<meta property="og:description" content="FieldRules captures the judgment calls your team carries and structures them so every AI decision your product makes is governed by the people who know best.">
-<meta property="og:image" content="https://fieldrules.ai/og-image.png">
+<title>FieldRules for CEOs — The reasoning layer that compounds</title>
+<meta name="description" content="Autonomous agents can replicate execution. They can't replicate judgment. FieldRules captures your team's operational reasoning — the layer that compounds instead of compresses.">
+<meta property="og:title" content="FieldRules for CEOs — Protect the reasoning before it walks out">
+<meta property="og:description" content="Autonomous agents can replicate execution. They can't replicate judgment. FieldRules captures your team's operational reasoning before it walks out the door.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://fieldrules.ai">
-<link rel="canonical" href="https://fieldrules.ai">
+<link rel="canonical" href="https://fieldrules.ai/for-ceos">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── Reset & base ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root {
   --font-sans:'DM Sans',sans-serif;
@@ -59,7 +55,6 @@ body {
   opacity:1;
   transform:translateY(0);
 }
-/* ── Nav ── */
 nav {
   position:fixed;top:0;left:0;right:0;
   z-index:100;
@@ -90,7 +85,6 @@ nav {
 }
 .nav-links a:hover, .nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
 .nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
-/* Dropdown */
 .nav-dropdown {
   position:relative;
 }
@@ -124,6 +118,7 @@ nav {
   transition:color .15s,background .15s;
 }
 .nav-dropdown-menu a:hover { color:#fff;background:rgba(255,255,255,.06); }
+.nav-dropdown-menu a.active { color:#fff;background:rgba(255,255,255,.08); }
 .nav-dropdown-menu a .dd-label {
   display:block;font-weight:500;color:var(--slate-300);
 }
@@ -140,7 +135,6 @@ nav {
   text-decoration:none;
 }
 .nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
-/* ── Mobile hamburger ── */
 .hamburger {
   display:none;
   background:none;border:none;cursor:pointer;padding:8px;
@@ -174,7 +168,6 @@ nav {
   }
   .nav-dropdown-trigger::after { display:none; }
 }
-/* ── Shared ── */
 section { padding:96px 24px; }
 .inner { max-width:1120px;margin:0 auto; }
 .section-eyebrow {
@@ -193,7 +186,6 @@ section { padding:96px 24px; }
   font-size:17px;line-height:1.7;color:var(--slate-400);
   max-width:600px;
 }
-/* ── Hero ── */
 .hero {
   min-height:100vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -286,113 +278,6 @@ section { padding:96px 24px; }
   text-decoration:none;
 }
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
-/* ── Rule card ── */
-.hero-preview {
-  margin-top:72px;
-  position:relative;z-index:1;
-  max-width:580px;width:100%;
-}
-.rule-card-preview {
-  background:#131628;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:12px;padding:24px;text-align:left;
-  box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1);
-}
-.rcp-header { display:flex;align-items:center;gap:10px;margin-bottom:20px; }
-.rcp-icon {
-  width:32px;height:32px;background:rgba(94,213,190,.1);
-  border:1px solid rgba(94,213,190,.2);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;font-size:14px;
-}
-.rcp-meta { font-size:11px;color:var(--slate-500);font-family:var(--font-mono); }
-.rcp-meta strong { color:var(--slate-300); }
-.rcp-label {
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;
-}
-.rcp-when { color:var(--amber-400); }
-.rcp-then { color:var(--teal-300); }
-.rcp-because { color:var(--indigo-300); }
-.rcp-row { margin-bottom:14px; }
-.rcp-val {
-  font-size:13px;color:#D4D8F0;line-height:1.5;
-  padding-left:12px;border-left:2px solid rgba(255,255,255,.08);
-}
-.rcp-footer {
-  display:flex;align-items:center;justify-content:space-between;
-  margin-top:20px;padding-top:16px;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.rcp-author {
-  display:flex;align-items:center;gap:8px;
-  font-size:11px;color:var(--slate-500);font-family:var(--font-mono);
-}
-.rcp-avatar {
-  width:20px;height:20px;border-radius:50%;
-  background:linear-gradient(135deg, var(--indigo-500), var(--teal-500));
-  font-size:9px;font-weight:700;color:#fff;
-  display:flex;align-items:center;justify-content:center;
-}
-.rcp-badge {
-  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 8px;border-radius:100px;
-  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);
-  color:var(--green-500);
-}
-/* ── BECAUSE animation ── */
-@keyframes becauseGlow {
-  0%   { box-shadow: 0 0 0 0 rgba(165,174,255,0); border-color: rgba(255,255,255,.08); }
-  40%  { box-shadow: 0 0 32px 6px rgba(165,174,255,.18), 0 0 0 1px rgba(165,174,255,.3); border-color: rgba(165,174,255,.4); }
-  70%  { box-shadow: 0 0 48px 10px rgba(165,174,255,.12), 0 0 0 1px rgba(165,174,255,.2); border-color: rgba(165,174,255,.25); }
-  100% { box-shadow: 0 0 0 0 rgba(165,174,255,0); border-color: rgba(255,255,255,.08); }
-}
-@keyframes becauseLabelPulse {
-  0%,100% { opacity:1; letter-spacing:.12em; }
-  45%     { opacity:1; letter-spacing:.22em; color:#C7CAFF; }
-}
-@keyframes becauseTextReveal {
-  0%   { color:var(--slate-400); }
-  40%  { color:#E8EAF2; text-shadow:0 0 20px rgba(165,174,255,.35); }
-  100% { color:#D4D8F0; text-shadow:none; }
-}
-@keyframes becauseBorderPulse {
-  0%,100% { border-left-color:rgba(255,255,255,.08); }
-  45%     { border-left-color:rgba(165,174,255,.6); }
-}
-@keyframes ifThenFade {
-  0%   { opacity:1; }
-  30%  { opacity:.38; }
-  100% { opacity:1; }
-}
-.rcp-row-because {
-  margin-bottom:14px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:8px;
-  padding:10px 12px 10px 10px;
-  background:transparent;
-  animation:becauseGlow 3.2s ease-in-out 1.8s infinite;
-}
-.rcp-row-because .rcp-label { animation:becauseLabelPulse 3.2s ease-in-out 1.8s infinite; }
-.rcp-row-because .rcp-val {
-  border-left:2px solid rgba(255,255,255,.08);
-  animation:becauseTextReveal 3.2s ease-in-out 1.8s infinite, becauseBorderPulse 3.2s ease-in-out 1.8s infinite;
-}
-.rcp-row-ifthen { margin-bottom:14px; animation:ifThenFade 3.2s ease-in-out 1.8s infinite; }
-.because-tooltip {
-  display:inline-block;margin-top:8px;
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--indigo-300);
-  background:rgba(165,174,255,.08);border:1px solid rgba(165,174,255,.2);
-  border-radius:100px;padding:3px 10px;
-  opacity:0;
-  animation:tooltipBlink 3.2s ease-in-out 1.8s infinite;
-}
-@keyframes tooltipBlink {
-  0%,25%,100% { opacity:0;transform:translateY(3px); }
-  45%,75%     { opacity:1;transform:translateY(0); }
-}
-/* ── Automation Paradox section ── */
 .paradox-section { background:#0D0D22; }
 .paradox-content { max-width:680px; }
 .paradox-body { font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px; }
@@ -407,62 +292,7 @@ section { padding:96px 24px; }
   font-style:italic;line-height:1.55;
   color:#D4D8F0;
 }
-/* ── BECAUSE contrast section ── */
-.because-section { background:#09091A; }
-.because-contrast {
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:24px;margin-top:56px;max-width:900px;
-}
-@media(max-width:768px){.because-contrast{grid-template-columns:1fr}}
-.bc-card {
-  padding:28px 24px;
-  border-radius:14px;
-  text-align:left;
-}
-.bc-card--generic {
-  background:#0E0E1F;
-  border:1px solid rgba(255,255,255,.07);
-}
-.bc-card--real {
-  background:rgba(71,82,245,.06);
-  border:1px solid rgba(71,82,245,.2);
-}
-.bc-label {
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;
-  margin-bottom:16px;
-}
-.bc-card--generic .bc-label { color:var(--slate-600); }
-.bc-card--real .bc-label { color:var(--indigo-400); }
-.bc-ifthen {
-  font-size:12px;color:var(--slate-500);line-height:1.5;
-  padding:10px 14px;border-radius:8px;
-  background:rgba(255,255,255,.03);
-  margin-bottom:16px;
-  font-family:var(--font-mono);
-}
-.bc-because-text {
-  font-size:14px;line-height:1.65;
-  padding:12px 16px;
-  border-radius:8px;
-}
-.bc-card--generic .bc-because-text {
-  color:var(--slate-500);
-  background:rgba(255,255,255,.02);
-  border:1px solid rgba(255,255,255,.05);
-}
-.bc-card--real .bc-because-text {
-  color:#D4D8F0;
-  background:rgba(165,174,255,.06);
-  border:1px solid rgba(165,174,255,.15);
-}
-.because-explanation {
-  max-width:680px;margin-top:40px;
-  font-size:16px;line-height:1.75;color:var(--slate-400);
-}
-.because-explanation strong { color:#D4D8F0;font-weight:500; }
-/* ── How it works (compressed) ── */
-.how-section { background:linear-gradient(180deg, #09091A 0%, #0D0E2A 50%, #09091A 100%); }
+.moat-section { background:#09091A; }
 .steps {
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:32px;margin-top:64px;position:relative;
@@ -486,7 +316,12 @@ section { padding:96px 24px; }
   color:#fff;letter-spacing:-.01em;margin-bottom:12px;
 }
 .step-body { font-size:13px;line-height:1.7;color:var(--slate-400); }
-/* ── Reasoning Health Score ── */
+.step-key {
+  margin-top:32px;
+  font-size:16px;line-height:1.7;color:var(--slate-400);
+  max-width:680px;
+}
+.step-key strong { color:#D4D8F0;font-weight:500; }
 .rhs-section { background:#060612; }
 .rhs-grid {
   display:grid;grid-template-columns:1fr 1fr;
@@ -505,7 +340,6 @@ section { padding:96px 24px; }
   font-style:italic;line-height:1.5;
   color:var(--teal-300);
 }
-/* RHS mock visualization */
 .rhs-viz {
   padding:28px;
   background:#0D0D20;
@@ -547,54 +381,13 @@ section { padding:96px 24px; }
 }
 .rhs-bar-fill--high { background:var(--teal-300); }
 .rhs-bar-fill--mid { background:var(--amber-400); }
-.rhs-bar-fill--low { background:var(--rose-500); }
+.rhs-bar-low { background:var(--rose-500); }
 .rhs-bar-val {
   width:36px;flex-shrink:0;
   font-size:11px;color:var(--slate-500);font-family:var(--font-mono);
 }
-/* ── Who it's for (cards) ── */
-.who-section { background:#0D0D22; }
-.who-grid {
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:20px;margin-top:56px;
-}
-@media(max-width:640px){.who-grid{grid-template-columns:1fr}}
-.who-card {
-  padding:32px 28px;
-  background:#0A0A1A;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-  text-decoration:none;
-  display:block;
-  transition:border-color .2s,box-shadow .2s,transform .2s;
-}
-.who-card:hover {
-  border-color:rgba(71,82,245,.3);
-  box-shadow:0 0 40px rgba(71,82,245,.08);
-  transform:translateY(-3px);
-}
-.who-card-icon {
-  font-size:24px;margin-bottom:16px;
-}
-.who-card-title {
-  font-family:var(--font-serif);font-size:20px;font-weight:300;
-  color:#fff;letter-spacing:-.01em;margin-bottom:8px;
-}
-.who-card-pain {
-  font-size:13px;line-height:1.6;color:var(--slate-500);
-  margin-bottom:12px;
-}
-.who-card-value {
-  font-size:13px;line-height:1.6;color:var(--teal-300);
-}
-.who-card-arrow {
-  display:inline-flex;align-items:center;gap:4px;
-  margin-top:16px;
-  font-size:12px;font-weight:600;
-  color:var(--indigo-300);
-  font-family:var(--font-mono);letter-spacing:.04em;
-}
-/* ── CTA ── */
+.economics-section { background:#0D0D22; }
+.founder-section { background:#09091A; }
 .cta-section { background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%, rgba(71,82,245,.12) 0%, transparent 70%);padding:120px 24px; }
 .cta-h2 {
   font-family:var(--font-serif);
@@ -632,7 +425,6 @@ section { padding:96px 24px; }
   from { opacity:0;transform:translateY(8px); }
   to { opacity:1;transform:translateY(0); }
 }
-/* ── Footer ── */
 footer {
   padding:32px 40px;
   border-top:1px solid rgba(255,255,255,.06);
@@ -644,14 +436,13 @@ footer {
 </style>
 </head>
 <body>
-<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">FieldRules.</a>
   <ul class="nav-links">
-    <li><a href="#paradox">Why Now</a></li>
-    <li><a href="#because">The BECAUSE</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#rhs">Reasoning Health</a></li>
+    <li><a href="#paradox">The Paradox</a></li>
+    <li><a href="#moat">The Moat</a></li>
+    <li><a href="#metric">The Metric</a></li>
+    <li><a href="#economics">Unit Economics</a></li>
     <li class="nav-dropdown">
       <button class="nav-dropdown-trigger" type="button">For&hellip;</button>
       <div class="nav-dropdown-menu">
@@ -671,154 +462,105 @@ footer {
           <span class="dd-label">Researchers</span>
           <span class="dd-sub">50 years of knowledge engineering, applied</span>
         </a>
-        <a href="/for-ceos">
+        <a href="/for-ceos" class="active">
           <span class="dd-label">CEOs</span>
           <span class="dd-sub">Protect the reasoning before it walks out</span>
         </a>
-
       </div>
     </li>
-    <li><a href="/pilot">Pilot</a></li>
   </ul>
   <button class="hamburger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
   <a href="#cta" class="nav-cta">Request access</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-eyebrow" data-reveal>The layer between your team's expertise and your product's decisions</div>
+  <div class="hero-eyebrow" data-reveal>The reasoning layer</div>
   <h1 data-reveal>
-    Your best people make judgment calls every day that shape how your product works.<br>
-    <em>None of it is written down.</em>
+    The better AI gets at building companies, <em>the more valuable it becomes to be a company that captured why it does things differently.</em>
   </h1>
   <p class="hero-sub" data-reveal>
-    FieldRules captures the reasoning your team carries — the edge cases, the hard-won instinct, the logic that never made it into a spec — and structures it so every decision your product makes is governed by the people who know best. Not the model's defaults.
+    Autonomous agents can replicate execution. They can't replicate judgment. FieldRules is the capture mechanism for the one layer that compounds instead of compresses — your team's confirmed operational reasoning.
   </p>
   <div class="hero-actions" data-reveal>
     <button class="btn-primary" type="button">Request early access</button>
-    <a href="#how" class="btn-ghost">See how it works &rarr;</a>
-  </div>
-  <div class="hero-preview" data-reveal>
-    <div class="rule-card-preview">
-      <div class="rcp-header">
-        <div class="rcp-icon">⚡</div>
-        <div class="rcp-meta">
-          <div><strong>Clinical Operations SaaS</strong> &middot; operational playbook</div>
-          <div>Identified from ticket #4112 &middot; Trial site onboarding</div>
-        </div>
-      </div>
-      <div class="rcp-row rcp-row-ifthen">
-        <div class="rcp-label rcp-when">IF</div>
-        <div class="rcp-val">A trial site submits their first patient enrollment report within 14 days of activation AND their coordinator headcount is below 3</div>
-      </div>
-      <div class="rcp-row rcp-row-ifthen">
-        <div class="rcp-label rcp-then">THEN</div>
-        <div class="rcp-val">Do not auto-advance to full onboarding. Assign a dedicated specialist and schedule a 48-hour check-in before the site goes live with patients.</div>
-      </div>
-      <div class="rcp-row rcp-row-because">
-        <div class="rcp-label rcp-because">BECAUSE</div>
-        <div class="rcp-val">Sites this size with fast enrollment timelines are statistically high-dropout in weeks 3–5. Early intervention cuts churn by over half — but only if flagged before the standard onboarding flow locks in.</div>
-        <div class="because-tooltip">Only humans write this</div>
-      </div>
-      <div class="rcp-footer">
-        <div class="rcp-author">
-          <div class="rcp-avatar">J</div>
-          Jordan Chen &middot; Domain Expert
-        </div>
-        <div class="rcp-badge">Confirmed</div>
-      </div>
-    </div>
+    <a href="#metric" class="btn-ghost">See the metric →</a>
   </div>
 </section>
 
-<!-- AUTOMATION PARADOX -->
 <section class="paradox-section" id="paradox">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>Why Now</div>
-    <h2 class="section-h2" data-reveal>The better AI gets,<br><em>the more your people matter.</em></h2>
+    <div class="section-eyebrow" data-reveal>The Thesis</div>
+    <h2 class="section-h2" data-reveal>Everything an agent can do, <em>another agent can replicate.</em></h2>
     <div class="paradox-content">
       <p class="paradox-body" data-reveal>
-        Everything an agent can do, another agent can replicate. The only thing that can't be replicated is <strong>the reasoning your people carry about why your company does things differently.</strong>
+        Between every product and the AI model powering it, there's a layer that determines what context the AI receives, what constraints it operates under, and what reasoning it applies. Most companies haven't built it deliberately. Engineers approximate it from Slack threads. Models fill it from training data.
       </p>
       <p class="paradox-body" data-reveal>
-        That reasoning — the conditional judgment, the exception-handling logic, the domain expertise that was never written down — is the layer agents can't scrape, can't reverse-engineer, and can't pattern-match from training data.
+        Fine-tuning changes how the model thinks. Guardrails block what the model says. FieldRules tells the model what to do — and <strong>why</strong> — based on human-confirmed operational rules. That's a different layer. No one else is building it.
       </p>
       <div class="paradox-callout" data-reveal>
-        FieldRules makes that layer real before it walks out the door.
+        The only thing that can't be replicated is the reasoning your people carry about why your company does things differently. FieldRules makes that layer real before it walks out the door.
       </div>
     </div>
   </div>
 </section>
 
-<!-- THE BECAUSE MOMENT -->
-<section class="because-section" id="because">
+<section class="moat-section" id="moat">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>The part no AI can write</div>
-    <h2 class="section-h2" data-reveal>Documentation produces compliance.<br><em>FieldRules elicits reasoning.</em></h2>
-    <div class="because-contrast" data-reveal>
-      <!-- Generic -->
-      <div class="bc-card bc-card--generic">
-        <div class="bc-label">What documentation produces</div>
-        <div class="bc-ifthen">IF a trial site submits enrollment within 14 days with &lt;3 coordinators THEN assign specialist &amp; schedule check-in</div>
-        <div class="bc-because-text">
-          <strong style="color:var(--slate-400);font-size:10px;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px;">BECAUSE</strong>
-          &ldquo;Because it's important to catch these early.&rdquo;
-        </div>
-      </div>
-      <!-- Real -->
-      <div class="bc-card bc-card--real">
-        <div class="bc-label">What FieldRules elicits</div>
-        <div class="bc-ifthen">IF a trial site submits enrollment within 14 days with &lt;3 coordinators THEN assign specialist &amp; schedule check-in</div>
-        <div class="bc-because-text">
-          <strong style="color:var(--indigo-300);font-size:10px;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px;">BECAUSE</strong>
-          &ldquo;Sites this size with fast enrollment timelines are statistically high-dropout in weeks 3–5. Early intervention cuts churn by over half — but only if flagged before the standard onboarding flow locks in.&rdquo;
-        </div>
-      </div>
-    </div>
-    <div class="because-explanation" data-reveal>
-      <p>The first version is what documentation produces. The second is what FieldRules elicits — because it asks <strong>&ldquo;what would go wrong if this rule didn't exist?&rdquo;</strong> instead of &ldquo;why does this rule exist?&rdquo;</p>
-      <p style="margin-top:12px;">That single design choice is the difference between compliance and reasoning.</p>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS (compressed) -->
-<section class="how-section" id="how">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>How It Works</div>
-    <h2 class="section-h2" data-reveal>Three steps. <em>No new behavior.</em></h2>
+    <div class="section-eyebrow" data-reveal>Defensibility</div>
+    <h2 class="section-h2" data-reveal>Six components. <em>None of them compress.</em></h2>
     <div class="steps">
       <div class="step-card" data-reveal>
         <div class="step-n">01</div>
-        <div class="step-title">Logic surfaces from work already happening</div>
-        <div class="step-body">FieldRules detects implicit business logic in the artifacts your team already produces — Jira tickets, Slack threads, code reviews. No new intake forms. No documentation rituals.</div>
+        <div class="step-title">Confirmation Model</div>
+        <div class="step-body">Rules require human confirmation before entering the library. No auto-extraction, no assumed consent. Every rule has a named author.</div>
       </div>
       <div class="step-card" data-reveal>
         <div class="step-n">02</div>
-        <div class="step-title">Domain expert confirms in 45 seconds</div>
-        <div class="step-body">A Slack card arrives with the detected rule. One tap to confirm, edit, or dismiss. Then the BECAUSE field — always blank until they write it. Their words, their reasoning, their name on it.</div>
+        <div class="step-title">BECAUSE Elicitation</div>
+        <div class="step-body">Contrastive prompts that extract real reasoning, not post-hoc rationalization. The methodology is the product — not the UI around it.</div>
       </div>
       <div class="step-card" data-reveal>
         <div class="step-n">03</div>
-        <div class="step-title">The rule enters the library</div>
-        <div class="step-body">PM specs from it. AI runs on it. Engineer builds from it. The rule is versioned, attributed, and queryable — and when a PM's query hits a gap, the right expert gets a signal that their judgment is needed.</div>
+        <div class="step-title">Rule Lifecycle</div>
+        <div class="step-body">Full provenance: who authored it, when it was confirmed, how many times it's been applied, whether it's been challenged or revised.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">04</div>
+        <div class="step-title">Visible Feedback Loop</div>
+        <div class="step-body">Domain experts see when their rules are used. PMs query the library before speccing. Engineers read from it at inference time. The loop is the retention mechanism.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">05</div>
+        <div class="step-title">Skill Graph Provenance</div>
+        <div class="step-body">Every rule traces back to the expert who authored it. The company builds an institutional map of who knows what — and it compounds.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">06</div>
+        <div class="step-title">Eval Instrumentation</div>
+        <div class="step-body">The Reasoning Health Score measures whether captured knowledge is genuine reasoning or form-filling. It detects decay before it shows up in product quality.</div>
       </div>
     </div>
+    <p class="step-key" data-reveal>
+      The confirmed rule library doesn't compress as models improve. It compounds — because <strong>your team's hard-earned wisdom compounds.</strong>
+    </p>
   </div>
 </section>
 
-<!-- REASONING HEALTH SCORE -->
-<section class="rhs-section" id="rhs">
+<section class="rhs-section" id="metric">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>The Metric</div>
-    <h2 class="section-h2" data-reveal>Not just what rules exist —<br><em>whether they're actually thinking.</em></h2>
+    <h2 class="section-h2" data-reveal>Not just what rules exist — <em>whether they're actually thinking.</em></h2>
     <div class="rhs-grid">
       <div class="rhs-content" data-reveal>
-        <p class="rhs-body">Most governance tools count rules. FieldRules measures whether the reasoning behind them is <strong>real</strong>.</p>
-        <p class="rhs-body">The Reasoning Health Score tracks whether your rule library contains genuine operational judgment or just form-filling. It detects tautology, declining depth, missing consequence-naming — the signals that mean your experts are going through the motions instead of thinking.</p>
-        <div class="rhs-pitch">Every AI governance tool tells you what rules exist. FieldRules is the only one that tells you whether your rules are actually thinking.</div>
+        <p class="rhs-body">
+          Most governance tools count rules. FieldRules measures whether the reasoning behind them is <strong>real</strong>. The Reasoning Health Score tracks whether your rule library contains genuine operational judgment or just form-filling. It detects tautology, declining depth, missing consequence-naming — the signals that mean your experts are going through the motions instead of thinking.
+        </p>
+        <div class="rhs-pitch">
+          Every AI governance tool tells you what rules exist. FieldRules is the only one that tells you whether your rules are actually thinking.
+        </div>
       </div>
       <div class="rhs-viz" data-reveal>
         <div class="rhs-viz-header">
@@ -860,59 +602,33 @@ footer {
   </div>
 </section>
 
-<!-- WHO IT'S FOR -->
-<section class="who-section" id="who">
+<section class="economics-section" id="economics">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>Built For</div>
-    <h2 class="section-h2" data-reveal>Every role in the loop.</h2>
-    <div class="who-grid">
-      <a href="/for-product-managers" class="who-card" data-reveal>
-        <div class="who-card-icon">📋</div>
-        <div class="who-card-title">Product Managers</div>
-        <div class="who-card-pain">You're speccing features against business logic you can't verify.</div>
-        <div class="who-card-value">Query the rule library before you send work to engineering.</div>
-        <div class="who-card-arrow">Learn more &rarr;</div>
-      </a>
-      <a href="/for-domain-experts" class="who-card" data-reveal>
-        <div class="who-card-icon">🧠</div>
-        <div class="who-card-title">Domain Experts</div>
-        <div class="who-card-pain">Your judgment calls are invisible. Nobody credits them.</div>
-        <div class="who-card-value">Your name goes on every rule you author — permanently.</div>
-        <div class="who-card-arrow">Learn more &rarr;</div>
-      </a>
-      <a href="/for-engineers" class="who-card" data-reveal>
-        <div class="who-card-icon">⚙️</div>
-        <div class="who-card-title">Engineers</div>
-        <div class="who-card-pain">Every if/else encoding a business judgment is debt from a Slack message.</div>
-        <div class="who-card-value">Read from a structured rule library instead of hardcoded conditionals.</div>
-        <div class="who-card-arrow">Learn more &rarr;</div>
-      </a>
-      <a href="/for-researchers" class="who-card" data-reveal>
-        <div class="who-card-icon">🔬</div>
-        <div class="who-card-title">Researchers</div>
-        <div class="who-card-pain">50 years of knowledge engineering research — still no production implementation.</div>
-        <div class="who-card-value">Contrastive elicitation, anti-habituation, and process reward models — applied.</div>
-        <div class="who-card-arrow">Learn more &rarr;</div>
-      </a>
-      <a href="/for-ceos" class="who-card" data-reveal>
-        <div class="who-card-icon">🏢</div>
-        <div class="who-card-title">CEOs</div>
-        <div class="who-card-pain">Your team's best reasoning walks out the door every time someone leaves.</div>
-        <div class="who-card-value">A board-level metric that proves your governance layer is alive, not decorative.</div>
-        <div class="who-card-arrow">Learn more &rarr;</div>
-      </a>
-      <a href="/for-engineers" class="who-card" data-reveal>
-        <div class="who-card-icon">🤖</div>
-        <div class="who-card-title">AI Agents</div>
-        <div class="who-card-pain">Your agents make decisions from training data defaults — not your company's logic.</div>
-        <div class="who-card-value">Same rule library, same reasoning, same governance — different caller.</div>
-        <div class="who-card-arrow">See the integration model &rarr;</div>
-      </a>
+    <div class="section-eyebrow" data-reveal>The Business</div>
+    <h2 class="section-h2" data-reveal>~98% gross margins. <em>Flat per-query costs.</em></h2>
+    <div style="max-width:680px;">
+      <p class="paradox-body" data-reveal>
+        Real cost driver is query volume, not rule count. Semantic retrieval keeps per-query costs flat as the library grows. Starting at $500/mo with a three-tier agentic pricing ladder planned.
+      </p>
+      <p class="paradox-body" data-reveal>
+        Leading growth metric: WARC (Weekly Active Rule Confirmations). When experts are confirming rules, the library is alive. When WARC declines, governance is going decorative. It's the signal that tells you whether the layer is compounding or coasting.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<section class="founder-section">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Why Us</div>
+    <h2 class="section-h2" data-reveal>Built this before. <em>Building it again at the architecture level.</em></h2>
+    <div style="max-width:680px;">
+      <p class="paradox-body" data-reveal>
+        Melanie watched the CS-to-product knowledge gap eat a company from inside at Optera. Built the feedback capture system that got 100% adoption in 30 days at $112/mo. Built the AI-assisted response library with ownership attribution. FieldRules is the same problem — institutional knowledge disappearing into AI defaults — at the architectural level.
+      </p>
+    </div>
+  </div>
+</section>
+
 <section class="cta-section" id="cta">
   <div class="inner">
     <h2 class="cta-h2" data-reveal>
@@ -932,17 +648,16 @@ footer {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">v10 &middot; Public Marketing Page &middot; April 2026</div>
-  <div class="footer-mono">The human governance layer for AI decisions</div>
+  <div class="footer-mono">For CEOs · v1 · April 2026</div>
+  <a href="/" style="font-family:var(--font-mono);font-size:11px;color:var(--slate-400);letter-spacing:.04em;text-decoration:none;transition:color .15s">← Back to homepage</a>
 </footer>
 
 <script>
 try {
   document.addEventListener('DOMContentLoaded', function() {
-    // ── Reveal on scroll ──
+    // Reveal on scroll
     var els = document.querySelectorAll('[data-reveal]');
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
@@ -954,7 +669,7 @@ try {
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     els.forEach(function(el) { observer.observe(el); });
 
-    // ── Smooth scroll helper ──
+    // Smooth scroll helper
     var NAV_HEIGHT = 56;
     function scrollTo(id) {
       var target = id === 'top' ? document.body : document.getElementById(id);
@@ -963,13 +678,12 @@ try {
       window.scrollTo({ top: top, behavior: 'smooth' });
     }
 
-    // ── Intercept anchor clicks ──
+    // Intercept anchor clicks
     document.querySelectorAll('a[href^="#"]').forEach(function(a) {
       a.addEventListener('click', function(e) {
         e.preventDefault();
         var id = this.getAttribute('href').slice(1) || 'top';
         scrollTo(id);
-        // Close mobile menu if open
         var hamburger = document.querySelector('.hamburger');
         var navLinksEl = document.querySelector('.nav-links');
         if (hamburger && navLinksEl) {
@@ -979,18 +693,18 @@ try {
       });
     });
 
-    // ── Hero CTA button ──
+    // Hero CTA button
     var heroPrimary = document.querySelector('.hero-actions .btn-primary');
     if (heroPrimary) heroPrimary.addEventListener('click', function() { scrollTo('cta'); });
 
-    // ── Nav CTA ──
+    // Nav CTA
     var navCta = document.querySelector('.nav-cta');
     if (navCta) {
       navCta.addEventListener('click', function(e) { e.preventDefault(); scrollTo('cta'); });
     }
 
-    // ── Active nav link on scroll ──
-    var sections = ['paradox','because','how','rhs','who','cta'];
+    // Active nav link on scroll
+    var sections = ['paradox','moat','metric','economics','cta'];
     var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
     function setActive() {
       var scrollY = window.pageYOffset + NAV_HEIGHT + 32;
@@ -999,17 +713,15 @@ try {
         var el = document.getElementById(id);
         if (el && el.offsetTop <= scrollY) current = id;
       });
-      navLinks.forEach(function(a) {
-        var href = a.getAttribute('href');
-        if (!href || href.charAt(0) !== '#') return;
-        var id = href.slice(1);
-        a.classList.toggle('active', id === current);
+      navLinks.forEach(function(link) {
+        var href = link.getAttribute('href').slice(1);
+        link.classList.toggle('active', href === current);
       });
     }
-    window.addEventListener('scroll', setActive, { passive: true });
+    window.addEventListener('scroll', setActive);
     setActive();
 
-    // ── Hamburger menu ──
+    // Mobile hamburger
     var hamburger = document.querySelector('.hamburger');
     var navLinksEl = document.querySelector('.nav-links');
     if (hamburger && navLinksEl) {
@@ -1019,52 +731,46 @@ try {
       });
     }
 
-    // ── Form submission via FormSubmit.co ──
-    var ctaForm = document.getElementById('cta-form');
-    if (ctaForm) {
-      ctaForm.addEventListener('submit', function(e) {
+    // FormSubmit.co integration
+    var form = document.getElementById('cta-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
-        var input = ctaForm.querySelector('.cta-input');
-        var btn = ctaForm.querySelector('.btn-primary');
-        var email = input.value.trim();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          input.classList.add('invalid');
-          input.addEventListener('input', function() { input.classList.remove('invalid'); }, { once: true });
-          return;
-        }
-        var btnText = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Sending\u2026';
-        fetch('https://formsubmit.co/ajax/melanie.gower@gmail.com', {
+        var email = this.querySelector('[name="email"]').value.trim();
+        if (!email) return;
+
+        var formData = new FormData();
+        formData.append('email', email);
+        formData.append('_captcha', 'false');
+
+        fetch('https://formsubmit.co/melanie.gower@gmail.com', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            email: email,
-            _subject: 'FieldRules \u2014 New signup (marketing page)',
-            _template: 'table'
-          })
+          body: formData
         })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          if (data.success === 'true' || data.success === true) {
-            ctaForm.innerHTML = '<p class="cta-success">\u2713 You\u2019re on the list. We\u2019ll be in touch.</p>';
-          } else { throw new Error('fail'); }
+        .then(function(response) {
+          if (response.ok) {
+            var input = form.querySelector('[name="email"]');
+            var button = form.querySelector('.btn-primary');
+            input.style.display = 'none';
+            button.style.display = 'none';
+            var success = document.createElement('div');
+            success.className = 'cta-success';
+            success.textContent = 'Access request sent. Check your email.';
+            form.appendChild(success);
+          }
         })
-        .catch(function() {
-          btn.disabled = false;
-          btn.textContent = btnText;
-          var old = ctaForm.querySelector('.cta-error');
-          if (old) old.remove();
-          var err = document.createElement('p');
-          err.className = 'cta-error';
-          err.textContent = 'Something went wrong \u2014 try again or email melanie.gower@gmail.com';
-          ctaForm.appendChild(err);
-          setTimeout(function() { err.remove(); }, 6000);
+        .catch(function(err) {
+          var error = document.createElement('div');
+          error.className = 'cta-error';
+          error.textContent = 'Error sending request. Please try again.';
+          form.appendChild(error);
         });
       });
     }
   });
-} catch(e) { console.warn('FieldRules marketing init error:', e); }
+} catch(e) {
+  console.error('Script error:', e);
+}
 </script>
 </body>
 </html>

@@ -1,1488 +1,281 @@
+<!-- VERSION: fieldrules-for-domain-experts-v2.html | April 12, 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FieldRules — For Domain Experts</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For Domain Experts — FieldRules</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<!-- fieldrules-for-domain-experts-v2 -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Fraunces:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
 <style>
-/* ── Reset & base ── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root {
-  --font-sans:'DM Sans',sans-serif;
-  --font-serif:'Fraunces',serif;
-  --font-mono:'DM Mono',monospace;
-  --indigo-300:#A5AEFF;
-  --indigo-400:#818CF8;
-  --indigo-500:#4752F5;
-  --indigo-600:#3B45D6;
-  --indigo-700:#2D35A8;
-  --teal-300:#5ED5BE;
-  --teal-400:#3DC4AB;
-  --teal-500:#2AA896;
-  --teal-600:#1E8A7B;
-  --rose-500:#F43F5E;
-  --amber-400:#FBBF24;
-  --amber-500:#F59E0B;
-  --green-500:#22C55E;
-  --slate-300:#CBD5E1;
-  --slate-400:#A8B8CC;
-  --slate-500:#7B8CA0;
-  --slate-600:#5C6B7F;
-}
-html{scroll-behavior:smooth}
-section{scroll-margin-top:56px}
-body{
-  font-family:var(--font-sans);
-  background:#070714;
-  color:#EDF0F7;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-a{color:var(--indigo-300);text-decoration:none;transition:color .2s}
-a:hover{color:var(--teal-300)}
-
-/* ── Reveal animation ── */
-[data-reveal]{
-  opacity:0;transform:translateY(18px);
-  transition:opacity .55s ease,transform .55s ease;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--font-sans:'DM Sans',sans-serif;--font-serif:'Fraunces',serif;--font-mono:'DM Mono',monospace;--indigo-300:#A5AEFF;--indigo-400:#818CF8;--indigo-500:#4752F5;--indigo-600:#3B45D6;--teal-300:#5ED5BE;--teal-400:#3DC4AB;--teal-500:#2AA896;--slate-300:#CBD5E1;--slate-400:#A8B8CC;--slate-500:#7B8CA0;--slate-600:#5C6B7F;--rose-500:#F43F5E;--amber-400:#FBBF24;--amber-500:#F59E0B;--green-500:#22C55E}
+body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1.6;-webkit-font-smoothing:antialiased}
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
 [data-reveal].visible{opacity:1;transform:translateY(0)}
 
-/* ── Nav ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;
-  padding:0 32px;height:56px;
-  background:rgba(7,7,20,.85);
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.nav-logo{
-  font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;
-  color:#fff;letter-spacing:-.02em;text-decoration:none;
-}
-.nav-links{
-  display:flex;align-items:center;gap:4px;
-  margin-left:40px;list-style:none;
-}
-.nav-links a{
-  font-size:13px;font-weight:500;color:var(--slate-400);
-  text-decoration:none;padding:5px 12px;border-radius:6px;
-  transition:color .15s,background .15s;
-}
-.nav-links a:hover{color:#fff;background:rgba(255,255,255,.06)}
-.nav-links a.active{color:var(--teal-300);background:rgba(94,213,190,.08)}
-.nav-cta{
-  margin-left:auto;font-size:13px;font-weight:600;
-  padding:8px 18px;background:var(--indigo-500);color:#fff;
-  border:none;border-radius:6px;cursor:pointer;
-  transition:background .2s,transform .15s;text-decoration:none;
-}
-.nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px);color:#fff}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:56px;background:rgba(7,7,20,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;color:#fff;letter-spacing:-.02em;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:40px;list-style:none}
+.nav-links a,.nav-dropdown-trigger{font-size:13px;font-weight:500;color:var(--slate-400);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .15s,background .15s;cursor:pointer;border:none;font-family:var(--font-sans)}
+.nav-links a:hover,.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
+.nav-dropdown{position:relative}
+.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px}
+.nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
+.nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
+.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;margin-top:8px;min-width:200px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.nav-dropdown:hover .nav-dropdown-menu{display:block}
+.nav-dropdown-menu a{display:block;padding:8px 14px;border-radius:6px;font-size:13px;color:var(--slate-400);text-decoration:none;transition:color .15s,background .15s}
+.nav-dropdown-menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-dropdown-menu a .dd-label{display:block;font-weight:500;color:var(--slate-300)}
+.nav-dropdown-menu a .dd-sub{display:block;font-size:11px;color:var(--slate-600);margin-top:1px}
+.nav-cta{margin-left:auto;font-size:13px;font-weight:600;padding:8px 18px;background:var(--indigo-500);color:#fff;border:none;border-radius:6px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
+.nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;margin-left:auto}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .2s ease}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none;position:fixed;top:56px;left:0;right:0;flex-direction:column;background:rgba(7,7,20,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,.08)}.nav-links.open{display:flex}.nav-links a,.nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}.nav-cta{display:none}.nav-dropdown-menu{position:static;margin-top:0;background:transparent;border:none;box-shadow:none;padding:0 0 0 16px;display:block;-webkit-backdrop-filter:none;backdrop-filter:none}.nav-dropdown-trigger::after{display:none}}
 
-/* Mobile nav */
-.hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px;background:none;border:none;padding:4px}
-.hamburger span{width:22px;height:2px;background:var(--slate-400);border-radius:1px;transition:all .3s}
-@media(max-width:768px){
-  .hamburger{display:flex}
-  .nav-links{
-    display:none;position:absolute;top:56px;left:0;right:0;
-    flex-direction:column;background:rgba(7,7,20,.98);
-    padding:16px 24px;gap:4px;margin-left:0;
-    border-bottom:1px solid rgba(255,255,255,.06);
-  }
-  .nav-links.open{display:flex}
-  .nav-cta{font-size:12px;padding:7px 14px}
-}
-
-/* ── Section common ── */
-section{padding:96px 24px}
-.inner{max-width:1120px;margin:0 auto}
-.section-eyebrow{
-  font-family:var(--font-mono);font-size:10px;font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;
-  color:var(--indigo-400);margin-bottom:16px;
-}
-.section-h2{
-  font-family:var(--font-serif);
-  font-size:clamp(36px,5vw,56px);
-  font-weight:300;line-height:1.1;letter-spacing:-.03em;
-  color:#fff;margin-bottom:20px;
-}
-.section-h2 em{font-style:italic;color:var(--teal-300)}
-.section-lede{
-  font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px;
-}
-
-/* ── Buttons ── */
-.btn-primary{
-  display:inline-block;font-size:15px;font-weight:600;
-  padding:14px 28px;background:var(--indigo-500);color:#fff;
-  border:none;border-radius:8px;cursor:pointer;
-  transition:background .2s,transform .15s,box-shadow .2s;
-  box-shadow:0 0 0 0 rgba(71,82,245,0);text-decoration:none;
-}
-.btn-primary:hover{
-  background:var(--indigo-400);transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(71,82,245,.3);color:#fff;
-}
-.btn-ghost{
-  display:inline-block;font-size:15px;font-weight:500;
-  padding:14px 28px;background:rgba(255,255,255,.06);color:#EDF0F7;
-  border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;
-  transition:background .2s,transform .15s;text-decoration:none;
-}
-.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);color:#fff}
-
-/* ── Hero ── */
-.hero{
-  min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;
-  padding:120px 24px 80px;position:relative;overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%,rgba(94,213,190,.14) 0%,transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 80%,rgba(71,82,245,.1) 0%,transparent 60%),
-    radial-gradient(ellipse 60% 50% at 20% 100%,rgba(94,213,190,.06) 0%,transparent 60%);
-  pointer-events:none;
-}
-.hero-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);
-  pointer-events:none;
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-mono);font-size:11px;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);
-  background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);
-  border-radius:100px;padding:6px 16px;margin-bottom:32px;
-  position:relative;z-index:1;
-}
-.hero-eyebrow::before{
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:var(--teal-300);animation:pulse 2s ease infinite;
-}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;margin-top:56px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(71,82,245,.18) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(14,165,141,.1) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 20% 100%,rgba(71,82,245,.08) 0%,transparent 60%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);border-radius:100px;padding:6px 16px;margin-bottom:32px;position:relative;z-index:1}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-300);animation:pulse 2s ease infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.hero h1{
-  font-family:var(--font-serif);
-  font-size:clamp(44px,6.5vw,76px);
-  font-weight:300;line-height:1.05;letter-spacing:-.03em;
-  color:#fff;margin-bottom:24px;position:relative;z-index:1;max-width:860px;
-}
-.hero h1 em{
-  font-style:italic;
-  background:linear-gradient(135deg,var(--teal-300),var(--indigo-300));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;color:transparent;
-}
-.hero-sub{
-  font-size:18px;font-weight:400;line-height:1.6;color:var(--slate-400);
-  max-width:560px;margin:0 auto 48px;position:relative;z-index:1;
-}
-.hero-actions{
-  display:flex;align-items:center;gap:16px;
-  position:relative;z-index:1;flex-wrap:wrap;justify-content:center;
-}
-.hero-trust{
-  display:flex;align-items:center;gap:24px;margin-top:56px;
-  position:relative;z-index:1;flex-wrap:wrap;justify-content:center;
-}
-.trust-item{
-  display:flex;align-items:center;gap:8px;
-  font-size:12px;font-weight:500;color:var(--slate-500);
-  font-family:var(--font-mono);letter-spacing:.04em;
-}
-.trust-dot{width:6px;height:6px;border-radius:50%;background:var(--teal-400);opacity:.7}
+.hero h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;position:relative;z-index:1;max-width:880px}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--indigo-300),var(--teal-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--slate-400);max-width:600px;margin:0 auto 48px;position:relative;z-index:1}
+.hero-actions{display:flex;align-items:center;gap:16px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
 
-/* ── Bottleneck section ── */
-.bottleneck{background:#0D0D22}
-.bottleneck-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:48px;margin-top:64px;align-items:start;
-}
-@media(max-width:768px){.bottleneck-grid{grid-template-columns:1fr;gap:32px}}
-.bottleneck-quote{
-  padding:32px;background:#0A0A1A;
-  border:1px solid rgba(255,255,255,.06);
-  border-left:3px solid var(--rose-500);
-  border-radius:12px;margin-bottom:24px;
-}
-.bq-text{
-  font-family:var(--font-serif);font-size:17px;font-weight:300;
-  font-style:italic;line-height:1.6;color:#D4D8F0;margin-bottom:16px;
-}
-.bq-credit{font-size:11px;color:var(--slate-500);font-family:var(--font-mono)}
-.bottleneck-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.stat-card{
-  padding:24px;background:#0A0A1A;
-  border:1px solid rgba(255,255,255,.07);border-radius:10px;
-}
-.stat-n{
-  font-family:var(--font-serif);font-size:36px;font-weight:300;
-  color:var(--teal-300);line-height:1;margin-bottom:8px;
-}
-.stat-label{font-size:12px;color:var(--slate-500);line-height:1.4}
-.bottleneck-right-title{
-  font-family:var(--font-serif);font-size:28px;font-weight:300;
-  line-height:1.2;color:#fff;margin-bottom:20px;letter-spacing:-.02em;
-}
-.bottleneck-right-title em{font-style:italic;color:var(--rose-500)}
-.bottleneck-body{font-size:15px;line-height:1.8;color:var(--slate-400);margin-bottom:24px}
-.bottleneck-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:11px;font-family:var(--font-mono);font-weight:500;
-  padding:5px 12px;border-radius:100px;
-  background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);
-  color:var(--rose-500);margin:4px;
-}
+.btn-primary{font-size:15px;font-weight:600;padding:14px 28px;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 0 0 rgba(71,82,245,0);text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--indigo-400);transform:translateY(-2px);box-shadow:0 8px 24px rgba(71,82,245,.3)}
+.btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;display:inline-block}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
 
-/* ── How it works flow ── */
-.flow-section{background:#09091A}
-.flow-steps{
-  display:grid;grid-template-columns:1fr;
-  gap:0;margin-top:64px;max-width:720px;margin-left:auto;margin-right:auto;
-  position:relative;
-}
-.flow-steps::before{
-  content:'';position:absolute;left:28px;top:40px;bottom:40px;
-  width:2px;background:linear-gradient(180deg,var(--teal-500),var(--indigo-500),var(--teal-500));
-  opacity:.3;
-}
-@media(max-width:600px){.flow-steps::before{left:20px}}
-.flow-step{
-  display:grid;grid-template-columns:56px 1fr;gap:20px;
-  padding:32px 0;position:relative;
-}
-@media(max-width:600px){.flow-step{grid-template-columns:40px 1fr;gap:14px}}
-.flow-step-num{
-  width:56px;height:56px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-mono);font-size:14px;font-weight:600;
-  position:relative;z-index:1;
-}
-@media(max-width:600px){.flow-step-num{width:40px;height:40px;font-size:12px;border-radius:10px}}
-.flow-step-num--teal{
-  background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.25);color:var(--teal-300);
-}
-.flow-step-num--indigo{
-  background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.25);color:var(--indigo-300);
-}
-.flow-step-title{
-  font-family:var(--font-serif);font-size:22px;font-weight:300;
-  color:#fff;letter-spacing:-.01em;margin-bottom:8px;
-}
-.flow-step-body{font-size:14px;line-height:1.7;color:var(--slate-400)}
+section{padding:96px 24px;scroll-margin-top:56px}
+.inner{max-width:1120px;margin:0 auto}
+.section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
+.section-h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.section-h2 em{font-style:italic;color:var(--teal-300)}
+.section-lede{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px}
 
-/* ── Slack card mockup ── */
-.slack-card{
-  margin-top:48px;max-width:560px;margin-left:auto;margin-right:auto;
-  background:#1A1A2E;border:1px solid rgba(255,255,255,.1);
-  border-radius:12px;overflow:hidden;
-  box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(94,213,190,.08);
-}
-.slack-card-header{
-  display:flex;align-items:center;gap:10px;
-  padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.06);
-  background:rgba(94,213,190,.04);
-}
-.slack-card-avatar{
-  width:32px;height:32px;border-radius:8px;
-  background:linear-gradient(135deg,var(--teal-500),var(--indigo-500));
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;color:#fff;
-}
-.slack-card-app{
-  font-size:13px;font-weight:600;color:#fff;
-}
-.slack-card-app span{
-  font-size:10px;font-weight:500;color:var(--slate-500);
-  margin-left:8px;font-family:var(--font-mono);letter-spacing:.06em;
-}
-.slack-card-body{padding:20px}
-.slack-card-label{
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;
-}
-.slack-card-label--when{color:var(--amber-400)}
-.slack-card-label--then{color:var(--teal-300)}
-.slack-card-label--because{color:var(--indigo-300)}
-.slack-card-row{margin-bottom:14px}
-.slack-card-val{
-  font-size:13px;color:#D4D8F0;line-height:1.5;
-  padding-left:12px;border-left:2px solid rgba(255,255,255,.08);
-}
-.slack-card-because-input{
-  width:100%;padding:12px 14px;
-  background:#0D0D20;border:1px solid rgba(165,174,255,.2);
-  border-radius:8px;color:var(--indigo-300);
-  font-family:var(--font-sans);font-size:13px;line-height:1.5;
-  resize:none;outline:none;
-}
-.slack-card-because-input::placeholder{color:rgba(165,174,255,.35)}
-.slack-card-actions{
-  display:flex;gap:10px;padding:16px 20px;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.slack-btn{
-  font-size:12px;font-weight:600;padding:8px 18px;
-  border-radius:6px;border:none;cursor:pointer;
-  font-family:var(--font-sans);
-}
-.slack-btn--confirm{background:var(--teal-500);color:#fff}
-.slack-btn--confirm:hover{background:var(--teal-400)}
-.slack-btn--skip{background:rgba(255,255,255,.06);color:var(--slate-400);border:1px solid rgba(255,255,255,.1)}
-.slack-btn--skip:hover{background:rgba(255,255,255,.1);color:#fff}
+.section-2{background:#0D0D22}
+.section-2 .section-lede{max-width:680px}
 
-/* ── BECAUSE section ── */
-.because-section{background:#060612}
-.because-comparison{
-  display:grid;grid-template-columns:1fr 1fr;gap:24px;
-  margin-top:64px;
-}
-@media(max-width:700px){.because-comparison{grid-template-columns:1fr}}
-.because-card{
-  padding:32px;border-radius:14px;position:relative;
-}
-.because-card--without{
-  background:#0E0E1F;border:1px solid rgba(255,255,255,.07);
-}
-.because-card--with{
-  background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.2);
-}
-.because-card-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:10px;font-family:var(--font-mono);font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;
-  padding:4px 10px;border-radius:6px;margin-bottom:20px;
-}
-.because-card--without .because-card-tag{
-  background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);color:var(--rose-500);
-}
-.because-card--with .because-card-tag{
-  background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);color:var(--teal-300);
-}
-.because-field{
-  margin-top:16px;padding:16px;border-radius:10px;
-}
-.because-field--empty{
-  background:rgba(244,63,94,.04);border:1px dashed rgba(244,63,94,.2);
-  color:rgba(244,63,94,.5);font-style:italic;font-size:13px;
-}
-.because-field--filled{
-  background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.15);
-  color:var(--indigo-300);font-size:13px;line-height:1.6;
-}
-.bc-rule-label{
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;
-}
-.bc-rule-text{font-size:13px;color:#D4D8F0;line-height:1.5;margin-bottom:12px}
-.because-constraint{
-  margin-top:48px;max-width:640px;margin-left:auto;margin-right:auto;
-  text-align:center;
-}
-.because-constraint-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-mono);font-size:10px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  padding:6px 14px;border-radius:100px;
-  background:rgba(71,82,245,.08);border:1px solid rgba(71,82,245,.2);
-  color:var(--indigo-300);margin-bottom:16px;
-}
-.because-constraint-badge::before{
-  content:'';width:6px;height:6px;border-radius:50%;background:var(--indigo-400);
-}
-.because-constraint p{font-size:15px;line-height:1.7;color:var(--slate-400)}
+.section-3{background:#09091A}
+.rule-card-preview{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1);max-width:520px;margin:32px 0}
+.rcp-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.rcp-icon{width:32px;height:32px;background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.rcp-meta{font-size:11px;color:var(--slate-500);font-family:var(--font-mono)}
+.rcp-meta strong{color:var(--slate-300)}
+.rcp-label{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.rcp-when{color:var(--amber-400)}
+.rcp-then{color:var(--teal-300)}
+.rcp-because{color:var(--indigo-300)}
+.rcp-row{margin-bottom:14px}
+.rcp-val{font-size:13px;color:#D4D8F0;line-height:1.5;padding-left:12px;border-left:2px solid rgba(255,255,255,.08)}
+.rcp-footer{display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
+.rcp-author{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--slate-500);font-family:var(--font-mono)}
+.rcp-avatar{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--indigo-500),var(--teal-500));font-size:9px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center}
+.rcp-badge{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:100px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:var(--green-500)}
 
-/* ── Consumption feedback ── */
-.feedback-section{background:#0D0D22}
-.feedback-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:48px;
-  margin-top:64px;align-items:center;
-}
-@media(max-width:768px){.feedback-grid{grid-template-columns:1fr;gap:32px}}
-.feedback-loop{
-  padding:32px;background:#0A0A1A;border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-}
-.feedback-loop-step{
-  display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;
-}
-.feedback-loop-step:last-child{margin-bottom:0}
-.fl-icon{
-  width:36px;height:36px;min-width:36px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;font-size:16px;
-}
-.fl-icon--teal{background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2)}
-.fl-icon--indigo{background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.2)}
-.fl-icon--amber{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2)}
-.fl-icon--green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
-.fl-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
-.fl-desc{font-size:13px;color:var(--slate-400);line-height:1.5}
-.research-card{
-  padding:32px;background:#0A0A1A;border:1px solid rgba(94,213,190,.15);
-  border-radius:14px;position:relative;overflow:hidden;
-}
-.research-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--teal-500),var(--indigo-500));
-}
-.research-card-eyebrow{
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--teal-400);
-  margin-bottom:20px;
-}
-.research-stat{margin-bottom:24px}
-.research-stat:last-child{margin-bottom:0}
-.research-stat-num{
-  font-family:var(--font-serif);font-size:48px;font-weight:300;
-  line-height:1;margin-bottom:4px;
-}
-.research-stat-num--teal{color:var(--teal-300)}
-.research-stat-num--indigo{color:var(--indigo-300)}
-.research-stat-label{font-size:13px;color:var(--slate-400);line-height:1.4}
-.research-stat-cite{
-  font-size:11px;color:var(--slate-600);font-family:var(--font-mono);margin-top:4px;
-}
+@keyframes becauseGlow{0%{box-shadow:0 0 0 0 rgba(165,174,255,0);border-color:rgba(255,255,255,.08)}40%{box-shadow:0 0 32px 6px rgba(165,174,255,.18),0 0 0 1px rgba(165,174,255,.3);border-color:rgba(165,174,255,.4)}70%{box-shadow:0 0 48px 10px rgba(165,174,255,.12),0 0 0 1px rgba(165,174,255,.2);border-color:rgba(165,174,255,.25)}100%{box-shadow:0 0 0 0 rgba(165,174,255,0);border-color:rgba(255,255,255,.08)}}
+@keyframes becauseLabelPulse{0%,100%{opacity:1;letter-spacing:.12em}45%{opacity:1;letter-spacing:.22em;color:#C7CAFF}}
+@keyframes becauseTextReveal{0%{color:var(--slate-400)}40%{color:#E8EAF2;text-shadow:0 0 20px rgba(165,174,255,.35)}100%{color:#D4D8F0;text-shadow:none}}
+@keyframes becauseBorderPulse{0%,100%{border-left-color:rgba(255,255,255,.08)}45%{border-left-color:rgba(165,174,255,.6)}}
+@keyframes ifThenFade{0%{opacity:1}30%{opacity:.38}100%{opacity:1}}
+.rcp-row-because{margin-bottom:14px;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 12px 10px 10px;background:transparent;animation:becauseGlow 3.2s ease-in-out 1.8s infinite}
+.rcp-row-because .rcp-label{animation:becauseLabelPulse 3.2s ease-in-out 1.8s infinite}
+.rcp-row-because .rcp-val{border-left:2px solid rgba(255,255,255,.08);animation:becauseTextReveal 3.2s ease-in-out 1.8s infinite,becauseBorderPulse 3.2s ease-in-out 1.8s infinite}
+.rcp-row-ifthen{margin-bottom:14px;animation:ifThenFade 3.2s ease-in-out 1.8s infinite}
+.because-tooltip{display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);background:rgba(165,174,255,.08);border:1px solid rgba(165,174,255,.2);border-radius:100px;padding:3px 10px;opacity:0;animation:tooltipBlink 3.2s ease-in-out 1.8s infinite}
+@keyframes tooltipBlink{0%,25%,100%{opacity:0;transform:translateY(3px)}45%,75%{opacity:1;transform:translateY(0)}}
 
-/* ── Benefits grid ── */
-.benefits-section{background:#09091A}
-.benefits-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:24px;margin-top:64px;
-}
-@media(max-width:900px){.benefits-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.benefits-grid{grid-template-columns:1fr}}
-.benefit-card{
-  padding:28px 24px;background:#0D0D20;
-  border:1px solid rgba(255,255,255,.07);border-radius:14px;
-  transition:border-color .2s,box-shadow .2s;
-}
-.benefit-card:hover{
-  border-color:rgba(94,213,190,.25);
-  box-shadow:0 0 40px rgba(94,213,190,.06);
-}
-.benefit-icon{
-  width:44px;height:44px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;margin-bottom:18px;
-}
-.benefit-icon--teal{background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2)}
-.benefit-icon--indigo{background:rgba(71,82,245,.1);border:1px solid rgba(71,82,245,.2)}
-.benefit-icon--amber{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2)}
-.benefit-icon--green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
-.benefit-icon--rose{background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.2)}
-.benefit-title{
-  font-family:var(--font-serif);font-size:18px;font-weight:300;
-  color:#fff;letter-spacing:-.01em;margin-bottom:10px;
-}
-.benefit-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.section-4{background:#0D0D22}
+.section-5{background:#09091A;background-image:radial-gradient(ellipse 80% 100% at 50% 50%,rgba(71,82,245,.08) 0%,transparent 70%)}
+.flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin:48px 0}
+.step-card{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:32px 24px;text-align:left}
+.step-n{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:12px}
+.step-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:12px}
+.step-body{font-size:13px;line-height:1.6;color:var(--slate-400)}
 
-/* ── Ghost engine ── */
-.ghost-section{background:#060612}
-.ghost-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:48px;
-  margin-top:64px;align-items:start;
-}
-@media(max-width:768px){.ghost-grid{grid-template-columns:1fr;gap:32px}}
-.ghost-visual{
-  padding:32px;background:#0A0A1A;border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-}
-.ghost-signal{
-  display:flex;align-items:center;gap:12px;
-  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);
-}
-.ghost-signal:last-child{border-bottom:none}
-.ghost-signal-dot{
-  width:8px;height:8px;min-width:8px;border-radius:50%;
-}
-.ghost-signal-dot--teal{background:var(--teal-400)}
-.ghost-signal-dot--indigo{background:var(--indigo-400)}
-.ghost-signal-dot--amber{background:var(--amber-400)}
-.ghost-signal-name{font-size:13px;color:var(--slate-300);flex:1}
-.ghost-signal-val{
-  font-family:var(--font-mono);font-size:12px;color:var(--slate-500);
-}
-.ghost-bar{
-  height:4px;border-radius:2px;background:rgba(255,255,255,.06);
-  margin-top:6px;overflow:hidden;
-}
-.ghost-bar-fill{height:100%;border-radius:2px}
-.ghost-bar-fill--teal{background:var(--teal-400)}
-.ghost-bar-fill--indigo{background:var(--indigo-400)}
-.ghost-bar-fill--amber{background:var(--amber-400)}
+.section-6{background:#060612;padding:80px 24px}
+.rhs-pitch{font-family:var(--font-serif);font-size:clamp(24px,4vw,42px);font-weight:300;line-height:1.2;letter-spacing:-.02em;color:#fff;max-width:820px}
 
-/* ── Research backing ── */
-.research-section{background:#0D0D22}
-.research-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:24px;margin-top:64px;
-}
-@media(max-width:768px){.research-grid{grid-template-columns:1fr;gap:16px}}
-.research-tile{
-  padding:28px;background:#0A0A1A;
-  border:1px solid rgba(255,255,255,.07);border-radius:14px;
-}
-.research-tile-num{
-  font-family:var(--font-serif);font-size:32px;font-weight:300;
-  line-height:1;margin-bottom:10px;
-}
-.research-tile-num--teal{color:var(--teal-300)}
-.research-tile-num--indigo{color:var(--indigo-300)}
-.research-tile-num--green{color:var(--green-500)}
-.research-tile-label{font-size:13px;color:var(--slate-400);line-height:1.5;margin-bottom:8px}
-.research-tile-cite{font-size:10px;color:var(--slate-600);font-family:var(--font-mono)}
-
-/* ── CTA section ── */
-.cta-section{
-  background:linear-gradient(180deg,#09091A 0%,#0D0D22 40%,#09091A 100%);
-  position:relative;overflow:hidden;
-}
-.cta-section::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(94,213,190,.06) 0%,transparent 70%);
-  pointer-events:none;
-}
-.cta-inner{
-  max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1;
-}
-.cta-form{
-  margin-top:48px;display:flex;flex-direction:column;gap:16px;
-  max-width:480px;margin-left:auto;margin-right:auto;
-}
-.cta-input{
-  width:100%;padding:14px 18px;
-  background:#0A0A1A;border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;color:#EDF0F7;
-  font-family:var(--font-sans);font-size:14px;
-  outline:none;transition:border-color .2s;
-}
-.cta-input:focus{border-color:rgba(94,213,190,.4)}
+.cta-section{background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(71,82,245,.12) 0%,transparent 70%);padding:120px 24px}
+.cta-h2{font-family:var(--font-serif);font-size:clamp(36px,6vw,64px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.cta-h2 em{font-style:italic;color:var(--teal-300)}
+.cta-sub{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:520px;margin-bottom:40px}
+.cta-form{display:flex;gap:12px;flex-wrap:wrap;position:relative}
+.cta-input{flex:1;min-width:240px;padding:14px 18px;background:#0A0A1A;border:1px solid rgba(255,255,255,.1);border-radius:8px;font-family:var(--font-sans);font-size:14px;color:#fff;outline:none;transition:border-color .2s}
+.cta-input:focus{border-color:rgba(71,82,245,.5)}
 .cta-input::placeholder{color:var(--slate-600)}
-.cta-textarea{
-  width:100%;padding:14px 18px;min-height:100px;
-  background:#0A0A1A;border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;color:#EDF0F7;
-  font-family:var(--font-sans);font-size:14px;
-  outline:none;resize:vertical;transition:border-color .2s;
-}
-.cta-textarea:focus{border-color:rgba(94,213,190,.4)}
-.cta-textarea::placeholder{color:var(--slate-600)}
-.cta-submit{
-  width:100%;padding:16px;font-size:15px;font-weight:600;
-  background:var(--indigo-500);color:#fff;border:none;border-radius:8px;
-  cursor:pointer;transition:background .2s,transform .15s;
-  font-family:var(--font-sans);
-}
-.cta-submit:hover{background:var(--indigo-400);transform:translateY(-2px)}
+.cta-footnote{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);margin-top:16px}
 
-/* ── Footer ── */
-footer{
-  padding:40px 24px;border-top:1px solid rgba(255,255,255,.06);
-  text-align:center;
-}
-footer p{font-size:12px;color:var(--slate-600);font-family:var(--font-mono)}
-footer a{color:var(--slate-500);text-decoration:none}
-footer a:hover{color:var(--teal-300)}
-
-/* ── Floating particles ── */
-@keyframes float{
-  0%,100%{transform:translateY(0) translateX(0)}
-  25%{transform:translateY(-20px) translateX(10px)}
-  50%{transform:translateY(-10px) translateX(-5px)}
-  75%{transform:translateY(-25px) translateX(15px)}
-}
-.particle{
-  position:absolute;width:3px;height:3px;border-radius:50%;
-  pointer-events:none;animation:float 8s ease-in-out infinite;
-}
-
-/* ── Day in the life timeline ── */
-.daylife-section{background:#09091A}
-.daylife-timeline{
-  margin-top:64px;max-width:800px;margin-left:auto;margin-right:auto;
-  position:relative;
-}
-.daylife-timeline::before{
-  content:'';position:absolute;left:50%;top:0;bottom:0;
-  width:2px;background:linear-gradient(180deg,rgba(94,213,190,.3),rgba(71,82,245,.3),rgba(94,213,190,.3));
-  transform:translateX(-1px);
-}
-@media(max-width:700px){
-  .daylife-timeline::before{left:24px}
-}
-.daylife-event{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;
-  position:relative;margin-bottom:40px;
-}
-@media(max-width:700px){
-  .daylife-event{grid-template-columns:56px 1fr;gap:0}
-}
-.daylife-event:nth-child(even) .daylife-content{grid-column:2}
-.daylife-event:nth-child(even) .daylife-spacer{grid-column:1}
-.daylife-event:nth-child(odd) .daylife-content{grid-column:1;text-align:right}
-.daylife-event:nth-child(odd) .daylife-spacer{grid-column:2}
-@media(max-width:700px){
-  .daylife-event:nth-child(odd) .daylife-content,
-  .daylife-event:nth-child(even) .daylife-content{grid-column:2;text-align:left}
-  .daylife-event:nth-child(odd) .daylife-spacer,
-  .daylife-event:nth-child(even) .daylife-spacer{grid-column:1}
-}
-.daylife-dot{
-  position:absolute;left:50%;top:16px;
-  width:14px;height:14px;border-radius:50%;
-  transform:translateX(-50%);z-index:1;
-}
-@media(max-width:700px){.daylife-dot{left:24px}}
-.daylife-dot--teal{background:var(--teal-400);box-shadow:0 0 12px rgba(94,213,190,.4)}
-.daylife-dot--indigo{background:var(--indigo-400);box-shadow:0 0 12px rgba(71,82,245,.4)}
-.daylife-dot--amber{background:var(--amber-400);box-shadow:0 0 12px rgba(251,191,36,.4)}
-.daylife-dot--green{background:var(--green-500);box-shadow:0 0 12px rgba(34,197,94,.4)}
-.daylife-content{padding:0 32px}
-.daylife-time{
-  font-family:var(--font-mono);font-size:11px;font-weight:600;
-  color:var(--slate-500);letter-spacing:.08em;margin-bottom:8px;
-}
-.daylife-title{
-  font-family:var(--font-serif);font-size:18px;font-weight:300;
-  color:#fff;margin-bottom:8px;letter-spacing:-.01em;
-}
-.daylife-desc{font-size:13px;line-height:1.6;color:var(--slate-400)}
-.daylife-spacer{}
-
-/* ── Two-way loop visualization ── */
-.loop-section{background:#060612}
-.loop-visual{
-  margin-top:64px;max-width:800px;margin-left:auto;margin-right:auto;
-  position:relative;
-}
-.loop-nodes{
-  display:grid;grid-template-columns:1fr auto 1fr;
-  gap:0;align-items:center;
-}
-@media(max-width:600px){.loop-nodes{grid-template-columns:1fr;gap:16px}}
-.loop-node{
-  padding:28px 24px;border-radius:14px;text-align:center;
-}
-.loop-node--expert{
-  background:rgba(94,213,190,.06);border:1px solid rgba(94,213,190,.2);
-}
-.loop-node--consumer{
-  background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.2);
-}
-.loop-node-icon{font-size:28px;margin-bottom:12px}
-.loop-node-label{
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;
-}
-.loop-node--expert .loop-node-label{color:var(--teal-400)}
-.loop-node--consumer .loop-node-label{color:var(--indigo-400)}
-.loop-node-name{
-  font-family:var(--font-serif);font-size:20px;font-weight:300;
-  color:#fff;margin-bottom:8px;
-}
-.loop-node-desc{font-size:12px;color:var(--slate-400);line-height:1.5}
-.loop-arrows{
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  padding:0 16px;
-}
-@media(max-width:600px){.loop-arrows{flex-direction:row;justify-content:center;padding:8px 0}}
-.loop-arrow{
-  padding:6px 14px;border-radius:100px;font-size:11px;
-  font-family:var(--font-mono);font-weight:500;letter-spacing:.04em;
-  white-space:nowrap;
-}
-.loop-arrow--right{
-  background:rgba(71,82,245,.08);border:1px solid rgba(71,82,245,.2);
-  color:var(--indigo-300);
-}
-.loop-arrow--left{
-  background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);
-  color:var(--teal-300);
-}
-.loop-caption{
-  margin-top:40px;text-align:center;max-width:600px;
-  margin-left:auto;margin-right:auto;
-}
-.loop-caption p{font-size:14px;line-height:1.7;color:var(--slate-400)}
-
-/* ── Testimonial / quote strip ── */
-.quote-strip{
-  background:linear-gradient(90deg,rgba(94,213,190,.04),rgba(71,82,245,.06),rgba(94,213,190,.04));
-  border-top:1px solid rgba(255,255,255,.04);
-  border-bottom:1px solid rgba(255,255,255,.04);
-  padding:56px 24px;
-}
-.quote-strip-inner{
-  max-width:720px;margin:0 auto;text-align:center;
-}
-.quote-strip-text{
-  font-family:var(--font-serif);font-size:clamp(20px,3vw,28px);
-  font-weight:300;font-style:italic;line-height:1.4;
-  color:#D4D8F0;margin-bottom:20px;letter-spacing:-.02em;
-}
-.quote-strip-text em{color:var(--teal-300);font-style:italic}
-.quote-strip-credit{
-  font-size:12px;color:var(--slate-500);font-family:var(--font-mono);
-  letter-spacing:.06em;
-}
-
-/* ── Before / After comparison ── */
-.ba-section{background:#0D0D22}
-.ba-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:2px;
-  margin-top:64px;border-radius:16px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.07);
-}
-@media(max-width:640px){.ba-grid{grid-template-columns:1fr}}
-.ba-header{padding:20px 28px;display:flex;align-items:center;gap:10px}
-.ba-header--before{background:#111122}
-.ba-header--after{background:rgba(94,213,190,.08)}
-.ba-header-label{
-  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--slate-500);
-}
-.ba-header--after .ba-header-label{color:var(--teal-300)}
-.ba-header-title{
-  font-family:var(--font-serif);font-size:22px;font-weight:300;
-  letter-spacing:-.02em;color:#fff;margin-top:4px;
-}
-.ba-header--before .ba-header-title{color:var(--slate-500)}
-.ba-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.05)}
-@media(max-width:640px){.ba-row{grid-template-columns:1fr}}
-.ba-cell{padding:20px 28px;font-size:13px;line-height:1.6}
-.ba-cell--before{background:#0E0E1F;color:var(--slate-500)}
-.ba-cell--after{background:rgba(94,213,190,.03);color:#D4D8F0;border-left:1px solid rgba(94,213,190,.1)}
-.ba-cell strong{display:block;margin-bottom:4px}
-.ba-cell--before strong{color:var(--slate-400)}
-.ba-cell--after strong{color:var(--teal-300)}
-
-/* ── Anti-pattern callout ── */
-.antipattern-box{
-  margin-top:48px;max-width:640px;margin-left:auto;margin-right:auto;
-  padding:28px 32px;background:#0A0A1A;
-  border:1px solid rgba(244,63,94,.15);border-radius:14px;
-  border-left:3px solid var(--rose-500);
-}
-.antipattern-label{
-  font-family:var(--font-mono);font-size:9px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--rose-500);margin-bottom:12px;
-}
-.antipattern-row{
-  display:grid;grid-template-columns:auto 1fr;gap:12px;
-  margin-bottom:12px;font-size:13px;line-height:1.5;
-}
-.antipattern-row:last-child{margin-bottom:0}
-.antipattern-bad{color:var(--rose-500)}
-.antipattern-good{color:var(--teal-300)}
+footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-logo{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff}
+.footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
+.footer-mono a{color:var(--slate-500);text-decoration:none;transition:color .2s}
+.footer-mono a:hover{color:var(--slate-400)}
 </style>
 </head>
 <body>
 
-<!-- ── Nav ── -->
 <nav>
-  <a href="index.html" class="nav-logo" style="font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.25rem;color:#fff;text-decoration:none;letter-spacing:-.02em;">FieldRules.</a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="for-engineers.html">For Engineers</a></li>
-    <li><a href="for-domain-experts.html" style="color:var(--teal-300);">For Experts</a></li>
-    <li><a href="for-researchers.html">For Researchers</a></li>
-    <li><a href="for-investors.html">For Investors</a></li>
-    <li><a href="for-pms.html">For PMs</a></li>
-    <li><a href="pilot.html">Pilot</a></li>
-  </ul>
-  <button class="hamburger" type="button" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
-  <a href="pilot.html" class="nav-cta">Request access</a>
+<a href="/" class="nav-logo">FieldRules.</a>
+<ul class="nav-links">
+<li><a href="/#paradox">Why Now</a></li>
+<li><a href="/#because">The BECAUSE</a></li>
+<li><a href="/#how">How It Works</a></li>
+<li class="nav-dropdown">
+<button class="nav-dropdown-trigger" type="button">For…</button>
+<div class="nav-dropdown-menu">
+<a href="/for-product-managers"><span class="dd-label">Product Managers</span><span class="dd-sub">Stop speccing from Slack threads</span></a>
+<a href="/for-domain-experts" class="active"><span class="dd-label">Domain Experts</span><span class="dd-sub">Your name goes on your judgment calls</span></a>
+<a href="/for-engineers"><span class="dd-label">Engineers</span><span class="dd-sub">Externalize hardcoded business logic</span></a>
+<a href="/for-researchers"><span class="dd-label">Researchers</span><span class="dd-sub">50 years of knowledge engineering, applied</span></a>
+<a href="/for-ceos"><span class="dd-label">CEOs</span><span class="dd-sub">Protect the reasoning before it walks out</span></a>
+</div>
+</li>
+<li><a href="/pilot">Pilot</a></li>
+</ul>
+<button class="hamburger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+<a href="#cta" class="nav-cta">Request access</a>
 </nav>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- HERO                                          -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-
-  <!-- Floating particles -->
-  <div class="particle" style="top:15%;left:10%;background:var(--teal-300);opacity:.25;animation-delay:0s"></div>
-  <div class="particle" style="top:30%;right:12%;background:var(--indigo-400);opacity:.2;animation-delay:2s"></div>
-  <div class="particle" style="bottom:25%;left:20%;background:var(--teal-400);opacity:.15;animation-delay:4s"></div>
-  <div class="particle" style="top:50%;right:25%;background:var(--indigo-300);opacity:.2;animation-delay:1s"></div>
-  <div class="particle" style="bottom:35%;right:8%;background:var(--teal-300);opacity:.18;animation-delay:3s"></div>
-
-  <div class="hero-eyebrow" data-reveal>Your expertise, captured at the moment it matters</div>
-  <h1 data-reveal>Your judgment <em>deserves more</em> than a Slack thread</h1>
-  <p class="hero-sub" data-reveal>You're the person everyone comes to for the hard cases. FieldRules captures that expertise — in 45 seconds, from the work you're already doing — and makes sure it reaches the people and systems that need it.</p>
-  <div class="hero-actions" data-reveal>
-    <a href="pilot.html" class="btn-primary">Request Access</a>
-    <a href="#how-it-works" class="btn-ghost">See How It Works</a>
-  </div>
-  <div class="hero-trust" data-reveal>
-    <div class="trust-item"><div class="trust-dot"></div>45-second confirmations</div>
-    <div class="trust-item"><div class="trust-dot"></div>Captured in Slack</div>
-    <div class="trust-item"><div class="trust-dot"></div>Your name, always attributed</div>
-  </div>
-
-  <!-- Hero rule card preview -->
-  <div style="margin-top:72px;position:relative;z-index:1;max-width:520px;width:100%" data-reveal>
-    <div style="background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(94,213,190,.1)">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-        <div style="width:32px;height:32px;background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px">⚡</div>
-        <div>
-          <div style="font-size:11px;color:var(--slate-500);font-family:var(--font-mono)"><strong style="color:var(--slate-300)">Rule #47</strong> · Confirmed by you</div>
-        </div>
-        <div style="margin-left:auto;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:100px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:var(--green-500)">Active</div>
-      </div>
-      <div style="margin-bottom:14px">
-        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-400);margin-bottom:6px">WHEN</div>
-        <div style="font-size:13px;color:#D4D8F0;line-height:1.5;padding-left:12px;border-left:2px solid rgba(255,255,255,.08)">Enterprise client requests billing exception within 90 days of renewal</div>
-      </div>
-      <div style="margin-bottom:14px">
-        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);margin-bottom:6px">THEN</div>
-        <div style="font-size:13px;color:#D4D8F0;line-height:1.5;padding-left:12px;border-left:2px solid rgba(255,255,255,.08)">Offer prorated credit, not a plan change — and flag for renewal conversation</div>
-      </div>
-      <div>
-        <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-300);margin-bottom:6px">BECAUSE</div>
-        <div style="font-size:13px;color:var(--indigo-300);line-height:1.5;padding-left:12px;border-left:2px solid rgba(71,82,245,.2);opacity:.9">Plan changes within 90 days anchor the renewal negotiation at a lower baseline. Credits preserve the existing contract value while acknowledging the issue. 73% of credited clients renew at or above the original rate.</div>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
-        <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--slate-500);font-family:var(--font-mono)">
-          <div style="width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--teal-500),var(--indigo-500));font-size:9px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center">DE</div>
-          Domain Expert · v3
-        </div>
-        <div style="font-size:10px;color:var(--slate-600);font-family:var(--font-mono)">Used 24× this month</div>
-      </div>
-    </div>
-  </div>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-grid"></div>
+<div class="hero-eyebrow">Your expertise, made permanent</div>
+<h1>You've been making the hard calls for years. <em>Now your name goes on them.</em></h1>
+<p class="hero-sub">Every judgment call you make — the edge cases you catch, the exceptions you handle, the instinct you've built over thousands of interactions — shapes how the product actually works. But nobody sees it. Nobody credits it. And when you leave, it leaves with you. FieldRules changes that.</p>
+<div class="hero-actions">
+<a href="#cta" class="btn-primary">Request early access</a>
+<a href="/#how" class="btn-ghost">See how it works →</a>
+</div>
 </section>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- THE EXPERT BOTTLENECK                         -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="bottleneck" id="bottleneck">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>The problem</div>
-    <div class="section-h2" data-reveal>The most <em>valuable</em> people are the most <em>interrupted</em></div>
-    <p class="section-lede" data-reveal>Domain experts are the source of truth for every edge case, every exception, every "it depends." And right now, that knowledge lives nowhere durable.</p>
-
-    <div class="bottleneck-grid" style="margin-top:64px">
-      <div data-reveal>
-        <div class="bottleneck-quote">
-          <p class="bq-text">"When I handle a tricky case, the reasoning goes into a Slack thread. Two months later someone asks me the same question. The thread is gone. I explain it again."</p>
-          <p class="bq-credit">— Every senior CSM, everywhere</p>
-        </div>
-        <div class="bottleneck-stat-grid">
-          <div class="stat-card" data-reveal>
-            <div class="stat-n">42%</div>
-            <div class="stat-label">of what an employee does is known only to them</div>
-          </div>
-          <div class="stat-card" data-reveal>
-            <div class="stat-n">85%</div>
-            <div class="stat-label">of expert overrides outperform the AI recommendation</div>
-          </div>
-          <div class="stat-card" data-reveal>
-            <div class="stat-n">25–40%</div>
-            <div class="stat-label">of AI recommendations get overridden by domain experts</div>
-          </div>
-          <div class="stat-card" data-reveal>
-            <div class="stat-n">0%</div>
-            <div class="stat-label">of that override reasoning is typically captured</div>
-          </div>
-        </div>
-      </div>
-      <div data-reveal>
-        <div class="bottleneck-right-title">Your knowledge lives in <em>three fragile places</em></div>
-        <p class="bottleneck-body">Your expertise currently lives in your head, in Slack threads that expire, and in ticket comments nobody will ever find again. When you leave a company, it leaves with you. When a new hire joins, they start from zero — asking you the same questions your last three hires asked.</p>
-        <p class="bottleneck-body">Documentation sprints don't fix this. They capture what people <em>think</em> they do, not what they <em>actually</em> do. The reasoning behind your judgment — the <em>why</em> behind the exception — never makes it into Confluence.</p>
-        <div style="margin-top:20px">
-          <span class="bottleneck-tag">💬 Slack threads</span>
-          <span class="bottleneck-tag">🧠 Your head</span>
-          <span class="bottleneck-tag">🎫 Ticket comments</span>
-          <span class="bottleneck-tag">📋 Hallway conversations</span>
-          <span class="bottleneck-tag">🔄 Repeated explanations</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="section-2">
+<div class="inner">
+<div class="section-eyebrow">The Problem</div>
+<h2 class="section-h2">Your expertise is <em>invisible.</em></h2>
+<p class="section-lede">You handle 40 tickets a week. In at least 5 of them, you make a judgment call that deviates from the standard playbook — because you know something the playbook doesn't. That deviation is the most valuable thing you do. And it's completely invisible.<br><br>It doesn't show up in your performance review. It doesn't get captured in a wiki. It doesn't feed the AI that's supposed to handle cases like yours. It lives in your head until you leave, and then it's gone.</p>
+</div>
 </section>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- HOW IT WORKS — THE SLACK CARD INTERCEPT       -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="flow-section" id="how-it-works">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>How it works for you</div>
-    <div class="section-h2" data-reveal>From resolved ticket to <em>permanent rule</em> in 45 seconds</div>
-    <p class="section-lede" data-reveal>FieldRules intercepts the knowledge at the moment it's freshest — right when you've resolved the case and the reasoning is still in your head.</p>
+<section class="section-3">
+<div class="inner">
+<div class="section-eyebrow">What We Ask</div>
+<h2 class="section-h2">45 seconds. Your words. <em>Your name.</em></h2>
+<p class="section-lede">When FieldRules detects a judgment call in your work — a ticket resolution, a Slack thread, a pattern it spotted — it sends you a card. You see the IF/THEN it drafted. You confirm, edit, or dismiss. One tap.<br><br>Then it asks you to write the BECAUSE. Not a summary. Not a form. The actual reasoning — in your words, in your voice.</p>
 
-    <div class="flow-steps">
-      <div class="flow-step" data-reveal>
-        <div class="flow-step-num flow-step-num--teal">01</div>
-        <div>
-          <div class="flow-step-title">Ticket resolves</div>
-          <p class="flow-step-body">You close a case with conditional logic — an exception, an override, an "it depends on the client tier." FieldRules detects a rule candidate from the resolution context.</p>
-        </div>
-      </div>
-      <div class="flow-step" data-reveal>
-        <div class="flow-step-num flow-step-num--indigo">02</div>
-        <div>
-          <div class="flow-step-title">Slack card appears</div>
-          <p class="flow-step-body">A card surfaces in Slack with the IF/THEN already extracted. You don't author the rule — FieldRules drafts it. You review, edit if needed, and add the part only you can write: the BECAUSE.</p>
-        </div>
-      </div>
-      <div class="flow-step" data-reveal>
-        <div class="flow-step-num flow-step-num--teal">03</div>
-        <div>
-          <div class="flow-step-title">You write the BECAUSE</div>
-          <p class="flow-step-body">The BECAUSE field captures <em>why</em> this rule matters — your reasoning, your judgment, your expertise. It's never pre-filled. It exists only when you write it. This is the part that makes the rule yours.</p>
-        </div>
-      </div>
-      <div class="flow-step" data-reveal>
-        <div class="flow-step-num flow-step-num--indigo">04</div>
-        <div>
-          <div class="flow-step-title">Rule enters the library</div>
-          <p class="flow-step-body">Your confirmed rule — attributed to you, versioned, permanent — enters the company's rule library. Product managers use it in specs. AI systems run on it. New hires learn from it. Your name stays on it.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slack card mockup -->
-    <div class="slack-card" data-reveal>
-      <div class="slack-card-header">
-        <div class="slack-card-avatar">⚡</div>
-        <div class="slack-card-app">FieldRules <span>RULE CANDIDATE</span></div>
-      </div>
-      <div class="slack-card-body">
-        <div class="slack-card-row">
-          <div class="slack-card-label slack-card-label--when">WHEN</div>
-          <div class="slack-card-val">Enterprise client requests mid-contract downgrade during active escalation</div>
-        </div>
-        <div class="slack-card-row">
-          <div class="slack-card-label slack-card-label--then">THEN</div>
-          <div class="slack-card-val">Route to retention team first — do not process downgrade until escalation is resolved and a 48-hour cooling period has passed</div>
-        </div>
-        <div class="slack-card-row">
-          <div class="slack-card-label slack-card-label--because">BECAUSE</div>
-          <textarea class="slack-card-because-input" placeholder="Why does this rule matter? What's the reasoning behind the exception?" rows="3">85% of mid-escalation downgrade requests reverse within 72 hours once the root issue is addressed. Processing immediately locks in a lower rate that's harder to unwind and signals to the client that we're not invested in resolving the problem.</textarea>
-        </div>
-      </div>
-      <div class="slack-card-actions">
-        <button class="slack-btn slack-btn--confirm">✓ Confirm Rule</button>
-        <button class="slack-btn slack-btn--skip">Skip</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- A DAY IN YOUR LIFE WITH FIELDRULES            -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="daylife-section" id="day-in-life">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>A day in your life</div>
-    <div class="section-h2" data-reveal>FieldRules fits into <em>how you already work</em></div>
-    <p class="section-lede" data-reveal>No separate tool. No documentation sprint. No extra meetings. Here's what a Tuesday looks like with FieldRules running alongside your workflow.</p>
-
-    <div class="daylife-timeline">
-      <div class="daylife-event" data-reveal>
-        <div class="daylife-dot daylife-dot--teal"></div>
-        <div class="daylife-content">
-          <div class="daylife-time">9:15 AM</div>
-          <div class="daylife-title">You resolve a tricky escalation</div>
-          <div class="daylife-desc">Enterprise client requested a mid-contract downgrade during an active support escalation. You know from experience: process the downgrade now and you'll lock in a lower rate that's nearly impossible to unwind.</div>
-        </div>
-        <div class="daylife-spacer"></div>
-      </div>
-
-      <div class="daylife-event" data-reveal>
-        <div class="daylife-dot daylife-dot--indigo"></div>
-        <div class="daylife-spacer"></div>
-        <div class="daylife-content">
-          <div class="daylife-time">9:16 AM</div>
-          <div class="daylife-title">A Slack card appears</div>
-          <div class="daylife-desc">FieldRules detected the conditional logic in your resolution. A card surfaces with the IF/THEN already drafted. You glance at it — the rule is close. You tweak the THEN and write a 2-sentence BECAUSE.</div>
-        </div>
-      </div>
-
-      <div class="daylife-event" data-reveal>
-        <div class="daylife-dot daylife-dot--teal"></div>
-        <div class="daylife-content">
-          <div class="daylife-time">9:17 AM</div>
-          <div class="daylife-title">45 seconds later — done</div>
-          <div class="daylife-desc">You hit confirm. Your rule enters the library with your name on it. You're back to your next case. No context switch. No separate tool. No documentation sprint.</div>
-        </div>
-        <div class="daylife-spacer"></div>
-      </div>
-
-      <div class="daylife-event" data-reveal>
-        <div class="daylife-dot daylife-dot--amber"></div>
-        <div class="daylife-spacer"></div>
-        <div class="daylife-content">
-          <div class="daylife-time">2:30 PM</div>
-          <div class="daylife-title">A PM needed your expertise</div>
-          <div class="daylife-desc">A product manager searched the library for enterprise billing rules before writing a spec. Your rule from this morning was the answer. Your BECAUSE became acceptance criteria — verbatim. You didn't have to be in the meeting.</div>
-        </div>
-      </div>
-
-      <div class="daylife-event" data-reveal>
-        <div class="daylife-dot daylife-dot--green"></div>
-        <div class="daylife-content">
-          <div class="daylife-time">4:45 PM</div>
-          <div class="daylife-title">Impact notification</div>
-          <div class="daylife-desc">"Your rule about enterprise downgrades was referenced in 3 cases today and included in a product spec." Your expertise is working — attributed, versioned, and visible.</div>
-        </div>
-        <div class="daylife-spacer"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- THE BECAUSE FIELD                             -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="because-section" id="because">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>The core innovation</div>
-    <div class="section-h2" data-reveal>Not just what. <em>Why.</em></div>
-    <p class="section-lede" data-reveal>Most systems capture the rule. FieldRules captures the reasoning. The BECAUSE field is what separates a checklist from judgment — and it's the thing only a domain expert can write.</p>
-
-    <div class="because-comparison">
-      <div class="because-card because-card--without" data-reveal>
-        <div class="because-card-tag">✕ Without BECAUSE</div>
-        <div class="bc-rule-label" style="color:var(--amber-400)">WHEN</div>
-        <div class="bc-rule-text">Enterprise client requests mid-contract downgrade during active escalation</div>
-        <div class="bc-rule-label" style="color:var(--teal-300)">THEN</div>
-        <div class="bc-rule-text">Route to retention team first</div>
-        <div class="because-field because-field--empty">
-          BECAUSE — [empty]<br>
-          <span style="font-size:11px;opacity:.7">Just a rule. No reasoning. An AI following this has no idea <em>why</em> — and can't adapt when the situation is slightly different.</span>
-        </div>
-      </div>
-      <div class="because-card because-card--with" data-reveal>
-        <div class="because-card-tag">✓ With BECAUSE</div>
-        <div class="bc-rule-label" style="color:var(--amber-400)">WHEN</div>
-        <div class="bc-rule-text">Enterprise client requests mid-contract downgrade during active escalation</div>
-        <div class="bc-rule-label" style="color:var(--teal-300)">THEN</div>
-        <div class="bc-rule-text">Route to retention team first</div>
-        <div class="because-field because-field--filled">
-          <div class="bc-rule-label" style="color:var(--indigo-300)">BECAUSE</div>
-          85% of mid-escalation downgrade requests reverse within 72 hours once the root issue is addressed. Processing immediately locks in a lower rate that's harder to unwind and signals to the client that we're not invested in resolving the problem.
-        </div>
-      </div>
-    </div>
-
-    <div class="because-constraint" data-reveal>
-      <div class="because-constraint-badge">Architectural constraint</div>
-      <p>The BECAUSE field is <strong style="color:#fff">never pre-filled</strong>. Not by AI. Not by templates. Not by prior entries. It exists only when a domain expert writes it. This constraint is permanent and architectural — because the moment you auto-generate reasoning, you've replaced judgment with pattern-matching.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- CONSUMPTION FEEDBACK                          -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="feedback-section" id="feedback">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>What happens after</div>
-    <div class="section-h2" data-reveal>See your expertise <em>working</em></div>
-    <p class="section-lede" data-reveal>You don't write rules into a void. FieldRules shows you exactly who uses your knowledge, how often, and what it changed.</p>
-
-    <div class="feedback-grid">
-      <div class="feedback-loop" data-reveal>
-        <div class="feedback-loop-step">
-          <div class="fl-icon fl-icon--teal">✍️</div>
-          <div>
-            <div class="fl-title">You confirm a rule</div>
-            <div class="fl-desc">Your expertise is captured with attribution — your name, your reasoning, versioned and permanent.</div>
-          </div>
-        </div>
-        <div class="feedback-loop-step">
-          <div class="fl-icon fl-icon--indigo">📋</div>
-          <div>
-            <div class="fl-title">A PM uses it in a spec</div>
-            <div class="fl-desc">Your BECAUSE becomes acceptance criteria verbatim. The product manager didn't have to ask you — your reasoning was already structured.</div>
-          </div>
-        </div>
-        <div class="feedback-loop-step">
-          <div class="fl-icon fl-icon--amber">🤖</div>
-          <div>
-            <div class="fl-title">AI runs on it</div>
-            <div class="fl-desc">When the AI handles an edge case correctly, the audit trail traces back to your rule. Your judgment governs the system's behavior.</div>
-          </div>
-        </div>
-        <div class="feedback-loop-step">
-          <div class="fl-icon fl-icon--green">🔔</div>
-          <div>
-            <div class="fl-title">You see the impact</div>
-            <div class="fl-desc">Impact notifications: "Your rule about enterprise downgrades was used 12 times this week by 4 team members." Your next confirmation is faster and deeper.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="research-card" data-reveal>
-        <div class="research-card-eyebrow">Research: Beneficiary-Contact Effect</div>
-        <div class="research-stat">
-          <div class="research-stat-num research-stat-num--teal">142%</div>
-          <div class="research-stat-label">more persistence when contributors can see who benefits from their work</div>
-          <div class="research-stat-cite">Grant (2007) — 10 minutes of beneficiary contact</div>
-        </div>
-        <div class="research-stat">
-          <div class="research-stat-num research-stat-num--indigo">171%</div>
-          <div class="research-stat-label">higher performance, persisting for a full month after a single exposure</div>
-          <div class="research-stat-cite">Grant (2007) — University fundraising study</div>
-        </div>
-        <p style="font-size:13px;color:var(--slate-400);line-height:1.6;margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06)">This is the engine behind FieldRules. When you see that a teammate used your rule to handle a case — when your name is on the answer — you confirm more, and you confirm better. The social trigger is what makes the system compound.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- QUOTE STRIP                                   -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="quote-strip">
-  <div class="quote-strip-inner" data-reveal>
-    <p class="quote-strip-text">"The strongest activation moment isn't a closed ticket or a weekly reminder — it's a <em>live signal</em> that someone needs your expertise today."</p>
-    <p class="quote-strip-credit">— The design principle behind FieldRules</p>
-  </div>
+<div class="rule-card-preview" data-reveal>
+<div class="rcp-header">
+<div class="rcp-icon">🧠</div>
+<div>
+<div class="rcp-meta"><strong>Customer Success</strong> · operational playbook</div>
+<div class="rcp-meta">Identified from ticket #3847 · Small-business onboarding</div>
+</div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- THE TWO-WAY LOOP                              -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="loop-section" id="two-way-loop">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>The two-way loop</div>
-    <div class="section-h2" data-reveal>Demand drives <em>contribution</em></div>
-    <p class="section-lede" data-reveal>FieldRules doesn't ask you to document on a schedule. It routes real demand to you — from PMs writing specs, from new hires looking for answers, from AI systems hitting gaps.</p>
-
-    <div class="loop-visual">
-      <div class="loop-nodes" data-reveal>
-        <div class="loop-node loop-node--expert">
-          <div class="loop-node-icon">✍️</div>
-          <div class="loop-node-label">Domain expert</div>
-          <div class="loop-node-name">You</div>
-          <div class="loop-node-desc">Confirm rules with BECAUSE reasoning. See who uses your knowledge. Each confirmation is faster because you can see the impact.</div>
-        </div>
-        <div class="loop-arrows">
-          <div class="loop-arrow loop-arrow--right">rules → library →</div>
-          <div class="loop-arrow loop-arrow--left">← gap signals</div>
-        </div>
-        <div class="loop-node loop-node--consumer">
-          <div class="loop-node-icon">🔍</div>
-          <div class="loop-node-label">Consumers</div>
-          <div class="loop-node-name">PMs, new hires, AI</div>
-          <div class="loop-node-desc">Query the library for rules. When rules exist, they get structured answers. When a gap exists, you get a live signal with context.</div>
-        </div>
-      </div>
-
-      <div class="loop-caption" data-reveal>
-        <p>The motivational difference is real: "A PM searched for enterprise billing rules and found no matches — can you help?" is fundamentally different from "you haven't documented rules this week." That's why the two-way loop works where documentation sprints fail.</p>
-      </div>
-
-      <div class="antipattern-box" data-reveal>
-        <div class="antipattern-label">How FieldRules communicates with you</div>
-        <div class="antipattern-row">
-          <span class="antipattern-bad">✕ Never:</span>
-          <span style="color:var(--slate-400)">"You haven't contributed rules this week"</span>
-        </div>
-        <div class="antipattern-row">
-          <span class="antipattern-bad">✕ Never:</span>
-          <span style="color:var(--slate-400)">"Your team is behind on documentation targets"</span>
-        </div>
-        <div class="antipattern-row">
-          <span class="antipattern-good">✓ Always:</span>
-          <span style="color:var(--slate-300)">"A PM needs your expertise on enterprise billing before sending to engineering"</span>
-        </div>
-        <div class="antipattern-row">
-          <span class="antipattern-good">✓ Always:</span>
-          <span style="color:var(--slate-300)">"Your rules were queried 12 times this week by 4 team members"</span>
-        </div>
-        <p style="font-size:12px;color:var(--slate-500);margin-top:16px;line-height:1.5">Research shows controlled motivation ("you should") drives knowledge <em>hiding</em>. Autonomous motivation ("your expertise was needed") drives knowledge sharing. FieldRules uses only autonomous framing — always.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- WHAT DOMAIN EXPERTS GET                       -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="benefits-section" id="benefits">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>What you get</div>
-    <div class="section-h2" data-reveal>Built for the people <em>everyone asks</em></div>
-    <p class="section-lede" data-reveal>FieldRules doesn't add to your workload. It captures the expertise you're already sharing and makes it permanent, attributed, and visible.</p>
-
-    <div class="benefits-grid">
-      <div class="benefit-card" data-reveal>
-        <div class="benefit-icon benefit-icon--teal">🏷️</div>
-        <div class="benefit-title">Attributed expertise</div>
-        <div class="benefit-body">Every rule carries your name. When a spec ships with your BECAUSE as acceptance criteria, when the AI handles an edge case using your rule — the audit trail traces back to you.</div>
-      </div>
-      <div class="benefit-card" data-reveal>
-        <div class="benefit-icon benefit-icon--indigo">🔁</div>
-        <div class="benefit-title">Fewer repeated questions</div>
-        <div class="benefit-body">New hires and generalists query the library instead of asking you. Your knowledge is available at 2 AM, on weekends, and after you've moved on to the next challenge.</div>
-      </div>
-      <div class="benefit-card" data-reveal>
-        <div class="benefit-icon benefit-icon--amber">⏳</div>
-        <div class="benefit-title">Knowledge that outlasts tenure</div>
-        <div class="benefit-body">When you move to a new role — or a new company — your expertise doesn't disappear. The rules you confirmed are versioned, permanent, and still working for the team you built.</div>
-      </div>
-      <div class="benefit-card" data-reveal>
-        <div class="benefit-icon benefit-icon--green">📊</div>
-        <div class="benefit-title">Consumption visibility</div>
-        <div class="benefit-body">See who uses your rules, how often, and what they unlock. Impact metrics that prove your expertise isn't just valuable — it's measurably driving decisions.</div>
-      </div>
-      <div class="benefit-card" data-reveal>
-        <div class="benefit-icon benefit-icon--rose">⚡</div>
-        <div class="benefit-title">45-second capture</div>
-        <div class="benefit-body">No documentation sprints. No separate tools. A Slack card appears when you close a case. You confirm or edit the IF/THEN. You write the BECAUSE. Done. Back to work.</div>
-      </div>
-      <div class="benefit-card" data-reveal>
-        <div class="benefit-icon benefit-icon--teal">🌐</div>
-        <div class="benefit-title">Downstream proof</div>
-        <div class="benefit-body">Your rules don't sit in a knowledge base. They flow into product specs, AI context layers, and engineering tickets — with your reasoning attached as the authoritative source.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- THE GHOST ENGINE                              -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="ghost-section" id="ghost-engine">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>The system learns</div>
-    <div class="section-h2" data-reveal>Smarter candidates, <em>less noise</em></div>
-    <p class="section-lede" data-reveal>FieldRules doesn't just wait for you to resolve a case. The Ghost Engine learns from your behavior patterns to surface better rule candidates over time — and stop surfacing ones you don't need.</p>
-
-    <div class="ghost-grid">
-      <div data-reveal>
-        <h3 style="font-family:var(--font-serif);font-size:24px;font-weight:300;color:#fff;margin-bottom:16px;letter-spacing:-.02em">Pattern recognition that respects your time</h3>
-        <p style="font-size:15px;line-height:1.8;color:var(--slate-400);margin-bottom:24px">The Ghost Engine tracks which rule candidates you confirm, which you skip, and which you edit heavily. Over time, it learns the contours of your domain — the types of cases that produce real rules versus the ones that are just routine.</p>
-        <p style="font-size:15px;line-height:1.8;color:var(--slate-400);margin-bottom:24px">Skip rate drops. Confirmation quality rises. The system adapts to you, not the other way around.</p>
-        <p style="font-size:15px;line-height:1.8;color:var(--slate-400)">And when a PM or a teammate queries the library and hits a gap in your domain — the Ghost Engine routes that signal to you with context: who needs the expertise, and why it matters right now.</p>
-      </div>
-      <div class="ghost-visual" data-reveal>
-        <div style="font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500);margin-bottom:20px">Ghost Engine Signals</div>
-        <div class="ghost-signal">
-          <div class="ghost-signal-dot ghost-signal-dot--teal"></div>
-          <div class="ghost-signal-name">Confirmation rate</div>
-          <div class="ghost-signal-val">87%</div>
-        </div>
-        <div class="ghost-bar"><div class="ghost-bar-fill ghost-bar-fill--teal" style="width:87%"></div></div>
-        <div class="ghost-signal" style="margin-top:16px">
-          <div class="ghost-signal-dot ghost-signal-dot--indigo"></div>
-          <div class="ghost-signal-name">BECAUSE depth (avg words)</div>
-          <div class="ghost-signal-val">34</div>
-        </div>
-        <div class="ghost-bar"><div class="ghost-bar-fill ghost-bar-fill--indigo" style="width:68%"></div></div>
-        <div class="ghost-signal" style="margin-top:16px">
-          <div class="ghost-signal-dot ghost-signal-dot--amber"></div>
-          <div class="ghost-signal-name">Skip rate (trending ↓)</div>
-          <div class="ghost-signal-val">13%</div>
-        </div>
-        <div class="ghost-bar"><div class="ghost-bar-fill ghost-bar-fill--amber" style="width:13%"></div></div>
-        <div class="ghost-signal" style="margin-top:16px">
-          <div class="ghost-signal-dot ghost-signal-dot--teal"></div>
-          <div class="ghost-signal-name">Gap-routed candidates</div>
-          <div class="ghost-signal-val">8 this week</div>
-        </div>
-        <div class="ghost-bar"><div class="ghost-bar-fill ghost-bar-fill--teal" style="width:40%"></div></div>
-        <div class="ghost-signal" style="margin-top:16px">
-          <div class="ghost-signal-dot ghost-signal-dot--indigo"></div>
-          <div class="ghost-signal-name">Cross-entry uniqueness</div>
-          <div class="ghost-signal-val">94%</div>
-        </div>
-        <div class="ghost-bar"><div class="ghost-bar-fill ghost-bar-fill--indigo" style="width:94%"></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- BEFORE / AFTER                                -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="ba-section" id="before-after">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>The shift</div>
-    <div class="section-h2" data-reveal>Before FieldRules vs. <em>after</em></div>
-    <p class="section-lede" data-reveal>What changes for you when your expertise has a system to live in.</p>
-
-    <div class="ba-grid">
-      <div class="ba-header ba-header--before">
-        <div>
-          <div class="ba-header-label">Before FieldRules</div>
-          <div class="ba-header-title">Fragmented</div>
-        </div>
-      </div>
-      <div class="ba-header ba-header--after">
-        <div>
-          <div class="ba-header-label">With FieldRules</div>
-          <div class="ba-header-title">Structured</div>
-        </div>
-      </div>
-    </div>
-    <div class="ba-row" data-reveal>
-      <div class="ba-cell ba-cell--before">
-        <strong>Knowledge capture</strong>
-        Slack threads, ticket comments, hallway conversations. Expires, gets buried, can't be searched.
-      </div>
-      <div class="ba-cell ba-cell--after">
-        <strong>Knowledge capture</strong>
-        45-second Slack card confirmation at the moment the context is freshest. Versioned, searchable, permanent.
-      </div>
-    </div>
-    <div class="ba-row" data-reveal>
-      <div class="ba-cell ba-cell--before">
-        <strong>New hire onboarding</strong>
-        They ask you the same 20 questions. Every. Single. Time. You explain, they forget, they ask again.
-      </div>
-      <div class="ba-cell ba-cell--after">
-        <strong>New hire onboarding</strong>
-        They query the library and get your rules with your reasoning. They come to you for the genuinely novel cases.
-      </div>
-    </div>
-    <div class="ba-row" data-reveal>
-      <div class="ba-cell ba-cell--before">
-        <strong>Product specs</strong>
-        PM messages you on Slack: "How do we handle X?" You write a wall of text. PM paraphrases. Nuance is lost.
-      </div>
-      <div class="ba-cell ba-cell--after">
-        <strong>Product specs</strong>
-        PM queries the library. Your BECAUSE becomes acceptance criteria verbatim. You weren't even in the meeting.
-      </div>
-    </div>
-    <div class="ba-row" data-reveal>
-      <div class="ba-cell ba-cell--before">
-        <strong>AI behavior</strong>
-        AI uses training data defaults — the industry average, not your company's logic. Nobody knows why it decided anything.
-      </div>
-      <div class="ba-cell ba-cell--after">
-        <strong>AI behavior</strong>
-        AI runs on your confirmed rules. Audit trail traces every decision to a named expert, a specific BECAUSE, a version number.
-      </div>
-    </div>
-    <div class="ba-row" data-reveal>
-      <div class="ba-cell ba-cell--before">
-        <strong>When you leave</strong>
-        Your knowledge leaves with you. The team scrambles. Cases get handled wrong. Someone rebuilds from scratch.
-      </div>
-      <div class="ba-cell ba-cell--after">
-        <strong>When you leave</strong>
-        Your rule library stays. Attributed to you. Still governing decisions, specs, and AI behavior — permanently.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- RESEARCH BACKING                              -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="research-section" id="research">
-  <div class="inner">
-    <div class="section-eyebrow" data-reveal>Built on research</div>
-    <div class="section-h2" data-reveal>Not just a hunch — <em>evidence</em></div>
-    <p class="section-lede" data-reveal>Every design decision in FieldRules is grounded in behavioral science and validated through rigorous testing.</p>
-
-    <div class="research-grid">
-      <div class="research-tile" data-reveal>
-        <div class="research-tile-num research-tile-num--teal">142%</div>
-        <div class="research-tile-label">more persistence when people see who benefits from their contributions</div>
-        <div class="research-tile-cite">Grant (2007) — Beneficiary-contact effect</div>
-      </div>
-      <div class="research-tile" data-reveal>
-        <div class="research-tile-num research-tile-num--indigo">0.913</div>
-        <div class="research-tile-label">quality composite score — rules with BECAUSE outperform every other condition</div>
-        <div class="research-tile-cite">FieldRules Reasoning Advantage Eval (2026)</div>
-      </div>
-      <div class="research-tile" data-reveal>
-        <div class="research-tile-num research-tile-num--green">100%</div>
-        <div class="research-tile-label">win rate — BECAUSE-authored rules beat unstructured documentation in every eval run</div>
-        <div class="research-tile-cite">FieldRules Eval v1 + v2 (synthetic + prospect-seeded)</div>
-      </div>
-      <div class="research-tile" data-reveal>
-        <div class="research-tile-num research-tile-num--teal">171%</div>
-        <div class="research-tile-label">higher performance from a single 10-minute beneficiary exposure, persisting for a full month</div>
-        <div class="research-tile-cite">Grant (2007) — University fundraising</div>
-      </div>
-      <div class="research-tile" data-reveal>
-        <div class="research-tile-num research-tile-num--indigo">42%</div>
-        <div class="research-tile-label">of employee knowledge is tacit — known only to the individual, invisible to systems</div>
-        <div class="research-tile-cite">Forrester (2026) — AI-led CS barriers</div>
-      </div>
-      <div class="research-tile" data-reveal>
-        <div class="research-tile-num research-tile-num--green">38%</div>
-        <div class="research-tile-label">reduction in inappropriate AI reliance through trust-adaptive friction interventions</div>
-        <div class="research-tile-cite">Srinivasan & Thomason (2025) — arXiv:2502.13321</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SECOND QUOTE STRIP                            -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="quote-strip">
-  <div class="quote-strip-inner" data-reveal>
-    <p class="quote-strip-text">"Context fades fast. A documentation sprint three months from now captures what people <em>think</em> they do. FieldRules captures what they <em>actually</em> do, at the moment they're doing it."</p>
-    <p class="quote-strip-credit">— FieldRules founding principle</p>
-  </div>
+<div class="rcp-row rcp-row-ifthen">
+<div class="rcp-label rcp-when">IF</div>
+<div class="rcp-val">Customer is on a small-business plan AND has been active less than 90 days</div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- CTA + FORM                                    -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="cta-section" id="request-access">
-  <div class="inner">
-    <div class="cta-inner">
-      <div class="section-eyebrow" data-reveal>Join the pilot</div>
-      <div class="section-h2" data-reveal>Your expertise is the <em>starting point</em></div>
-      <p class="section-lede" data-reveal style="max-width:520px;margin-left:auto;margin-right:auto">FieldRules is running structured 30-day pilots with domain experts who are tired of their knowledge living in Slack threads. If that's you — let's talk.</p>
+<div class="rcp-row rcp-row-ifthen">
+<div class="rcp-label rcp-then">THEN</div>
+<div class="rcp-val">Route to senior specialist — do not automate initial outreach</div>
+</div>
 
-      <form class="cta-form" data-reveal action="https://formsubmit.co/melanie.gower@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="FieldRules Pilot — Domain Expert Interest">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" style="display:none">
-        <input class="cta-input" type="text" name="name" placeholder="Your name" required>
-        <input class="cta-input" type="email" name="email" placeholder="Work email" required>
-        <input class="cta-input" type="text" name="company" placeholder="Company">
-        <input class="cta-input" type="text" name="role" placeholder="Your role (e.g., Senior CSM, CS Team Lead)">
-        <textarea class="cta-textarea" name="context" placeholder="What kind of edge cases does your team handle? What happens to that knowledge today?"></textarea>
-        <button type="submit" class="cta-submit">Request Access →</button>
-      </form>
-    </div>
-  </div>
+<div class="rcp-row rcp-row-because">
+<div class="rcp-label rcp-because">BECAUSE</div>
+<div class="rcp-val">Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care — and they notice.<span class="because-tooltip">Your core judgment</span></div>
+</div>
+
+<div class="rcp-footer">
+<div class="rcp-author"><div class="rcp-avatar">J</div>Jordan Chen · Domain Expert</div>
+<div class="rcp-badge">Confirmed</div>
+</div>
+</div>
+</div>
+
+<p class="section-lede" data-reveal style="margin-top:32px;">That reasoning carries your name. Permanently. When a PM specs a feature from your rule, your name is on it. When the AI applies your logic, the decision traces back to you.</p>
 </section>
 
-<!-- ── Footer ── -->
+<section class="section-4">
+<div class="inner">
+<div class="section-eyebrow">What You Get Back</div>
+<h2 class="section-h2">Your judgment, <em>visible in the product.</em></h2>
+<p class="section-lede">You can see when your rules are used. You know when they're challenged. You hold the pen — only you can revise the reasoning behind a rule you authored. When someone queries the library and your rule answers, your attribution is permanent.<br><br>For the first time, the expertise you carry is an asset the company can see, value, and protect — not a dependency it discovers only when you give notice.</p>
+</div>
+</section>
+
+<section class="section-5">
+<div class="inner">
+<div class="section-eyebrow">Attribution</div>
+<h2 class="section-h2">One rule. <em>Three downstream contexts.</em></h2>
+<div class="flow-grid">
+<div class="step-card" data-reveal>
+<div class="step-n">PM SPEC</div>
+<div class="step-title">Rule FR-1847 (Jordan Chen)</div>
+<div class="step-body">Small-business onboarding requires personal outreach in first 90 days. See BECAUSE for rationale. — Referenced in PRD-2026-Q2-14</div>
+</div>
+<div class="step-card" data-reveal>
+<div class="step-n">AI DECISION LOG</div>
+<div class="step-title">Ticket #4821 → Senior Specialist</div>
+<div class="step-body">Applied rule FR-1847 (authored: Jordan Chen). Reasoning: "Small sites go dark fast if they don't get personal attention early." Confidence: confirmed.</div>
+</div>
+<div class="step-card" data-reveal>
+<div class="step-n">BOARD REPORT</div>
+<div class="step-title">Reasoning Health Score: 94/100</div>
+<div class="step-body">847 confirmed rules. Top contributor: Jordan Chen (127 rules, avg specificity 4.2/5). Governance layer: active.</div>
+</div>
+</div>
+<p class="section-lede" data-reveal>Your words. Your name. Flowing through every layer of the product — from the spec that shapes the feature to the board report that proves the governance layer is alive.</p>
+</div>
+</section>
+
+<section class="section-6">
+<div class="inner" style="text-align:center;">
+<div class="rhs-pitch" data-reveal>Every AI governance tool tells you what rules exist. FieldRules is the only one that tells you whether your rules are actually thinking.</div>
+</div>
+</section>
+
+<section class="cta-section" id="cta">
+<div class="inner">
+<h2 class="cta-h2">Your expertise deserves more than a Slack thread. <em>Request early access.</em></h2>
+<p class="cta-sub">We're onboarding a small number of teams manually. One pilot customer at a time. If you're the person whose judgment calls shape how the product works, we'd like to talk.</p>
+<form class="cta-form" action="https://formsubmit.co/ajax/melanie.gower@gmail.com" method="POST">
+<input type="email" class="cta-input" name="email" placeholder="Your email" required>
+<button type="submit" class="btn-primary">Request access</button>
+</form>
+<p class="cta-footnote">No deck. No demo-ware. We start with a conversation.</p>
+</div>
+</section>
+
 <footer>
-  <p>FieldRules. · fieldrules-for-domain-experts-v2 · <a href="index.html">Home</a> · <a href="pilot.html">Request Access</a></p>
+<div class="footer-logo">FieldRules.</div>
+<div class="footer-mono">For Domain Experts · v2 · April 2026</div>
+<div class="footer-mono"><a href="/">← Back to homepage</a></div>
 </footer>
 
-<!-- ── Reveal animation JS ── -->
 <script>
-(function(){
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
-  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
-})();
+const observerOptions={threshold:.1,rootMargin:'0px 0px -40px 0px'};
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},observerOptions);
+document.querySelectorAll('[data-reveal]').forEach(el=>observer.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',(e)=>{const target=link.getAttribute('href');if(target!=='#'){e.preventDefault();const elem=document.querySelector(target);if(elem){elem.scrollIntoView({behavior:'smooth',block:'start'});history.pushState(null,null,target)}}})});
+
+const hamburger=document.querySelector('.hamburger');const navLinks=document.querySelector('.nav-links');if(hamburger){hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');navLinks.classList.toggle('open')})}
+
+const navCta=document.querySelector('.nav-cta');if(navCta){navCta.addEventListener('click',(e)=>{e.preventDefault();const cta=document.getElementById('cta');if(cta){cta.scrollIntoView({behavior:'smooth',block:'start'});history.pushState(null,null,'#cta')}})}
+
+document.querySelector('.cta-form').addEventListener('submit',(e)=>{e.preventDefault();const form=e.target;const formData=new FormData(form);fetch(form.action,{method:'POST',body:formData}).then(()=>{form.innerHTML='<p style="color:var(--teal-300);font-size:15px;">Thank you. We\'ll be in touch.</p>'}).catch(err=>console.error(err))});
 </script>
 
 </body>
