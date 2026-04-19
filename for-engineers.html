@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3 â for-engineers -->
-<title>For Engineers â FieldRules</title>
+<!-- VERSION: fieldrules-site-v3 — for-engineers -->
+<title>For Engineers — FieldRules</title>
 <meta name="description" content="Stop hardcoding business logic into your product. Read from a structured rule library instead. Rules that are versioned, queryable, and written by the people who know your domain.">
-<meta property="og:title" content="For Engineers â FieldRules">
+<meta property="og:title" content="For Engineers — FieldRules">
 <meta property="og:description" content="Stop hardcoding business logic into your product. Read from a structured rule library instead. Rules that are versioned, queryable, and written by the people who know your domain.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fieldrules.ai/for-engineers">
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ââ Reset & base ââ */
+/* ── Reset & base ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root {
   --font-sans:'DM Sans',sans-serif;
@@ -32,7 +32,7 @@ body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1
 [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
 [data-reveal].visible{opacity:1;transform:translateY(0)}
 
-/* ââ Nav ââ */
+/* ── Nav ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:56px;background:rgba(7,7,20,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-logo{text-decoration:none;display:flex;align-items:center}
 .nav-links{display:flex;align-items:center;gap:4px;margin-left:40px;list-style:none}
@@ -42,7 +42,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-dropdown{position:relative}
 .nav-dropdown::after{content:'';position:absolute;top:100%;left:0;width:100%;height:12px}
 .nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
-.nav-dropdown-trigger::after{content:'â¾';font-size:9px;opacity:.5;transition:transform .2s}
+.nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
 .nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
 .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .nav-dropdown:hover .nav-dropdown-menu{display:block}
@@ -67,7 +67,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   .nav-dropdown-trigger::after{display:none}
 }
 
-/* ââ Shared ââ */
+/* ── Shared ── */
 section{padding:96px 24px}
 .inner{max-width:1120px;margin:0 auto}
 .section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
@@ -75,7 +75,7 @@ section{padding:96px 24px}
 .section-h2 em{font-style:italic;color:var(--teal-300)}
 .section-lede{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px}
 
-/* ââ Hero ââ */
+/* ── Hero ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
 .hero-video{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.5s ease}
@@ -94,7 +94,7 @@ section{padding:96px 24px}
 .btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
 
-/* ââ Sections ââ */
+/* ── Sections ── */
 .beyond-section{background:#0D0D22}
 .thesis-section{background:#09091A}
 .code-section{background:#0D0D22}
@@ -201,7 +201,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <em>Read from a rule library instead.</em>
   </h1>
   <p class="hero-sub" data-reveal>
-    You're building features from conditional logic that lives in Slack threads, JIRA tickets, and the heads of domain experts. Each one feels like debt because it is. FieldRules makes that logic queryable, versioned, and attributed â so you build on top of structured judgment instead of reverse-engineering intent from code reviews.
+    You're building features from conditional logic that lives in Slack threads, JIRA tickets, and the heads of domain experts. Each one feels like debt because it is. FieldRules makes that logic queryable, versioned, and attributed — so you build on top of structured judgment instead of reverse-engineering intent from code reviews.
   </p>
   <div class="hero-actions" data-reveal>
     <a href="#cta" class="btn-primary">Request early access</a>
@@ -216,27 +216,27 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <h2 class="section-h2" data-reveal>Five surfaces,<br><em>one rule library.</em></h2>
     <div class="surfaces-grid">
       <div class="surface-card" data-reveal>
-        <div class="surface-num">01 â Query API</div>
+        <div class="surface-num">01 — Query API</div>
         <div class="surface-title">Ask before you build</div>
         <div class="surface-body">Check whether a rule already exists before implementing a new feature. The rule is versioned, queryable, and authored by the person who understands the exception.</div>
       </div>
       <div class="surface-card" data-reveal>
-        <div class="surface-num">02 â GraphQL</div>
+        <div class="surface-num">02 — GraphQL</div>
         <div class="surface-title">Introspect your own logic</div>
         <div class="surface-body">Build self-aware features that understand their own constraints. Query the rule library at runtime to expose business logic to users instead of hiding it behind opaque decisions.</div>
       </div>
       <div class="surface-card" data-reveal>
-        <div class="surface-num">03 â Agent SDK</div>
+        <div class="surface-num">03 — Agent SDK</div>
         <div class="surface-title">Governer AI through reasoning</div>
         <div class="surface-body">Feed your agents the same rule library your humans use. Same reasoning, same governance, different caller. AI stops making decisions from training data defaults.</div>
       </div>
       <div class="surface-card" data-reveal>
-        <div class="surface-num">04 â Feature Flag Integration</div>
+        <div class="surface-num">04 — Feature Flag Integration</div>
         <div class="surface-title">Safe rollout of judgment</div>
         <div class="surface-body">Couple rule publication to feature flags. Test a rule in production under controlled traffic. Degrade gracefully if domain expert reasoning needs to be revised.</div>
       </div>
       <div class="surface-card" data-reveal>
-        <div class="surface-num">05 â Webhooks + Events</div>
+        <div class="surface-num">05 — Webhooks + Events</div>
         <div class="surface-title">React to rule changes</div>
         <div class="surface-body">When a domain expert updates a rule, your system gets signaled. Recalculate decisions, generate audit logs, trigger review workflows. The rule library speaks to your system.</div>
       </div>
@@ -253,7 +253,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       Every feature has an implicit rule set: the edge cases that tripped you up, the customer asks that changed your mind, the assumptions you encoded as guards. Those rules are not in your code. They live in the brains of people who are solving problems faster than documentation can capture them.
     </p>
     <p class="section-lede" data-reveal style="margin-top:24px">
-      When you externalize that logic, something surprising happens. Your code becomes cleaner. Your engineers stop being archaeologists. And when a rule changes, you don't deployâyou edit a field that a domain expert wrote.
+      When you externalize that logic, something surprising happens. Your code becomes cleaner. Your engineers stop being archaeologists. And when a rule changes, you don't deploy—you edit a field that a domain expert wrote.
     </p>
   </div>
 </section>
@@ -294,7 +294,7 @@ if (site.enrollmentSpeed > 7 &&
             </div>
             <div class="rcp-row rcp-row-because">
               <div class="rcp-label rcp-because">BECAUSE</div>
-              <div class="rcp-val">Sites this size with fast enrollment timelines are statistically high-dropout in weeks 3â5. Early intervention cuts churn by over half â but only if flagged before the standard onboarding flow locks in.</div>
+              <div class="rcp-val">Sites this size with fast enrollment timelines are statistically high-dropout in weeks 3–5. Early intervention cuts churn by over half — but only if flagged before the standard onboarding flow locks in.</div>
               <div class="because-tooltip">Only humans write this</div>
             </div>
             <div class="rcp-footer">
@@ -319,7 +319,7 @@ if (site.enrollmentSpeed > 7 &&
     <div class="section-eyebrow" data-reveal>The Integration Model</div>
     <h2 class="section-h2" data-reveal>One library.<br><em>Many callers.</em></h2>
     <p class="section-lede" data-reveal>
-      You're not replacing your feature flags. You're not rebuilding your decision engine. You're adding a layer that makes your human judgment accessible to every part of your systemâhumans, agents, and machines all read from the same rule library.
+      You're not replacing your feature flags. You're not rebuilding your decision engine. You're adding a layer that makes your human judgment accessible to every part of your system—humans, agents, and machines all read from the same rule library.
     </p>
   </div>
 </section>
