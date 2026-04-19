@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3 — for-domain-experts -->
-<title>For Domain Experts — FieldRules</title>
+<!-- VERSION: fieldrules-site-v3 â for-domain-experts -->
+<title>For Domain Experts â FieldRules</title>
 <meta name="description" content="Your expertise has been invisible. FieldRules makes your judgment calls permanent, attributed, and visible across every layer of your product.">
-<meta property="og:title" content="For Domain Experts — FieldRules">
+<meta property="og:title" content="For Domain Experts â FieldRules">
 <meta property="og:description" content="Your expertise has been invisible. FieldRules makes your judgment calls permanent, attributed, and visible across every layer of your product.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fieldrules.ai/for-domain-experts">
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── Reset & base ── */
+/* ââ Reset & base ââ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root {
   --font-sans:'DM Sans',sans-serif;
@@ -32,9 +32,9 @@ body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1
 [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
 [data-reveal].visible{opacity:1;transform:translateY(0)}
 
-/* ── Nav ── */
+/* ââ Nav ââ */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:56px;background:rgba(7,7,20,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav-logo{font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;color:#fff;letter-spacing:-.02em;text-decoration:none}
+.nav-logo{text-decoration:none;display:flex;align-items:center}
 .nav-links{display:flex;align-items:center;gap:4px;margin-left:40px;list-style:none}
 .nav-links a,.nav-dropdown-trigger{font-size:13px;font-weight:500;color:var(--slate-400);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .15s,background .15s;cursor:pointer}
 .nav-links a:hover,.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
@@ -42,7 +42,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-dropdown{position:relative}
 .nav-dropdown::after{content:'';position:absolute;top:100%;left:0;width:100%;height:12px}
 .nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
-.nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
+.nav-dropdown-trigger::after{content:'â¾';font-size:9px;opacity:.5;transition:transform .2s}
 .nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
 .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .nav-dropdown:hover .nav-dropdown-menu{display:block}
@@ -67,7 +67,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   .nav-dropdown-trigger::after{display:none}
 }
 
-/* ── Shared ── */
+/* ââ Shared ââ */
 section{padding:96px 24px}
 .inner{max-width:1120px;margin:0 auto}
 .section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
@@ -76,7 +76,7 @@ section{padding:96px 24px}
 .section-lede{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:600px}
 .flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin:48px 0}
 
-/* ── Hero ── */
+/* ââ Hero ââ */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
 .hero-video{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.5s ease}
@@ -95,7 +95,7 @@ section{padding:96px 24px}
 .btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
 
-/* ── Rule card ── */
+/* ââ Rule card ââ */
 .rule-card-preview{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1)}
 .rcp-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
 .rcp-icon{width:32px;height:32px;background:rgba(94,213,190,.1);border:1px solid rgba(94,213,190,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
@@ -123,7 +123,7 @@ section{padding:96px 24px}
 .because-tooltip{display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);background:rgba(165,174,255,.08);border:1px solid rgba(165,174,255,.2);border-radius:100px;padding:3px 10px;opacity:0;animation:tooltipBlink 3.2s ease-in-out 1.8s infinite}
 @keyframes tooltipBlink{0%,25%,100%{opacity:0;transform:translateY(3px)}45%,75%{opacity:1;transform:translateY(0)}}
 
-/* ── Sections ── */
+/* ââ Sections ââ */
 .problem-section{background:#0D0D22}
 .what-ask-section{background:#09091A}
 .what-get-section{background:#0D0D22}
@@ -146,10 +146,10 @@ section{padding:96px 24px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-logo{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff}
+.footer-logo{display:flex;align-items:center}
 .footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
 
-/* ── Attribution grid ── */
+/* ââ Attribution grid ââ */
 .attribution-card{padding:28px 24px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:12px;text-align:left}
 .attribution-card-meta{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:12px}
 .attribution-card-title{font-family:var(--font-serif);font-size:16px;font-weight:300;color:#fff;margin-bottom:12px;letter-spacing:-.01em}
@@ -159,7 +159,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <body>
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo">FieldRules.</a>
+  <a href="/" class="nav-logo"><img src="logo.svg" alt="FieldRules" height="48"></a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/#how">How It Works</a>
@@ -208,7 +208,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <div class="section-eyebrow" data-reveal>The Problem</div>
     <h2 class="section-h2" data-reveal>Your expertise is <em>invisible.</em></h2>
     <p class="section-lede" data-reveal>
-      You're handling 40 tickets a week. Half of them follow the playbook. The other half require judgment calls — edge cases, instinct, hard-won logic that deviates from what was written down. Those calls are completely invisible. They don't show up in performance reviews. They don't get attributed to you. They simply disappear the moment you solve them.
+      You're handling 40 tickets a week. Half of them follow the playbook. The other half require judgment calls â edge cases, instinct, hard-won logic that deviates from what was written down. Those calls are completely invisible. They don't show up in performance reviews. They don't get attributed to you. They simply disappear the moment you solve them.
     </p>
   </div>
 </section>
@@ -219,13 +219,13 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <div class="section-eyebrow" data-reveal>What We Ask</div>
     <h2 class="section-h2" data-reveal>45 seconds. Your words. <em>Your name.</em></h2>
     <p class="section-lede" data-reveal>
-      FieldRules detects when you've made a judgment call. A Slack card arrives. You confirm the rule in 45 seconds — or edit it if we got it wrong. Then the BECAUSE field. That's always blank until you write it. Your words. Your reasoning. Your name.
+      FieldRules detects when you've made a judgment call. A Slack card arrives. You confirm the rule in 45 seconds â or edit it if we got it wrong. Then the BECAUSE field. That's always blank until you write it. Your words. Your reasoning. Your name.
     </p>
 
     <div style="margin-top:64px;max-width:580px;margin-left:auto;margin-right:auto" data-reveal>
       <div class="rule-card-preview">
         <div class="rcp-header">
-          <div class="rcp-icon">🧠</div>
+          <div class="rcp-icon">ð§ </div>
           <div class="rcp-meta"><div><strong>Customer Success</strong> &middot; operational playbook</div><div>Identified from ticket #3847 &middot; Small-business onboarding</div></div>
         </div>
         <div class="rcp-row rcp-row-ifthen">
@@ -234,11 +234,11 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
         </div>
         <div class="rcp-row rcp-row-ifthen">
           <div class="rcp-label rcp-then">THEN</div>
-          <div class="rcp-val">Route to senior specialist — do not automate initial outreach</div>
+          <div class="rcp-val">Route to senior specialist â do not automate initial outreach</div>
         </div>
         <div class="rcp-row rcp-row-because">
           <div class="rcp-label rcp-because">BECAUSE</div>
-          <div class="rcp-val">Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care — and they notice.</div>
+          <div class="rcp-val">Small sites go dark fast if they don't get personal attention early. Automation at this stage signals we don't care â and they notice.</div>
           <div class="because-tooltip">Only humans write this</div>
         </div>
         <div class="rcp-footer">
@@ -249,7 +249,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     </div>
 
     <p class="section-lede" style="margin-top:48px" data-reveal>
-      That reasoning — your name, your words, your judgment — carries your name permanently through every layer of your product. It doesn't disappear when you move to a different role. It doesn't evaporate when you leave.
+      That reasoning â your name, your words, your judgment â carries your name permanently through every layer of your product. It doesn't disappear when you move to a different role. It doesn't evaporate when you leave.
     </p>
   </div>
 </section>
@@ -260,7 +260,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <div class="section-eyebrow" data-reveal>What You Get Back</div>
     <h2 class="section-h2" data-reveal>Your judgment, <em>visible in the product.</em></h2>
     <p class="section-lede" data-reveal>
-      You see when your rules are used. You hold the pen on revisions. You know that your reasoning is governing the product. And that attribution is permanent — not in a performance review, but in the actual system. Your name is there, every time the rule runs, every time a PM queries it, every time an engineer builds from it.
+      You see when your rules are used. You hold the pen on revisions. You know that your reasoning is governing the product. And that attribution is permanent â not in a performance review, but in the actual system. Your name is there, every time the rule runs, every time a PM queries it, every time an engineer builds from it.
     </p>
   </div>
 </section>
@@ -279,7 +279,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       </div>
       <div class="attribution-card">
         <div class="attribution-card-meta">AI DECISION LOG</div>
-        <div class="attribution-card-title">Ticket #4821 → Senior Specialist</div>
+        <div class="attribution-card-title">Ticket #4821 â Senior Specialist</div>
         <div class="attribution-card-body">Rule applied. Your reasoning is logged alongside every decision. Traceable. Auditable. Attributed to you.</div>
       </div>
       <div class="attribution-card">
@@ -316,7 +316,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 </section>
 
 <footer>
-  <div class="footer-logo">FieldRules.</div>
+  <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
   <div class="footer-mono">fieldrules-site-v3 &middot; for-domain-experts</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
