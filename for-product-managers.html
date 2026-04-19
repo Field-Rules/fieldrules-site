@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3 — for-product-managers -->
-<title>For Product Managers — FieldRules</title>
+<!-- VERSION: fieldrules-site-v3 â for-product-managers -->
+<title>For Product Managers â FieldRules</title>
 <meta name="description" content="Stop speccing features against business logic you can't verify. Query the rule library. Get governance before you hand work to engineering.">
-<meta property="og:title" content="For Product Managers — FieldRules">
+<meta property="og:title" content="For Product Managers â FieldRules">
 <meta property="og:description" content="Query the rule library before you spec. Get governance answers that an AI can't guess from context.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fieldrules.ai/for-product-managers">
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── Reset & base ── */
+/* ââ Reset & base ââ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root {
   --font-sans:'DM Sans',sans-serif;
@@ -32,9 +32,9 @@ body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1
 [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
 [data-reveal].visible{opacity:1;transform:translateY(0)}
 
-/* ── Nav ── */
+/* ââ Nav ââ */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:56px;background:rgba(7,7,20,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav-logo{font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;color:#fff;letter-spacing:-.02em;text-decoration:none}
+.nav-logo{text-decoration:none;display:flex;align-items:center}
 .nav-links{display:flex;align-items:center;gap:4px;margin-left:40px;list-style:none}
 .nav-links a,.nav-dropdown-trigger{font-size:13px;font-weight:500;color:var(--slate-400);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .15s,background .15s;cursor:pointer}
 .nav-links a:hover,.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
@@ -42,7 +42,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-dropdown{position:relative}
 .nav-dropdown::after{content:'';position:absolute;top:100%;left:0;width:100%;height:12px}
 .nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
-.nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
+.nav-dropdown-trigger::after{content:'â¾';font-size:9px;opacity:.5;transition:transform .2s}
 .nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
 .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .nav-dropdown:hover .nav-dropdown-menu{display:block}
@@ -67,14 +67,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   .nav-dropdown-trigger::after{display:none}
 }
 
-/* ── Shared ── */
+/* ââ Shared ââ */
 section{padding:96px 24px}
 .inner{max-width:1120px;margin:0 auto}
 .section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
 .section-h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
 .section-h2 em{font-style:italic;color:var(--teal-300)}
 
-/* ── Hero ── */
+/* ââ Hero ââ */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
 .hero-video{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.5s ease}
@@ -93,7 +93,7 @@ section{padding:96px 24px}
 .btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
 
-/* ── Rule card ── */
+/* ââ Rule card ââ */
 .hero-preview{margin-top:72px;position:relative;z-index:1;max-width:580px;width:100%}
 .rule-card-preview{background:#131628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.1)}
 .rcp-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
@@ -122,7 +122,7 @@ section{padding:96px 24px}
 .because-tooltip{display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);background:rgba(165,174,255,.08);border:1px solid rgba(165,174,255,.2);border-radius:100px;padding:3px 10px;opacity:0;animation:tooltipBlink 3.2s ease-in-out 1.8s infinite}
 @keyframes tooltipBlink{0%,25%,100%{opacity:0;transform:translateY(3px)}45%,75%{opacity:1;transform:translateY(0)}}
 
-/* ── PM-specific sections ── */
+/* ââ PM-specific sections ââ */
 .pattern-section{background:#0D0D22}
 .pattern-content{max-width:680px}
 .pattern-body{font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px}
@@ -168,14 +168,14 @@ section{padding:96px 24px}
 .btn-primary:disabled{opacity:.6;cursor:not-allowed}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-logo{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;color:#fff}
+.footer-logo{display:flex;align-items:center}
 .footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
 </style>
 </head>
 <body>
-<!-- NAV — consistent across all pages -->
+<!-- NAV â consistent across all pages -->
 <nav>
-  <a href="/" class="nav-logo">FieldRules.</a>
+  <a href="/" class="nav-logo"><img src="logo.svg" alt="FieldRules" height="48"></a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/#how">How It Works</a>
@@ -213,7 +213,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <em>you can't verify.</em>
   </h1>
   <p class="hero-sub" data-reveal>
-    Stop guessing at governance. Query the rule library before you send work to engineering. Get answers from the domain experts who wrote them — not from an AI interpolating context from Slack threads.
+    Stop guessing at governance. Query the rule library before you send work to engineering. Get answers from the domain experts who wrote them â not from an AI interpolating context from Slack threads.
   </p>
   <div class="hero-actions" data-reveal>
     <a href="#cta" class="btn-primary">Request early access</a>
@@ -222,7 +222,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   <div class="hero-preview" data-reveal>
     <div class="rule-card-preview">
       <div class="rcp-header">
-        <div class="rcp-icon">💳</div>
+        <div class="rcp-icon">ð³</div>
         <div class="rcp-meta"><div><strong>Fintech Platform</strong> &middot; billing and renewals</div><div>Confirmed by Finance Lead &middot; Used in 47 specs</div></div>
       </div>
       <div class="rcp-row rcp-row-ifthen">
@@ -231,11 +231,11 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       </div>
       <div class="rcp-row rcp-row-ifthen">
         <div class="rcp-label rcp-then">THEN</div>
-        <div class="rcp-val">Show an upgrade prompt in the dashboard — but only if their CSM has logged outreach contact within 14 days</div>
+        <div class="rcp-val">Show an upgrade prompt in the dashboard â but only if their CSM has logged outreach contact within 14 days</div>
       </div>
       <div class="rcp-row rcp-row-because">
         <div class="rcp-label rcp-because">BECAUSE</div>
-        <div class="rcp-val">Customers who see an upgrade without recent CSM contact have a 68% bounce rate on renewal. But when the CSM has already opened the door, the upgrade prompt becomes a close — not a surprise.</div>
+        <div class="rcp-val">Customers who see an upgrade without recent CSM contact have a 68% bounce rate on renewal. But when the CSM has already opened the door, the upgrade prompt becomes a close â not a surprise.</div>
         <div class="because-tooltip">Only humans write this</div>
       </div>
       <div class="rcp-footer">
@@ -253,8 +253,8 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <h2 class="section-h2" data-reveal>The spec that<br><em>never asks the right question.</em></h2>
     <div class="pattern-content">
       <p class="pattern-body" data-reveal>You write a spec. It describes what the feature should do. It's clear. It's detailed. You ship it to engineering.</p>
-      <p class="pattern-body" data-reveal>Then someone Slacks the CS lead: "Wait — do we actually do this for enterprise accounts?" You don't know. So you ask the domain expert. They give you a partial answer. You reply-all with a half-clarification. Spec goes back to engineering. A week later, you're rebuilding what they already shipped.</p>
-      <p class="pattern-body" data-reveal>This happens because <strong>your spec asked "what should the feature do" — not "what does the business actually require."</strong></p>
+      <p class="pattern-body" data-reveal>Then someone Slacks the CS lead: "Wait â do we actually do this for enterprise accounts?" You don't know. So you ask the domain expert. They give you a partial answer. You reply-all with a half-clarification. Spec goes back to engineering. A week later, you're rebuilding what they already shipped.</p>
+      <p class="pattern-body" data-reveal>This happens because <strong>your spec asked "what should the feature do" â not "what does the business actually require."</strong></p>
       <div class="pattern-callout" data-reveal>The rule library answers the question you didn't know to ask.</div>
     </div>
   </div>
@@ -311,7 +311,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       <div class="outcome-card" data-reveal>
         <div class="outcome-n">02</div>
         <div class="outcome-title">Engineering gets specs that are complete</div>
-        <div class="outcome-body">Your spec doesn't just describe what the feature does — it describes why the feature does it. You've already consulted the rule library. Engineering builds once. Correctly.</div>
+        <div class="outcome-body">Your spec doesn't just describe what the feature does â it describes why the feature does it. You've already consulted the rule library. Engineering builds once. Correctly.</div>
       </div>
       <div class="outcome-card" data-reveal>
         <div class="outcome-n">03</div>
@@ -337,8 +337,8 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 </section>
 
 <footer>
-  <div class="footer-logo">FieldRules.</div>
-  <div class="footer-mono">fieldrules-site-v3 · for-product-managers</div>
+  <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
+  <div class="footer-mono">fieldrules-site-v3 Â· for-product-managers</div>
   <div class="footer-mono">Query governance before you spec</div>
 </footer>
 
