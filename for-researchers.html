@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3 — for-researchers -->
+<!-- VERSION: fieldrules-site-v3.3 — for-researchers — replaces fabricated pilot claims with real external references (Karpathy, Klowden & Tao, Bayesian Elicitation paper) -->
 <title>For Researchers — FieldRules</title>
 <meta name="description" content="FieldRules applies 50 years of knowledge engineering research to production AI governance. Learn how contrastive elicitation, anti-habituation, and process reward models power the reasoning layer.">
 <meta property="og:title" content="For Researchers — FieldRules">
@@ -253,31 +253,37 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   </div>
 </section>
 
-<!-- EXTERNAL VALIDATION -->
+<!-- EXTERNAL EVIDENCE — real references, pilot data reserved for after pilot -->
 <section class="validation-section" id="validation">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>External Validation</div>
-    <h2 class="section-h2" data-reveal>The research that proves it works <em>in production.</em></h2>
+    <div class="section-eyebrow" data-reveal>External Evidence</div>
+    <h2 class="section-h2" data-reveal>Independent research points at <em>the same gap we're building for.</em></h2>
+    <p class="section-lede" data-reveal style="max-width:720px;margin-bottom:48px">
+      FieldRules is pre-pilot. We don't yet have our own published efficacy data — and we won't claim we do. What we have is a growing body of recent external work, from researchers with no commercial interest in FieldRules, arguing that the reasoning trace — not more model capability — is the bottleneck. The BECAUSE field is our name for the artifact those researchers are describing.
+    </p>
     <div class="validation-steps">
       <div class="validation-card" data-reveal>
         <div class="validation-n">01</div>
-        <div class="validation-title">Contrastive Elicitation Study</div>
-        <div class="validation-body">Domain experts given contrastive prompts (consequence-focused) produce 34% more specific reasoning than open-ended prompts. Validated across healthcare, finance, and operations domains.</div>
-        <div class="validation-citation">Under review at arXiv; qualitative pilot completed Feb 2026</div>
+        <div class="validation-title">The missing "inner thought monologue"</div>
+        <div class="validation-body">Andrej Karpathy (former Director of AI at Tesla, founding member of OpenAI) argues that the bottleneck for AI capability isn't more internet data — it's the absence of expert reasoning traces. He estimates internet text is "0.001% cognition." The BECAUSE field is exactly that data type: the reasoning trajectory of a domain expert, captured at the moment of judgment.</div>
+        <div class="validation-citation">Karpathy, No Priors podcast, March 2026</div>
       </div>
       <div class="validation-card" data-reveal>
         <div class="validation-n">02</div>
-        <div class="validation-title">Reasoning Health Scoring</div>
-        <div class="validation-body">Rules with high PRM scores (80+) are queried 2.3x more often by product teams. Rules below 60 are either edited within 7 days or abandoned. The score predicts utilization.</div>
-        <div class="validation-citation">Pilot cohort data, 12 teams, 3 months (confidential)</div>
+        <div class="validation-title">The "odorless proofs" problem</div>
+        <div class="validation-body">Fields Medalist Terence Tao and Tanya Klowden identify a structural gap in AI-generated output: formally correct results that lack the reasoning "penumbra" — the heuristics, motivation, and causal narrative that make work useful, auditable, and generalizable. They propose a blue-team/red-team framework that matches FieldRules's architecture: human-authored governance constraining AI execution.</div>
+        <div class="validation-citation">Klowden &amp; Tao, arXiv 2603.26524, March 2026</div>
       </div>
       <div class="validation-card" data-reveal>
         <div class="validation-n">03</div>
-        <div class="validation-title">Drift Detection</div>
-        <div class="validation-body">Anti-habituation surfaces are effective at flagging stale rules. Teams flag 18% more rules as needing review when consequences are surface regularly. Reasoning quality stays current.</div>
-        <div class="validation-citation">Pending submission to ACM Conference on Human Factors in Computing Systems</div>
+        <div class="validation-title">Scale doesn't solve miscalibration</div>
+        <div class="validation-body">An 11-model empirical study tested whether LLMs can produce calibrated probabilistic judgments the way human experts do. Three findings: bigger models help but overconfidence persists at the frontier; chain-of-thought reasoning does not reliably improve judgment; LLMs produce point estimates well but calibrated <em>ranges</em> poorly. Conclusion: the answer is easier than the reasoning; the reasoning has to be human-authored to be calibrated.</div>
+        <div class="validation-citation"><em>Bayesian Elicitation with LLMs: Model Size Helps, Extra Reasoning Doesn't Always</em>, 2026</div>
       </div>
     </div>
+    <p class="section-lede" data-reveal style="max-width:720px;margin-top:48px;font-size:14px;color:var(--slate-500)">
+      A note on our own data: we'll publish pilot results once we have them. Until then, we're careful to keep the external validation section about the problem space, not about FieldRules's efficacy. If you want to see our measurement methodology — Reasoning Health Score, anti-pattern detection, divergence alarms — we can walk you through it on a call.
+    </p>
   </div>
 </section>
 
@@ -286,9 +292,6 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   <div class="inner">
     <div class="section-eyebrow" data-reveal>Quality Markers</div>
     <h2 class="section-h2" data-reveal>What separates reasoning from <em>rule-filling.</em></h2>
-    <p class="section-lede" data-reveal style="margin-bottom:32px">
-      A knowledge base is searched; a skill graph is traversed. The markers below are what make a confirmed rule <em>node</em>-shaped rather than document-shaped—traversable by domain (where it applies), by author (whose judgment it reflects), and by reasoning (the BECAUSE chain that connects it to upstream and downstream rules). Each marker is a handle the graph uses to surface the right node at the right moment.
-    </p>
     <div class="markers-grid">
       <div class="marker-card" data-reveal>
         <div class="marker-name">Specificity</div>
@@ -350,7 +353,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3 &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.3 &middot; for-researchers &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
