@@ -1,0 +1,38 @@
+# fieldrules-site .gitignore — v1 (2026-04-21)
+# Purpose: keep OS, editor, env, and build artifacts out of the marketing-site repo.
+
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Vercel ---
+.vercel
+
+# --- Node (defensive — not currently used but future-proofing) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Env files ---
+.env
+.env.local
+.env.*.local
+
+# --- Logs ---
+*.log
+
+# --- Scratch / backups ---
+*.tmp
+*.bak
+*.orig
