@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.1 — index -->
+<!-- VERSION: fieldrules-site-v3.2 — index (DEV-464: Two-Way Loop bidirectional) -->
 <title>FieldRules — Your team's reasoning, governing every decision</title>
 <meta name="description" content="FieldRules captures the judgment calls your team carries — edge cases, instinct, hard-won logic — and structures it so every decision your product makes is governed by the people who know best.">
 <meta property="og:title" content="FieldRules — Your team's reasoning, governing every decision">
@@ -207,6 +207,54 @@ section{padding:96px 24px}
 footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .footer-logo{display:flex;align-items:center}
 .footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
+/* DEV-464 — Two-Way Loop: bidirectional treatment (matrix v1_2) */
+.loop-section{background:#070714;padding:96px 24px}
+.loop-section .inner{max-width:1120px;margin:0 auto}
+.loop-intro{text-align:center;max-width:680px;margin:0 auto 48px}
+.loop-intro .section-eyebrow{color:var(--teal-300)}
+.loop-lede{font-size:17px;line-height:1.75;color:var(--slate-400);margin-top:8px}
+.loop-lede strong{color:#D4D8F0;font-weight:500}
+.loop-lane{max-width:960px;margin:0 auto}
+.loop-lane + .loop-lane{margin-top:0}
+.loop-lane-label{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;padding:0 4px;margin-bottom:14px}
+.loop-lane-arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(165,174,255,.08);border:1px solid rgba(165,174,255,.22);font-size:12px;color:var(--indigo-300);flex-shrink:0}
+.loop-lane--demand .loop-lane-arrow{color:var(--teal-300);background:rgba(94,213,190,.08);border-color:rgba(94,213,190,.22)}
+.loop-lane-name{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#D4D8F0}
+.loop-lane-sub{font-family:var(--font-sans);font-size:12px;font-weight:400;color:var(--slate-500)}
+.loop-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+@media(max-width:768px){.loop-row{grid-template-columns:1fr 1fr}}
+.loop-step{padding:24px 18px;position:relative;background:#0D0D20}
+.loop-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:16px;color:rgba(255,255,255,.15);z-index:2}
+@media(max-width:768px){.loop-step::after{display:none}}
+.ls-n{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;color:var(--slate-600)}
+.ls-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:8px;line-height:1.3}
+.ls-body{font-size:12px;line-height:1.6;color:var(--slate-400)}
+.loop-lane .loop-step:nth-child(2){background:#0E0E22}
+.loop-lane .loop-step:nth-child(2) .ls-n{color:var(--indigo-400)}
+.loop-lane .loop-step:nth-child(3){background:#0D1620}
+.loop-lane .loop-step:nth-child(3) .ls-n{color:var(--teal-300)}
+.loop-lane .loop-step:nth-child(4){background:rgba(94,213,190,.05)}
+.loop-lane .loop-step:nth-child(4) .ls-n{color:var(--teal-300)}
+.loop-lane--demand .loop-step:nth-child(1){background:rgba(94,213,190,.05)}
+.loop-lane--demand .loop-step:nth-child(1) .ls-n{color:var(--teal-300)}
+.loop-lane--demand .loop-step:nth-child(2){background:#0D1620}
+.loop-lane--demand .loop-step:nth-child(2) .ls-n{color:var(--teal-300)}
+.loop-lane--demand .loop-step:nth-child(3){background:#0E0E22}
+.loop-lane--demand .loop-step:nth-child(3) .ls-n{color:var(--indigo-400)}
+.loop-lane--demand .loop-step:nth-child(4){background:#0D0D20}
+.loop-lane--demand .loop-step:nth-child(4) .ls-n{color:var(--slate-600)}
+.loop-path{max-width:960px;margin:16px auto 0;text-align:center;font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
+.loop-close{max-width:960px;margin:28px auto;display:flex;align-items:center;justify-content:center;gap:14px}
+.loop-close-curve{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,rgba(71,82,245,.18),rgba(94,213,190,.18));border:1px solid rgba(165,174,255,.28);font-size:20px;color:#E8EAF2;flex-shrink:0;box-shadow:0 0 24px rgba(71,82,245,.12)}
+.loop-close-label{font-family:var(--font-mono);font-size:11px;color:var(--slate-500);letter-spacing:.03em;line-height:1.55;text-align:left;max-width:560px}
+.loop-close-label strong{color:#D4D8F0;font-weight:500}
+@media(max-width:560px){.loop-close{flex-direction:column;gap:10px}.loop-close-label{text-align:center}}
+.loop-moat{max-width:760px;margin:56px auto 0;padding:24px 28px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.18);border-left:3px solid var(--indigo-500);border-radius:12px;text-align:left}
+.loop-moat-label{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-300);margin-bottom:10px}
+.loop-moat-body{font-family:var(--font-serif);font-size:18px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0}
+.loop-moat-body strong{font-style:normal;font-weight:500;color:#fff}
+.loop-moat-body .loop-moat-tail{display:block;margin-top:10px;font-style:normal;font-family:var(--font-sans);font-size:13px;color:var(--slate-500)}
+
 </style>
 </head>
 <body>
@@ -345,6 +393,88 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   </div>
 </section>
 
+
+<!-- THE TWO-WAY LOOP — per matrix v1_2 / positioning v2_23 (DEV-464) -->
+<section class="loop-section" id="loop">
+  <div class="inner">
+    <div class="loop-intro">
+      <div class="section-eyebrow" data-reveal>The Two-Way Loop</div>
+      <h2 class="section-h2" data-reveal>Two directions.<br><em>One library that compounds.</em></h2>
+      <p class="loop-lede" data-reveal>The library doesn&rsquo;t just collect what experts confirm — it pulls. A PM&rsquo;s query surfaces a gap, the expert gets a live signal with context, the library grows. <strong>Supply meets demand.</strong> That&rsquo;s what makes it a loop.</p>
+    </div>
+
+    <!-- SUPPLY LANE (forward) -->
+    <div class="loop-lane" data-reveal>
+      <div class="loop-lane-label">
+        <span class="loop-lane-arrow">↓</span>
+        <span class="loop-lane-name">Supply · forward</span>
+        <span class="loop-lane-sub">— what the expert confirms becomes product behavior</span>
+      </div>
+      <div class="loop-row">
+        <div class="loop-step">
+          <div class="ls-n">01</div>
+          <div class="ls-title">Ticket → Rule</div>
+          <div class="ls-body">The expert confirms a rule from a real ticket. IF/THEN/BECAUSE. Attributed, versioned, structured.</div>
+        </div>
+        <div class="loop-step">
+          <div class="ls-n">02</div>
+          <div class="ls-title">Rule → Spec</div>
+          <div class="ls-body">PMs see rule clusters. Each cluster becomes a ticket. One rule, one spec, one feature — provenance chain intact.</div>
+        </div>
+        <div class="loop-step">
+          <div class="ls-n">03</div>
+          <div class="ls-title">Spec → Product</div>
+          <div class="ls-body">Engineers build from the expert&rsquo;s logic. The feature ships with the operational exception layer baked in from day one.</div>
+        </div>
+        <div class="loop-step">
+          <div class="ls-n">04</div>
+          <div class="ls-title">Rules → AI Control</div>
+          <div class="ls-body">AI agents use confirmed rules as context and harness. They approve, route, and escalate based on your operational logic — not generic model defaults.</div>
+        </div>
+      </div>
+      <div class="loop-path" data-reveal>ticket → rule → library → product specs + AI control layer</div>
+    </div>
+
+    <!-- LOOP CLOSE (justifies the word "loop" visually — DEV-464 AC #2) -->
+    <div class="loop-close" data-reveal>
+      <span class="loop-close-curve" aria-hidden="true">↻</span>
+      <span class="loop-close-label"><strong>The library closes the loop.</strong> Supply feeds product behavior; product behavior surfaces new demand the moment a PM queries the library and finds a gap.</span>
+    </div>
+
+    <!-- DEMAND-PULL LANE (backward) -->
+    <div class="loop-lane loop-lane--demand" data-reveal>
+      <div class="loop-lane-label">
+        <span class="loop-lane-arrow">↑</span>
+        <span class="loop-lane-name">Demand-pull · backward</span>
+        <span class="loop-lane-sub">— the PM&rsquo;s question is what makes the expert write</span>
+      </div>
+      <div class="loop-row">
+        <div class="loop-step">
+          <div class="ls-n">A</div>
+          <div class="ls-title">PM queries the library</div>
+          <div class="ls-body">Before speccing enterprise billing, the PM searches the rule library for what governs it. The query itself is the demand signal.</div>
+        </div>
+        <div class="loop-step">
+          <div class="ls-n">B</div>
+          <div class="ls-title">Library surfaces a gap</div>
+          <div class="ls-body">No matches. The gap is now structured context — not a 404. The system knows who to ask and why it matters.</div>
+        </div>
+        <div class="loop-step">
+          <div class="ls-n">C</div>
+          <div class="ls-title">Expert gets a live signal</div>
+          <div class="ls-body">&ldquo;The PM needs your expertise on enterprise billing before sending to engineering.&rdquo; A live ask from a colleague — not a documentation reminder.</div>
+        </div>
+        <div class="loop-step">
+          <div class="ls-n">D</div>
+          <div class="ls-title">Library grows from demand</div>
+          <div class="ls-body">The expert confirms the rule. The PM&rsquo;s next query gets answered. The next unanswered query becomes the next signal. The library grows from demand — not from documentation obligation.</div>
+        </div>
+      </div>
+      <div class="loop-path" data-reveal>PM query → library gap → expert signal → rule confirmed → library update</div>
+    </div>
+  </div>
+</section>
+
 <!-- REASONING HEALTH SCORE -->
 <section class="rhs-section" id="rhs">
   <div class="inner">
@@ -439,7 +569,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3 &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.2 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
