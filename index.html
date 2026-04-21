@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.4 — index — Hallucination-audit fixes v2: (P2.1) Added "Sample Reading" eyebrow in the #rhs scorecard header and "Illustrative scorecard. Live scores appear once your library has 10+ rules." caption under the bars, so the 84/100 read is not mistaken for a live customer metric. Prior v3.3 landed DEV-470 (contrastive-prompting callout + hero trust row + CEO problem quote) -->
+<!-- VERSION: fieldrules-site-v3.5 — index — Hallucination-audit fixes v3 (P3.1): softened present-tense product promises for capabilities not yet shipped per pilot-readiness-v2: step 01 "FieldRules detects" → "is designed to detect" (BE-003 To Do); step 02 "45 seconds" title → "30–60 seconds (designed)" (BE-004 To Do); two-way loop lede adds "By design," and loop-close "closes" → "is designed to close" (BE-002/003/005/007 all To Do). Prior v3.4 added Sample Reading eyebrow + Illustrative scorecard caption (P2.1); v3.3 landed DEV-470 -->
 <title>FieldRules — Your team's reasoning, governing every decision</title>
 <meta name="description" content="FieldRules captures the judgment calls your team carries — edge cases, instinct, hard-won logic — and structures it so every decision your product makes is governed by the people who know best.">
 <meta property="og:title" content="FieldRules — Your team's reasoning, governing every decision">
@@ -424,12 +424,12 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       <div class="step-card" data-reveal>
         <div class="step-n">01</div>
         <div class="step-title">Logic surfaces from work already happening</div>
-        <div class="step-body">FieldRules detects implicit business logic in the artifacts your team already produces &mdash; Jira tickets, Slack threads, code reviews. No new intake forms. No documentation rituals.</div>
+        <div class="step-body">FieldRules is designed to detect implicit business logic in the artifacts your team already produces &mdash; Jira tickets, Slack threads, code reviews. No new intake forms. No documentation rituals.</div>
       </div>
       <div class="step-card" data-reveal>
         <div class="step-n">02</div>
-        <div class="step-title">Domain expert confirms in 45 seconds</div>
-        <div class="step-body">A Slack card arrives with the detected rule. One tap to confirm, edit, or dismiss. Then the BECAUSE field &mdash; always blank until they write it. Their words, their reasoning, their name on it.</div>
+        <div class="step-title">Domain expert confirms in 30&ndash;60 seconds</div>
+        <div class="step-body">Designed as a 30&ndash;60 second Slack interaction: a card arrives with the detected rule. One tap to confirm, edit, or dismiss. Then the BECAUSE field &mdash; always blank until they write it. Their words, their reasoning, their name on it.</div>
       </div>
       <div class="step-card" data-reveal>
         <div class="step-n">03</div>
@@ -447,7 +447,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <div class="loop-intro">
       <div class="section-eyebrow" data-reveal>The Two-Way Loop</div>
       <h2 class="section-h2" data-reveal>Two directions.<br><em>One library that compounds.</em></h2>
-      <p class="loop-lede" data-reveal>The library doesn&rsquo;t just collect what experts confirm — it pulls. A PM&rsquo;s query surfaces a gap, the expert gets a live signal with context, the library grows. <strong>Supply meets demand.</strong> That&rsquo;s what makes it a loop.</p>
+      <p class="loop-lede" data-reveal>By design, the library doesn&rsquo;t just collect what experts confirm &mdash; it pulls. A PM&rsquo;s query surfaces a gap, the expert gets a live signal with context, the library grows. <strong>Supply meets demand.</strong> That&rsquo;s what makes it a loop.</p>
     </div>
 
     <!-- SUPPLY LANE (forward) -->
@@ -485,7 +485,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <!-- LOOP CLOSE (justifies the word "loop" visually — DEV-464 AC #2) -->
     <div class="loop-close" data-reveal>
       <span class="loop-close-curve" aria-hidden="true">↻</span>
-      <span class="loop-close-label"><strong>The library closes the loop.</strong> Supply feeds product behavior; product behavior surfaces new demand the moment a PM queries the library and finds a gap.</span>
+      <span class="loop-close-label"><strong>The library is designed to close the loop.</strong> Supply feeds product behavior; product behavior surfaces new demand the moment a PM queries the library and finds a gap.</span>
     </div>
 
     <!-- DEMAND-PULL LANE (backward) -->
@@ -617,7 +617,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.4 &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.5 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
