@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://fieldrules.ai/og-image.png">
 <meta name="twitter:image:alt" content="FieldRules — Your team's reasoning, governing every decision. A dark branded card showing an example IF/THEN rule for a Clinical Operations SaaS trial-site onboarding policy.">
 <title>FieldRules — Investment Thesis</title>
-<!-- Version: v14.1 | Hallucination-audit fixes: (P1.1) RHS card reframed as "illustrative reading" with numeric stats replaced by a placeholder line; (P1.5) dropped stretched Gentner/Lightman citation in comparison verdict, method described on its own terms; (P1.6) scoped "blind contrastive testing" claim to internal synthetic pre-pilot evidence in both the Depth section and the Risk table -->
+<!-- Version: v14.2 | Hallucination-audit fixes v2: (P2.2) market grid — added Sources line; reframed 10× TAM as an estimate/hypothesis ("Estimated … if the structure ports") instead of a confident "when"; (P2.3) Why Now — tightened Bain reference to the actual report name (Bain Technology Report 2025) and dropped "hard" to match what Bain actually argues (governance designed in lockstep with architecture). Prior v14.1: (P1.1) RHS card reframed as "illustrative reading" with numeric stats replaced by a placeholder line; (P1.5) dropped stretched Gentner/Lightman citation in comparison verdict; (P1.6) scoped "blind contrastive testing" claim to internal synthetic pre-pilot evidence -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -471,7 +471,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
     <div class="section-eyebrow">04 — Why Now</div>
     <h2 class="section-h2">This problem is decades old. <em>Three things just changed.</em></h2>
     <div class="prose">
-      <p><strong>Enterprises are actually deploying agents.</strong> Not experimenting — deploying. Bain's 2025 agentic AI framework treats governance as a hard prerequisite for agent adoption. Companies that gave copilots a pass on governance are discovering that agents — which take actions autonomously — cannot run without it.</p>
+      <p><strong>Enterprises are actually deploying agents.</strong> Not experimenting — deploying. The Bain Technology Report 2025 argues that agentic AI governance must be designed "in lockstep with architecture" — not bolted on afterward. Companies that gave copilots a pass on governance are discovering that agents — which take actions autonomously — cannot run without it.</p>
       <p><strong>LLMs made the elicitation UX possible.</strong> Every prior knowledge engineering attempt died on the authoring burden — expert systems in the '80s, knowledge graphs in the '10s. Now the AI drafts the rule; the human authors the reasoning. That division of labor didn't exist two years ago.</p>
       <p><strong>The smartest people in AI are naming this exact gap.</strong> Andrej Karpathy identifies the bottleneck for AI capability as the absence of "inner thought monologues" — the reasoning traces of expert problem-solving. Terence Tao calls AI outputs "odorless proofs" — formally correct but missing the reasoning penumbra that makes them useful. The BECAUSE field is that monologue. It's that penumbra. Both of them are describing the data type FieldRules captures.</p>
     </div>
@@ -588,9 +588,11 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
       </div>
       <div class="market-stat">
         <span class="num">10<em>×</em></span>
-        <span class="desc">TAM expansion when the structure ports to sales ops, compliance, legal</span>
+        <span class="desc">Estimated TAM expansion if the structure ports to sales ops, compliance, legal</span>
       </div>
     </div>
+
+    <p style="font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em;margin-top:8px" data-reveal>Sources: Internal estimates triangulated from public CS-platform analyst coverage and BLS/LinkedIn sizing. Full methodology available on request.</p>
 
     <div class="prose">
       <p>We're building the governance layer that sits underneath CS platforms — and underneath every domain where teams make judgment calls that AI is about to inherit. We don't have a five-year roadmap pretending we know what happens in year four. We have a sequence of gates:</p>
@@ -656,7 +658,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
 </section>
 
 <footer>
-  FieldRules · investor-thesis-v14.1 · April 2026
+  FieldRules · investor-thesis-v14.2 · April 2026
   <span class="sub">The human governance layer for AI-native operations.</span>
 </footer>
 
