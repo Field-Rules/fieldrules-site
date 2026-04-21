@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.3 — for-engineers — adds harness-compresses-knowledge and searched-vs-traversed framing (DEV-485) -->
+<!-- VERSION: fieldrules-site-v3.4 — for-engineers — roadmap framing for five integration surfaces (hallucination-audit fix); fixes "Governer" typo -->
 <title>For Engineers — FieldRules</title>
 <meta name="description" content="Stop hardcoding business logic into your product. Read from a structured rule library instead. Rules that are versioned, queryable, and written by the people who know your domain.">
 <meta property="og:title" content="For Engineers — FieldRules">
@@ -114,9 +114,14 @@ section{padding:96px 24px}
 .surfaces-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:56px}
 .surface-card{padding:28px 24px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
 .surface-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
-.surface-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:16px}
+.surface-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .surface-title{font-family:var(--font-serif);font-size:18px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:10px}
 .surface-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.roadmap-badge{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-300);background:rgba(71,82,245,.12);border:1px solid rgba(71,82,245,.25);border-radius:100px;padding:2px 8px}
+.roadmap-intro{font-size:15px;line-height:1.75;color:var(--slate-400);max-width:720px;margin-top:20px}
+.shipping-first{margin-top:36px;padding:20px 24px;background:rgba(14,165,141,.06);border:1px solid rgba(14,165,141,.18);border-radius:12px;font-size:14px;line-height:1.7;color:var(--slate-300)}
+.shipping-first strong{color:var(--teal-300);font-weight:600}
+.shipping-first .ship-label{display:inline-block;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-300);margin-right:8px}
 .integration-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:56px;align-items:center}
 @media(max-width:768px){.integration-grid{grid-template-columns:1fr;gap:32px}}
 .integration-body{font-size:16px;line-height:1.75;color:var(--slate-400);margin-bottom:20px}
@@ -224,33 +229,38 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <!-- BEYOND CHAT AGENTS -->
 <section class="beyond-section" id="beyond">
   <div class="inner">
-    <div class="section-eyebrow" data-reveal>Beyond If/Then</div>
-    <h2 class="section-h2" data-reveal>Five surfaces,<br><em>one rule library.</em></h2>
+    <div class="section-eyebrow" data-reveal>Integration roadmap</div>
+    <h2 class="section-h2" data-reveal>Five ways the rule library will plug in.<br><em>Slack and Jira first. The rest as pilots ask for them.</em></h2>
+    <p class="roadmap-intro" data-reveal>We're building FieldRules from the Slack and Jira surfaces first, because that's where the reasoning lives today. These five integration modes are the roadmap for how the rule library will reach the rest of your stack. Each one is how an engineer will read from — or react to — confirmed rules once it ships.</p>
+    <div class="shipping-first" data-reveal>
+      <span class="ship-label">Shipping first</span>
+      <strong>Slack capture + query bot</strong> — lets practitioners confirm and query rules in the place they already work. <strong>Jira / Linear rule block</strong> — renders confirmed rules directly in the ticket that generated them.
+    </div>
     <div class="surfaces-grid">
       <div class="surface-card" data-reveal>
-        <div class="surface-num">01 — Query API</div>
+        <div class="surface-num"><span>01 — Query API</span><span class="roadmap-badge">Roadmap</span></div>
         <div class="surface-title">Ask before you build</div>
-        <div class="surface-body">Check whether a rule already exists before implementing a new feature. The rule is versioned, queryable, and authored by the person who understands the exception.</div>
+        <div class="surface-body">Will let an engineer check whether a rule already exists before implementing a new feature — versioned, queryable, authored by the person who understands the exception.</div>
       </div>
       <div class="surface-card" data-reveal>
-        <div class="surface-num">02 — GraphQL</div>
+        <div class="surface-num"><span>02 — GraphQL</span><span class="roadmap-badge">Roadmap</span></div>
         <div class="surface-title">Introspect your own logic</div>
-        <div class="surface-body">Build self-aware features that understand their own constraints. Query the rule library at runtime to expose business logic to users instead of hiding it behind opaque decisions.</div>
+        <div class="surface-body">Planned as the surface that lets features query the rule library at runtime and expose business logic to users instead of hiding it behind opaque decisions.</div>
       </div>
       <div class="surface-card" data-reveal>
-        <div class="surface-num">03 — Agent SDK</div>
-        <div class="surface-title">Governer AI through reasoning</div>
-        <div class="surface-body">Feed your agents the same rule library your humans use. Same reasoning, same governance, different caller. AI stops making decisions from training data defaults.</div>
+        <div class="surface-num"><span>03 — Agent SDK</span><span class="roadmap-badge">Roadmap</span></div>
+        <div class="surface-title">Govern AI through reasoning</div>
+        <div class="surface-body">The integration that will let your agents read from the same rule library your humans use. Same reasoning, same governance, different caller.</div>
       </div>
       <div class="surface-card" data-reveal>
-        <div class="surface-num">04 — Feature Flag Integration</div>
+        <div class="surface-num"><span>04 — Feature Flag Integration</span><span class="roadmap-badge">Roadmap</span></div>
         <div class="surface-title">Safe rollout of judgment</div>
-        <div class="surface-body">Couple rule publication to feature flags. Test a rule in production under controlled traffic. Degrade gracefully if domain expert reasoning needs to be revised.</div>
+        <div class="surface-body">Will couple rule publication to feature flags so you can test a rule in production under controlled traffic and roll back if the reasoning needs revision.</div>
       </div>
       <div class="surface-card" data-reveal>
-        <div class="surface-num">05 — Webhooks + Events</div>
+        <div class="surface-num"><span>05 — Webhooks + Events</span><span class="roadmap-badge">Roadmap</span></div>
         <div class="surface-title">React to rule changes</div>
-        <div class="surface-body">When a domain expert updates a rule, your system gets signaled. Recalculate decisions, generate audit logs, trigger review workflows. The rule library speaks to your system.</div>
+        <div class="surface-body">When shipped, outbound events will fire whenever a rule is updated — so your system can recalculate decisions, generate audit logs, or trigger review workflows.</div>
       </div>
     </div>
   </div>
@@ -362,7 +372,7 @@ if (site.enrollmentSpeed > 7 &&
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.3 &middot; for-engineers</div>
+  <div class="footer-mono">fieldrules-site-v3.4 &middot; for-engineers</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 

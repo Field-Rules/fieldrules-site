@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.3 — for-researchers — replaces fabricated pilot claims with real external references (Karpathy, Klowden & Tao, Bayesian Elicitation paper) -->
+<!-- VERSION: fieldrules-site-v3.4 — for-researchers — corrects Research Foundations citations (hallucination-audit fix): drops unverifiable Yeung and Kross & Ayduk citations; corrects Cobbe→Lightman et al. 2023 and Keil 2006→Rozenblit & Keil 2002 -->
 <title>For Researchers — FieldRules</title>
 <meta name="description" content="FieldRules applies 50 years of knowledge engineering research to production AI governance. Learn how contrastive elicitation, anti-habituation, and process reward models power the reasoning layer.">
 <meta property="og:title" content="For Researchers — FieldRules">
@@ -229,25 +229,23 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
         <div class="research-n">01</div>
         <div class="research-title">Contrastive Elicitation</div>
         <div class="research-body">Instead of open-ended explanation, force experts to name consequences. &ldquo;What fails if this rule doesn't exist?&rdquo; produces reasoning. &ldquo;Why does this rule exist?&rdquo; produces storytelling.</div>
-        <div class="research-citation">Adapted from Yeung et al. on knowledge extraction (2016)</div>
       </div>
       <div class="research-card" data-reveal>
         <div class="research-n">02</div>
         <div class="research-title">Anti-Habituation</div>
         <div class="research-body">Experts stop questioning rules they've internalized. FieldRules re-surfaces implicit logic at decision boundaries: when the rule is created, when it's queried, when it's contested. Each surface triggers re-evaluation.</div>
-        <div class="research-citation">Grounded in Reason (Kross &amp; Ayduk, 2011)</div>
       </div>
       <div class="research-card" data-reveal>
         <div class="research-n">03</div>
         <div class="research-title">Process Reward Models</div>
         <div class="research-body">Not all reasoning is equal. FieldRules scores the BECAUSE field by specificity, causal depth, counterfactual framing, evidence citation, and consequence naming. A reasoning health score, not just a count of rules.</div>
-        <div class="research-citation">From Cobbe et al., Process Reward Models (2023)</div>
+        <div class="research-citation">Lightman et al., <em>Let's Verify Step by Step</em>, 2023</div>
       </div>
       <div class="research-card" data-reveal>
         <div class="research-n">04</div>
         <div class="research-title">Consequence Naming</div>
         <div class="research-body">The first field where pure tautology fails. Experts must articulate what state the rule guards against. Vague reasoning shows up immediately. If you can't name what goes wrong, you don't understand why the rule exists.</div>
-        <div class="research-citation">Keil's theory of explanatory depth (2006)</div>
+        <div class="research-citation">Rozenblit &amp; Keil, 2002 — <em>The misunderstood limits of folk science: An illusion of explanatory depth</em></div>
       </div>
     </div>
   </div>
@@ -353,7 +351,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.3 &middot; for-researchers &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.4 &middot; for-researchers &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 

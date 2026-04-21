@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://fieldrules.ai/og-image.png">
 <meta name="twitter:image:alt" content="FieldRules — Your team's reasoning, governing every decision. A dark branded card showing an example IF/THEN rule for a Clinical Operations SaaS trial-site onboarding policy.">
 <title>FieldRules — Investment Thesis</title>
-<!-- Version: v14.0 | Video hero background (topographic contour lines), narrative overhaul, visual richness, equation subtexts, Notion evidence nuggets, plain-language storytelling -->
+<!-- Version: v14.1 | Hallucination-audit fixes: (P1.1) RHS card reframed as "illustrative reading" with numeric stats replaced by a placeholder line; (P1.5) dropped stretched Gentner/Lightman citation in comparison verdict, method described on its own terms; (P1.6) scoped "blind contrastive testing" claim to internal synthetic pre-pilot evidence in both the Depth section and the Risk table -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -370,7 +370,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
           "Sites this size with fast enrollment timelines are statistically high-dropout in weeks 3–5. Early intervention cuts churn by over half — but only if flagged before the standard onboarding flow locks in."
         </div>
       </div>
-      <div class="comp-verdict">The first is what you get when you ask someone to document. The second is what you get when you ask <strong>"what would go wrong if this rule didn't exist?"</strong> — a contrastive prompt grounded in cognitive science research on how expert reasoning actually works (Gentner, 1983; Lightman et al., 2023). FieldRules doesn't ask experts to explain. It asks them to <strong>defend</strong>.</div>
+      <div class="comp-verdict">The first is what you get when you ask someone to document. The second is what you get when you ask <strong>"what would go wrong if this rule didn't exist?"</strong> — a contrastive prompt that forces experts to name consequences rather than narrate intent. Consequence-naming exposes tautology and surfaces the causal chain that makes a rule enforceable. FieldRules doesn't ask experts to explain. It asks them to <strong>defend</strong>.</div>
     </div>
   </div>
 </section>
@@ -423,7 +423,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
     <!-- Reasoning Health Score -->
     <div class="rhs-card">
       <div class="rhs-header">
-        <span class="rhs-title">Reasoning Health Score — Live Library Quality</span>
+        <span class="rhs-title">Reasoning Health Score — illustrative reading</span>
         <div><span class="rhs-score">0.74</span><span class="rhs-score-label">/ 1.0</span></div>
       </div>
       <div class="rhs-bars">
@@ -454,9 +454,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
         </div>
       </div>
       <div class="rhs-footer">
-        <span class="rhs-stat"><strong>61</strong> confirmed rules</span>
-        <span class="rhs-stat"><strong>0</strong> divergence alarms (14 days)</span>
-        <span class="rhs-stat"><strong>↑12%</strong> quality composite from baseline</span>
+        <span class="rhs-stat">Tracks rule count, divergence alarms, and quality composite once pilots go live.</span>
       </div>
     </div>
 
@@ -524,7 +522,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
 
     <div class="prose">
       <p>The elicitation lab runs continuously — an AI-powered research loop that generates UX variants from cognitive science literature, tests each against synthetic personas representing different expertise levels and cognitive styles, then feeds findings back into the next cycle. One finding from our adversarial pass: persona Priya demonstrated that starter chips with a low quality threshold enabled 15-second boilerplate submissions. We caught it before any user saw it, redesigned the quality gate, and re-ran the eval loop.</p>
-      <p>We have a seven-layer elicitation loop, a four-tier response system (prompt fix → few-shot → embedding → fine-tune), a seed library generator that researches prospect companies via web search, and a reasoning advantage eval that proved — with blind, contrastive testing against Confluence docs and call transcripts — that human-authored BECAUSE fields produce measurably better AI governance outcomes.</p>
+      <p>We have a seven-layer elicitation loop, a four-tier response system (prompt fix → few-shot → embedding → fine-tune), a seed library generator that researches prospect companies via web search, and a reasoning advantage eval. In internal, blind contrastive testing against sample Confluence docs and call transcripts, human-authored BECAUSE fields outscored model-generated reasoning on our quality rubric. This is synthetic pre-pilot evidence, not customer data — full methodology and N ship with pilot results.</p>
       <p>We built a strategy ladder with four named bets (Governance, Practitioner, Timing, Data Layer), each with kill conditions. We built an H3 framework (Helpful, Honest, Harmless) that governs every AI interaction in the product. We built an anti-hallucination credibility plan that gates external claims behind pilot evidence.</p>
       <p>This is what happens when the founders care more about being right than being first.</p>
     </div>
@@ -550,7 +548,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
         </tr>
         <tr>
           <td>LLMs eventually generate good-enough reasoning</td>
-          <td>Today's models produce fluent tautology — they restate the THEN in different words. We proved this with blind contrastive testing. And the data to fine-tune on doesn't exist yet — FieldRules is what creates it. If models do get there, we'll have the largest corpus of expert-authored operational reasoning in the market.<br><span class="risk-mitigated">Mitigated: reasoning advantage eval (Pattern 1 confirmed)</span></td>
+          <td>Today's models produce fluent tautology — they restate the THEN in different words. Our internal, synthetic blind-contrastive evals point the same direction, and the data to fine-tune on doesn't exist yet — FieldRules is what creates it. If models do get there, we'll have the largest corpus of expert-authored operational reasoning in the market.<br><span class="risk-mitigated">Pre-pilot signal: reasoning advantage eval Pattern 1 (internal, N and methodology ship with pilot results)</span></td>
           <td><span class="severity severity-med">MEDIUM</span></td>
         </tr>
         <tr>
@@ -658,7 +656,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
 </section>
 
 <footer>
-  FieldRules · investor-thesis-v14.0 · April 2026
+  FieldRules · investor-thesis-v14.1 · April 2026
   <span class="sub">The human governance layer for AI-native operations.</span>
 </footer>
 

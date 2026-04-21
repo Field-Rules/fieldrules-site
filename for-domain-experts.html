@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.3 — for-domain-experts — adds demand-pull half of the two-way loop -->
+<!-- VERSION: fieldrules-site-v3.4 — for-domain-experts — reframes attribution grid as illustrative (hallucination-audit fix) -->
 <title>For Domain Experts — FieldRules</title>
 <meta name="description" content="Your expertise has been invisible. FieldRules makes your judgment calls permanent, attributed, and visible across every layer of your product.">
 <meta property="og:title" content="For Domain Experts — FieldRules">
@@ -318,23 +318,24 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <section class="attribution-section" id="attribution">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>Attribution</div>
-    <h2 class="section-h2" data-reveal>One rule. <em>Three downstream contexts.</em></h2>
+    <h2 class="section-h2" data-reveal>What attribution <em>will look like.</em></h2>
 
+    <div class="section-eyebrow" data-reveal style="margin-top:28px;color:var(--slate-500)">Illustrative</div>
     <div class="flow-grid" data-reveal>
       <div class="attribution-card">
         <div class="attribution-card-meta">PM SPEC</div>
-        <div class="attribution-card-title">Rule FR-1847 (Domain Expert)</div>
+        <div class="attribution-card-title">Your confirmed rule, referenced by name</div>
         <div class="attribution-card-body">Referenced in PRD for customer onboarding flow. PM uses your reasoning to decide which paths to automate and which to gate with human decision.</div>
       </div>
       <div class="attribution-card">
         <div class="attribution-card-meta">AI DECISION LOG</div>
-        <div class="attribution-card-title">Ticket #4821 → Senior Specialist</div>
+        <div class="attribution-card-title">Any ticket where your rule applies</div>
         <div class="attribution-card-body">Rule applied. Your reasoning is logged alongside every decision. Traceable. Auditable. Attributed to you.</div>
       </div>
       <div class="attribution-card">
         <div class="attribution-card-meta">BOARD REPORT</div>
         <div class="attribution-card-title">Reasoning Health Score: 94/100</div>
-        <div class="attribution-card-body">Top contributor stats. Your rules maintain the highest reasoning depth across the library. That shows up in the metrics.</div>
+        <div class="attribution-card-body">Your rules contribute to the team's reasoning health score, which shows up on the dashboard you share with leadership.</div>
       </div>
     </div>
 
@@ -366,7 +367,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.3 &middot; for-domain-experts</div>
+  <div class="footer-mono">fieldrules-site-v3.4 &middot; for-domain-experts</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
