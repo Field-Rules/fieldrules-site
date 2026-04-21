@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.3 — index (DEV-470: contrastive-prompting callout + hero trust row + CEO problem quote) -->
+<!-- VERSION: fieldrules-site-v3.4 — index — Hallucination-audit fixes v2: (P2.1) Added "Sample Reading" eyebrow in the #rhs scorecard header and "Illustrative scorecard. Live scores appear once your library has 10+ rules." caption under the bars, so the 84/100 read is not mistaken for a live customer metric. Prior v3.3 landed DEV-470 (contrastive-prompting callout + hero trust row + CEO problem quote) -->
 <title>FieldRules — Your team's reasoning, governing every decision</title>
 <meta name="description" content="FieldRules captures the judgment calls your team carries — edge cases, instinct, hard-won logic — and structures it so every decision your product makes is governed by the people who know best.">
 <meta property="og:title" content="FieldRules — Your team's reasoning, governing every decision">
@@ -534,7 +534,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
         <div class="rhs-pitch">Every AI governance tool tells you what rules exist. FieldRules is the only one that tells you whether your rules are actually thinking.</div>
       </div>
       <div class="rhs-viz" data-reveal>
-        <div class="rhs-viz-header"><div class="rhs-viz-title">Reasoning Health Score</div></div>
+        <div class="rhs-viz-header" style="display:flex;align-items:center;justify-content:space-between;gap:16px"><div class="rhs-viz-title">Reasoning Health Score</div><div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-500)">Sample Reading</div></div>
         <div style="display:flex;align-items:baseline;gap:8px"><div class="rhs-viz-score">84</div><div class="rhs-viz-label">/ 100 &middot; Healthy</div></div>
         <div class="rhs-bar-group">
           <div class="rhs-bar-row"><div class="rhs-bar-name">Specificity</div><div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:91%"></div></div><div class="rhs-bar-val">91</div></div>
@@ -543,6 +543,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
           <div class="rhs-bar-row"><div class="rhs-bar-name">Non-tautology</div><div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--mid" style="width:74%"></div></div><div class="rhs-bar-val">74</div></div>
           <div class="rhs-bar-row"><div class="rhs-bar-name">Consequence</div><div class="rhs-bar-track"><div class="rhs-bar-fill rhs-bar-fill--high" style="width:86%"></div></div><div class="rhs-bar-val">86</div></div>
         </div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--slate-600);letter-spacing:.04em;line-height:1.5;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05)">Illustrative scorecard. Live scores appear once your library has 10+ rules.</div>
       </div>
     </div>
   </div>
@@ -616,7 +617,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.3 &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.4 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
