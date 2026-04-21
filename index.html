@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.6 — index — Hallucination-audit fixes v4 (P4.F4): softened #how step 03 gap-signal promise by inserting "by design," hedge before "when a PM's query hits a gap, the right expert gets a signal" (BE-005/007 To Do per pilot-readiness-v2). Prior v3.5 (P3.1) softened #how step 01 "detects" → "is designed to detect", step 02 title "45 seconds" → "30–60 seconds", two-way loop lede + close. v3.4 added Sample Reading eyebrow + Illustrative scorecard caption (P2.1); v3.3 landed DEV-470 -->
+<!-- VERSION: fieldrules-site-v3.7 — index — DEV-506 hero-headline A/B test: cookied 50/50 split between Variant A (v3.5 current — "Your best people make judgment calls…") and Variant B (mellybutton-draft alternative — "Every AI decision your product makes / will run on someone's logic. / Make sure it's yours."). Vercel Web Analytics wired in (script tag + window.va queue stub) with custom events ab_hero_assigned (once per session), scroll_past_problem (when #paradox enters viewport = user scrolled past .problem-section), and hero_cta_click (segmented by primary/ghost), all tagged with variant. Fallback = Variant A if JS disabled. See Marketing → experiments readout doc in Notion for wind-down rules. Prior v3.6 (P4.F4) added "by design," hedge on #how step 03; v3.5 (P3.1) softened step 01/02 + loop lede; v3.4 added Sample Reading eyebrow (P2.1); v3.3 landed DEV-470. -->
 <title>FieldRules — Your team's reasoning, governing every decision</title>
 <meta name="description" content="FieldRules captures the judgment calls your team carries — edge cases, instinct, hard-won logic — and structures it so every decision your product makes is governed by the people who know best.">
 <meta property="og:title" content="FieldRules — Your team's reasoning, governing every decision">
@@ -617,9 +617,83 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.6 &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.7 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
+
+<!-- DEV-506 — Vercel Web Analytics (queue stub + async loader). Must run before any window.va() calls. -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<!-- DEV-506 — Hero headline A/B test. Runs synchronously at end of body: DOM is parsed so .hero h1 exists, and hero h1 starts at opacity:0 via [data-reveal], so the Variant B swap happens before first visual paint of the hero (no flash). -->
+<script>
+(function(){
+  try{
+    var COOKIE='fr_ab_hero_v1';
+    var m=document.cookie.match(/(?:^|; )fr_ab_hero_v1=([^;]+)/);
+    var variant=m?decodeURIComponent(m[1]):null;
+    if(variant!=='A'&&variant!=='B'){
+      variant=Math.random()<0.5?'A':'B';
+      var d=new Date();d.setTime(d.getTime()+30*864e5);
+      document.cookie=COOKIE+'='+variant+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
+    }
+    document.documentElement.setAttribute('data-ab-hero',variant);
+
+    if(variant==='B'){
+      var h1=document.querySelector('.hero h1');
+      if(h1){
+        h1.innerHTML='Every AI decision your product makes<br>will run on <em>someone\'s logic.</em><br>Make sure it\'s yours.';
+      }
+    }
+
+    function fire(name,props){
+      try{
+        if(window.va){window.va('event',Object.assign({name:name},props||{}));}
+      }catch(_){}
+    }
+
+    // Fire once per session (sessionStorage clears on tab close).
+    try{
+      if(!sessionStorage.getItem('fr_ab_hero_assigned')){
+        fire('ab_hero_assigned',{variant:variant});
+        sessionStorage.setItem('fr_ab_hero_assigned','1');
+      }
+    }catch(_){
+      fire('ab_hero_assigned',{variant:variant});
+    }
+
+    // Observe #paradox entering viewport — user scrolled past .problem-section.
+    var paradox=document.getElementById('paradox');
+    if(paradox && 'IntersectionObserver' in window){
+      var fired=false;
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting && !fired){
+            fired=true;
+            fire('scroll_past_problem',{variant:variant});
+            io.disconnect();
+          }
+        });
+      },{threshold:0.1});
+      io.observe(paradox);
+    }
+
+    // Primary + ghost hero CTA clicks.
+    document.addEventListener('click',function(e){
+      var btn=e.target && e.target.closest && e.target.closest('.hero-actions a');
+      if(!btn)return;
+      var kind=btn.classList.contains('btn-primary')?'primary':(btn.classList.contains('btn-ghost')?'ghost':'other');
+      fire('hero_cta_click',{
+        variant:variant,
+        target:kind,
+        href:btn.getAttribute('href')||''
+      });
+    });
+  }catch(_){/* never break the page on a measurement bug */}
+})();
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded',function(){
