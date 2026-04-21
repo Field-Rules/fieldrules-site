@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3 — for-product-managers -->
+<!-- VERSION: fieldrules-site-v3.3 — for-product-managers — adds demand-pull half of the two-way loop -->
 <title>For Product Managers — FieldRules</title>
 <meta name="description" content="Stop speccing features against business logic you can't verify. Query the rule library. Get governance before you hand work to engineering.">
 <meta property="og:title" content="For Product Managers — FieldRules">
@@ -292,7 +292,19 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <div class="governance-explanation" data-reveal>
       <p>The difference is timing. When you query the rule library <em>before</em> you spec, the reasoning that would have blocked you later becomes the reasoning that shapes you now.</p>
       <p style="margin-top:12px">No rebuilds. No surprise conversations in mid-sprint. Just <strong>better specs</strong>, written the first time.</p>
-      <p style="margin-top:12px">A knowledge base is searched. A skill graph is traversed. Every confirmed rule is a node with an owner, a domain, and a BECAUSE chain—which is what makes the library queryable instead of just searchable. You ask <em>what governs enterprise billing</em> and get back the domain expert who owns it, the reasoning that shaped it, and the dependencies it touches. That's what turns pre-build governance from a slogan into a habit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHEN THE QUERY HITS A GAP — DEMAND-PULL HALF OF THE LOOP -->
+<section class="pattern-section" id="gap-loop">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>When Your Query Has No Match</div>
+    <h2 class="section-h2" data-reveal>Your unanswered question is<br><em>the signal that grows the library.</em></h2>
+    <div class="pattern-content">
+      <p class="pattern-body" data-reveal>Most tools return a "no results" page when the answer doesn't exist yet. FieldRules doesn't. When your query hits a gap, the library captures the gap as structured context — what topic, what feature you're speccing, who the right expert is — and routes a live signal to that expert.</p>
+      <p class="pattern-body" data-reveal>The expert doesn't get a documentation reminder. They get a card from a colleague: <em>"The PM needs your expertise on enterprise billing before sending to engineering."</em> They confirm the rule in 45 seconds, in their own words. Your next query gets answered — by the person who actually knows.</p>
+      <div class="pattern-callout" data-reveal>The library grows from your demand — not from a documentation sprint. Query → gap → expert signal → rule confirmed → library update. That loop is what makes governance compound.</div>
     </div>
   </div>
 </section>
@@ -331,6 +343,11 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
         <div class="outcome-title">Governance becomes part of thinking, not a blocker</div>
         <div class="outcome-body">Constraints aren't surprises. They're built in from the moment you start writing. The feature you ship is the feature you meant to ship.</div>
       </div>
+      <div class="outcome-card" data-reveal>
+        <div class="outcome-n">04</div>
+        <div class="outcome-title">Your unanswered query is what grows the library</div>
+        <div class="outcome-body">When you query and find nothing, the library doesn't shrug — it pulls the right expert with a live signal. Your next query gets answered. The library compounds from your demand, not from a quarterly documentation push.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -351,7 +368,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3 · for-product-managers</div>
+  <div class="footer-mono">fieldrules-site-v3.3 · for-product-managers</div>
   <div class="footer-mono">Query governance before you spec</div>
 </footer>
 
