@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- VERSION: for-ai-agents-v2.1 — Q2 (integration mechanics) RESOLVED on top of v2-recovered baseline on 2026-04-21. Q2 resolution = full proposal MCP-primary commit, accepted by user: hero trust "MCP-compatible" → "MCP-native"; how-section H2 "Framework-agnostic." → "MCP-native."; step 02 title + body rewritten to lead with MCP (JSON as fallback); frameworks H2 "If it can make an outbound call..." → "If your stack speaks MCP..."; frameworks-grid reordered with MCP chip leading + .framework-chip--primary visual emphasis; frameworks-note rewritten to position MCP as canonical caller. Q3 (secondary CTA link) and Q4 (AGENTS.md bridge) status in this file: still UNRESOLVED — to be walked next. Q5 (DEV-506 hero alignment) UNRESOLVED — blocked. Lineage: this file was reconstructed from for-ai-agents-v3-PROPOSAL.html on 2026-04-21 because the canonical was found at 0 bytes; v2-recovered established the agnostic baseline; v2.1 = v2-recovered + accepted Q2 deltas (which happen to match the proposal's Q2 wording verbatim). -->
+<title>FieldRules for AI Agents — The reasoning substrate your agents call</title>
+<meta name="description" content="FieldRules is the rule library your humans already confirmed. IF / THEN / BECAUSE, attributed and versioned. Your agent calls it the same way a PM or an engineer would — and inherits the same reasoning layer.">
+<meta property="og:title" content="FieldRules for AI Agents — The reasoning substrate your agents call">
+<meta property="og:description" content="Your agents are running on the model's defaults. They should be running on your company's logic. FieldRules is the rule library your humans already confirmed — attributed, versioned, queryable.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fieldrules.ai/for-ai-agents">
+<meta property="og:image" content="https://fieldrules.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FieldRules">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FieldRules for AI Agents — The reasoning substrate your agents call">
+<meta name="twitter:description" content="Your agents are running on the model's defaults. They should be running on your company's logic. FieldRules is the rule library your humans already confirmed.">
+<meta name="twitter:image" content="https://fieldrules.ai/og-image.png">
+<link rel="canonical" href="https://fieldrules.ai/for-ai-agents">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --font-sans:'DM Sans',sans-serif;
+  --font-serif:'Fraunces',serif;
+  --font-mono:'DM Mono',monospace;
+  --indigo-300:#A5AEFF;--indigo-400:#818CF8;--indigo-500:#4752F5;--indigo-600:#3B45D6;--indigo-700:#2D35A8;
+  --teal-300:#5ED5BE;--teal-400:#3DC4AB;--teal-500:#2AA896;--teal-600:#1E8A7B;
+  --rose-500:#F43F5E;--amber-400:#FBBF24;--amber-500:#F59E0B;--green-500:#22C55E;
+  --slate-300:#CBD5E1;--slate-400:#A8B8CC;--slate-500:#7B8CA0;--slate-600:#5C6B7F;
+}
+html{scroll-behavior:smooth}
+section{scroll-margin-top:56px}
+body{font-family:var(--font-sans);background:#070714;color:#EDF0F7;line-height:1.6;-webkit-font-smoothing:antialiased}
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+[data-reveal].visible{opacity:1;transform:translateY(0)}
+
+/* ── Nav (mirrors index v3.7) ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:56px;background:rgba(7,7,20,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{text-decoration:none;display:flex;align-items:center}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:40px;list-style:none}
+.nav-links a,.nav-dropdown-trigger{font-size:13px;font-weight:500;color:var(--slate-400);text-decoration:none;padding:5px 12px;border-radius:6px;transition:color .15s,background .15s;cursor:pointer}
+.nav-links a:hover,.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-links a.active{color:#fff;background:rgba(255,255,255,.08)}
+.nav-dropdown{position:relative}
+.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:var(--font-sans)}
+.nav-dropdown-trigger::after{content:'▾';font-size:9px;opacity:.5;transition:transform .2s}
+.nav-dropdown:hover .nav-dropdown-trigger::after{transform:rotate(180deg)}
+.nav-dropdown::after{content:'';position:absolute;top:100%;left:0;width:100%;height:12px}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:240px;background:rgba(13,13,32,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.nav-dropdown:hover .nav-dropdown-menu{display:block}
+.nav-dropdown-menu a{display:block;padding:8px 14px;border-radius:6px;font-size:13px;color:var(--slate-400);text-decoration:none;transition:color .15s,background .15s}
+.nav-dropdown-menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-dropdown-menu a.active{color:#fff;background:rgba(255,255,255,.08)}
+.nav-dropdown-menu a .dd-label{display:block;font-weight:500;color:var(--slate-300)}
+.nav-dropdown-menu a .dd-sub{display:block;font-size:11px;color:var(--slate-600);margin-top:1px}
+.nav-cta{margin-left:auto;font-size:13px;font-weight:600;padding:8px 18px;background:var(--indigo-500);color:#fff;border:none;border-radius:6px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
+.nav-cta:hover{background:var(--indigo-400);transform:translateY(-1px)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;margin-left:auto}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .2s ease}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;flex-direction:column;background:rgba(7,7,20,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-links.open{display:flex}
+  .nav-links a,.nav-dropdown-trigger{font-size:15px;padding:12px 16px;border-radius:8px}
+  .nav-cta{display:none}
+  .nav-dropdown-menu{position:static;margin-top:0;background:transparent;border:none;box-shadow:none;padding:0 0 0 16px;display:block;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .nav-dropdown-trigger::after{display:none}
+}
+
+/* ── Shared ── */
+section{padding:96px 24px}
+.inner{max-width:1120px;margin:0 auto}
+.section-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-400);margin-bottom:16px}
+.section-h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.section-h2 em{font-style:italic;color:var(--teal-300)}
+
+/* ── Hero ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;background:#070714}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 55% 45% at 50% 45%,rgba(7,7,20,.4) 0%,rgba(7,7,20,.6) 60%,rgba(7,7,20,.88) 100%),radial-gradient(ellipse 80% 50% at 50% -10%,rgba(71,82,245,.14) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 85%,rgba(14,165,141,.06) 0%,transparent 60%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-300);background:rgba(94,213,190,.08);border:1px solid rgba(94,213,190,.2);border-radius:100px;padding:6px 16px;margin-bottom:32px;position:relative;z-index:3}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-300);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-family:var(--font-serif);font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;position:relative;z-index:3;max-width:920px}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--indigo-300),var(--teal-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--slate-400);max-width:640px;margin:0 auto 48px;position:relative;z-index:3}
+.hero-actions{display:flex;align-items:center;gap:16px;position:relative;z-index:3;flex-wrap:wrap;justify-content:center}
+.btn-primary{font-size:15px;font-weight:600;padding:14px 28px;background:var(--indigo-500);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 0 0 rgba(71,82,245,0);text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--indigo-400);transform:translateY(-2px);box-shadow:0 8px 24px rgba(71,82,245,.3)}
+.btn-ghost{font-size:15px;font-weight:500;padding:14px 28px;background:rgba(255,255,255,.06);color:#E8EAF2;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.hero-trust{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin:48px auto 0;max-width:680px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--slate-500);position:relative;z-index:3}
+.hero-trust span{display:inline-flex;align-items:center}
+.hero-trust .trust-sep{color:var(--slate-600);opacity:.5}
+@media(max-width:560px){.hero-trust{font-size:10px;gap:6px}}
+
+/* ── Problem / composite quote (mirrors index problem-section) ── */
+.problem-section{background:#0A0A1A;padding:96px 24px;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.problem-section .inner{max-width:820px;margin:0 auto;text-align:center;position:relative}
+.problem-quote{font-family:var(--font-serif);font-size:clamp(22px,3.2vw,34px);font-weight:300;font-style:italic;line-height:1.38;color:#EDF0F7;letter-spacing:-.01em;margin:0 0 24px;position:relative}
+.problem-quote::before{content:'\201C';position:absolute;left:-34px;top:-24px;font-family:var(--font-serif);font-size:96px;color:var(--indigo-500);opacity:.22;line-height:1;pointer-events:none}
+.problem-attrib{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-500)}
+.problem-attrib em{font-style:normal;color:var(--slate-600);text-transform:none;letter-spacing:.04em;font-size:10px;margin-left:8px}
+@media(max-width:560px){.problem-quote::before{left:-14px;font-size:64px;top:-14px}}
+
+/* ── Rule shape (the credibility hinge — JSON block) ── */
+.shape-section{background:#09091A}
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;align-items:start}
+@media(max-width:900px){.shape-grid{grid-template-columns:1fr;gap:28px}}
+.shape-prose{font-size:16px;line-height:1.75;color:var(--slate-400)}
+.shape-prose strong{color:#D4D8F0;font-weight:500}
+.shape-prose p + p{margin-top:14px}
+.shape-note{margin-top:20px;padding:14px 16px;background:rgba(94,213,190,.05);border:1px solid rgba(94,213,190,.18);border-left:3px solid var(--teal-300);border-radius:10px;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--slate-400);letter-spacing:.02em}
+.shape-note strong{color:var(--teal-300);font-weight:600;display:block;margin-bottom:4px;letter-spacing:.12em;text-transform:uppercase;font-size:10px}
+.code-card{background:#0A0A1A;border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(71,82,245,.06)}
+.code-card-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.06)}
+.code-card-title{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-500)}
+.code-card-dots{display:flex;gap:6px}
+.code-card-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.12)}
+.code-card pre{margin:0;padding:20px 22px;overflow-x:auto;font-family:var(--font-mono);font-size:12.5px;line-height:1.75;color:#D4D8F0;white-space:pre}
+.code-card pre .c-key{color:var(--indigo-300)}
+.code-card pre .c-str{color:#C7E7D8}
+.code-card pre .c-num{color:var(--amber-400)}
+.code-card pre .c-null{color:var(--slate-600)}
+.code-card pre .c-because{background:rgba(165,174,255,.08);border-left:2px solid rgba(165,174,255,.45);padding:2px 0 2px 10px;margin-left:-12px;display:inline-block;width:calc(100% + 12px)}
+.code-card pre .c-because-key{color:var(--indigo-300);font-weight:500}
+
+/* ── Integration steps (mirrors index steps) ── */
+.how-section{background:linear-gradient(180deg,#09091A 0%,#0D0E2A 50%,#09091A 100%)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px;position:relative}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
+.step-card{padding:32px 28px;background:#0D0D20;border:1px solid rgba(255,255,255,.07);border-radius:14px;transition:border-color .2s,box-shadow .2s}
+.step-card:hover{border-color:rgba(71,82,245,.3);box-shadow:0 0 40px rgba(71,82,245,.08)}
+.step-n{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--slate-600);margin-bottom:20px}
+.step-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:#fff;letter-spacing:-.01em;margin-bottom:12px;line-height:1.25}
+.step-body{font-size:13px;line-height:1.7;color:var(--slate-400)}
+.step-body code{font-family:var(--font-mono);font-size:11.5px;color:var(--indigo-300);background:rgba(71,82,245,.08);padding:1px 6px;border-radius:3px;letter-spacing:.02em}
+
+/* ── Contrast section (mirrors index because-contrast) ── */
+.contrast-section{background:#09091A}
+.contrast-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;max-width:900px}
+@media(max-width:768px){.contrast-grid{grid-template-columns:1fr}}
+.contrast-card{padding:28px 24px;border-radius:14px;text-align:left}
+.contrast-card--generic{background:#0E0E1F;border:1px solid rgba(255,255,255,.07)}
+.contrast-card--real{background:rgba(71,82,245,.06);border:1px solid rgba(71,82,245,.2)}
+.contrast-label{font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.contrast-card--generic .contrast-label{color:var(--slate-600)}
+.contrast-card--real .contrast-label{color:var(--indigo-400)}
+.contrast-title{font-family:var(--font-serif);font-size:18px;font-weight:300;line-height:1.3;margin-bottom:12px;color:#E8EAF2}
+.contrast-card--generic .contrast-title{color:var(--slate-400)}
+.contrast-body{font-size:14px;line-height:1.7;color:var(--slate-500)}
+.contrast-card--real .contrast-body{color:#D4D8F0}
+.contrast-body strong{color:#D4D8F0;font-weight:500}
+.contrast-card--real .contrast-body strong{color:var(--indigo-300)}
+.contrast-explanation{max-width:680px;margin-top:40px;font-size:16px;line-height:1.75;color:var(--slate-400)}
+.contrast-explanation strong{color:#D4D8F0;font-weight:500}
+
+/* ── Stack / where we sit (mirrors paradox callout) ── */
+.stack-section{background:#0D0D22}
+.stack-content{max-width:760px}
+.stack-body{font-size:17px;line-height:1.8;color:var(--slate-400);margin-bottom:24px}
+.stack-body strong{color:#D4D8F0;font-weight:500}
+.stack-callout{padding:28px 32px;background:rgba(71,82,245,.05);border:1px solid rgba(71,82,245,.15);border-left:3px solid var(--indigo-500);border-radius:12px;font-family:var(--font-serif);font-size:19px;font-weight:300;font-style:italic;line-height:1.55;color:#D4D8F0}
+.stack-layers{display:grid;grid-template-columns:1fr;gap:0;margin-top:48px;max-width:760px;border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden}
+.stack-layer{padding:18px 22px;background:#0A0A1A;border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:baseline;gap:14px}
+.stack-layer:first-child{border-top:none}
+.stack-layer--you{background:rgba(71,82,245,.07);border-left:3px solid var(--indigo-500)}
+.stack-layer-label{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-500);flex-shrink:0;min-width:100px}
+.stack-layer--you .stack-layer-label{color:var(--indigo-300)}
+.stack-layer-body{font-size:14px;line-height:1.55;color:var(--slate-400)}
+.stack-layer-body strong{color:#E8EAF2;font-weight:500}
+.stack-layer--you .stack-layer-body strong{color:#fff}
+@media(max-width:560px){.stack-layer{flex-direction:column;gap:4px}.stack-layer-label{min-width:0}}
+
+/* ── Framework compat (small trust row) ── */
+.frameworks-section{background:#060612;padding:80px 24px}
+.frameworks-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;max-width:780px}
+.framework-chip{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--slate-400);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px}
+.framework-chip--primary{color:var(--indigo-300);background:rgba(71,82,245,.08);border-color:rgba(71,82,245,.25)}
+.frameworks-note{margin-top:24px;font-size:13px;line-height:1.7;color:var(--slate-500);max-width:680px;font-family:var(--font-mono);letter-spacing:.01em}
+
+/* ── CTA (mirrors index cta) ── */
+.cta-section{background:#0D0D22;background-image:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(71,82,245,.12) 0%,transparent 70%);padding:120px 24px}
+.cta-h2{font-family:var(--font-serif);font-size:clamp(36px,6vw,64px);font-weight:300;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.cta-h2 em{font-style:italic;color:var(--teal-300)}
+.cta-sub{font-size:17px;line-height:1.7;color:var(--slate-400);max-width:560px;margin-bottom:40px}
+.cta-form{display:flex;gap:12px;flex-wrap:wrap;position:relative}
+.cta-input{flex:1;min-width:240px;padding:14px 18px;background:#0A0A1A;border:1px solid rgba(255,255,255,.1);border-radius:8px;font-family:var(--font-sans);font-size:14px;color:#fff;outline:none;transition:border-color .2s}
+.cta-input:focus{border-color:rgba(71,82,245,.5)}
+.cta-input::placeholder{color:var(--slate-600)}
+.cta-success{font-family:var(--font-mono);font-size:15px;color:var(--green-500);letter-spacing:.02em;padding:16px 0;animation:fadeUp .4s ease both}
+.cta-input.invalid{border-color:var(--rose-500)!important}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-logo{display:flex;align-items:center}
+.footer-mono{font-family:var(--font-mono);font-size:11px;color:var(--slate-600);letter-spacing:.04em}
+</style>
+</head>
+<body>
+<!-- NAV — consistent across all pages; AI Agents item active -->
+<nav>
+  <a href="/" class="nav-logo"><img src="logo.svg" alt="FieldRules" height="48"></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#how">How It Works</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-trigger">For&hellip;</button>
+      <div class="nav-dropdown-menu">
+        <a href="for-product-managers.html"><span class="dd-label">Product Managers</span><span class="dd-sub">Query the rule library before speccing</span></a>
+        <a href="for-domain-experts.html"><span class="dd-label">Domain Experts</span><span class="dd-sub">Your name goes on your judgment calls</span></a>
+        <a href="for-engineers.html"><span class="dd-label">Engineers</span><span class="dd-sub">Externalize hardcoded business logic</span></a>
+        <a href="for-researchers.html"><span class="dd-label">Researchers</span><span class="dd-sub">50 years of knowledge engineering, applied</span></a>
+        <a href="for-ceos.html"><span class="dd-label">CEOs</span><span class="dd-sub">The reasoning layer that compounds</span></a>
+        <a href="for-ai-agents.html" class="active"><span class="dd-label">AI Agents</span><span class="dd-sub">The substrate your agents call at inference</span></a>
+      </div>
+    </div>
+    <a href="pilot.html">Pilot</a>
+  </div>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="#cta" class="nav-cta">Request access</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow" data-reveal>For agent builders</div>
+  <h1 data-reveal>
+    Your agents are running on the model's defaults.<br>
+    <em>They should be running on your company's logic.</em>
+  </h1>
+  <p class="hero-sub" data-reveal>
+    FieldRules is the rule library your humans already confirmed. IF / THEN / BECAUSE, attributed and versioned. Your agent calls it the same way a PM or an engineer would &mdash; and inherits the same reasoning layer.
+  </p>
+  <div class="hero-actions" data-reveal>
+    <a href="#cta" class="btn-primary">Request early access</a>
+    <a href="#shape" class="btn-ghost">See the rule shape &darr;</a>
+  </div>
+  <div class="hero-trust" data-reveal>
+    <span>MCP-native</span>
+    <span class="trust-sep">&middot;</span>
+    <span>IF / THEN / BECAUSE</span>
+    <span class="trust-sep">&middot;</span>
+    <span>Attribution built in</span>
+  </div>
+</section>
+
+<!-- PROBLEM — composite quote targeted at agent-builder persona -->
+<section class="problem-section" id="problem">
+  <div class="inner">
+    <blockquote class="problem-quote" data-reveal>
+      We shipped the agent. It handles the easy 60%. The other 40% is exactly the stuff our lead ops person used to decide &mdash; and now it&rsquo;s being decided by the model&rsquo;s defaults.
+    </blockquote>
+    <div class="problem-attrib" data-reveal>Staff engineer &middot; Series B fintech<em>&mdash; composite quote</em></div>
+  </div>
+</section>
+
+<!-- SHAPE — the credibility hinge. A real rule, as an agent would consume it. -->
+<section class="shape-section" id="shape">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>The Shape</div>
+    <h2 class="section-h2" data-reveal>What a FieldRules rule looks like<br><em>to an agent.</em></h2>
+    <div class="shape-grid">
+      <div class="shape-prose" data-reveal>
+        <p>Each rule is a structured record. <strong>IF</strong> and <strong>THEN</strong> describe the operational action. <strong>BECAUSE</strong> carries the reasoning &mdash; in the author&rsquo;s own words.</p>
+        <p>Every field is either authored by a named person or derived from their confirmation. The rule is versioned. The author stays on the record. The <strong>BECAUSE</strong> is never machine-generated.</p>
+        <p>Your agent reads this record the same way a human queries it. When the library can&rsquo;t match, the gap is structured context &mdash; not a 404 &mdash; and it routes back to the human who&rsquo;d carry that judgment.</p>
+        <div class="shape-note">
+          <strong>Honest caption</strong>
+          Fields mirror the production schema. BECAUSE shown here is illustrative &mdash; in a real seeded library, <code style="font-family:var(--font-mono);color:var(--indigo-300)">because_clause</code> is <code style="font-family:var(--font-mono);color:var(--slate-400)">null</code> until a domain expert authors it.
+        </div>
+      </div>
+      <div class="code-card" data-reveal>
+        <div class="code-card-header">
+          <div class="code-card-title">rule &middot; JSON</div>
+          <div class="code-card-dots"><span></span><span></span><span></span></div>
+        </div>
+<pre>{
+  <span class="c-key">"rule_id"</span>: <span class="c-str">"82a96174-8080-4a60-bd45-af81cd12bf68"</span>,
+  <span class="c-key">"revision_id"</span>: <span class="c-num">3</span>,
+  <span class="c-key">"when_clause"</span>: <span class="c-str">"enterprise customer has completed kickoff AND first activity data upload spans ≥2 business units"</span>,
+  <span class="c-key">"then_clause"</span>: <span class="c-str">"schedule a Week 2 data-quality review before any calculation is surfaced in the customer-facing dashboard"</span>,
+<span class="c-because">  <span class="c-because-key">"because_clause"</span>: <span class="c-str">"Mixed-BU uploads in week one routinely mis-map activity categories. Catching it before the first readout is what preserves methodology defensibility — and the customer's trust."</span>,</span>
+  <span class="c-key">"domain"</span>: <span class="c-str">"onboarding"</span>,
+  <span class="c-key">"scope"</span>: <span class="c-str">"workflow"</span>,
+  <span class="c-key">"hedge_tag"</span>: <span class="c-str">"usually"</span>,
+  <span class="c-key">"status"</span>: <span class="c-str">"confirmed"</span>,
+  <span class="c-key">"author_id"</span>: <span class="c-str">"jordan.chen@acme.co"</span>,
+  <span class="c-key">"confirmed_at"</span>: <span class="c-str">"2026-04-21T09:48:47Z"</span>
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS — Q2 RESOLVED 2026-04-21: MCP-primary commit accepted. Step 02 leads with MCP; JSON is the explicit fallback path, not co-equal. -->
+<section class="how-section" id="how">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>How It Works</div>
+    <h2 class="section-h2" data-reveal>Three steps.<br><em>MCP-native.</em></h2>
+    <div class="steps">
+      <div class="step-card" data-reveal>
+        <div class="step-n">01</div>
+        <div class="step-title">Humans populate the library</div>
+        <div class="step-body">Your domain experts confirm rules in the flow they already work in &mdash; a Slack card, a web confirmation. Each confirmation produces a structured record with an authored BECAUSE. No separate documentation ritual.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">02</div>
+        <div class="step-title">Your agent queries it over MCP</div>
+        <div class="step-body">The library runs as an MCP server. Your agent lists its resources, calls <code>get_rule</code> or <code>search_rules</code> for the cases that apply, and the BECAUSE travels with the IF/THEN. If MCP isn&rsquo;t your path, the same records are reachable over a plain JSON endpoint &mdash; tool call or context injection, your choice.</div>
+      </div>
+      <div class="step-card" data-reveal>
+        <div class="step-n">03</div>
+        <div class="step-title">Gaps route back to the right human</div>
+        <div class="step-body">When the agent hits a case the library doesn't cover, FieldRules is designed to treat that miss as a demand signal &mdash; the right expert gets a live ask with context. The library grows from the gaps your agent actually encounters, not from documentation obligation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRAST — against the "ingest your docs" adjacent approach -->
+<section class="contrast-section" id="contrast">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>The part no AI can write</div>
+    <h2 class="section-h2" data-reveal>Ingested knowledge covers the 60%.<br><em>FieldRules is the other 40%.</em></h2>
+    <div class="contrast-grid" data-reveal>
+      <div class="contrast-card contrast-card--generic">
+        <div class="contrast-label">Adjacent category</div>
+        <div class="contrast-title">Pull together your SOPs, support scripts, KB articles, and policy docs.</div>
+        <div class="contrast-body">The premise is that your reasoning is already in the documents &mdash; the job is to make those documents agent-readable.</div>
+      </div>
+      <div class="contrast-card contrast-card--real">
+        <div class="contrast-label">FieldRules</div>
+        <div class="contrast-title">The reasoning is in your people&rsquo;s heads. <strong>Elicit it; attribute it; ship it.</strong></div>
+        <div class="contrast-body">Your agent doesn't read your docs and hope. It calls rules your humans confirmed &mdash; with the BECAUSE they authored, attached to the IF/THEN.</div>
+      </div>
+    </div>
+    <div class="contrast-explanation" data-reveal>
+      <p>Documentation produces compliance. <strong>FieldRules elicits reasoning</strong> &mdash; because it asks <em>&ldquo;what would go wrong if this rule didn't exist?&rdquo;</em> instead of &ldquo;why does this rule exist?&rdquo;</p>
+      <p style="margin-top:12px">That single design choice is the difference between an agent that covers the easy cases and an agent that handles the ones that would have gone to your best human.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STACK POSITIONING — for the technical buyer already shopping adjacent categories -->
+<section class="stack-section" id="stack">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Where We Sit</div>
+    <h2 class="section-h2" data-reveal>Not the runtime.<br><em>The reasoning substrate.</em></h2>
+    <div class="stack-content">
+      <p class="stack-body" data-reveal>FieldRules is not an agent, not an agent framework, and not a tool-calling runtime. It sits <strong>upstream</strong> of all three &mdash; the human-authored reasoning layer that your agent, your framework, and your runtime all call the same way.</p>
+      <div class="stack-callout" data-reveal>Same rule library, same reasoning, same governance &mdash; different caller.</div>
+    </div>
+    <div class="stack-layers" data-reveal>
+      <div class="stack-layer">
+        <div class="stack-layer-label">Agent</div>
+        <div class="stack-layer-body">Your CX, ops, or support agent &mdash; whatever you built or bought.</div>
+      </div>
+      <div class="stack-layer">
+        <div class="stack-layer-label">Framework</div>
+        <div class="stack-layer-body">OpenAI Agents SDK, LangGraph, Claude, Gemini, custom &mdash; doesn't matter.</div>
+      </div>
+      <div class="stack-layer">
+        <div class="stack-layer-label">Runtime</div>
+        <div class="stack-layer-body">Tool-calling, retrieval, policy-as-code enforcement. Runtime concerns.</div>
+      </div>
+      <div class="stack-layer stack-layer--you">
+        <div class="stack-layer-label">FieldRules</div>
+        <div class="stack-layer-body"><strong>Human-authored reasoning.</strong> Provenanced, versioned, queryable. The layer every caller above inherits.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORKS — Q2 RESOLVED 2026-04-21: MCP-primary commit accepted. Grid reordered so MCP clients leads with --primary visual emphasis; H2 + note reframed to position MCP as canonical caller. -->
+<section class="frameworks-section" id="frameworks">
+  <div class="inner">
+    <div class="section-eyebrow" data-reveal>Framework compatibility</div>
+    <h2 class="section-h2" data-reveal>If your stack speaks MCP,<br><em>it already speaks FieldRules.</em></h2>
+    <div class="frameworks-grid" data-reveal>
+      <span class="framework-chip framework-chip--primary">MCP clients</span>
+      <span class="framework-chip">OpenAI Agents SDK</span>
+      <span class="framework-chip">LangGraph</span>
+      <span class="framework-chip">Claude Agent SDK</span>
+      <span class="framework-chip">Gemini Agents</span>
+      <span class="framework-chip">Custom orchestration</span>
+    </div>
+    <p class="frameworks-note" data-reveal>
+      MCP is the canonical caller &mdash; list the resources, call what applies, the BECAUSE travels with the record. A plain JSON endpoint is there if you&rsquo;re not on MCP yet. Same library. Same reasoning. Different transport.
+    </p>
+  </div>
+</section>
+
+<!-- CTA — single email-form CTA, no secondary link. Q3 deferred. -->
+<section class="cta-section" id="cta">
+  <div class="inner">
+    <h2 class="cta-h2" data-reveal>Your humans already confirmed the reasoning.<br><em>Let your agent inherit it.</em></h2>
+    <p class="cta-sub" data-reveal>We're onboarding teams with an agent in production or in pilot. If that's you, let's talk about the integration shape. No deck. No demo-ware.</p>
+    <form class="cta-form" data-reveal id="cta-form" action="https://formsubmit.co/melanie.gower@gmail.com" method="POST" autocomplete="on">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <input class="cta-input" type="email" name="email" placeholder="your@company.com" required>
+      <button class="btn-primary" type="submit">Request access</button>
+    </form>
+    <p style="margin-top:20px;font-size:12px;color:var(--slate-600);font-family:var(--font-mono);letter-spacing:.04em" data-reveal>We start with a conversation.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
+  <div class="footer-mono">for-ai-agents-v2.1 &middot; April 2026</div>
+  <div class="footer-mono">The human governance layer for AI decisions</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('[data-reveal]');
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){obs.observe(el)});
+  var ham=document.querySelector('.hamburger');
+  var links=document.querySelector('.nav-links');
+  if(ham&&links){ham.addEventListener('click',function(){ham.classList.toggle('open');links.classList.toggle('open')})}
+  var form=document.getElementById('cta-form');
+  if(form){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=form.querySelector('input[name="email"]');
+    if(!email.value||!email.value.includes('@')){email.classList.add('invalid');return}
+    email.classList.remove('invalid');
+    form.innerHTML='<div class="cta-success">Thanks! We\'ll be in touch shortly.</div>';
+  })}
+});
+</script>
+</body>
+</html>
