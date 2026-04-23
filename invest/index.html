@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://fieldrules.ai/og-image.png">
 <meta name="twitter:image:alt" content="FieldRules — Your team's reasoning, governing every decision. A dark branded card showing an example IF/THEN rule for a Clinical Operations SaaS trial-site onboarding policy.">
 <title>FieldRules — Investment Thesis</title>
-<!-- Version: v14.2 | Hallucination-audit fixes v2: (P2.2) market grid — added Sources line; reframed 10× TAM as an estimate/hypothesis ("Estimated … if the structure ports") instead of a confident "when"; (P2.3) Why Now — tightened Bain reference to the actual report name (Bain Technology Report 2025) and dropped "hard" to match what Bain actually argues (governance designed in lockstep with architecture). Prior v14.1: (P1.1) RHS card reframed as "illustrative reading" with numeric stats replaced by a placeholder line; (P1.5) dropped stretched Gentner/Lightman citation in comparison verdict; (P1.6) scoped "blind contrastive testing" claim to internal synthetic pre-pilot evidence -->
+<!-- Version: v14.4 | CD-1 coherence fix (per site-audit-2026-04-22-v1.md, Option A resolution): renamed competitor bucket "AI Harness" → "AI Execution Plumbing" to free up the word "harness" site-wide before SemaClaw ("harness engineering," Zhu et al. arXiv 2604.11548, April 2026) picks up Tier 1 traction. Also softened §01 third point phrasing "they build harnesses for how AI executes" → "they build execution plumbing around what AI does" to match. SemaClaw remains on WATCH per audit; revisit in 30–60 days. Prior v14.3: Research-digest 2026-04-22 evidence pass (per site-audit-2026-04-22-v1.md SHIP tier #1): (1) §04 Why Now — added fourth bullet citing Stanford RegLab Legal RAG hallucination benchmark (17–33%) + Anthropic Advisor Strategy ("intelligence abundant, judgment scarce") as Tier 1 external validation alongside existing Karpathy/Tao. (2) §05 Depth — added Hubbard Rule of Five (5 samples → 93.75% CI on median) as pilot-signal floor. (3) §06 Risks — "Incumbents bolt on" row gains Advisor Strategy mitigation sentence. (4) §07 Gate 2 — added Carta Healthcare 98–99% inter-rater reliability as external benchmark for governed-AI outcomes. Prior v14.2: Hallucination-audit fixes v2: (P2.2) market grid — added Sources line; reframed 10× TAM as an estimate/hypothesis ("Estimated … if the structure ports") instead of a confident "when"; (P2.3) Why Now — tightened Bain reference to the actual report name (Bain Technology Report 2025) and dropped "hard" to match what Bain actually argues (governance designed in lockstep with architecture). Prior v14.1: (P1.1) RHS card reframed as "illustrative reading" with numeric stats replaced by a placeholder line; (P1.5) dropped stretched Gentner/Lightman citation in comparison verdict; (P1.6) scoped "blind contrastive testing" claim to internal synthetic pre-pilot evidence -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -313,14 +313,14 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
       <p>Three things are true simultaneously, and the intersection is the company:</p>
       <p><strong>1. AI is accelerating execution.</strong> LLMs, copilots, and agent frameworks are compressing the time from intent to action. This is real and irreversible.</p>
       <p><strong>2. The reasoning is leaking.</strong> The experts who know why a policy exists, why an exception matters, why a renewal playbook deviates from the template — that knowledge isn't in any system.</p>
-      <p><strong>3. Every AI infrastructure tool assumes governance already exists.</strong> LangChain, Guardrails AI, HumanLayer — they build harnesses for how AI executes. None of them capture who authored the rules or why.</p>
+      <p><strong>3. Every AI infrastructure tool assumes governance already exists.</strong> LangChain, Guardrails AI, HumanLayer — they build execution plumbing around what AI does. None of them capture who authored the rules or why.</p>
     </div>
 
     <div class="equation-block">
       <span class="label">The Gap</span>
       <div class="equation-row">
         <div class="eq-term">
-          <div class="eq-main">AI Harness</div>
+          <div class="eq-main">AI Execution Plumbing</div>
           <div class="eq-sub">LangChain, Guardrails AI, Claude Code SDK — the plumbing</div>
         </div>
         <div class="eq-op">+</div>
@@ -474,6 +474,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
       <p><strong>Enterprises are actually deploying agents.</strong> Not experimenting — deploying. The Bain Technology Report 2025 argues that agentic AI governance must be designed "in lockstep with architecture" — not bolted on afterward. Companies that gave copilots a pass on governance are discovering that agents — which take actions autonomously — cannot run without it.</p>
       <p><strong>LLMs made the elicitation UX possible.</strong> Every prior knowledge engineering attempt died on the authoring burden — expert systems in the '80s, knowledge graphs in the '10s. Now the AI drafts the rule; the human authors the reasoning. That division of labor didn't exist two years ago.</p>
       <p><strong>The smartest people in AI are naming this exact gap.</strong> Andrej Karpathy identifies the bottleneck for AI capability as the absence of "inner thought monologues" — the reasoning traces of expert problem-solving. Terence Tao calls AI outputs "odorless proofs" — formally correct but missing the reasoning penumbra that makes them useful. The BECAUSE field is that monologue. It's that penumbra. Both of them are describing the data type FieldRules captures.</p>
+      <p><strong>The verification layer is being named out loud.</strong> Stanford's RegLab benchmark of commercial legal RAG tools (LexisNexis Ask, Westlaw AI, Thomson Reuters Practical Law) measured 17–33% hallucination even with retrieval grounding — failures of attribution and support, not just factual error. Anthropic's own Advisor Strategy post, published the same window, concedes the shape: "intelligence is abundant, judgment is scarce." Retrieval plus generation is not enough; the authored reasoning layer is what's missing. FieldRules is that layer.</p>
     </div>
   </div>
 </section>
@@ -522,7 +523,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
 
     <div class="prose">
       <p>The elicitation lab runs continuously — an AI-powered research loop that generates UX variants from cognitive science literature, tests each against synthetic personas representing different expertise levels and cognitive styles, then feeds findings back into the next cycle. One finding from our adversarial pass: persona Priya demonstrated that starter chips with a low quality threshold enabled 15-second boilerplate submissions. We caught it before any user saw it, redesigned the quality gate, and re-ran the eval loop.</p>
-      <p>We have a seven-layer elicitation loop, a four-tier response system (prompt fix → few-shot → embedding → fine-tune), a seed library generator that researches prospect companies via web search, and a reasoning advantage eval. In internal, blind contrastive testing against sample Confluence docs and call transcripts, human-authored BECAUSE fields outscored model-generated reasoning on our quality rubric. This is synthetic pre-pilot evidence, not customer data — full methodology and N ship with pilot results.</p>
+      <p>We have a seven-layer elicitation loop, a four-tier response system (prompt fix → few-shot → embedding → fine-tune), a seed library generator that researches prospect companies via web search, and a reasoning advantage eval. In internal, blind contrastive testing against sample Confluence docs and call transcripts, human-authored BECAUSE fields outscored model-generated reasoning on our quality rubric. This is synthetic pre-pilot evidence, not customer data — full methodology and N ship with pilot results. Our pilot-signal floor follows Hubbard's Rule of Five: five observations give a 93.75% confidence interval on population median, which sets the minimum sample before we claim a per-pilot signal.</p>
       <p>We built a strategy ladder with four named bets (Governance, Practitioner, Timing, Data Layer), each with kill conditions. We built an H3 framework (Helpful, Honest, Harmless) that governs every AI interaction in the product. We built an anti-hallucination credibility plan that gates external claims behind pilot evidence.</p>
       <p>This is what happens when the founders care more about being right than being first.</p>
     </div>
@@ -553,7 +554,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
         </tr>
         <tr>
           <td>Incumbents bolt on a rules layer</td>
-          <td>Salesforce or Gainsight could add a "rules" tab. But a bolt-on without attribution, BECAUSE chains, tautology detection, quality scoring, and cross-rule traversability is a checklist item, not a governance layer. The quality measurement alone requires our eval principles, anti-pattern detection, and longitudinal tracking infrastructure.<br><span class="risk-mitigated">Mitigated: 10 eval principles + 6 anti-pattern detectors = deep moat</span></td>
+          <td>Salesforce or Gainsight could add a "rules" tab. But a bolt-on without attribution, BECAUSE chains, tautology detection, quality scoring, and cross-rule traversability is a checklist item, not a governance layer. The quality measurement alone requires our eval principles, anti-pattern detection, and longitudinal tracking infrastructure. Anthropic itself named this gap in April 2026 (the Advisor Strategy post) — the authored-judgment lane is legible but unclaimed, and a bolted-on rules tab cannot reach its depth.<br><span class="risk-mitigated">Mitigated: 10 eval principles + 6 anti-pattern detectors = deep moat</span></td>
           <td><span class="severity severity-med">MEDIUM</span></td>
         </tr>
         <tr>
@@ -607,7 +608,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
       <div class="sequence-step">
         <span class="time">Gate 2</span>
         <h4>Governed AI surfaces outperform ungoverned ones</h4>
-        <p>If AI reading FieldRules-governed rules produces measurably better outcomes — fewer escalations, higher renewal rates, faster ramp — the ROI case writes itself. We have the eval infrastructure to prove this from pilot day one.</p>
+        <p>If AI reading FieldRules-governed rules produces measurably better outcomes — fewer escalations, higher renewal rates, faster ramp — the ROI case writes itself. We have the eval infrastructure to prove this from pilot day one. The production bar is calibrated: Carta Healthcare's two-phase Claude pipeline on clinical chart abstraction — extract, then synthesize — hit 98–99% inter-rater reliability across 22,000 surgical cases per year. FieldRules adds the authored BECAUSE layer that pipeline didn't build, and targets comparable reliability on the governed decisions inside our CS wedge.</p>
       </div>
       <div class="sequence-step">
         <span class="time">Gate 3</span>
@@ -658,7 +659,7 @@ footer .sub{display:block;margin-top:6px;color:var(--slate-600);opacity:.6}
 </section>
 
 <footer>
-  FieldRules · investor-thesis-v14.2 · April 2026
+  FieldRules · investor-thesis-v14.4 · April 2026
   <span class="sub">The human governance layer for AI-native operations.</span>
 </footer>
 

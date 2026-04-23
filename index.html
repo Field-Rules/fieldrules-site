@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.7 — index — DEV-506 hero-headline A/B test: cookied 50/50 split between Variant A (v3.5 current — "Your best people make judgment calls…") and Variant B (mellybutton-draft alternative — "Every AI decision your product makes / will run on someone's logic. / Make sure it's yours."). Vercel Web Analytics wired in (script tag + window.va queue stub) with custom events ab_hero_assigned (once per session), scroll_past_problem (when #paradox enters viewport = user scrolled past .problem-section), and hero_cta_click (segmented by primary/ghost), all tagged with variant. Fallback = Variant A if JS disabled. See Marketing → experiments readout doc in Notion for wind-down rules. Prior v3.6 (P4.F4) added "by design," hedge on #how step 03; v3.5 (P3.1) softened step 01/02 + loop lede; v3.4 added Sample Reading eyebrow (P2.1); v3.3 landed DEV-470. -->
+<!-- VERSION: fieldrules-site-v3.8 — index — DEV-506 CONCLUDED: Variant B ("Every AI decision your product makes / will run on someone's logic. / Make sure it's yours.") adopted as canonical hero, aligned with Anthropic Advisor Strategy framing per research-digest-2026-04-22-v1.md entry #2. A/B cookie-split JS block removed; Vercel Web Analytics loader retained for general page metrics. Also this version: (1) §Why Now — prepended Stanford RegLab (17–33% legal RAG hallucination) + Anthropic Advisor Strategy ("intelligence is abundant, judgment is scarce") evidence paragraph before the existing "Everything an agent can do" hook. (2) Two-Way Loop step 04 — fixed "context and harness" → "as grounded context" for cross-page coherence with Invest v14.4 "AI Execution Plumbing" rename (CD-1 Option A). Prior v3.7 ran the A/B test. Prior v3.6 (P4.F4) added "by design," hedge on #how step 03; v3.5 (P3.1) softened step 01/02 + loop lede; v3.4 added Sample Reading eyebrow (P2.1); v3.3 landed DEV-470. -->
 <title>FieldRules — Your team's reasoning, governing every decision</title>
 <meta name="description" content="FieldRules captures the judgment calls your team carries — edge cases, instinct, hard-won logic — and structures it so every decision your product makes is governed by the people who know best.">
 <meta property="og:title" content="FieldRules — Your team's reasoning, governing every decision">
@@ -317,8 +317,9 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   <div class="hero-grid"></div>
   <div class="hero-eyebrow" data-reveal>The layer between your team's expertise and your product's decisions</div>
   <h1 data-reveal>
-    Your best people make judgment calls every day that shape how your product works.<br>
-    <em>None of it is written down.</em>
+    Every AI decision your product makes<br>
+    will run on <em>someone's logic.</em><br>
+    Make sure it's yours.
   </h1>
   <p class="hero-sub" data-reveal>
     FieldRules captures the reasoning your team carries — the edge cases, the hard-won instinct, the logic that never made it into a spec — and structures it so every decision your product makes is governed by the people who know best. Not the model's defaults.
@@ -385,6 +386,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <div class="section-eyebrow" data-reveal>Why Now</div>
     <h2 class="section-h2" data-reveal>The better AI gets,<br><em>the more your people matter.</em></h2>
     <div class="paradox-content">
+      <p class="paradox-body" data-reveal>Stanford's RegLab benchmark of commercial legal RAG tools measured 17&ndash;33% hallucination even with retrieval grounding (2026) &mdash; failures of attribution and support, not just factual error. Anthropic's own Advisor Strategy post, published the same month, concedes the shape: <strong>&ldquo;intelligence is abundant, judgment is scarce.&rdquo;</strong> Retrieval plus generation isn't enough. The authored reasoning layer is what's missing.</p>
       <p class="paradox-body" data-reveal>Everything an agent can do, another agent can replicate. The only thing that can't be replicated is <strong>the reasoning your people carry about why your company does things differently.</strong></p>
       <p class="paradox-body" data-reveal>That reasoning &mdash; the conditional judgment, the exception-handling logic, the domain expertise that was never written down &mdash; is the layer agents can't scrape, can't reverse-engineer, and can't pattern-match from training data.</p>
       <div class="paradox-callout" data-reveal>FieldRules makes that layer real before it walks out the door.</div>
@@ -477,7 +479,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
         <div class="loop-step">
           <div class="ls-n">04</div>
           <div class="ls-title">Rules → AI Control</div>
-          <div class="ls-body">AI agents use confirmed rules as context and harness. They approve, route, and escalate based on your operational logic — not generic model defaults.</div>
+          <div class="ls-body">AI agents use confirmed rules as grounded context. They approve, route, and escalate based on your operational logic — not generic model defaults.</div>
         </div>
       </div>
       <div class="loop-path" data-reveal>ticket → rule → library → product specs + AI control layer</div>
@@ -618,7 +620,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.7 &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.8 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
@@ -628,73 +630,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 
-<!-- DEV-506 — Hero headline A/B test. Runs synchronously at end of body: DOM is parsed so .hero h1 exists, and hero h1 starts at opacity:0 via [data-reveal], so the Variant B swap happens before first visual paint of the hero (no flash). -->
-<script>
-(function(){
-  try{
-    var COOKIE='fr_ab_hero_v1';
-    var m=document.cookie.match(/(?:^|; )fr_ab_hero_v1=([^;]+)/);
-    var variant=m?decodeURIComponent(m[1]):null;
-    if(variant!=='A'&&variant!=='B'){
-      variant=Math.random()<0.5?'A':'B';
-      var d=new Date();d.setTime(d.getTime()+30*864e5);
-      document.cookie=COOKIE+'='+variant+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
-    }
-    document.documentElement.setAttribute('data-ab-hero',variant);
-
-    if(variant==='B'){
-      var h1=document.querySelector('.hero h1');
-      if(h1){
-        h1.innerHTML='Every AI decision your product makes<br>will run on <em>someone\'s logic.</em><br>Make sure it\'s yours.';
-      }
-    }
-
-    function fire(name,props){
-      try{
-        if(window.va){window.va('event',Object.assign({name:name},props||{}));}
-      }catch(_){}
-    }
-
-    // Fire once per session (sessionStorage clears on tab close).
-    try{
-      if(!sessionStorage.getItem('fr_ab_hero_assigned')){
-        fire('ab_hero_assigned',{variant:variant});
-        sessionStorage.setItem('fr_ab_hero_assigned','1');
-      }
-    }catch(_){
-      fire('ab_hero_assigned',{variant:variant});
-    }
-
-    // Observe #paradox entering viewport — user scrolled past .problem-section.
-    var paradox=document.getElementById('paradox');
-    if(paradox && 'IntersectionObserver' in window){
-      var fired=false;
-      var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting && !fired){
-            fired=true;
-            fire('scroll_past_problem',{variant:variant});
-            io.disconnect();
-          }
-        });
-      },{threshold:0.1});
-      io.observe(paradox);
-    }
-
-    // Primary + ghost hero CTA clicks.
-    document.addEventListener('click',function(e){
-      var btn=e.target && e.target.closest && e.target.closest('.hero-actions a');
-      if(!btn)return;
-      var kind=btn.classList.contains('btn-primary')?'primary':(btn.classList.contains('btn-ghost')?'ghost':'other');
-      fire('hero_cta_click',{
-        variant:variant,
-        target:kind,
-        href:btn.getAttribute('href')||''
-      });
-    });
-  }catch(_){/* never break the page on a measurement bug */}
-})();
-</script>
+<!-- DEV-506 closed in v3.8 — A/B test concluded, Variant B adopted as canonical hero (rendered server-side in the <h1> above). Event-firing JS removed. Vercel Web Analytics loader above retained for general page metrics. -->
 
 <script>
 document.addEventListener('DOMContentLoaded',function(){
