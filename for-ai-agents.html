@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: for-ai-agents-v2.1 — Q2 (integration mechanics) RESOLVED on top of v2-recovered baseline on 2026-04-21. Q2 resolution = full proposal MCP-primary commit, accepted by user: hero trust "MCP-compatible" → "MCP-native"; how-section H2 "Framework-agnostic." → "MCP-native."; step 02 title + body rewritten to lead with MCP (JSON as fallback); frameworks H2 "If it can make an outbound call..." → "If your stack speaks MCP..."; frameworks-grid reordered with MCP chip leading + .framework-chip--primary visual emphasis; frameworks-note rewritten to position MCP as canonical caller. Q3 (secondary CTA link) and Q4 (AGENTS.md bridge) status in this file: still UNRESOLVED — to be walked next. Q5 (DEV-506 hero alignment) UNRESOLVED — blocked. Lineage: this file was reconstructed from for-ai-agents-v3-PROPOSAL.html on 2026-04-21 because the canonical was found at 0 bytes; v2-recovered established the agnostic baseline; v2.1 = v2-recovered + accepted Q2 deltas (which happen to match the proposal's Q2 wording verbatim). -->
+<!-- VERSION: for-ai-agents-v2.2 — NEXT SPRINT persona plant on top of v2.1 Q2-resolved baseline. v2.2 delta: Claude Routines compatibility sentence appended to step 02 (How It Works) positioning Routines as a complementary agent-procedure layer that FieldRules rules execute against (audit entry: digest #4 + X-feed Routines). Prior v2.1: Q2 (integration mechanics) RESOLVED on top of v2-recovered baseline on 2026-04-21 — hero trust "MCP-compatible" → "MCP-native"; how-section H2 → "MCP-native."; step 02 rewritten to lead with MCP (JSON as fallback); frameworks H2 → "If your stack speaks MCP..."; frameworks-grid reordered with MCP chip + .framework-chip--primary. Q3 (secondary CTA link), Q4 (AGENTS.md bridge), Q5 (DEV-506 hero alignment) — all still UNRESOLVED. Lineage: reconstructed from for-ai-agents-v3-PROPOSAL.html on 2026-04-21 because canonical was 0 bytes. -->
 <title>FieldRules for AI Agents — The reasoning substrate your agents call</title>
 <meta name="description" content="FieldRules is the rule library your humans already confirmed. IF / THEN / BECAUSE, attributed and versioned. Your agent calls it the same way a PM or an engineer would — and inherits the same reasoning layer.">
 <meta property="og:title" content="FieldRules for AI Agents — The reasoning substrate your agents call">
@@ -317,7 +317,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       <div class="step-card" data-reveal>
         <div class="step-n">02</div>
         <div class="step-title">Your agent queries it over MCP</div>
-        <div class="step-body">The library runs as an MCP server. Your agent lists its resources, calls <code>get_rule</code> or <code>search_rules</code> for the cases that apply, and the BECAUSE travels with the IF/THEN. If MCP isn&rsquo;t your path, the same records are reachable over a plain JSON endpoint &mdash; tool call or context injection, your choice.</div>
+        <div class="step-body">The library runs as an MCP server. Your agent lists its resources, calls <code>get_rule</code> or <code>search_rules</code> for the cases that apply, and the BECAUSE travels with the IF/THEN. If MCP isn&rsquo;t your path, the same records are reachable over a plain JSON endpoint &mdash; tool call or context injection, your choice. Compatible with Claude Routines (Anthropic, April 2026) and similar agent-procedure primitives &mdash; Routines define chains of actions; FieldRules defines the authored reasoning those actions run against.</div>
       </div>
       <div class="step-card" data-reveal>
         <div class="step-n">03</div>
@@ -417,7 +417,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">for-ai-agents-v2.1 &middot; April 2026</div>
+  <div class="footer-mono">for-ai-agents-v2.2 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 

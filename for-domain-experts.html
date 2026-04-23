@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.4 — for-domain-experts — reframes attribution grid as illustrative (hallucination-audit fix) -->
+<!-- VERSION: fieldrules-site-v3.5 — for-domain-experts — NEXT SPRINT persona plants (Huang et al. 2026 + Msg-55 "expertise becomes infrastructure" in What We Ask; Stanford RegLab 2026 in What You Get Back; CD-2 coherence: all four "45 seconds/45s" occurrences normalized to "30–60 seconds/30–60s" across H2, lede, card-mockup button, and colleague-pull paragraph; CD-3 coherence: rule-card author title "Domain Expert · CS Lead" → "Domain Expert" (Jordan role unified on Domain Expert; invest/index.html line 412 "CS Lead" remains divergent — follow-up pass after SHIP SPRINT commits). -->
 <title>For Domain Experts — FieldRules</title>
 <meta name="description" content="Your expertise has been invisible. FieldRules makes your judgment calls permanent, attributed, and visible across every layer of your product.">
 <meta property="og:title" content="For Domain Experts — FieldRules">
@@ -230,9 +230,12 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <section class="what-ask-section" id="what-ask">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>What We Ask</div>
-    <h2 class="section-h2" data-reveal>45 seconds. Your words. <em>Your name.</em></h2>
+    <h2 class="section-h2" data-reveal>30–60 seconds. Your words. <em>Your name.</em></h2>
     <p class="section-lede" data-reveal>
-      FieldRules detects when you've made a judgment call. A Slack card arrives. You confirm the rule in 45 seconds — or edit it if we got it wrong. Then the BECAUSE field. That's always blank until you write it. Your words. Your reasoning. Your name.
+      FieldRules detects when you've made a judgment call. A Slack card arrives. You confirm the rule in 30–60 seconds — or edit it if we got it wrong. Then the BECAUSE field. That's always blank until you write it. Your words. Your reasoning. Your name.
+    </p>
+    <p class="section-lede" data-reveal style="margin-top:24px">
+      A 2026 UC San Diego study of experienced developers under AI agents (Huang et al., arXiv 2512.14012) found the same pattern across domains: experts don't surrender judgment — they constrain the agent and retain the design decisions. FieldRules is what makes that retained judgment visible to the product. Your expertise doesn't disappear. It becomes infrastructure.
     </p>
 
     <div style="margin-top:64px;max-width:580px;margin-left:auto;margin-right:auto" data-reveal>
@@ -255,7 +258,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
           <div class="because-tooltip">Only humans write this</div>
         </div>
         <div class="rcp-footer">
-          <div class="rcp-author"><div class="rcp-avatar">J</div>Domain Expert &middot; CS Lead</div>
+          <div class="rcp-author"><div class="rcp-avatar">J</div>Domain Expert</div>
           <div class="rcp-badge">Confirmed</div>
         </div>
       </div>
@@ -287,7 +290,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
           Alex searched the rule library for <strong style="color:#fff">enterprise billing</strong> before sending work to engineering. No matching rules yet. Your judgment is what unblocks her — and her next query gets answered the moment you confirm.
         </div>
         <div style="display:flex;gap:8px;margin-top:18px">
-          <div style="flex:1;text-align:center;padding:10px 14px;background:var(--indigo-500);color:#fff;border-radius:8px;font-size:13px;font-weight:600">Confirm rule (45s)</div>
+          <div style="flex:1;text-align:center;padding:10px 14px;background:var(--indigo-500);color:#fff;border-radius:8px;font-size:13px;font-weight:600">Confirm rule (30–60s)</div>
           <div style="text-align:center;padding:10px 16px;background:rgba(255,255,255,.06);color:var(--slate-300);border-radius:8px;font-size:13px;font-weight:500">Edit</div>
           <div style="text-align:center;padding:10px 16px;background:rgba(255,255,255,.06);color:var(--slate-300);border-radius:8px;font-size:13px;font-weight:500">Not me</div>
         </div>
@@ -295,7 +298,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     </div>
 
     <p class="section-lede" style="margin-top:48px" data-reveal>
-      Same 45-second confirmation. Same BECAUSE field in your own words. Different motivator — and the difference matters. A documentation reminder is something to dismiss. A live ask from a colleague who is waiting on you is something to answer. The library grows from real demand, not from a quarterly push for governance hygiene.
+      Same 30–60-second confirmation. Same BECAUSE field in your own words. Different motivator — and the difference matters. A documentation reminder is something to dismiss. A live ask from a colleague who is waiting on you is something to answer. The library grows from real demand, not from a quarterly push for governance hygiene.
     </p>
 
     <p class="section-lede" style="margin-top:24px" data-reveal>
@@ -311,6 +314,9 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <h2 class="section-h2" data-reveal>Your judgment, <em>visible in the product.</em></h2>
     <p class="section-lede" data-reveal>
       You see when your rules are used. You hold the pen on revisions. You know that your reasoning is governing the product. And that attribution is permanent — not in a performance review, but in the actual system. Your name is there, every time the rule runs, every time a PM queries it, every time an engineer builds from it.
+    </p>
+    <p class="section-lede" data-reveal style="margin-top:24px">
+      This matters because retrieval alone isn't enough — Stanford RegLab (2026) measured 17–33% hallucination in grounded legal AI. Without authored reasoning with your name on it, your organization can't distinguish the AI's inference from your actual judgment.
     </p>
   </div>
 </section>
@@ -368,7 +374,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.4 &middot; for-domain-experts</div>
+  <div class="footer-mono">fieldrules-site-v3.5 &middot; for-domain-experts</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 

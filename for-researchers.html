@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.5 — for-researchers — Hallucination-audit fixes v3 (P3.1): hero em softened from "Finally applied to production decisions" to "Finally built for production" — nothing is yet in production use (all pilot surfaces To Do per pilot-readiness-v2). Prior v3.4 dropped unverifiable citations (Yeung, Kross & Ayduk) and corrected Cobbe→Lightman et al. 2023 and Keil 2006→Rozenblit & Keil 2002. -->
+<!-- VERSION: fieldrules-site-v3.6 — for-researchers — NEXT SPRINT persona plants (04 Stanford RegLab legal RAG external evidence entry; 11th Quality Marker "Sample Sufficiency" = Hubbard Rule-of-Five; §02 Anti-Habituation extended with Pentland et al. 2026 multi-principal citation). Prior v3.5 softened hero em ("Finally built for production"); v3.4 dropped unverifiable citations and corrected Lightman 2023 + Rozenblit & Keil 2002. -->
 <title>For Researchers — FieldRules</title>
 <meta name="description" content="FieldRules applies 50 years of knowledge engineering research to production AI governance. Learn how contrastive elicitation, anti-habituation, and process reward models power the reasoning layer.">
 <meta property="og:title" content="For Researchers — FieldRules">
@@ -234,7 +234,8 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       <div class="research-card" data-reveal>
         <div class="research-n">02</div>
         <div class="research-title">Anti-Habituation</div>
-        <div class="research-body">Experts stop questioning rules they've internalized. FieldRules re-surfaces implicit logic at decision boundaries: when the rule is created, when it's queried, when it's contested. Each surface triggers re-evaluation.</div>
+        <div class="research-body">Experts stop questioning rules they've internalized. FieldRules re-surfaces implicit logic at decision boundaries: when the rule is created, when it's queried, when it's contested. Each surface triggers re-evaluation. Researchers will recognize this as the eval-pattern Pentland et al. (2026) formalize for multi-principal agents — different authority levels, different goals, the same interaction surface.</div>
+        <div class="research-citation">Pentland et al., 2026 — multi-principal LLM agents</div>
       </div>
       <div class="research-card" data-reveal>
         <div class="research-n">03</div>
@@ -279,6 +280,12 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
         <div class="validation-body">An 11-model empirical study tested whether LLMs can produce calibrated probabilistic judgments the way human experts do. Three findings: bigger models help but overconfidence persists at the frontier; chain-of-thought reasoning does not reliably improve judgment; LLMs produce point estimates well but calibrated <em>ranges</em> poorly. Conclusion: the answer is easier than the reasoning; the reasoning has to be human-authored to be calibrated.</div>
         <div class="validation-citation"><em>Bayesian Elicitation with LLMs: Model Size Helps, Extra Reasoning Doesn't Always</em>, 2026</div>
       </div>
+      <div class="validation-card" data-reveal>
+        <div class="validation-n">04</div>
+        <div class="validation-title">Retrieval alone doesn't eliminate hallucination</div>
+        <div class="validation-body">Stanford RegLab's 2026 benchmark of legal RAG systems — LexisNexis Ask, Westlaw AI, Thomson Reuters — measured 17–33% hallucination rates even in retrieval-grounded AI. The failures weren't factual lookups; they were failures of attribution and support. The authored BECAUSE layer is what retrieval can't supply: who said this, why, and under what conditions.</div>
+        <div class="validation-citation">Stanford RegLab, 2026 — <em>Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools</em></div>
+      </div>
     </div>
     <p class="section-lede" data-reveal style="max-width:720px;margin-top:48px;font-size:14px;color:var(--slate-500)">
       A note on our own data: we'll publish pilot results once we have them. Until then, we're careful to keep the external validation section about the problem space, not about FieldRules's efficacy. If you want to see our measurement methodology — Reasoning Health Score, anti-pattern detection, divergence alarms — we can walk you through it on a call.
@@ -286,7 +293,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   </div>
 </section>
 
-<!-- TEN QUALITY MARKERS -->
+<!-- QUALITY MARKERS -->
 <section class="markers-section" id="markers">
   <div class="inner">
     <div class="section-eyebrow" data-reveal>Quality Markers</div>
@@ -332,6 +339,10 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
         <div class="marker-name">Non-Tautology</div>
         <div class="marker-desc">Is the BECAUSE a restatement of the THEN, or is it genuinely explanatory? Tautology means the expert is confabulating, not reasoning.</div>
       </div>
+      <div class="marker-card" data-reveal>
+        <div class="marker-name">Sample Sufficiency</div>
+        <div class="marker-desc">How much evidence is enough? Douglas Hubbard's Rule of Five — five confirmations give a 93.75% confidence interval on median behavior — sets the floor. A rule below threshold is a draft, not an asset.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -352,7 +363,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.5 &middot; for-researchers &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.6 &middot; for-researchers &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 

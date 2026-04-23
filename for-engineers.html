@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.4 — for-engineers — roadmap framing for five integration surfaces (hallucination-audit fix); fixes "Governer" typo -->
+<!-- VERSION: fieldrules-site-v3.5 — for-engineers — NEXT SPRINT persona plants (Huang et al. 2026 hero reinforcement; Pentland 2026 multi-principal + Claude Routines on §03 Agent SDK; CD-1 harness cleanup: "Structured reasoning compresses knowledge" replaces "The harness compresses knowledge" in Thesis) -->
 <title>For Engineers — FieldRules</title>
 <meta name="description" content="Stop hardcoding business logic into your product. Read from a structured rule library instead. Rules that are versioned, queryable, and written by the people who know your domain.">
 <meta property="og:title" content="For Engineers — FieldRules">
@@ -221,6 +221,9 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
   <p class="hero-sub" data-reveal>
     You're building features from conditional logic that lives in Slack threads, JIRA tickets, and the heads of domain experts. Each one feels like debt because it is. FieldRules makes that logic queryable, versioned, and attributed — so you build on top of structured judgment instead of reverse-engineering intent from code reviews.
   </p>
+  <p class="hero-sub" data-reveal style="margin-top:20px">
+    A 2026 UC San Diego study of experienced developers using AI agents (Huang et al., arXiv 2512.14012) found the same pattern: experts don't vibe, they control — they keep hold of the design decisions and constrain the agent. FieldRules is the substrate that makes that control auditable.
+  </p>
   <div class="hero-actions" data-reveal>
     <a href="#cta" class="btn-primary">Request early access</a>
     <a href="#beyond" class="btn-ghost">See the surfaces &rarr;</a>
@@ -251,7 +254,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       <div class="surface-card" data-reveal>
         <div class="surface-num"><span>03 — Agent SDK</span><span class="roadmap-badge">Roadmap</span></div>
         <div class="surface-title">Govern AI through reasoning</div>
-        <div class="surface-body">The integration that will let your agents read from the same rule library your humans use. Same reasoning, same governance, different caller.</div>
+        <div class="surface-body">The integration that will let your agents read from the same rule library your humans use. Same reasoning, same governance, different caller. This is the multi-principal surface — Pentland et al. 2026 on multi-user LLM agents — where the PM's principal, the engineer's principal, and the agent's principal all resolve against the same authored rules. Claude Routines (Anthropic, April 2026) sit a layer below this: Routines define chains of actions; FieldRules rules are the authored reasoning those actions execute against.</div>
       </div>
       <div class="surface-card" data-reveal>
         <div class="surface-num"><span>04 — Feature Flag Integration</span><span class="roadmap-badge">Roadmap</span></div>
@@ -279,7 +282,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
       When you externalize that logic, something surprising happens. Your code becomes cleaner. Your engineers stop being archaeologists. And when a rule changes, you don't deploy—you edit a field that a domain expert wrote.
     </p>
     <p class="section-lede" data-reveal style="margin-top:24px">
-      The harness compresses knowledge. Code doesn't. A knowledge base is searched; a skill graph is traversed—by domain, by author, by BECAUSE chain. That's the governance layer you want sitting between your product and the model: structured enough to query, attributed enough to audit, alive enough to evolve without a deploy.
+      Structured reasoning compresses knowledge. Code doesn't. A knowledge base is searched; a skill graph is traversed—by domain, by author, by BECAUSE chain. That's the governance layer you want sitting between your product and the model: structured enough to query, attributed enough to audit, alive enough to evolve without a deploy.
     </p>
   </div>
 </section>
@@ -373,7 +376,7 @@ if (site.enrollmentSpeed > 7 &&
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.4 &middot; for-engineers</div>
+  <div class="footer-mono">fieldrules-site-v3.5 &middot; for-engineers</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
