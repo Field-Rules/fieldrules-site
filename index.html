@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- VERSION: fieldrules-site-v3.7 — index — DEV-506 hero-headline A/B test: cookied 50/50 split between Variant A (v3.5 current — "Your best people make judgment calls…") and Variant B (mellybutton-draft alternative — "Every AI decision your product makes / will run on someone's logic. / Make sure it's yours."). Vercel Web Analytics wired in (script tag + window.va queue stub) with custom events ab_hero_assigned (once per session), scroll_past_problem (when #paradox enters viewport = user scrolled past .problem-section), and hero_cta_click (segmented by primary/ghost), all tagged with variant. Fallback = Variant A if JS disabled. See Marketing → experiments readout doc in Notion for wind-down rules. Prior v3.6 (P4.F4) added "by design," hedge on #how step 03; v3.5 (P3.1) softened step 01/02 + loop lede; v3.4 added Sample Reading eyebrow (P2.1); v3.3 landed DEV-470. -->
+<!-- VERSION: fieldrules-site-v3.8 — index — removed "Series A–B SaaS" pill from hero trust row (positioning was too narrow; pre-funding/founder audience reads it as exclusionary). v3.7 ran DEV-506 hero-headline A/B test: cookied 50/50 split between Variant A (v3.5 current — "Your best people make judgment calls…") and Variant B (mellybutton-draft alternative — "Every AI decision your product makes / will run on someone's logic. / Make sure it's yours."). Vercel Web Analytics wired in (script tag + window.va queue stub) with custom events ab_hero_assigned (once per session), scroll_past_problem (when #paradox enters viewport = user scrolled past .problem-section), and hero_cta_click (segmented by primary/ghost), all tagged with variant. Fallback = Variant A if JS disabled. See Marketing → experiments readout doc in Notion for wind-down rules. Prior v3.6 (P4.F4) added "by design," hedge on #how step 03; v3.5 (P3.1) softened step 01/02 + loop lede; v3.4 added Sample Reading eyebrow (P2.1); v3.3 landed DEV-470. -->
 <title>FieldRules — Your team's reasoning, governing every decision</title>
 <meta name="description" content="FieldRules captures the judgment calls your team carries — edge cases, instinct, hard-won logic — and structures it so every decision your product makes is governed by the people who know best.">
 <meta property="og:title" content="FieldRules — Your team's reasoning, governing every decision">
@@ -327,10 +327,8 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <a href="#cta" class="btn-primary">Request early access</a>
     <a href="#how" class="btn-ghost">See how it works &rarr;</a>
   </div>
-  <!-- DEV-470 — hero trust row (positioning markers for pre-funding audience) -->
+  <!-- DEV-470 — hero trust row (positioning markers for pre-funding audience) — v3.8: Series A–B SaaS pill removed -->
   <div class="hero-trust" data-reveal>
-    <span>Series A&ndash;B SaaS</span>
-    <span class="trust-sep">&middot;</span>
     <span>IF / THEN / BECAUSE</span>
     <span class="trust-sep">&middot;</span>
     <span>Field rules &middot; not wiki</span>
@@ -618,7 +616,7 @@ footer{padding:32px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <footer>
   <div class="footer-logo"><img src="logo.svg" alt="FieldRules" height="40"></div>
-  <div class="footer-mono">fieldrules-site-v3.7 &middot; April 2026</div>
+  <div class="footer-mono">fieldrules-site-v3.8 &middot; April 2026</div>
   <div class="footer-mono">The human governance layer for AI decisions</div>
 </footer>
 
