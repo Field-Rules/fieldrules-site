@@ -74,6 +74,46 @@ Phrases in canonical-highlights-v2.1 not yet in spec §4:
 
 ---
 
+## Clean slots (all passing, for reference)
+
+| Page | Slot | Content | Result |
+|---|---|---|---|
+| index.html | .hero-eyebrow | "The layer between your team's expertise and your product's decisions" | ✅ Pass §2.1 |
+| index.html | .btn-primary (hero) | "Request early access" | ✅ Pass §2.5 |
+| index.html | .btn-ghost (hero) | "See how it works →" | ✅ Pass §2.6 |
+| index.html | .nav-cta | "Request access" | ✅ Pass §2.5 |
+| index.html | .section-eyebrow | "Why Now", "The part no AI can write", "How It Works", "The Two-Way Loop", "The Metric", "Built For" | ✅ Pass §2.3 |
+| index.html | .dd-sub (all 6) | Per-persona canonical lines | ✅ Pass §2.4 |
+| for-engineers.html | .hero-eyebrow | "Stop encoding business logic" | ✅ Pass §2.1 |
+| for-engineers.html | .btn-primary (hero) | "Request early access" | ✅ Pass §2.5 |
+| for-engineers.html | .btn-ghost (hero) | "See the surfaces →" | ✅ Pass §2.6 |
+| for-engineers.html | .section-eyebrow | "Integration roadmap", "The Thesis", "From Code to Judgment", "The Integration Model" | ✅ Pass §2.3 |
+| for-ceos.html | .btn-primary (hero) | "Request early access" | ✅ Pass §2.5 |
+| for-ceos.html | .btn-ghost (hero) | "See the metric →" | ✅ Pass §2.6 |
+| for-ceos.html | .section-eyebrow | "The Thesis", "Defensibility", "The Two-Way Loop", "The Metric", "The Business", "Why Us" | ✅ Pass §2.3 |
+| for-product-managers.html | .btn-primary (hero) | "Request early access" | ✅ Pass §2.5 |
+| for-product-managers.html | .btn-ghost (hero) | "See the pattern →" | ✅ Pass §2.6 |
+| for-product-managers.html | .section-eyebrow | "The Pattern", "Pre-Build Governance", "When Your Query Has No Match", "The Difference", "What Changes" | ✅ Pass §2.3 |
+| for-domain-experts.html | .hero-eyebrow | "Your expertise, made permanent" | ✅ Pass §2.1 |
+| for-domain-experts.html | .btn-primary (hero) | "Request early access" | ✅ Pass §2.5 |
+| for-domain-experts.html | .btn-ghost (hero) | "See how it works →" | ✅ Pass §2.6 |
+| for-domain-experts.html | .section-eyebrow | "The Problem", "What We Ask", "The Other Way the Card Arrives", "What You Get Back", "Attribution" | ✅ Pass §2.3 |
+| for-researchers.html | .hero-eyebrow | "Knowledge engineering meets AI governance" | ✅ Pass §2.1 |
+| for-researchers.html | .btn-primary (hero) | "Request early access" | ✅ Pass §2.5 |
+| for-researchers.html | .btn-ghost (hero) | "See the research →" | ✅ Pass §2.6 |
+| for-researchers.html | .section-eyebrow | "The Recognition Problem", "Research Foundations", "External Evidence", "Quality Markers" | ✅ Pass §2.3 |
+| for-ai-agents.html | .btn-primary (hero) | "Request early access" | ✅ Pass §2.5 |
+| for-ai-agents.html | .btn-ghost (hero) | "See the rule shape ↓" | ✅ Pass §2.6 |
+| for-ai-agents.html | .section-eyebrow | "The Shape", "How It Works", "The part no AI can write", "Where We Sit", "Framework compatibility" | ✅ Pass §2.3 |
+| pilot.html | .btn-primary (hero) | "Apply to pilot" | ✅ Pass §2.5 |
+| pilot.html | .btn-ghost (hero) | "See what week zero looks like →" | ✅ Pass §2.6 |
+| pilot.html | .nav-cta | "Apply now" | ✅ Pass §2.5 |
+| pilot.html | .section-eyebrow | "Week Zero", "Who We're Looking For", "As a Pilot Partner", "How This Works" | ✅ Pass §2.3 |
+| All 8 pages | .hero-trust | (slot absent on all eight pages — cut in this branch) | ✅ Compliant with §2.2 |
+| All 8 pages | .dd-sub | All six persona entries consistent across all pages | ✅ Pass §2.4 |
+
+---
+
 ## Changes applied in this branch
 
 ```
@@ -82,3 +122,5 @@ for-ai-agents.html     — replaced .hero-eyebrow "For agent builders" → canon
 for-ai-agents.html     — removed .hero-trust feature-pill row (lines 249–255)
 for-product-managers.html — replaced .hero-eyebrow "For Product Managers" → canonical category-frame
 ```
+
+*Run: 2026-04-29 · Spec v1.0 · Positioning v2.24 · Canonical highlights v2.1*
